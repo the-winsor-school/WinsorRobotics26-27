@@ -160,11 +160,17 @@ public class MecanumDrive extends DriveTrain
         //  happens to initialize the same device separately in its own constructor, so
         //  Billy works by luck - but Wildbots2025 also uses a MecanumDrive and never
         //  initializes the IMU anywhere, so its turnToAngle() and yaw telemetry read from
-        //  an unconfigured device. Two classes own the same piece of hardware and only
-        //  one of them knows it needs setup. Decide who owns the IMU (this class, since
-        //  it's the only thing that steers by heading?) and have that one place
-        //  initialize it - probably by passing the hub orientation in the same way
-        //  OrientationConfiguration passes motor directions.
+        //  an unconfigured device. Two classes own the same piece of hardware, and only
+        //  one of them knows it needs setup.
+        //
+        //  The IMU is a ROBOT-level sensor. It reports the whole chassis's heading, not
+        //  this drive train's state, and more than one subsystem can want it. So the fix
+        //  follows the pattern BillyRobot already uses for the Limelight: the Robot
+        //  fetches it, initializes it once with the hub orientation for THAT robot, and
+        //  hands it down to whoever needs it. Take the IMU as a constructor parameter
+        //  here rather than fetching it - the same way OrientationConfiguration already
+        //  passes in what varies per robot - and delete this lookup. One owner, one
+        //  initialize, and Wildbots2025 stops reading garbage.
         imu = hardwareMap.get(IMU.class, "imu");
     }
 
@@ -190,6 +196,39 @@ public class MecanumDrive extends DriveTrain
         return auton;
     }
 
+    // TODO (project, and a good one for somebody who wants the drive train to feel
+    //  better rather than just work): this drive train owns an IMU and uses it for
+    //  exactly one thing - turnToAngle() in autonomous. Teleop ignores it completely.
+    //  Two worthwhile projects live here, in increasing order of difficulty. Both want
+    //  the IMU ownership TODO in the constructor sorted out first.
+    //
+    //  1. FIELD-RELATIVE DRIVE. Right now pushing the stick "forward" means "forward for
+    //     the robot", so the driver has to think in the robot's frame the whole match and
+    //     it gets genuinely confusing once the robot is facing back at them. Field-relative
+    //     drive rotates the stick vector by the robot's heading, so "forward" always means
+    //     "away from the driver" no matter which way the robot is pointing. The whole
+    //     trick is three lines, done before the existing wheel math:
+    //         double theta = Math.atan2(vertical, horizontal);
+    //         double r     = Math.hypot(horizontal, vertical);
+    //         theta = AngleUnit.normalizeRadians(
+    //                 theta - imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
+    //     then recompute horizontal/vertical from r and theta and carry on as now.
+    //     See FtcRobotController's RobotTeleopMecanumFieldRelativeDrive sample. Needs a
+    //     driver-accessible imu.resetYaw() so "away from me" can be re-zeroed mid-match.
+    //
+    //  2. HEADING HOLD / DRIFT CORRECTION. Mecanum wheels scrub, so a robot told to
+    //     strafe straight drifts in rotation. Remember the heading the driver last asked
+    //     for, and when the turn stick is at rest, feed a small proportional correction
+    //     into `turn` to hold it:
+    //         double error = AngleExtensions.getSmol(targetHeading, currentYaw);
+    //         turn = error * P_TURN_GAIN;      // start near 0.02, clip to +/- 1
+    //     Note AngleExtensions.getSmol() and mapToIMURange() already do the +/-180
+    //     wraparound that the SDK's RobotAutoDriveByGyro_Linear sample writes inline in
+    //     getSteeringCorrection() - we have those helpers, so use them.
+    //
+    //  Both belong HERE, in the drive train, rather than in an OpMode: they are part of
+    //  what it means to drive this chassis, and every robot built on a MecanumDrive
+    //  should get them for free.
     @Override
     public void drive(Gamepad gamepad)
     {

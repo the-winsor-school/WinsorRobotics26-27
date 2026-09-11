@@ -10,6 +10,30 @@ import org.firstinspires.ftc.vision.VisionPortal;
 /**
  * Abstract base for all robots in the system.
  *
+ * <p><b>Robot-wide sensors live here, and flow downward.</b> A sensor belongs at
+ * this layer when it describes the whole robot rather than one mechanism, or
+ * when more than one subsystem wants it. The Robot fetches it, configures it
+ * once, and hands it to whoever needs it, so there is exactly one owner and
+ * exactly one setup.
+ *
+ * <ul>
+ *   <li>The <b>Limelight</b> is the pattern done right. {@code BillyRobot} owns
+ *       it, and passes it into {@code LimelightAutoTarget} alongside the turret's
+ *       autonomous behaviors. Neither the turret nor the assembly knows a camera
+ *       exists.</li>
+ *   <li>The <b>IMU</b> is the pattern done wrong, for now. It reports the whole
+ *       chassis's heading, so it belongs here - but {@code MecanumDrive} fetches
+ *       its own copy and {@code BillyRobot} fetches and initializes another, and
+ *       {@code Wildbots2025} initializes none at all. See the TODO in
+ *       {@code MecanumDrive}'s constructor.</li>
+ * </ul>
+ *
+ * <p>The sorting rule runs all the way down the model: a sensor guiding one
+ * mechanism belongs in that {@code MechComponent};  one describing the
+ * relationship between mechanisms belongs in the {@code MechAssembly};  one
+ * describing the whole robot, or wanted by more than one subsystem, belongs
+ * here.
+ *
  * <p><b>Telemetry contract (Susan Zuo):</b> Telemetry is injected at
  * construction via {@code Robot(Telemetry)} and propagated to every subsystem
  * by {@link #initializeSubsystems()}. This class is the <em>single flush

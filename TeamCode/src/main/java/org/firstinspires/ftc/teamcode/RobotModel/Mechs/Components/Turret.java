@@ -51,6 +51,36 @@ public class Turret extends MechComponent
     {
         public void update(CRServo servo, Telemetry telemetry);
     }
+
+    // TODO: the turret needs a pair of travel limits. Right now it will happily keep
+    //  rotating in one direction for as long as something commands it to, which wraps the
+    //  wiring and eventually damages the mechanism. Add two TouchSensors at the ends of
+    //  turret travel and enforce them here, the way DoublyLimitedMotor does for a motor:
+    //  take both sensor names in the constructor, add canGoCW()/canGoCCW(), and put a
+    //  decorated `public void setPower(double)` on Turret that zeroes any power heading
+    //  into a limit that is already pressed.
+    //
+    //  The decorator alone is not enough, though - there are three ways to get at this
+    //  servo that would walk straight past it, and all three have to close:
+    //    1. `servo` below is a public field, so any caller can grab the CRServo and
+    //       command it directly. Make it private.
+    //    2. TurretControlStrategy.move(CRServo, Gamepad) hands the raw servo to the
+    //       teleop lambda, which then calls servo.setPower(...) itself (see BillyMA).
+    //       Change the interface to move(Gamepad, Turret) and call
+    //       `strategy.move(gamepad, this)`, so the lambda has to go through the
+    //       decorated setPower. DoublyLimitedMotorControlStrategy already has exactly
+    //       this signature - copy the shape of it, not the class.
+    //    3. AutonomousTurretBehaviors.setPower/turnCW/turnCCW/stop all call
+    //       servo.setPower(...) directly too. Route them through the decorated method
+    //       as well, or LimelightAutoTarget will drive the turret past its own limits.
+    //
+    //  Worth noticing what this does to the Claw/Turret duplication. Today both classes
+    //  are bare single-device wrappers of one CRServo, which by the rule on
+    //  MechComponent means there should be ONE of them, named for the device. Adding the
+    //  limits turns this class into the other kind of component - an output device
+    //  coupled to the sensors that guide it - and that is what earns it a class of its
+    //  own. So the fix is two moves, not one: collapse the bare wrappers into a single
+    //  device-named component, and build the limited turret on top of it.
     public CRServo servo;
 
     protected TurretControlStrategy strategy;

@@ -9,6 +9,40 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  * {@link org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.MechComponent}
  * implementations and delegate instructions to them.
  *
+ * <p><b>Assemblies may own sensors too.</b> A component owns the sensors that
+ * guide its own single mechanism -
+ * {@link org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.DoublyLimitedMotor}
+ * and its two limit switches are the worked example. An assembly owns the
+ * sensors that describe a <em>relationship between</em> its components, which
+ * no single component can see. The sorting rule is the same one that separates
+ * the layers everywhere else:
+ *
+ * <ul>
+ *   <li>guides one mechanism, and protects it from itself -&gt; component</li>
+ *   <li>reports on the handoff or interaction between two mechanisms -&gt; assembly</li>
+ * </ul>
+ *
+ * <p>TODO: no assembly in this codebase owns a sensor yet, so there is no
+ *  reference implementation to copy, and the `doc/FlintLessons` have no example
+ *  to teach from. Billy is the obvious candidate. A beam-break or color sensor
+ *  sitting between the intake and the pusher would answer "is a ball actually
+ *  seated and ready to fire?" - a question that spans intake, pusher and
+ *  flywheel, so it fits in none of them. With it, BillyRapidFire could wait on
+ *  a real signal instead of the fixed 2200ms guess it currently uses.
+ *
+ *  What this layer needs, whenever the first one gets built:
+ *  <ul>
+ *    <li>the assembly holds the sensor handle itself, fetched in its constructor
+ *        alongside its components</li>
+ *    <li>its readings get reported in {@link #updateTelemetry()}, the same as any
+ *        component's state</li>
+ *    <li>the assembly's {@code AutonomousMechBehaviors} exposes what the sensor
+ *        <em>means</em> as a verb or a question ({@code isBallSeated()}), rather
+ *        than the raw reading</li>
+ *    <li>the strategy lambda is where the reading changes what the components are
+ *        told to do</li>
+ *  </ul>
+ *
  * <p><b>Telemetry contract (Susan Zuo):</b> Telemetry is injected once via
  * {@link #initializeTelemetry}, which must propagate the reference to every
  * child component before creating the autonomous behavior object.

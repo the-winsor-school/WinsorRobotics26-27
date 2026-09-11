@@ -7,6 +7,43 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 /**
  * Base class for every mechanism component on the robot.
  *
+ * <p><b>What belongs in a component.</b> Every concrete MechComponent should be
+ * exactly one of two things:
+ *
+ * <ol>
+ *   <li><b>A wrapper around a single output device</b> - one motor, one servo,
+ *       one CR servo. The class adds the strategy seam, the autonomous verbs,
+ *       and telemetry, and nothing else. We need exactly <em>one</em> of these
+ *       per device type, and it should be named for the <em>device</em>, since
+ *       any mechanism built on that device reuses it as-is.</li>
+ *   <li><b>A purposeful collection of output devices plus the sensors that
+ *       guide them</b> - a motor bounded by two limit switches, two motors
+ *       driven as an opposed pair, a camera and the processors reading it.
+ *       These are named for what the collection <em>does</em>, because the
+ *       coupling between the outputs and the sensors is the whole point.</li>
+ * </ol>
+ *
+ * <p>A class that is neither - a second single-device wrapper named after one
+ * robot's job for it - is duplication, and every fix to one is a fix owed to
+ * the other.
+ *
+ * <p>TODO: the current components have yet to be sorted against that rule, and
+ *  the naming convention for category 1 is still an open question. As it stands:
+ *  <ul>
+ *    <li>{@code SpinnyIntake} (one DcMotor), {@code PusherServo} (one Servo),
+ *        {@code Claw} and {@code Turret} (one CRServo <em>each</em>) are all
+ *        category 1, and all four are named for a job rather than a device.</li>
+ *    <li>{@code Claw} and {@code Turret} are therefore two wrappers of the same
+ *        device. One device-named class should serve both - until each grows the
+ *        sensors it needs, at which point they become category 2 and separate
+ *        classes are earned. See the TODOs on both files.</li>
+ *    <li>{@code DoublyLimitedMotor}, {@code DoubleShooter} and
+ *        {@code BallDetectionComponent} are already category 2 and already named
+ *        for what they do.</li>
+ *  </ul>
+ *  Settle the category-1 naming convention before renaming anything, since every
+ *  assembly's construction code moves with it.
+ *
  * <p><b>Telemetry contract (Susan Zuo):</b> Telemetry is injected once via
  * {@link #initializeTelemetry} rather than passed as a loop-time parameter.
  * Each component owns its {@code Telemetry} reference and writes freely to the
