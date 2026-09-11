@@ -3,8 +3,31 @@
 Welcome!
 
 This module, TeamCode, is the place where you will write/paste the code for your team's
-robot controller App. This module is currently empty (a clean slate) but the
-process for adding OpModes is straightforward.
+robot controller App.
+
+### How Winsor's code is organized
+
+This is not a clean slate — it carries the team's robot object model forward from last
+season. Four layers, each one only talking to the layer below it:
+
+```
+OpModes/                     the entry point the Driver Station sees. Should be tiny.
+  RobotModel/Robots/         a whole robot: one DriveTrain + one MechAssembly
+    RobotModel/DriveTrain/   how the robot moves (Mecanum, Tank)
+    RobotModel/Mechs/
+      Assemblies/            a group of components that work together
+      Components/            one motor/servo/sensor and the rules for driving it
+AutonStrategies/             state machines and autonomous routines
+Extensions/                  small static helpers (gamepad dead zones, angle math, …)
+```
+
+**Read `doc/FlintLessons/01-layered-robot-model.md` first** — the ten lessons in
+`doc/FlintLessons/` walk through this model one layer at a time.
+`doc/Migration-2026-27.md` lists what carried over from last season and what didn't.
+
+Search the project for `TODO` to find real, known bugs left in place to work on.
+
+The process for adding your own OpModes is straightforward.
 
 ## Creating your own OpModes
 
