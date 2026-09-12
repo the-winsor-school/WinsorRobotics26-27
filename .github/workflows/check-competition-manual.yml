@@ -1,0 +1,33 @@
+name: Check competition manual
+
+on:
+  schedule:
+    - cron: '17 13 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-competition-manual
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Fetch latest manual
+        shell: pwsh
+        run: ./scripts/Update-CompetitionManual.ps1
+
+      - name: Verify mirror is current
+        shell: bash
+        run: |
+          if ! git diff --exit-code -- doc/game-manual/rendered; then
+            echo '::error::The BIOBUZZ Competition Manual mirror is out of date. Run ./scripts/Update-CompetitionManual.ps1 and commit the reviewed changes.'
+            exit 1
+          fi
