@@ -40,6 +40,20 @@ The main sequence.  It builds the layered robot model one layer at a time, botto
 | 9 | [Autonomous Strategies and State Machines](09-autonomous-strategies-state-machines.md) | `AutonStrategies` |
 | 10 | [Capstone:  Designing a New Robot](10-capstone-new-robot.md) | all of it |
 
+## Advanced -- deeper dives, take any time
+
+Standalone lessons that go past what the main sequence covers, on machinery the main
+sequence only introduces.  Each names its own prerequisite rather than assuming the whole
+main sequence.
+
+| Lesson | Builds on |
+|---|---|
+| [State Machines, Composed](Advanced/state-machines.md) | Lesson 9 |
+| [Control Ownership and Resource Locking](Advanced/control-ownership.md) | Lesson 9, Advanced/State Machines |
+| [Common Pitfalls](Advanced/common-pitfalls.md) | the full main sequence; Advanced/State Machines and Advanced/Control Ownership |
+| [AprilTags and Navigation](Advanced/apriltags-and-navigation.md) | Getting Started 4; Advanced/Control Ownership |
+| [Defining Extension Methods Well](Advanced/extension-methods.md) | Getting Started 1; Lesson 3 |
+
 ## Companion documents
 
 These are written for humans to read directly, rather than as tutor prompts.
@@ -49,9 +63,10 @@ These are written for humans to read directly, rather than as tutor prompts.
 - [NewRobotDesignWorkflow.md](../NewRobotDesignWorkflow.md) -- the build order and templates for a new robot
 - [ControlStrategyExpansionPlan.md](../ControlStrategyExpansionPlan.md) -- a design proposal for the unfinished half of the strategy system
 - [Migration-2026-27.md](../Migration-2026-27.md) -- what carried over from last season, and what stayed behind
+- [limelight3a/README.md](../limelight3a/README.md) -- verified Limelight 3A Java reference (methods, types, gotchas), checked against the exact SDK version this repo builds against
 
 ## Keeping these accurate
 
 These lessons quote real code, so a refactor can leave a lesson describing something that
 has changed.  When you change a signature or rename a class, search this folder for it.
-Lessons 2, 4, 8, 9, and 10 all contain quoted source.
+Lessons 2, 4, 8, 9, and 10, and all five Advanced lessons, contain quoted source.
