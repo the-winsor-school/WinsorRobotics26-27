@@ -68,7 +68,7 @@ C. ROBOT and DRIVE TEAM starting locations and pre-loaded SCORING ELEMENTS do no
 
 While efforts will be made to replicate the same conditions of the original MATCH, there are environmental factors, such as changes to ambient lighting, that may be outside the control of the event.
 
-## 13.3 Clarifications on MATCH Play Results (“Question Box”)
+## 13.3 Clarifications on MATCH Play Results ("Question Box")
 
 Each event will have one or more designated Question Boxes in the ARENA area. If a DRIVE TEAM has a question about a MATCH, the FIELD, etc., they may send up to two representatives wearing a DRIVE TEAM badge to their corresponding Question Box. Depending on timing, the Head REFEREE or FTA may postpone any requested discussion until the end of the subsequent MATCH.
 
@@ -117,13 +117,13 @@ A. When issuing a RED CARD or YELLOW CARD the Head REFEREE must record the rule 
 
 B. Event Directors and Program Delivery Partners may not overrule a Head REFEREE decision.
 
-C. Framework of Behaviors and Competition Integrity Contract (CIC) violations may involve escalation beyond the Head REFEREE’S initial ruling.
+C. Framework of Behaviors and Competition Integrity Contract (CIC) violations may involve escalation beyond the Head REFEREE'S initial ruling.
 
 D. Every Qualification and Playoff MATCH must be observed by a certified Head REFEREE. Head REFEREES may only watch 1 MATCH at a time.
 
 Rules in this manual are written for *human* Head REFEREES to enforce. Some have clear unambiguous criteria which can be easily checked, but other rules will rely on human judgement. Head REFEREES are asked to make the best call they can in the moment with what they or other REFEREES observed during the MATCH.
 
-When there is an ambiguous situation or controversial call it is human instinct to wonder what was the “right call” or “what-if...” – for the purposes of *FIRST* Tech Challenge gameplay, the right call is the one that was made in good faith by the Head REFEREE with the information they had available at the time.
+When there is an ambiguous situation or controversial call it is human instinct to wonder what was the "right call" or "what-if\..." -- for the purposes of *FIRST* Tech Challenge gameplay, the right call is the one that was made in good faith by the Head REFEREE with the information they had available at the time.
 
 #### T402 — Only REFEREES can declare a ROBOT DISABLED. [Evergreen rule]
 
@@ -185,7 +185,7 @@ H. team members or ROBOTS may measure the FIELD with tools (e.g., tape measures)
 
 Activities not allowed during ROBOT calibration and measurement time(s) include:
 
-I. ROBOT CHASSIS may not move under its own power around the FIELD (i.e., “driving” as part of AUTO or TELEOP),
+I. ROBOT CHASSIS may not move under its own power around the FIELD (i.e., "driving" as part of AUTO or TELEOP),
 
 J. ROBOT may not LAUNCH SCORING ELEMENTS, and
 
@@ -199,7 +199,7 @@ A. In Qualification MATCHES, each team will have a minimum of 5 minutes from whe
 
 B. In Playoff MATCHES, each team will have a minimum of 8 minutes from when MATCH results are posted from their previous MATCH until the expected start time of their next MATCH for the purpose of G301.
 
-If a MATCH’S results will not be posted, (e.g., due to an immediate replay) each team will be afforded a reasonable time to reset at the Head REFEREE’S discretion.
+If a MATCH'S results will not be posted, (e.g., due to an immediate replay) each team will be afforded a reasonable time to reset at the Head REFEREE'S discretion.
 
 These breaks are automatically tracked by the *FIRST* event management system. FIELD STAFF will communicate expected start times with teams as appropriate. Teams may ask the FTA, Head REFEREE, or their designee about the timing of affected MATCHES.
 
@@ -271,19 +271,19 @@ Figure 13-1: Sample MATCH Schedule
 
 5. provide even distribution of MATCHES played on blue and red ALLIANCE
 
-For more information about the MATCH scheduling algorithm, please see [Idle Loop software’s website](https://idleloop.com/matchmaker/).
+For more information about the MATCH scheduling algorithm, please see [Idle Loop software's website](https://idleloop.com/matchmaker/).
 
-All teams are assigned the same number of Qualification MATCHES, equal to the number of rounds, unless the number of teams multiplied by number of MATCHES is not divisible by 4. In this case, the *FIRST* event management software randomly selects some teams to play an extra MATCH. For the purpose of seeding calculations, those teams are designated as SURROGATES for the extra MATCH. If a team plays a MATCH as a SURROGATE, it is indicated on the MATCH schedule with an * after their team number, it is always their third Qualification MATCH, and the outcome of the MATCH has no effect on the team’s ranking. YELLOW and RED CARDS assigned to SURROGATES, however, do carry forward to subsequent MATCHES.
+All teams are assigned the same number of Qualification MATCHES, equal to the number of rounds, unless the number of teams multiplied by number of MATCHES is not divisible by 4. In this case, the *FIRST* event management software randomly selects some teams to play an extra MATCH. For the purpose of seeding calculations, those teams are designated as SURROGATES for the extra MATCH. If a team plays a MATCH as a SURROGATE, it is indicated on the MATCH schedule with an * after their team number, it is always their third Qualification MATCH, and the outcome of the MATCH has no effect on the team's ranking. YELLOW and RED CARDS assigned to SURROGATES, however, do carry forward to subsequent MATCHES.
 
 If a team is scheduled to play in a back-to-back MATCHES (e.g., Qualification MATCH 40 and 41) they will receive a minimum break per T406 before their next MATCH.
 
 ### 13.6.3 Qualification Ranking
 
-RANKING POINTS (RP) are units credited to a team based on their ALLIANCE’S performance in Qualification MATCHES. These points are awarded to each eligible team at the completion of each Qualification MATCH per Table 10-2.
+RANKING POINTS (RP) are units credited to a team based on their ALLIANCE'S performance in Qualification MATCHES. These points are awarded to each eligible team at the completion of each Qualification MATCH per Table 10-2.
 
 A team's RANKING SCORE (RS) is the average number of RANKING POINTS earned by a team throughout their Qualification MATCHES (excluding any SURROGATE MATCH).
 
-All teams participating in Qualification MATCHES are ranked by RANKING SCORE. If the number of teams in attendance is ‘n’, they are ranked ‘1’ through ‘n’, with ‘1’ being the team with the highest RANKING SCORE and ‘n’ being the team with the lowest RANKING SCORE.
+All teams participating in Qualification MATCHES are ranked by RANKING SCORE. If the number of teams in attendance is 'n', they are ranked '1' through 'n', with '1' being the team with the highest RANKING SCORE and 'n' being the team with the lowest RANKING SCORE.
 
 SURROGATE MATCHES are excluded from all calculations. A MATCH in which a team is DISQUALIFIED contributes 0 to all sort criteria.
 
@@ -319,7 +319,7 @@ If a team is planning to not participate in the playoff tournament, they should 
 
 #### T702 — Declining teams cannot be picked. [Evergreen rule]
 
-An ALLIANCE CAPTAIN may not invite a team that has declined another ALLIANCE’S invitation to participate in the playoff tournament.
+An ALLIANCE CAPTAIN may not invite a team that has declined another ALLIANCE'S invitation to participate in the playoff tournament.
 
 Violation: The ALLIANCE CAPTAIN must make another selection
 
@@ -363,7 +363,7 @@ The Playoff MATCH bracket is how the event winners are determined.
 
 The number of ALLIANCES for an event is determined by the number of teams who are eligible to participate in the Playoffs based on all Qualification MATCH participating teams as shown in Table 13-2.
 
-Teams that sign up for the event but do not show up and teams that participate in Awards but are not included in the Qualification MATCHES are not included in determining the Playoff MATCH bracket size. Teams that participated in the Qualification MATCHES but don’t intend to participate in the Playoff MATCH bracket are included in determining the Playoff MATCH bracket size.
+Teams that sign up for the event but do not show up and teams that participate in Awards but are not included in the Qualification MATCHES are not included in determining the Playoff MATCH bracket size. Teams that participated in the Qualification MATCHES but don't intend to participate in the Playoff MATCH bracket are included in determining the Playoff MATCH bracket size.
 
 *Table* *13-2: Number of playoff ALLIANCES based on all Qualification Match participating teams*
 
@@ -384,7 +384,7 @@ Ties play another MATCH until the MATCH results in 1 winner.
 
 In Round 1, the higher ranked ALLIANCE is assigned to the red ALLIANCE. For subsequent rounds, ALLIANCE color is assigned as shown in Figure 13-2, regardless of ALLIANCE rank at the start of the playoff tournament.
 
-As shown in Figure 13-2, Playoff MATCHES consist of up to 6 rounds with breaks between later rounds. Breaks begin after the MATCH RESULTS have been posted from the latest MATCH. The Blue and Red Gap columns indicate the approximate time between each ALLIANCE’S MATCHES. The expected start time of the scheduled MATCH is the time indicated on the MATCH schedule or 8 minutes from the end of either ALLIANCE’S previous MATCH, whichever is later per T406.
+As shown in Figure 13-2, Playoff MATCHES consist of up to 6 rounds with breaks between later rounds. Breaks begin after the MATCH RESULTS have been posted from the latest MATCH. The Blue and Red Gap columns indicate the approximate time between each ALLIANCE'S MATCHES. The expected start time of the scheduled MATCH is the time indicated on the MATCH schedule or 8 minutes from the end of either ALLIANCE'S previous MATCH, whichever is later per T406.
 
 [Figure: Diagram showing 8-ALLIANCE bracket.]\
 Figure 13-2: 8-ALLIANCE playoff bracket
@@ -399,7 +399,16 @@ Figure 13-3: 2-ALLIANCE playoff bracket
 
 Table 13-3: 2-ALLIANCE playoff bracket typical timing
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Round** | **MATCH** | **Upper/ Lower** |  |  |  | **Gap** (min) |  | **Next MATCH** (MATCH # (ALLIANCE color)) |  |  |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **Round** | **MATCH** | **Upper/ Lower** | **FIELD** | **Blue** | **Red** | **Blue** | **Red** | **Winner** | **Loser** | **Estimated Start (min)** |
+| 15-minute break |  |  | Judges' Choice* (1), Innovate/Design/Control Award (1) |  |  |  |  |  |  | 0 |
+| Finals | 1 |  | 1 | A2 | A1 |  |  | M2 | M2 | 15 |
+| 15-minute break |  |  | Sustain/Reach/Connect Award (1) |  |  |  |  |  |  | 18 |
+| Finals | 2 |  | 1 | A2 | A1 | 0:15 | 0:15 | M3* | M3* | 33 |
+| 15-minute break |  |  | Think Award (1) |  |  |  |  |  |  | 36 |
+| Finals | 3* |  | 1 | A2 | A1 | 0:10 | 0:10 |  |  | 51 |
+| Awards: Compass*, Finalists, Winners, and Inspire Award (1) |  |  |  |  |  |  |  |  |  | 54 |
 
 * if required
 
@@ -413,7 +422,21 @@ Figure 13-4: 4-ALLIANCE playoff bracket
 
 Table 13-4: 4-ALLIANCE playoff typical timing
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Round** | **MATCH** | **Upper/ Lower** |  |  |  | **Gap** (min) |  | **Next MATCH** (MATCH # (ALLIANCE color)) |  |  |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **Round** | **MATCH** | **Upper/ Lower** | **FIELD** | **Blue** | **Red** | **Blue** | **Red** | **Winner** | **Loser** | **Estimated Start (min)** |
+| 1 | 1 | Upper | 1 | A4 | A1 |  |  | M4 (R) | M3 (R) | 0 |
+| 1 | 2 | Upper | 1 | A3 | A2 |  |  | M4 (B) | M3 (B) | 6 |
+| 15-minute break |  |  |  |  |  |  |  |  |  | 9 |
+| 2 | 3 | Lower | 1 | L2 | L1 | 0:08 | 0:14 | M5 (B) | 4th | 25 |
+| 2 | 4 | Upper | 1 | W2 | W1 | 0:14 | 0:20 | M6 (R) | M5 (R) | 31 |
+| 15-minute break |  |  | Judges' Choice* (1), Design Award (1), Reach Award (1) |  |  |  |  |  |  | 33 |
+| 3 | 5 | Lower | 1 | W3 | L4 | 0:21 | 0:15 | M6 (B) | 3rd | 48 |
+| 15-minute break |  |  | Control Award (1), Innovate Award (1), Sustain Award (1) |  |  |  |  |  |  | 51 |
+| Finals | 6 |  | 1 | W5 | W4 | 0:15 | 0:33 | M7* | M7* | 66 |
+| 15-minute break |  |  | Connect Award (1), Think Award (1) |  |  |  |  |  |  | 69 |
+| Finals | 7* |  | 1 | W5 | W4 | 0:15 | 0:15 |  |  | 84 |
+| Awards: Compass*, Finalists, Winners, and Inspire Award (2, 1) |  |  |  |  |  |  |  |  |  | 87 |
 
 *If Required
 
@@ -427,7 +450,24 @@ Figure 13-5: 6-ALLIANCE playoff bracket
 
 Table 13-5: 6-ALLIANCE playoff bracket typical timing
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Round** | **MATCH** | **Upper/ Lower** |  |  |  | **Gap** (min) |  | **Next MATCH** (MATCH # (ALLIANCE color)) |  |  |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **Round** | **MATCH** | **Upper/ Lower** | **FIELD** | **Blue** | **Red** | **Blue** | **Red** | **Winner** | **Loser** | **Estimated Start (min)** |
+| 1 | 1 | Upper | 1 | A5 | A4 |  |  | M3 (B) | M6 (B) | 0 |
+| 1 | 2 | Upper | 2 | A6 | A3 |  |  | M4 (B) | M5 (B) | 6 |
+| 2 | 3 | Upper | 1 | W1 | A1 | 0:09 |  | M7 (R) | M5 (R) | 12 |
+| 2 | 4 | Upper | 2 | W2 | A2 | 0:09 |  | M7 (B) | M6 (R) | 18 |
+| 3 | 5 | Lower | 1 | L2 | L3 | 0:15 | 0:09 | M8 (B) | Tied 5th | 24 |
+| 3 | 6 | Lower | 2 | L1 | L4 | 0:27 | 0:09 | M8 (R) | Tied 5th | 30 |
+| 4 | 7 | Upper | 1 | W4 | W3 | 0:15 | 0:21 | M10 (R) | M9 (R) | 36 |
+| 4 | 8 | Lower | 2 | W5 | W6 | 0:15 | 0:09 | M9 (B) | 4th | 42 |
+| 15-minute break |  |  | Judges' Choice* (1), Design Award (2, 1), Reach Award (2, 1) |  |  |  |  |  |  | 45 |
+| 5 | 9 | Lower | 1 | W8 | L7 | 0:15 | 0:21 | M10 (B) | 3rd | 60 |
+| 15-minute break |  |  | Control Award (2, 1), Innovate Award (2, 1), Sustain Award (2,1) |  |  |  |  |  |  | 63 |
+| Finals | 10 |  | 1 | W9 | W7 | 0:15 | 0:39 | M11* | M11* | 78 |
+| 15-minute break |  |  | Connect Award (2, 1), Think Award (2, 1) |  |  |  |  |  |  | 81 |
+| Finals* | 11 |  | 1 | W9 | W7 | 0:15 | 0:15 |  |  | 96 |
+| Awards: Compass*, Finalists, Winners, and Inspire Award (3, 2, 1) |  |  |  |  |  |  |  |  |  | 99 |
 
 * if required
 
@@ -441,7 +481,28 @@ Figure 13-6: 8-ALLIANCE playoff bracket
 
 Table 13-6: 8-ALLIANCE playoff bracket typical timing
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Round** | **MATCH** | **Upper/ Lower** |  |  |  | **Gap** (min) |  | **Next MATCH** (MATCH # (ALLIANCE color)) |  |  |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **Round** | **MATCH** | **Upper/ Lower** | **FIELD** | **Blue** | **Red** | **Blue** | **Red** | **Winner** | **Loser** | **Estimated Start (min)** |
+| 1 | 1 | Upper | 1 | A8 | A1 |  |  | M7 (R) | M5 (R) | 0 |
+| 1 | 2 | Upper | 2 | A5 | A4 |  |  | M7 (B) | M5 (B) | 6 |
+| 1 | 3 | Upper | 1 | A7 | A2 |  |  | M8 (R) | M6 (R) | 12 |
+| 1 | 4 | Upper | 2 | A6 | A3 |  |  | M8 (B) | M6 (B) | 18 |
+| 2 | 5 | Lower | 1 | L2 | L1 | 0:15 | 0:21 | M10 (B) | Tied 7th | 24 |
+| 2 | 6 | Lower | 2 | L4 | L3 | 0:09 | 0:15 | M9 (B) | Tied 7th | 30 |
+| 2 | 7 | Upper | 1 | W2 | W1 | 0:27 | 0:33 | M11 (R) | M9 (R) | 36 |
+| 2 | 8 | Upper | 2 | W4 | W3 | 0:21 | 0:27 | M11 (B) | M10 (R) | 42 |
+| 3 | 9 | Lower | 1 | W6 | L7 | 0:15 | 0:09 | M12 (B) | Tied 5th | 48 |
+| 3 | 10 | Lower | 2 | W5 | L8 | 0:27 | 0:09 | M12 (R) | Tied 5th | 54 |
+| 4 | 11 | Upper | 1 | W8 | W7 | 0:15 | 0:21 | M14 (R) | M13 (R) | 60 |
+| 4 | 12 | Lower | 2 | W9 | W10 | 0:15 | 0:09 | M13 (B) | 4th | 66 |
+| 15-minute break |  |  | Judges' Choice* (1), Design Award (3,2,1), Reach Award (3,2,1) |  |  |  |  |  |  | 69 |
+| 5 | 13 | Lower | 1 | W12 | L11 | 0:15 | 0:21 | M14 (B) | 3rd | 84 |
+| 15-minute break |  |  | Control Award (3,2,1), Innovate Award (3,2,1), Sustain Award (3,2,1) |  |  |  |  |  |  | 87 |
+| Finals | 14 |  | 1 | W13 | W11 | 0:15 | 0:39 | M15* | M15* | 102 |
+| 15-minute break |  |  | Connect Award (3,2,1), Think Award (3,2,1) |  |  |  |  |  |  | 105 |
+| Finals* | 15 |  | 1 | W13 | W11 | 0:15 | 0:15 |  |  | 120 |
+| Awards: Compass*, Finalists, Winners, and Inspire Award (3, 2, 1) |  |  |  |  |  |  |  |  |  | 123 |
 
 * if required
 
@@ -455,17 +516,17 @@ Advancement from a Dual Division event is defined in Section 13.8.1 Dual Divisio
 
 In Dual Division events, teams can be assigned to division in a few different methods briefly described below. For complete details, reference the event management software documentation. The method used is at the discretion of the local Program Delivery Partner.
 
-A. **Random Assignment** – Random division assignment takes the team list, shuffles it, and splits the list in half. If equal division sizes cannot be made, the software randomly chooses which division will have an extra team.
+A. **Random Assignment** -- Random division assignment takes the team list, shuffles it, and splits the list in half. If equal division sizes cannot be made, the software randomly chooses which division will have an extra team.
 
-B. **FIM Method** – Algorithm is based on the process developed by *FIRST* in Michigan (FIM) and utilizes a ”brute force randomizer” approach. It attempts to balance ROBOT performance while maintaining a decent factor of randomness. Teams are ranked based on a qualification performance metric based on the two best events and then assigned to quartiles and distributed between divisions such that each quartile is equally represented. Division assignments are measured against several metrics to ensure divisions are closely matched.
+B. **FIM Method** -- Algorithm is based on the process developed by *FIRST* in Michigan (FIM) and utilizes a "brute force randomizer" approach. It attempts to balance ROBOT performance while maintaining a decent factor of randomness. Teams are ranked based on a qualification performance metric based on the two best events and then assigned to quartiles and distributed between divisions such that each quartile is equally represented. Division assignments are measured against several metrics to ensure divisions are closely matched.
 
-C. **Alternating Assignment** – Alternating division assignment sorts the team list by team number, then assigns teams by alternating divisions while iterating through the team list. The lowest team number will be assigned Division 1, the next Division 2, then Division 1, etc.
+C. **Alternating Assignment** -- Alternating division assignment sorts the team list by team number, then assigns teams by alternating divisions while iterating through the team list. The lowest team number will be assigned Division 1, the next Division 2, then Division 1, etc.
 
-D. **Child League Split-up** (only available for League Tournaments) – Algorithm attempts to balance the representation of each child league in each division.
+D. **Child League Split-up** (only available for League Tournaments) -- Algorithm attempts to balance the representation of each child league in each division.
 
-E. **OPR Method** – Algorithm attempts to balance the ROBOT performance across the division. It calculates every team’s Offensive Power Rating (OPR) for every official event they competed in for the current season and selects each team’s highest OPR. Then it ranks all the teams by highest OPR and alternately assigns teams from highest to lowest OPR into each division.
+E. **OPR Method** -- Algorithm attempts to balance the ROBOT performance across the division. It calculates every team's Offensive Power Rating (OPR) for every official event they competed in for the current season and selects each team's highest OPR. Then it ranks all the teams by highest OPR and alternately assigns teams from highest to lowest OPR into each division.
 
-F. **Manual** – The Program Delivery Partner can upload a list of manually assigned teams.
+F. **Manual** -- The Program Delivery Partner can upload a list of manually assigned teams.
 
 In addition to rules listed in previous manual sections, Dual Division events have the following rules:
 
@@ -487,7 +548,9 @@ For Dual Division events, advancement points are calculated per Table 4-1 except
 
 Table 13-7: Dual Division Playoff Advancement Points
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Category** | **Advancement Points Earned** |
+|---|---|
+| **Playoff Advancement** | 40 points for 1st Place (Winners) 20 points for 2nd Place (Finalists) 10 points for all Division Finalists 5 points for all Division 3rd Places |
 
 ### 13.8.2 Dual Division Playoffs
 
@@ -503,7 +566,30 @@ Dual division events will play divisional playoff brackets and then the two ALLI
 
 Table 13-8: 6-ALLIANCE Dual Division playoff bracket typical timing
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Round** | **MATCH** | **Upper/ Lower** |  |  |  | **Gap** (min) |  | **Next MATCH** (MATCH # (ALLIANCE color)) |  |  |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **Round** | **MATCH** | **Upper/ Lower** | **FIELD** | **Blue** | **Red** | **Blue** | **Red** | **Winner** | **Loser** | **Estimated Start (min)** |
+| 1 | 1 | Upper | 1 | A5 | A4 |  |  | M3 (B) | M6 (B) | 0 |
+| 1 | 2 | Upper | 2 | A6 | A3 |  |  | M4 (B) | M5 (B) | 6 |
+| 2 | 3 | Upper | 1 | W1 | A1 | 0:09 |  | M7 (R) | M5 (R) | 12 |
+| 2 | 4 | Upper | 2 | W2 | A2 | 0:09 |  | M7 (B) | M6 (R) | 18 |
+| 3 | 5 | Lower | 1 | L2 | L3 | 0:15 | 0:09 | M8 (B) | Tied 5th | 24 |
+| 3 | 6 | Lower | 2 | L1 | L4 | 0:27 | 0:09 | M8 (R) | Tied 5th | 30 |
+| 4 | 7 | Upper | 1 | W4 | W3 | 0:15 | 0:21 | M10 (R) | M9 (R) | 36 |
+| 4 | 8 | Lower | 2 | W5 | W6 | 0:15 | 0:09 | M9 (B) | 4th | 42 |
+| 15-minute break |  |  |  |  |  |  |  |  |  | 45 |
+| 5 | 9 | Lower | 1 | W8 | L7 | 0:08 | 0:14 | M10 (B) | 3rd | 60 |
+| 15-minute break |  |  |  |  |  |  |  |  |  | 63 |
+| Finals | 10 |  | 1 | W9 | W7 | 0:08 | 0:25 | M11* | M11* | 78 |
+| 15-minute break |  |  |  |  |  |  |  |  |  | 81 |
+| Finals* | 11 |  | 1 | W9 | W7 | 0:08 | 0:08 | F1 |  | 96 |
+| End of Divisional Playoffs/ Judges Choice*(1), Design Award, (3, 2, 1), Reach Award (3, 2, 1) |  |  |  |  |  |  |  |  |  | 99 |
+| Event Finals 1 | F1 |  | 1 | DivA | DivB | 0:15 | 0:15 | F2 | F2 | 114 |
+| 15-minute break |  | Control Award (3, 2, 1), Innovate Award (3, 2, 1), Sustain Award (3, 2, 1) |  |  |  |  |  |  |  | 117 |
+| Event Finals 2 | F2 |  | 1 | DivA | DivB | 0:08 | 0:08 | F3* | F3* | 132 |
+| 15-minute break |  | Connect Award (3, 2, 1), Think Award (3, 2, 1) |  |  |  |  |  |  |  | 135 |
+| Event Finals 3* | F3* |  | 1 | DivA | DivB | 0:08 | 0:08 |  |  | 150 |
+| Awards: Compass*, Div. Finalists, Division Winners, Event Finalist, Event Winners and Inspire Award (3, 2, 1) |  |  |  |  |  |  |  |  |  | 153 |
 
 * if required
 

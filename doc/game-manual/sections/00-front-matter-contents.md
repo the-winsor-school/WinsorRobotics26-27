@@ -94,13 +94,13 @@ Contents
 
 9.10 FIELD STAFF. 78
 
-9.11 Event Management System... 79
+9.11 Event Management System\... 79
 
 10 Game Details. 81
 
 10.1 MATCH Overview.. 81
 
-10.2 DRIVE TEAM... 81
+10.2 DRIVE TEAM\... 81
 
 10.3 Setup. 82
 
@@ -138,7 +138,7 @@ Contents
 
 12.6 Power Distribution. 134
 
-12.7 Control, Command & Signals System... 139
+12.7 Control, Command & Signals System\... 139
 
 12.8 Pneumatic Systems & Airflow Devices. 143
 
@@ -150,7 +150,7 @@ Contents
 
 13.2 MATCH Replays. 145
 
-13.3 Clarifications on MATCH Play Results (“Question Box”). 146
+13.3 Clarifications on MATCH Play Results ("Question Box"). 146
 
 13.4 General Tournament Rules. 148
 

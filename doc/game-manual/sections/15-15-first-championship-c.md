@@ -34,7 +34,7 @@ Some or all division FIELDS may also have additional modifications which change 
 
 ALLIANCES at the *FIRST* Championship will be made up of 3 ROBOTS. Before each division playoff tournament, ALLIANCES are selected per the process as described in Section 13.7.1 ALLIANCE Selection Process; however, the process continues with a 2nd round of selection as follows:
 
-**Round 2:** The same method is used for each ALLIANCE lead’s second choice except the selection order is reversed, with ALLIANCE 8 picking first and ALLIANCE 1 picking last. This process results in 8 ALLIANCES of 3 teams each.
+**Round 2:** The same method is used for each ALLIANCE lead's second choice except the selection order is reversed, with ALLIANCE 8 picking first and ALLIANCE 1 picking last. This process results in 8 ALLIANCES of 3 teams each.
 
 ALLIANCES may start each of their MATCHES with any 2 of the 3 ROBOTS on their ALLIANCE during Division and Championship Playoff MATCHES. ALLIANCES do not need to inform FIELD STAFF of which 2 ROBOTS will play ahead of the MATCH but must not delay the start of the MATCH per G301 by making a late decision.
 

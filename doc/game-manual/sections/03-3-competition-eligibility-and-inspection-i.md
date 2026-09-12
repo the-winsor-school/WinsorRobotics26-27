@@ -8,25 +8,25 @@
 
 #### I101 — Teams must be registered with *FIRST*. [Evergreen rule]
 
-Teams must be “competition ready” in order to compete in *FIRST* Tech Challenge official events and earn MATCH points or be eligible for judged awards.
+Teams must be "competition ready" in order to compete in *FIRST* Tech Challenge official events and earn MATCH points or be eligible for judged awards.
 
 A. North America - competition ready requirements:
 
- i. complete annual registration process through the *FIRST* dashboard
+i. complete annual registration process through the *FIRST* dashboard
 
- ii. pay annual registration fee
+ii. pay annual registration fee
 
- iii. 2 adults must be assigned in the Lead Coach 1/Lead Coach 2 roles and have passed [Youth Protection Program (YPP) screening](http://www.firstinspires.org/ypp),
+iii. 2 adults must be assigned in the Lead Coach 1/Lead Coach 2 roles and have passed [Youth Protection Program (YPP) screening](http://www.firstinspires.org/ypp),
 
- iv. complete any additional Youth Protection screening requirements (may vary from region to region), and
+iv. complete any additional Youth Protection screening requirements (may vary from region to region), and
 
- v. register all youth team members on the *FIRST* dashboard.
+v. register all youth team members on the *FIRST* dashboard.
 
 B. outside North America - competition ready requirements:
 
- i. complete annual registration process through the *FIRST* dashboard and
+i. complete annual registration process through the *FIRST* dashboard and
 
- ii. complete any additional requirements by the local *FIRST* Program Delivery Partner with regards to program fees, registrations and youth protection screening.
+ii. complete any additional requirements by the local *FIRST* Program Delivery Partner with regards to program fees, registrations and youth protection screening.
 
 The local Program Delivery Partner may, in rare cases, make exceptions for delayed payment on a case-by-case basis. Teams who have not paid annual registration fees will not earn any official season record and will not be allowed to advance.
 
@@ -36,7 +36,7 @@ An adult team member must check-in at the Pit Administration station, or designa
 
 Additional check-in requirements will vary by region but may require one or more of the following items:
 
-A. A current, completed team roster from the team’s [*FIRST* dashboard](https://my.firstinspires.org/Dashboard/) as specified by the local Program Delivery Partner,
+A. A current, completed team roster from the team's [*FIRST* dashboard](https://my.firstinspires.org/Dashboard/) as specified by the local Program Delivery Partner,
 
 B. local Program Delivery Partner team member registration or consent forms (varies by region),
 
@@ -46,7 +46,7 @@ D. a printed team PORTFOLIO (optional, see Section 6 Awards (A)).
 
 Teams should be aware of the competition schedule and note any key activities (such as inspection or judging) that may occur prior to the check-in deadline.
 
-All teams, regardless of how “ready” they think they are, are encouraged to participate in gameplay and judging. Teams are encouraged to reach out to their Program Delivery Partner and other teams to request help getting their ROBOT ready to compete before attending an event.
+All teams, regardless of how "ready" they think they are, are encouraged to participate in gameplay and judging. Teams are encouraged to reach out to their Program Delivery Partner and other teams to request help getting their ROBOT ready to compete before attending an event.
 
 #### I103 — A responsible adult must be present for the whole event. [Evergreen rule]
 
@@ -62,9 +62,9 @@ Complete details and rules about *FIRST* Tech Challenge awards can be found in S
 
 ## 3.3 MATCH Eligibility Rules
 
-Prior to participating in Qualification or Playoff MATCHES, teams are required to pass a ROBOT inspection facilitated by INSPECTOR volunteers. The goal of inspection is to ensure the team’s ROBOT meets baseline safety and competition requirements before engaging in MATCH play.
+Prior to participating in Qualification or Playoff MATCHES, teams are required to pass a ROBOT inspection facilitated by INSPECTOR volunteers. The goal of inspection is to ensure the team's ROBOT meets baseline safety and competition requirements before engaging in MATCH play.
 
-Some events may offer scheduled Practice MATCHES. Teams are permitted to participate in scheduled Practice MATCHES before passing inspection, but they may not participate in unscheduled or “filler line” Practice MATCHES before passing inspection. Teams are responsible for ensuring their ROBOTS are safe and will not damage the playing FIELD.
+Some events may offer scheduled Practice MATCHES. Teams are permitted to participate in scheduled Practice MATCHES before passing inspection, but they may not participate in unscheduled or "filler line" Practice MATCHES before passing inspection. Teams are responsible for ensuring their ROBOTS are safe and will not damage the playing FIELD.
 
 The FTA, LRI, or Head REFEREE may prohibit a team from participating in a Practice MATCH if they determine that their ROBOT is unsafe or likely to damage the playing FIELD.
 
@@ -72,7 +72,7 @@ The FTA, LRI, or Head REFEREE may prohibit a team from participating in a Practi
 
 Inspection is often one of the first activities a team experiences upon arrival at an event. Some events may assign specific inspection time slots for teams, and others may schedule a general span of time for teams to complete inspection. Teams are responsible for completing inspection within the scheduled time.
 
-During inspection, student team members present their ROBOT, all COMPONENTS that will be used by that ROBOT, and their OPERATOR CONSOLE. INSPECTORS will review baseline safety and competition requirements with the team. If any requirements are not met, INSPECTORS will work with the team to find a resolution. The Lead ROBOT INSPECTOR (LRI) has the final authority on a team’s eligibility to participate in Qualification and Playoff MATCHES on matters related to ROBOT construction.
+During inspection, student team members present their ROBOT, all COMPONENTS that will be used by that ROBOT, and their OPERATOR CONSOLE. INSPECTORS will review baseline safety and competition requirements with the team. If any requirements are not met, INSPECTORS will work with the team to find a resolution. The Lead ROBOT INSPECTOR (LRI) has the final authority on a team's eligibility to participate in Qualification and Playoff MATCHES on matters related to ROBOT construction.
 
 Teams may power on and enable the ROBOT during inspection to demonstrate adherence to ROBOT construction rules. Team members should let INSPECTORS know if the ROBOT must be powered on and/or enabled to meet any inspection criteria. Team members should also inform INSPECTORS if the ROBOT, in its inspection configuration, has any stored energy (for example, springs stretched) and collaborate with each other to ensure a safe inspection experience.
 
@@ -100,7 +100,7 @@ Teams are encouraged to seek the advice and assistance of Team Support volunteer
 
 A team should request re-inspection when it makes changes to a ROBOT that may cause it to not comply with safety and competition guidelines or when requested by the Head REFEREE or FTA.
 
-Re-inspection is generally **not** necessary for the scenarios listed below (unless they result in a significant change to the ROBOT’S size, legality, or safety):
+Re-inspection is generally **not** necessary for the scenarios listed below (unless they result in a significant change to the ROBOT'S size, legality, or safety):
 
 A. addition, relocation, or removal of fasteners (e.g., cable ties, tape, and rivets),
 
@@ -118,7 +118,7 @@ G. additions, removals, or reconfiguration of ROBOT with a subset of MECHANISMS 
 
 All teams should make a good faith effort to comply with ROBOT construction rules if they make changes to their ROBOT during an event.
 
-If a team is unclear if reinspection is required, they should confirm with the LRI or FIELD STAFF. For example, if a team is unsure if reassembling a part changes their ROBOT’S size, they should have it checked.
+If a team is unclear if reinspection is required, they should confirm with the LRI or FIELD STAFF. For example, if a team is unsure if reassembling a part changes their ROBOT'S size, they should have it checked.
 
 #### I304 — Do not exploit re-inspection. [Evergreen rule]
 

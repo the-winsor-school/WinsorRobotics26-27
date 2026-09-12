@@ -6,21 +6,21 @@
 
 This section includes a high-level description of each of the components of judging and ROBOT game specific awards in *FIRST* Tech Challenge.
 
-*FIRST* Tech Challenge celebrates the excitement of competition both on and off the field. Through the following awards, we celebrate the *FIRST* Core Values which makes us so much “*More than Robots*®”. Please note that different event types (e.g., League Tournaments, Regional Championship, *FIRST* Championship) or event sizes may offer different sets of awards. Not every award is presented at every *FIRST* Tech Challenge event. No awards are presented at League Meets - see Section 14 League Play Tournaments (L); additional details by event type are available in the sections below.
+*FIRST* Tech Challenge celebrates the excitement of competition both on and off the field. Through the following awards, we celebrate the *FIRST* Core Values which makes us so much "*More than Robots*®". Please note that different event types (e.g., League Tournaments, Regional Championship, *FIRST* Championship) or event sizes may offer different sets of awards. Not every award is presented at every *FIRST* Tech Challenge event. No awards are presented at League Meets - see Section 14 League Play Tournaments (L); additional details by event type are available in the sections below.
 
 Team judged awards are determined by volunteers from the community who prepare for the event with thorough training and certification. There are two key judging volunteer roles:
 
-- **JUDGES** – meet with teams to learn about and celebrate the unique journey and accomplishments of each team and evaluate these against award requirements. JUDGES interact with STUDENTS in the pits and sometimes in dedicated judging spaces. As a group, JUDGES determine the teams that receive awards at events with the guidance of the JUDGE Advisor.
+- **JUDGES** -- meet with teams to learn about and celebrate the unique journey and accomplishments of each team and evaluate these against award requirements. JUDGES interact with STUDENTS in the pits and sometimes in dedicated judging spaces. As a group, JUDGES determine the teams that receive awards at events with the guidance of the JUDGE Advisor.
 
-- **JUDGE Advisor (JA)** – trains, directs, and supervises JUDGES throughout the event. JUDGE Advisors oversee the judging processes and procedures to make sure they are in accordance with *FIRST* Tech Challenge judging guidelines but they do not select who wins the awards.
+- **JUDGE Advisor (JA)** -- trains, directs, and supervises JUDGES throughout the event. JUDGE Advisors oversee the judging processes and procedures to make sure they are in accordance with *FIRST* Tech Challenge judging guidelines but they do not select who wins the awards.
 
-*FIRST* Tech Challenge judging is delivered in one of two ways. Most events will have in-person (“traditional”) judging along with the standard in-person gameplay. The second option is hybrid format which has in-person gameplay, but some or all judging is done remotely for all teams before in-person gameplay. This manual will primarily describe the traditional in-person judging process. The remote judging process follows the same overall judging standards and requirements, but some or all interviews are conducted online, and in-person meetings may not occur.
+*FIRST* Tech Challenge judging is delivered in one of two ways. Most events will have in-person ("traditional") judging along with the standard in-person gameplay. The second option is hybrid format which has in-person gameplay, but some or all judging is done remotely for all teams before in-person gameplay. This manual will primarily describe the traditional in-person judging process. The remote judging process follows the same overall judging standards and requirements, but some or all interviews are conducted online, and in-person meetings may not occur.
 
-Teams may also read the *Judge and Judge Advisor Manuals* *(coming soon)* to gain more insight into the complete judging process. Teams are also encouraged to review the [Outreach Terms and Definitions Document](https://info.firstinspires.org/hubfs/web/program/ftc/outreach-terms-and-definitions.pdf) to ensure all teams can clearly communicate with JUDGES and our community the great things they do to grow *FIRST*.
+Teams may also read the Judge and Judge Advisor Manuals *(coming soon)* to gain more insight into the complete judging process. Teams are also encouraged to review the [Outreach Terms and Definitions Document](https://info.firstinspires.org/hubfs/web/program/ftc/outreach-terms-and-definitions.pdf) to ensure all teams can clearly communicate with JUDGES and our community the great things they do to grow *FIRST*.
 
 ## 6.1 Team Judged Awards Overview and Schedule
 
-*FIRST* Tech Challenge team judged awards fall into three categories, which have one or more awards each: Machine, Creativity, and Innovation (MCI), Team Attributes (TA), and Documentation. In addition, the Judges’ Choice Award is given to a stand-out team which was not recognized in one of the other categories. The most prestigious, all-around award is Inspire Award (Figure 6-1).
+*FIRST* Tech Challenge team judged awards fall into three categories, which have one or more awards each: Machine, Creativity, and Innovation (MCI), Team Attributes (TA), and Documentation. In addition, the Judges' Choice Award is given to a stand-out team which was not recognized in one of the other categories. The most prestigious, all-around award is Inspire Award (Figure 6-1).
 
 The local Program Delivery Partner may elect to give additional awards to celebrate local sponsors or initiatives, but these awards are not considered Team Judged Awards for the purposes of advancement calculations as described in Section 4 Advancement.
 
@@ -34,13 +34,13 @@ Figure 6-1: Award hierarchy
 
 - **TA awards** recognize teams who have expanded their skillset, created a plan to sustain their program and team, and spread the message of *FIRST* throughout their outreach.
 
-- The **Think Award** recognizes teams who masterfully document their team’s process and ROBOT using their PORTFOLIO.
+- The **Think Award** recognizes teams who masterfully document their team's process and ROBOT using their PORTFOLIO.
 
-- **Judges’ Choice Award** recognizes a team whose unique efforts, performance, or dynamics merit recognition, but does not fit into any of the other award categories.
+- **Judges' Choice Award** recognizes a team whose unique efforts, performance, or dynamics merit recognition, but does not fit into any of the other award categories.
 
 The JUDGES will gather information from the teams through several different pathways (Figure 6-2). All teams will have the opportunity to submit a team PORTFOLIO which should document aspects of their team which directly support the team judged award criteria or information which they would like the JUDGES to consider.
 
-All award winners chosen by the JUDGES are recognized as being positive examples of the award criteria, not necessarily the “best” team. JUDGES will only consider the published award criteria in Section 6.3 Team Judged Award Descriptions.
+All award winners chosen by the JUDGES are recognized as being positive examples of the award criteria, not necessarily the "best" team. JUDGES will only consider the published award criteria in Section 6.3 Team Judged Award Descriptions.
 
 Teams may participate in judging regardless of the inspection status of their ROBOT and are eligible for awards even if they are attending the event without a ROBOT.
 
@@ -66,11 +66,11 @@ Examples of information that cannot be considered during the judging process inc
 
 - External sources such as websites and/or social media,
 
-- A ROBOT’s performance (e.g., how many points scored in a MATCH) unless it is specifically listed as an award criteria,
+- A ROBOT's performance (e.g., how many points scored in a MATCH) unless it is specifically listed as an award criteria,
 
 - ROBOT penalties during gameplay, or
 
-- A team’s ranking in the tournament.
+- A team's ranking in the tournament.
 
 The awards are a method *FIRST* uses to inspire STUDENTS and open their eyes to building a better future together. The judging process should foster a positive STUDENT interaction with JUDGES who are independent caring adults and can recognize their achievements and encourage them to continue learning.
 
@@ -110,7 +110,7 @@ Teams participating at events where the Initial Interview is conducted in the pi
 
 For interviews that take place in the pits, JUDGES will work with MATCH queuers and technical volunteers to ensure teams are able to attend MATCHES and work on their ROBOTS.
 
-Teams are encouraged to review the *Judge Interview Question Bank* (coming soon) prior to their judging interviews to understand the type of questions that may be asked by the JUDGES. At each event, the JUDGE Advisor will select two questions from the question bank that all teams will be asked at the start of the Initial Interview’s question and answer session. One question will be focused on the MCI award category, and one question will be focused on the TA award category. After the first two questions are asked and answered, JUDGES may ask additional questions to help evaluate the team’s performance against the award criteria.
+Teams are encouraged to review the Judge Interview Question Bank (coming soon) prior to their judging interviews to understand the type of questions that may be asked by the JUDGES. At each event, the JUDGE Advisor will select two questions from the question bank that all teams will be asked at the start of the Initial Interview's question and answer session. One question will be focused on the MCI award category, and one question will be focused on the TA award category. After the first two questions are asked and answered, JUDGES may ask additional questions to help evaluate the team's performance against the award criteria.
 
 Additional questions asked during interviews may come from the question bank but teams should be prepared to answer questions that are not listed within the document.
 
@@ -124,7 +124,7 @@ JUDGES may read additional information during pit interviews but will not bring 
 
 In general, JUDGES will consider ongoing, sustained outreach to be of higher quality than occasional or one-off outreach. JUDGES will seek to understand what is the impact of the outreach to the individuals being reached by the activity.
 
-Teams are encouraged to review the [Outreach Terms and Definitions Document](https://info.firstinspires.org/hubfs/web/program/ftc/outreach-terms-and-definitions.pdf) to understand the requirements behind specific terms (starting a *FIRST* team, running an event, reaching x number of people). JUDGES may ask specific questions when a specific term listed in this document is mentioned in a team’s PORTFOLIO or during an interview.
+Teams are encouraged to review the [Outreach Terms and Definitions Document](https://info.firstinspires.org/hubfs/web/program/ftc/outreach-terms-and-definitions.pdf) to understand the requirements behind specific terms (starting a *FIRST* team, running an event, reaching x number of people). JUDGES may ask specific questions when a specific term listed in this document is mentioned in a team's PORTFOLIO or during an interview.
 
 ## 6.2 Team Judged Award Rules
 
@@ -136,7 +136,7 @@ A. must consist of 1 cover page including the team number and optionally: team n
 
 B. no more than 15 pages of content,
 
-C. use only US Letter (8.5” x 11”) or A4 (210 x 297 mm) size pages,
+C. use only US Letter (8.5" x 11") or A4 (210 x 297 mm) size pages,
 
 D. if submitted digitally, the complete submission must be less than 15MB in size, and
 
@@ -148,11 +148,11 @@ Teams must strictly minimize Personally Identifying Information (PII) in the POR
 
 The JUDGES use the cover page to identify the team associated with the PORTFOLIO. Teams who forget to include a cover page may be disqualified from judging if the JUDGES cannot determine what team the PORTFOLIO is associated with.
 
-Design your PORTFOLIO for readability. Avoid fonts under 10 pt and low-contrast text on images—JUDGES cannot evaluate what they cannot read. Use free tools like the WebAIM Contrast Checker to ensure your font size, color, and design choices are clear.
+Design your PORTFOLIO for readability. Avoid fonts under 10 pt and low-contrast text on images---JUDGES cannot evaluate what they cannot read. Use free tools like the WebAIM Contrast Checker to ensure your font size, color, and design choices are clear.
 
 JUDGES will not click on links, websites, or videos in a PORTFOLIO. They also cannot take extra printed papers from an interview back to their judging room. Teams should put everything they want JUDGES to see directly in their PORTFOLIO.
 
-Teams may use AI and research aids to compose their PORTFOLIOS, provided they respect intellectual property rights and include a footnote or endnote credit. Example Credit: “Portfolio created by Team XXXXX and ChatGPT”
+Teams may use AI and research aids to compose their PORTFOLIOS, provided they respect intellectual property rights and include a footnote or endnote credit. Example Credit: "Portfolio created by Team XXXXX and ChatGPT"
 
 A team may reference previous seasons (for example, in a team or organizational plan) to demonstrate growth, but the emphasis must be on the current season.
 
@@ -180,7 +180,7 @@ A. no fewer than 2 STUDENT representatives for teams of 2 STUDENTS and larger,
 
 B. a copy of their team PORTFOLIO for reference during the interview,
 
-C. “show and tell” demonstration items which may include the team’s ROBOT (encouraged, but optional),
+C. "show and tell" demonstration items which may include the team's ROBOT (encouraged, but optional),
 
 D. 1 silent observer per A208 (optional), and
 
@@ -206,7 +206,7 @@ The purpose of the adult silent observer is to provide silent confidence to the 
 
 #### A209 — Translator and/or Sign Language Interpreter accommodations will be made for teams who need it. [Evergreen rule]
 
-Teams who need to use a translator to communicate with the JUDGES may provide one if the team’s native language does not match that of the JUDGES. This includes sign language or other adaptive technology. Teams who intend to interview with the assistance of a translator must work with the Event Director in advance to request additional interview time of between 2 and 5 minutes, if needed. The translator may be an adult and can be in addition to the silent observer in A208.
+Teams who need to use a translator to communicate with the JUDGES may provide one if the team's native language does not match that of the JUDGES. This includes sign language or other adaptive technology. Teams who intend to interview with the assistance of a translator must work with the Event Director in advance to request additional interview time of between 2 and 5 minutes, if needed. The translator may be an adult and can be in addition to the silent observer in A208.
 
 In most cases the translator will need to be provided by the team. If other accommodation is needed, the team should [contact your local leadership](https://www.firstinspires.org/find-local-support) to discuss options.
 
@@ -220,7 +220,18 @@ The total number of awards given is based on the number of teams checked in at t
 
 Table 6-1: Total judged awards available based on all event participating teams
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Total Event Participating Teams** |  |  |  |  |  |
+|---|---|---|---|---|---|
+| **Award** |  | 4-10 Teams | 11-20 Teams | 21-40 Teams | 41-64 Teams |
+| **Inspire Award** |  | 1st Place | 1st Place 2nd Place | 1st Place 2nd Place 3rd Place | 1st Place 2nd Place 3rd Place |
+| **Think Award** |  | 1st Place | 1st Place | 1st Place 2nd Place | 1st Place 2nd Place *(3rd Place*)* |
+| **TA Awards** | **Connect Award** | 1st Place (Only one of Connect, Reach, or Sustain will be given) | 1st Place | 1st Place *(2nd Place*)* | 1st Place 2nd Place *(3rd Place*)* |
+| **TA Awards** | **Reach Award** | 1st Place (Only one of Connect, Reach, or Sustain will be given) | 1st Place | 1st Place *(2nd Place*)* | 1st Place 2nd Place *(3rd Place*)* |
+| **TA Awards** | **Sustain Award** | 1st Place (Only one of Connect, Reach, or Sustain will be given) | 1st Place | 1st Place *(2nd Place*)* | 1st Place 2nd Place *(3rd Place*)* |
+| **MCI Awards** | **Design Award** | 1st Place (Only one of Innovate, Control, or Design will be given) | 1st Place | 1st Place *(2nd Place*)* | 1st Place 2nd Place *(3rd Place*)* |
+| **MCI Awards** | **Innovate Award** | 1st Place (Only one of Innovate, Control, or Design will be given) | 1st Place | 1st Place *(2nd Place*)* | 1st Place 2nd Place *(3rd Place*)* |
+| **MCI Awards** | **Control Award** | 1st Place (Only one of Innovate, Control, or Design will be given) | 1st Place | 1st Place *(2nd Place*)* | 1st Place 2nd Place *(3rd Place*)* |
+| **Judges' Choice Award** |  | Optional* | Optional* | Optional* | Optional* |
 
 **Discretionary awards*
 
@@ -262,7 +273,12 @@ The Inspire Award winner inspires other teams both on and off the playing field.
 
 Table 6-2: Inspire Award Criteria
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Inspire Award Criteria** |  |  |
+|---|---|---|
+| **Required** | 1 | Team must submit a PORTFOLIO. |
+| **Required** | 2 | The Inspire Award celebrates the strongest qualities of all the judged awards. A team must be a strong contender for **at least one award in each** of the following judged award categories: A. Machine, Creativity, and Innovation Awards, B. Team Attributes Awards, and C. Think Award. |
+| **Required** | 3 | Team must be positive and inclusive, and each team member contribute to the success of the team. |
+| **Required** | 4 | Team is able to share their experiences and knowledge to the JUDGES. |
 
 ### 6.3.2 Think Award
 
@@ -270,7 +286,10 @@ The Think Award recognizes a team for their excellent PORTFOLIO. The PORTFOLIO i
 
 Table 6-3: Think Award Criteria
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Think Award Criteria** |  |  |
+|---|---|---|
+| **Required** | 1 | Team must submit a PORTFOLIO. The PORTFOLIO must include **at least one** of these engineering topics: A. evidence of use of the engineering process, B. lessons learned and applied relating to the design of their ROBOT, C. comparing choices: Show how you looked at different ideas and explain why you chose one over the other, and/or D. math choices: Show how you used math to make decisions about your ROBOT or programming design. |
+| **Encouraged** | 2 | Information in the PORTFOLIO should be easy to read and easy to find. |
 
 ### 6.3.3 Connect Award
 
@@ -278,7 +297,11 @@ The Connect Award recognizes a team that builds meaningful partnerships with mem
 
 Table 6-4: Connect Award Criteria
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Connect Award Criteria** |  |  |
+|---|---|---|
+| **Required** | 1 | Team demonstrates professional development competency by explaining its plan for developing team member skills, including **both**: A. the team's goals for learning, and B. the steps the team has taken or will take to reach those goals. |
+| **Encouraged** | 2 | Team demonstrates networking competency by building and maintaining meaningful in-person or virtual relationships with professionals in STEM. |
+| **Encouraged** | 3 | Team demonstrates collaboration competency by actively working with members of the engineering community through mentoring, knowledge sharing, technical guidance, or collaborative activities. |
 
 ### 6.3.4 Reach Award
 
@@ -286,7 +309,12 @@ The Reach Award recognizes a team that has introduced and recruited new people i
 
 Table 6-5 Reach Award Criteria
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Reach Award Criteria** |  |  |
+|---|---|---|
+| **Required** | 1 | Team demonstrates outreach planning competency by clearly explaining **all of** the following: A. its outreach objectives, B. the strategy behind its outreach activities, and C. how these activities support the growth of the *FIRST* community. |
+| **Required** | 2 | Team demonstrates successful recruitment of new teams, coaches, mentors, or volunteers who have not previously participated in the *FIRST* community |
+| **Encouraged** | 3 | Team demonstrates strong communication competencies by serving as an ambassador for *FIRST* and increasing public awareness of *FIRST* programs through effective outreach and communication. |
+| **Encouraged** | 4 | Demonstrates media and promotion competencies by developing creative, continuously improving outreach materials that effectively introduce both the team and *FIRST* to the public. |
 
 ### 6.3.5 Sustain Award
 
@@ -294,7 +322,12 @@ The Sustain Award recognizes a team that has established the leadership, resourc
 
 Table 6-6 Sustain Award Criteria
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Sustain Award Criteria** |  |  |
+|---|---|---|
+| **Required** | 1 | Team demonstrates organizational sustainability competency by explaining its plans for long-term success, including **one or more** of the following: A. financial sustainability, B. season planning, and/or C. long-term team sustainability objectives. |
+| **Required** | 2 | Team demonstrates project management competency by explaining how it measures, reviews, and tracks progress toward its sustainability plans and objectives. |
+| **Encouraged** | 3 | Team demonstrates leadership development competency through clearly defined team roles and an intentional process for preparing future student leaders. |
+| **Encouraged** | 4 | Team demonstrates risk management competency by identifying organizational constraints, implementing mitigation strategies, and adapting plans when challenges arise. |
 
 ### 6.3.6 Innovate Award sponsored by RTX
 
@@ -315,7 +348,13 @@ The Control Award recognizes a team that uses sensors and software to solve game
 
 Table 6-8: Control Award Criteria
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Control Award Criteria** |  |  |
+|---|---|---|
+| **Required** | 1 | Team must submit a PORTFOLIO. The PORTFOLIO must include **all of** the following: A. hardware or software control COMPONENTS on the ROBOT, B. the challenges each COMPONENT or system solves, and C. the function of each COMPONENT or system. |
+| **Required** | 2 | The team must use one or more hardware or software solutions that use external feedback to control the ROBOT and improve how it performs. |
+| **Encouraged** | 3 | The control solution(s) should work consistently during most MATCHES. |
+| **Encouraged** | 4 | The team can explain how reliable their solution is. They can show this by demonstrating that it works, or by explaining how it could be improved. |
+| **Encouraged** | 5 | The team should describe what they learned while using the engineering process to develop their control solutions (sensors, hardware, algorithms, or a combination). |
 
 ### 6.3.8 Design Award
 
@@ -326,16 +365,16 @@ Table 6-9: Design Award Criteria
 | **Design Award Criteria** |  |  |
 |---|---|---|
 | **Required** | 1 | Team must describe or demonstrate that their ROBOT is elegant, efficient (simple to build and operate), and/or practical to maintain. |
-| **Required** | 2 | The design of the entire ROBOT, or the detailed process used to create it, must be considered – not just one COMPONENT. |
+| **Required** | 2 | The design of the entire ROBOT, or the detailed process used to create it, must be considered -- not just one COMPONENT. |
 | **Encouraged** | 3 | The ROBOT stands out from other ROBOTS because of its appearance and how well it functions. |
 | **Encouraged** | 4 | The team has clearly thought through the reasons behind their design choices, such as inspiration or function. |
 | **Encouraged** | 5 | The design works consistently and aligns with the team's game plan or strategy. |
 
-### 6.3.9 Judges’ Choice Award
+### 6.3.9 Judges' Choice Award
 
-The Judges’ Choice Award is optional and not given at all *FIRST* Tech Challenge events.
+The Judges' Choice Award is optional and not given at all *FIRST* Tech Challenge events.
 
-During the competition, the judging panel may meet a team whose unique efforts, performance, or dynamics merit recognition, but does not fit into any of the other award categories. To recognize these unique teams, *FIRST* offers a Judges’ Choice Award.
+During the competition, the judging panel may meet a team whose unique efforts, performance, or dynamics merit recognition, but does not fit into any of the other award categories. To recognize these unique teams, *FIRST* offers a Judges' Choice Award.
 
 ## 6.4 Tournament ALLIANCE Awards
 
@@ -363,7 +402,10 @@ The Compass Award recognizes an adult coach or mentor who has given outstanding 
 
 Table 6-10: Compass Award Criteria
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Compass Award Criteria** |  |  |
+|---|---|---|
+| **Required** | 1 | Team must be able to clearly articulate this mentor's contribution to the team and explain what sets this mentor apart. |
+| **Required** | 2 | Submission must be in video format and meet the following requirements: A. submitted by the deadline established by the Event Director or local Program Delivery Partner, B. be in one of the following formats: .mp4, .mov, .avi, or .wmv (no links to streaming services will be accepted), C. one video submission per team per event (videos can be updated or changed between events), D. all music must be used with permission from the copyright owners and be indicated in the video credits, and E. videos cannot be longer than 60 seconds, including credits. |
 
 Teams are encouraged to review the [*FIRST* Branding and Style Guidelines](https://www.firstinspires.org/brand) before creating their video.
 

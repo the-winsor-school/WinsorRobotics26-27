@@ -4,7 +4,7 @@
 
 # 12 ROBOT Construction Rules (R)
 
-The rules listed below explicitly address legal parts and materials and how those parts and materials may be used on a ROBOT. A ROBOT is an electromechanical assembly built by a *FIRST* Tech Challenge team to play the current season’s game and includes all the basic systems required to be an active participant in the game –power, communications, control, and movement about the FIELD.
+The rules listed below explicitly address legal parts and materials and how those parts and materials may be used on a ROBOT. A ROBOT is an electromechanical assembly built by a *FIRST* Tech Challenge team to play the current season's game and includes all the basic systems required to be an active participant in the game --power, communications, control, and movement about the FIELD.
 
 There are many reasons for the structure of the rules, including safety, reliability, parity, creation of a reasonable design challenge, adherence to professional standards, and impact on the competition.
 
@@ -20,11 +20,11 @@ ROBOTS are made up of COMPONENTS and MECHANISMS.
 
 Many rules in this section reference Commercial-Off-The-Shelf (COTS) items. A COTS item must be a standard (i.e., not custom order) part commonly available from a VENDOR for all teams for purchase. To be a COTS item, the COMPONENT or MECHANISM must be in an unaltered, unmodified state (with the exception of installation or modification of any software). Items that are no longer commercially available but are functionally equivalent to the original condition as delivered from the VENDOR are considered COTS.
 
-Example 1: A team orders 2 ROBOT panels from RoboPanels Corp. and receives both items. They put 1 in their storeroom and plan to use it later. Into the other, they drill “lightening holes” to reduce weight. The first panel is still classified as a COTS item, but the second panel is now a FABRICATED ITEM, as it has been modified.
+Example 1: A team orders 2 ROBOT panels from RoboPanels Corp. and receives both items. They put 1 in their storeroom and plan to use it later. Into the other, they drill "lightening holes" to reduce weight. The first panel is still classified as a COTS item, but the second panel is now a FABRICATED ITEM, as it has been modified.
 
-Example 2: A team obtains openly available blueprints of a drive module commonly available from Wheels-R-Us Inc. and has local machine shop “We-Make-It, Inc.” manufacture a copy of the part for them. The produced part is not a COTS item, because it is not commonly carried as part of the standard stock of We-Make-It, Inc.
+Example 2: A team obtains openly available blueprints of a drive module commonly available from Wheels-R-Us Inc. and has local machine shop "We-Make-It, Inc." manufacture a copy of the part for them. The produced part is not a COTS item, because it is not commonly carried as part of the standard stock of We-Make-It, Inc.
 
-Example 3: A team obtains openly available design drawings from a professional publication and uses them to fabricate a gearbox for their ROBOT. The design drawings are considered a COTS item and may be used as “raw material” to fabricate the gearbox. The finished gearbox itself would be a FABRICATED ITEM, and not a COTS item.
+Example 3: A team obtains openly available design drawings from a professional publication and uses them to fabricate a gearbox for their ROBOT. The design drawings are considered a COTS item and may be used as "raw material" to fabricate the gearbox. The finished gearbox itself would be a FABRICATED ITEM, and not a COTS item.
 
 Example 4: A COTS part that has non-functional label markings added would still be considered a COTS part, but a COTS part that has device-specific mounting holes added is a FABRICATED ITEM.
 
@@ -34,7 +34,7 @@ A VENDOR is a legitimate business source for COTS items that satisfies all the f
 
 A. has a Federal Tax Identification number. In cases where the VENDOR is outside of the United States, they must possess an equivalent form of registration or license with the government of their home nation that establishes and validates their status as a legitimate business licensed to operate within that country.
 
-B. is not a “wholly owned subsidiary” of a *FIRST* team or collection of teams. While there may be some individuals affiliated with both a team and the VENDOR, the business and activities of the team and VENDOR must be completely separable.
+B. is not a "wholly owned subsidiary" of a *FIRST* team or collection of teams. While there may be some individuals affiliated with both a team and the VENDOR, the business and activities of the team and VENDOR must be completely separable.
 
 C. should maintain sufficient stock or production capability so they are able to ship any general (i.e., non-*FIRST* unique) product within a timely manner. It is recognized that certain unusual circumstances (such as a global supply chain disruption and/or 1,000 *FIRST* teams all ordering the same part at once from the same VENDOR) may cause atypical delays in shipping due to backorders for even the largest VENDORS. Such delays due to higher-than-normal order rates are excused. This criterion may not apply to custom-built items from a source that is both a VENDOR and a fabricator.
 
@@ -46,21 +46,21 @@ The intent of this definition is to be as inclusive as possible to permit access
 
 *FIRST* desires to permit teams to have the broadest choice of legitimate sources possible, and to obtain COTS items from the sources that provide them with the best prices and level of service available. Teams also need to protect against long delays in availability of parts that will impact their ability to complete their ROBOT. The build season is brief, so the VENDOR must be able to get their product, particularly *FIRST* unique items, to a team in a timely manner.
 
-Ideally, chosen VENDORS should have effective distribution channels. Remember, *FIRST* Tech Challenge events are not always near home – when parts fail, local access to replacement materials is often critical.
+Ideally, chosen VENDORS should have effective distribution channels. Remember, *FIRST* Tech Challenge events are not always near home -- when parts fail, local access to replacement materials is often critical.
 
 A FABRICATED ITEM is any COMPONENT or MECHANISM that has been altered, built, cast, constructed, concocted, created, cut, heat treated, machined, manufactured, modified, painted, produced, surface coated, or conjured partially or completely into the final form in which it will be used on the ROBOT.
 
-Note that it is possible for an item (typically raw materials) to be neither COTS nor a FABRICATED ITEM. For example, a 20 ft. (~610 cm) length of aluminum which has been cut into 5 ft. (~152 cm) pieces by the team for storage or transport is neither COTS (it is not in the state received from the VENDOR), nor a FABRICATED ITEM (the cuts were not made to advance the part towards its final form on the ROBOT).
+Note that it is possible for an item (typically raw materials) to be neither COTS nor a FABRICATED ITEM. For example, a 20 ft. (\~610 cm) length of aluminum which has been cut into 5 ft. (\~152 cm) pieces by the team for storage or transport is neither COTS (it is not in the state received from the VENDOR), nor a FABRICATED ITEM (the cuts were not made to advance the part towards its final form on the ROBOT).
 
 Teams may be asked to provide documentation (i.e., reference the relevant rule in this manual) proving the legality of items during inspection where a rule specifies limits for a legal part (e.g., motors, servos, current limits, COTS electronics).
 
-If your team has a question about a part’s legality, please e-mail your question to <customerservice@firstinspires.org> for an official ruling. This process should also be employed to seek approval for alternate parts/devices for inclusion in future *FIRST* Tech Challenge seasons.
+If your team has a question about a part's legality, please e-mail your question to <customerservice@firstinspires.org> for an official ruling. This process should also be employed to seek approval for alternate parts/devices for inclusion in future *FIRST* Tech Challenge seasons.
 
 ## 12.1 General ROBOT Design
 
 FIRST Tech Challenge can be a high-contact competition and may include rigorous gameplay. While the rules aim to limit intentional damage to ROBOTS, interaction between ROBOTS is allowed and expected. Teams should design their ROBOTS to be robust.
 
-#### R101 — It is your team’s ROBOT. [Evergreen rule]
+#### R101 — It is your team's ROBOT. [Evergreen rule]
 
 The ROBOT and its MAJOR MECHANISMS must be built by the *FIRST* Tech Challenge team that has registered for the event and intends to use the ROBOT to participate in MATCHES or as part of judged awards.
 
@@ -76,7 +76,7 @@ B. a COMPONENT or MECHANISM that is part of a MAJOR MECHANISM, or
 
 C. COTS items.
 
-The intent of this rule is that a team’s ROBOT is a product that’s representative of the current team members’ experience and is intended to discourage complete solutions which are provided wholly by outside organizations or companies. Also see R301 and R303.
+The intent of this rule is that a team's ROBOT is a product that's representative of the current team members' experience and is intended to discourage complete solutions which are provided wholly by outside organizations or companies. Also see R301 and R303.
 
 #### R102 — STARTING CONFIGURATION is limited to an 18-inch Cube. [Evergreen rule]
 
@@ -100,7 +100,7 @@ ROBOTS holding STARTING CONFIGURATION during inspection or waiting for a MATCH t
 
 There is no explicit weight limit for *FIRST* Tech Challenge ROBOTS playing BIOBUZZ.
 
-While there is no official weight limit, teams should still consider the impact of a ROBOT’S weight on various factors including, but not limited to:
+While there is no official weight limit, teams should still consider the impact of a ROBOT'S weight on various factors including, but not limited to:
 
 - FIELD TILE damage
 
@@ -122,45 +122,45 @@ C. ROBOTS may not be designed to deliberately detach COMPONENTS.
 
 The sizing limit volume is defined relative to the FIELD surface and is oriented such that the 29 in. (73.65 cm) dimension is always the vertical height above the FIELD surface.
 
-Figure 12-1: Expansion Limit – Top View
+Figure 12-1: Expansion Limit -- Top View
 
 [Figure: Diagram showing Expansion Limit top view.]
 
-Figure 12-2: Expansion Limit – Side View
+Figure 12-2: Expansion Limit -- Side View
 
 [Figure: Diagram showing Expansion Limit - Side View]
 
 The sizing volume is defined relative to the FIELD surface and is oriented such that the 29 in. (73.65 cm) dimension is always the vertical height above the FIELD surface.
 
-ROBOTS are measured in “stable” configurations they would use during normal gameplay on the FIELD (i.e., with their wheels all touching the TILES). If a ROBOT is “tilted” slightly due to interactions on the FIELD, this is not a violation of this rule if the ROBOT would still be within the sizing volume when it is returned to a stable configuration.
+ROBOTS are measured in "stable" configurations they would use during normal gameplay on the FIELD (i.e., with their wheels all touching the TILES). If a ROBOT is "tilted" slightly due to interactions on the FIELD, this is not a violation of this rule if the ROBOT would still be within the sizing volume when it is returned to a stable configuration.
 
 Teams should be prepared to demonstrate to INSPECTORS that their ROBOT has no configurations where it is outside the sizing volume. ROBOTS must show their maximum mechanical extensions during the inspection process. A ROBOT that can mechanically exceed the sizing limit would be in violation even if the ROBOT has software limiting the position of the extension during the MATCH. (Figure 12-3)
 
-Figure 12-3: Expansion Limit – Sizing Limit Violation
+Figure 12-3: Expansion Limit -- Sizing Limit Violation
 
 [Figure: Diagram showing Expansion Limit sizing violation]
 
 A ROBOT with a single MECHANISM that can extend out of both sides of a ROBOT would be allowed as long as the overall dimension at maximum mechanical extension does not exceed the sizing limit. (Figure 12-4)
 
-Figure 12-4: Expansion Limit – Allowable Extension
+Figure 12-4: Expansion Limit -- Allowable Extension
 
 [Figure: Diagram showing allowable extension]
 
 A ROBOT with multiple MECHANISMS that are not mechanically linked that can extend out of both sides of a ROBOT simultaneously would NOT be allowed if the overall horizontal dimension at maximum mechanical extension exceeds the sizing limit (Figure 12-5).
 
-*Figure* *12-5: Expansion Limit – Simultaneous Extension*
+*Figure* *12-5: Expansion Limit -- Simultaneous Extension*
 
 [Figure: Diagrams showing allowable and disallowed simultaneous extensions.]
 
 A ROBOT with an extension on a pivot that rotates in the horizontal plane would be allowed as long as the overall dimension does not exceed the sizing limit at any point in its travel (Figure 12-6).
 
-*Figure* *12-6: Expansion Limit – Rotating Extension*
+*Figure* *12-6: Expansion Limit -- Rotating Extension*
 
 [Figure: Diagram showing allowable rotation example.]
 
 ## 12.2 Fair Play & Damage Prevention
 
-#### R201 — * *ROBOTS should be designed so they don’t damage anything or make a mess in the ARENA. [Evergreen rule]
+#### R201 — * *ROBOTS should be designed so they don't damage anything or make a mess in the ARENA. [Evergreen rule]
 
 The ROBOT must not pose a risk of making a mess or pose a hazard to anything in the ARENA.
 
@@ -168,7 +168,7 @@ The intent of this rule is that teams should design their ROBOTS in a way that w
 
 SCORING ELEMENTS are expected to undergo a reasonable amount of wear and tear as they are handled by ROBOTS, such as scratching or marking. Gouging, tearing off pieces, or routinely and repeatedly marking SCORING ELEMENTS are violations of this rule and G406.
 
-Examples of “damage risk” ROBOT features include, but are not limited to:
+Examples of "damage risk" ROBOT features include, but are not limited to:
 
 A. traction devices with features that are known to damage the TILE floor,
 
@@ -176,7 +176,7 @@ B. COMPONENTS with exposed sharp edges or sharp protrusions, and
 
 C. features with abrasive surfaces that scratch objects that rub across them.
 
-Examples of ROBOT features “at risk of making a mess” include, but are not limited to:
+Examples of ROBOT features "at risk of making a mess" include, but are not limited to:
 
 D. excessive use of lubricants that may spin off or drip during ROBOT operation,
 
@@ -236,7 +236,7 @@ B. COTS MAJOR MECHANISMS created as part of the official [*FIRST* Tech Challenge
 
 COTS parts are intended to help teams design and build ROBOT MECHANISMS to complete game tasks and solve challenges but are not intended to be purpose-built solutions to complete game objectives.
 
-A vendor selling “build to print” manufacturing of publicly available, purpose-built solutions is against the spirit of this rule.
+A vendor selling "build to print" manufacturing of publicly available, purpose-built solutions is against the spirit of this rule.
 
 #### R302 — Legal COTS parts and raw materials can be modified. [Evergreen rule]
 
@@ -302,9 +302,9 @@ Current season SCORING ELEMENTS or replicas of SCORING ELEMENTS are not allowed 
 
 ## 12.4 ROBOT SIGN Rules
 
-A ROBOT SIGN is a required assembly which attaches to the ROBOT. A ROBOT SIGN simultaneously identifies a ROBOT’S team number as well as its ALLIANCE affiliation for FIELD STAFF. Criteria used in writing these rules include the following:
+A ROBOT SIGN is a required assembly which attaches to the ROBOT. A ROBOT SIGN simultaneously identifies a ROBOT'S team number as well as its ALLIANCE affiliation for FIELD STAFF. Criteria used in writing these rules include the following:
 
-- Maximize FIELD STAFF’S ability to determine team number and ALLIANCE of a ROBOT,
+- Maximize FIELD STAFF'S ability to determine team number and ALLIANCE of a ROBOT,
 
 - Minimize the amount of design challenge in creating ROBOT SIGNS, and
 
@@ -420,7 +420,19 @@ Servo actuators must meet the requirements below. Servos must be compatible with
 
 Table 12-2: Servo Requirements at 6V
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Actuator Class** | **Mechanical Output Power** | **Stall Current** | **Example Servos (including, but not limited to)** |
+|---|---|---|---|
+| **Servo** | ≤ 8 watts \@6V | ≤ 4 amps \@6V | AndyMark High-Torque Servos (am-4954) |
+| **Servo** | ≤ 8 watts \@6V | ≤ 4 amps \@6V | Axon MAX+ Servo (Axon MAX+) |
+| **Servo** | ≤ 8 watts \@6V | ≤ 4 amps \@6V | DSSERVO 35KG Coreless (DS3235MG) |
+| **Servo** | ≤ 8 watts \@6V | ≤ 4 amps \@6V | FEETECH Digital Servo (FT5335M-FB) |
+| **Servo** | ≤ 8 watts \@6V | ≤ 4 amps \@6V | goBILDA Dual Mode Servo (2000-0025-0003) |
+| **Servo** | ≤ 8 watts \@6V | ≤ 4 amps \@6V | REV Robotics Smart Servo (REV-41-1097) |
+| **Servo** | ≤ 8 watts \@6V | ≤ 4 amps \@6V | Studica Multi-Mode Smart Servo (75002) |
+| **Linear Servo** | N/A | ≤ 1 amp \@6V | Actuonix Micro Linear Servo (P8-100-252-12-R) |
+| **Linear Servo** | N/A | ≤ 1 amp \@6V | Hitec Linear Servo (HLS12-3050-6V) |
+| **Linear Servo** | N/A | ≤ 1 amp \@6V | Studica Linear Servo RC Actuator (75014) |
+| [Servo mechanical output power](https://ftc-docs.firstinspires.org/en/latest/tech_tips/tech-tips.html#calculatepower) is approximated by the following formula (using 6V data reported by manufacturer): · **Mechanical Output Power** = **0.25** x (**Stall Torque** in *N-m*) x (**No Load Speed** in *rad/s*) |  |  |  |
 
 Servos must meet both requirements to be legal for use. Refer to the [Inspection Quick Reference](https://ftc-resources.firstinspires.org/ftc/event/inspection-reference) document for a list of servos that are pre-approved, otherwise teams must be able to provide documentation verifying servo specifications. Use the [online calculator](https://ftc-docs.firstinspires.org/en/latest/tech_tips/tech-tips/tech-tip-motor-servo-power/tech-tip-motor-servo-power.html#servo-mechanical-power-calculator) to verify output power compliance.
 
@@ -460,7 +472,15 @@ With the exception of servos, fans, or motors integral to sensors of COTS comput
 
 Table 12-3: Power Regulators and Limits
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Power Regulating Device** | **Part Number** | **Load Limit per Device** |
+|---|---|---|
+| **goBILDA 6V Servo Power Injector** | 3125-0001-0001 | 2 Servos per Port |
+| **REV Control Hub or Expansion Hub Motor Ports** | REV-31-1153 / REV-31-1595 | 2 Motors per Port |
+| **REV Control Hub or Expansion Hub Servo Ports** | REV-31-1153 / REV-31-1595 | 2 Servos per Port |
+| **REV Servo Power Module** | REV-11-1144 | 2 Servos per Port |
+| **REV Robotics Servo Hub** | REV-11-1855 | 2 Servos per Port |
+| **REV SPARKmini** | REV-31-1230 | 2 Motors per Device |
+| **Studica Servo Power Block** | 75005 | 2 Servos per Port |
 
 #### R506 — The use of relays, electromagnets, and electrical solenoid actuators is prohibited. [Evergreen rule]
 
@@ -484,7 +504,7 @@ Table 12-4: Legal ROBOT Main Power Battery Packs
 |---|---|---|
 | **AndyMark Flat Pack Battery DC 12V** | am-5290 |  |
 | **goBILDA 12V NiMH Nested Battery** | 3100-0012-0020 |  |
-| **Matrix 12V 3000mAh NiMH** | 14-0014 | May be labeled as “Modern Robotics” |
+| **Matrix 12V 3000mAh NiMH** | 14-0014 | May be labeled as "Modern Robotics" |
 | **REV 12V Slim Battery** | REV-31-1302 |  |
 | **Studica 12V 3000mAh NiMH** | 70025 |  |
 | **TETRIX MAX 12V 3000mAh NiMH** | W39057 | Formerly 739023 |
@@ -502,9 +522,9 @@ A. not supplying power to any of the ROBOT actuators, and
 
 B. not used by any devices receiving control signals from the ROBOT control system (i.e., COTS USB battery packs must remain electrically isolated from the ROBOT power systems.). Exceptions to part B of this rule are:
 
- i. powered USB Hubs, and
+i. powered USB Hubs, and
 
- ii. ROBOT CONTROLLER smartphones.
+ii. ROBOT CONTROLLER smartphones.
 
 Any device receiving signals from a REV Control or Expansion Hub must be powered by the main ROBOT battery.
 
@@ -565,7 +585,7 @@ A. all power regulating devices (per R505), associated wiring, and all fuses mus
 
 B. the ROBOT CONTROLLER device must be mounted on the ROBOT such that the diagnostic lights, or device screen if applicable, can be visible for inspection.
 
-“Visible for inspection” does not require that the items be visible when the ROBOT is in STARTING CONFIGURATION or normally during a MATCH, provided the team can make the items viewable during the inspection process if necessary.
+"Visible for inspection" does not require that the items be visible when the ROBOT is in STARTING CONFIGURATION or normally during a MATCH, provided the team can make the items viewable during the inspection process if necessary.
 
 Teams are strongly encouraged to make the diagnostic lights visible in all ROBOT configurations used during normal MATCH play. If diagnostic LEDs are not visible during a MATCH, FIELD STAFF may not be able to provide comprehensive support to the team.
 
@@ -575,11 +595,18 @@ Any active electrical item that is not an actuator (specified in R501) or power 
 
 #### R608 — All Power regulating devices must be connected and powered through approved ports. [Evergreen rule]
 
-All power regulating devices (R505) must be powered per the manufacturer’s instructions and the following table must be true:
+All power regulating devices (R505) must be powered per the manufacturer's instructions and the following table must be true:
 
 Table 12-7: Power Regulation Device Power Requirements
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Power Regulating Device** | **Part Number** | **Method of Powering** |
+|---|---|---|
+| **goBILDA 6V Servo Power Injector** | 3125-0001-0001 | Only powered using the XT30 connectors on the device by the ROBOT main battery |
+| **REV Control Hub /** **REV Expansion Hub** | REV-31-1153 / REV-31-1595 | Only powered using the XT30 connectors on the device by the ROBOT main battery |
+| **REV Servo Power Module** | REV-11-1144 | Only powered using the screw terminals and must only be powered by the ROBOT main battery |
+| **REV Robotics Servo Hub** | REV-11-1855 | Only powered using the power terminals and must only be powered by the ROBOT main battery |
+| **REV SPARKmini** | REV-31-1230 | Only powered by the Power input and must only be powered by the ROBOT main battery |
+| **Studica Servo Power Block** | 75005 | Only powered by JST-VH power connector, and must only be powered by the ROBOT main battery |
 
 #### R609 — Use appropriately sized wire. [Evergreen rule]
 
@@ -587,7 +614,16 @@ All circuits shall be wired with appropriately sized insulated wire:
 
 Table 12-8: Wire sizing requirements
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Application** | **Minimum Wire Size** |
+|---|---|
+| **12V Main Battery Power** | 18 AWG (19 SWG or 1 mm^2^) |
+| **Motor Power (unless otherwise listed)** |  |
+| **11-20A fuse protected circuit** |  |
+| **Motor Power - TETRIX MAX 12V DC Motors, REV Robotics Core Hex (REV-14-1300)** | 22 AWG (22 SWG or 0.5 mm^2^) |
+| **PWM / Servo** |  |
+| **LEDs (5V / 12V)** |  |
+| **≤10A fuse protected circuit** |  |
+| **Signal level circuits (i.e., circuits which draw ≤1A continuous and have a source incapable of delivering >1A, including but not limited to: I2C, DIO, Analog, encoder and RS485 connections)** | 28 AWG (29 SWG or .08 mm^2^) |
 
 Integrated wires originally attached to legal COTS devices or wires included/sold by the manufacturer are considered part of the device and by default legal. Such wires are exempt from this rule.
 
@@ -625,7 +661,7 @@ C. any two power regulating devices (per R607), or
 
 D. power regulating devices and actuators.
 
-Custom high impedance voltage monitoring or low impedance current monitoring circuitry connected to the ROBOT’S electrical system is acceptable if the effect on power pathways is inconsequential.
+Custom high impedance voltage monitoring or low impedance current monitoring circuitry connected to the ROBOT'S electrical system is acceptable if the effect on power pathways is inconsequential.
 
 Altering a power pathway includes, but is not limited to, altering the voltage of the power pathway using a boost (DC voltage step-up) or buck (DC voltage step-down) converter or otherwise altering the natural variable DC voltage provided by the ROBOT battery to create a constant DC voltage.
 
@@ -713,7 +749,7 @@ B. DRIVER STATION should be named <team number>-DS (e.g., 12345-DS), and
 
 C. If a spare ROBOT CONTROLLER or DRIVER STATION is configured, a letter designator may be added <team number>-<letter>-RC/DS (e.g., 12345-A-DS, 12345-B-DS)
 
-See the [DRIVER STATION Instructions](https://ftc-docs.firstinspires.org/en/latest/programming_resources/shared/managing_smartphone_ds/Managing-a-Smartphone-Driver-Station.html?highlight=12345-DS#changing-the-name-of-a-driver-station-instructions) and [ROBOT CONTROLLER Instructions](https://ftc-docs.firstinspires.org/en/latest/programming_resources/shared/managing_control_hub/Managing-a-Control-Hub.html#changing-the-name-of-a-control-hub) for a detailed procedure for updating DRIVER STATION and ROBOT CONTROLLER “names.”
+See the [DRIVER STATION Instructions](https://ftc-docs.firstinspires.org/en/latest/programming_resources/shared/managing_smartphone_ds/Managing-a-Smartphone-Driver-Station.html?highlight=12345-DS#changing-the-name-of-a-driver-station-instructions) and [ROBOT CONTROLLER Instructions](https://ftc-docs.firstinspires.org/en/latest/programming_resources/shared/managing_control_hub/Managing-a-Control-Hub.html#changing-the-name-of-a-control-hub) for a detailed procedure for updating DRIVER STATION and ROBOT CONTROLLER "names."
 
 #### R706 — Only specified modifications to core control system devices are permitted. [Evergreen rule]
 
@@ -727,7 +763,7 @@ C. thermal interface material may be used to improve heat conduction,
 
 D. labeling may be applied to indicate device identification, purpose, connectivity, functional performance, etc. as long as they do not cover labels or markings used to identify the product,
 
-E. jumpers or switches may be moved to configure devices per the manufacturer’s manual,
+E. jumpers or switches may be moved to configure devices per the manufacturer's manual,
 
 F. device firmware may be updated with manufacturer supplied firmware,
 
@@ -741,11 +777,11 @@ J. tape may be applied for debris protection, and
 
 K. power switch mounting brackets can be modified or replaced.
 
-Please note that while repairs are permitted, the allowance is independent of any manufacturer’s warranty. Teams make repairs at their own risk and should assume that any warranty or return options are forfeited. Repairs must be functionally equivalent to original device condition.
+Please note that while repairs are permitted, the allowance is independent of any manufacturer's warranty. Teams make repairs at their own risk and should assume that any warranty or return options are forfeited. Repairs must be functionally equivalent to original device condition.
 
 Be aware that diagnosing and repairing COMPONENTS such as these can be difficult.
 
-For example, “repairs” that change connector types, include device footprint modifications, or provide mechanical enhancements, are prohibited.
+For example, "repairs" that change connector types, include device footprint modifications, or provide mechanical enhancements, are prohibited.
 
 #### R707 — USB is for vision. [Evergreen rule]
 
@@ -769,7 +805,7 @@ UVC compatible USB webcams may only use the UVC provided stream / data. No other
 
 To request support (or to provide sample drivers) for alternate USB vision devices for inclusion in future *FIRST* Tech Challenge seasons, please send an email to <customerservice@firstinspires.org> with the following details:
 
-- Subject of email should be: “USB Vision Future Support Request”
+- Subject of email should be: "USB Vision Future Support Request"
 
 - Contact details for providing feedback or clarifications
 
@@ -779,13 +815,13 @@ To request support (or to provide sample drivers) for alternate USB vision devic
 
 Self-contained video recording devices (GoPro or similar) are allowed providing they are used only for non-functional post-MATCH viewing and the wireless capability is turned off.
 
-#### R710 — Lasers are only allowed if they’re part of a sensor, low-energy, and non-visible. [Evergreen rule]
+#### R710 — Lasers are only allowed if they're part of a sensor, low-energy, and non-visible. [Evergreen rule]
 
 Lasers are not allowed unless they meet all of the following criteria:
 
 A. must be part of a sensor,
 
-B. must be rated as IEC/EN 60825-1 ”Class I” or IEC/EN 62471 “Exempt,” and
+B. must be rated as IEC/EN 60825-1 "Class I" or IEC/EN 62471 "Exempt," and
 
 C. must use non-visible spectrum.
 
@@ -817,9 +853,9 @@ D. ROBOTS may not use any user-adjustable gas storage vessels, except air-filled
 
 E. ROBOTS may not use any device which creates high-speed airflow, except cooling fans integrated into COTS computing devices.
 
-The intent of this rule is that ROBOTS may not use pneumatic actuators, pressure or vacuum storage devices, compressors, vacuum generators, or air blowers, but they may use “closed air” systems which were sealed by their manufacturer. This includes items such as gas springs, and dampers.
+The intent of this rule is that ROBOTS may not use pneumatic actuators, pressure or vacuum storage devices, compressors, vacuum generators, or air blowers, but they may use "closed air" systems which were sealed by their manufacturer. This includes items such as gas springs, and dampers.
 
-Examples of a “device which creates high-speed airflow” include but are not limited to a fan designed to move SCORING ELEMENTS on the FIELD.\
+Examples of a "device which creates high-speed airflow" include but are not limited to a fan designed to move SCORING ELEMENTS on the FIELD.\
 High-speed flywheels or rollers used for manipulating SCORING ELEMENTS would not on their own be considered a high-speed airflow device.
 
 ## 12.9 OPERATOR CONSOLE
@@ -846,7 +882,7 @@ The OPERATOR CONSOLE, including all power sources (e.g., power banks), must not 
 
 Also refer to R203 for restrictions on designing OPERATOR CONSOLES for fair play and ARENA safety.
 
-Please note that while there is no hard weight limit, OPERATOR CONSOLES that weigh more than 20 lbs. (~9 kg.) will invite extra scrutiny as they are likely to disrupt normal ARENA operations.
+Please note that while there is no hard weight limit, OPERATOR CONSOLES that weigh more than 20 lbs. (\~9 kg.) will invite extra scrutiny as they are likely to disrupt normal ARENA operations.
 
 Teams who wish to have a spare external USB hub as part of the OPERATOR CONSOLE may do so as long as only one USB hub is connected at any time.
 

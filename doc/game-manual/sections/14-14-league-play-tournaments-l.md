@@ -12,7 +12,7 @@ In addition to the behavior described in Section 10.6.1 YELLOW and RED CARDS, VE
 
 Teams may belong to only 1 League per season and can participate in only 1 League Tournament per season. A team can participate in a League outside their region, provided that is the only league they participate in. A team may not advance from a League Tournament to a Regional Championship that is outside of their region unless the Program Delivery Partners in both regions have agreed to move a team to a new region for the entire season.
 
-League Tournaments function the same as a Qualifying Tournament including judging and advancement except that qualification rankings as described in Section 13.6 Qualification MATCHES, used for both ALLIANCE Selection and Qualification Round Performance Points, are calculated with the addition of each team’s top 10 MATCHES played at any League Meet and the MATCHES played at the League Tournament. Top MATCHES are defined by the sort order in Table 13-1.
+League Tournaments function the same as a Qualifying Tournament including judging and advancement except that qualification rankings as described in Section 13.6 Qualification MATCHES, used for both ALLIANCE Selection and Qualification Round Performance Points, are calculated with the addition of each team's top 10 MATCHES played at any League Meet and the MATCHES played at the League Tournament. Top MATCHES are defined by the sort order in Table 13-1.
 
 Teams that played fewer than 10 MATCHES at League Meets will have RANKING POINTS, MATCH Points, and all scoring criteria, that are effectively 0 for the missing MATCHES.
 

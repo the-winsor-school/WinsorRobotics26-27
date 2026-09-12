@@ -14,7 +14,7 @@ In BIOBUZZ, 2 ALLIANCES (an ALLIANCE is a cooperative of 2 *FIRST* Tech Challeng
 
 MATCHES consist of pre-MATCH setup, a 30-second AUTO period, an 8-second transition period between AUTO and TELEOP, and a 2-minute TELEOP period, followed by the post-MATCH reset.
 
-During the MATCH, ROBOTS collect POLLEN and NECTAR to move them to their GARDEN, to place into the FLOWERS, and to LAUNCH them into their CELLS to cause a HIVE TIP – all to earn points.
+During the MATCH, ROBOTS collect POLLEN and NECTAR to move them to their GARDEN, to place into the FLOWERS, and to LAUNCH them into their CELLS to cause a HIVE TIP -- all to earn points.
 
 Each time a HIVE is TIPPED, an ALLIANCE is allowed to enter one of five NECTAR initially staged in the ALLIANCE AREA. With 60 seconds left in the MATCH, ALLIANCES can enter all remaining NECTAR.
 
@@ -24,15 +24,19 @@ ROBOTS conclude the MATCH by claiming ownership of the FLOWERS by placing NECTAR
 
 A DRIVE TEAM is a set of up to 4 people from the same *FIRST* Tech Challenge team responsible for team performance for a specific MATCH. There are 3 specific roles on a DRIVE TEAM which ALLIANCES can use to assist ROBOTS, and only 1 member of the DRIVE TEAM is allowed to be a non-STUDENT.
 
-The intent of the definition of DRIVE TEAM and DRIVE TEAM related rules is that, barring extenuating circumstances, the DRIVE TEAM consists of people who arrived at the event affiliated with that team and are responsible for their team’s and ROBOT’S performance at the event (this means a person may be affiliated with more than 1 team).
+The intent of the definition of DRIVE TEAM and DRIVE TEAM related rules is that, barring extenuating circumstances, the DRIVE TEAM consists of people who arrived at the event affiliated with that team and are responsible for their team's and ROBOT'S performance at the event (this means a person may be affiliated with more than 1 team).
 
-The intent is not to allow teams to “adopt” members of other teams for STRATEGIC advantage for the loaning team, borrowing team, and/or their ALLIANCE (e.g., an ALLIANCE Lead believes 1 of their DRIVERS has more experience than a DRIVER of their ALLIANCE partner, and the teams agree the partner team will “adopt” that DRIVER and make them a member of their DRIVE TEAM for Playoffs).
+The intent is not to allow teams to "adopt" members of other teams for STRATEGIC advantage for the loaning team, borrowing team, and/or their ALLIANCE (e.g., an ALLIANCE Lead believes 1 of their DRIVERS has more experience than a DRIVER of their ALLIANCE partner, and the teams agree the partner team will "adopt" that DRIVER and make them a member of their DRIVE TEAM for Playoffs).
 
 The definition is not stricter for 2 main reasons. First, to avoid additional bureaucratic burden on teams and event volunteers (e.g., requiring that teams submit official rosters that Queuing must check before allowing a DRIVE TEAM into the ARENA). Second, to provide space for exceptional circumstances that give teams the opportunity to display *Gracious Professionalism* (e.g., a bus is delayed, a DRIVE COACH has no DRIVERS, and their pit neighbors agree to help by loaning DRIVERS as temporary members of the team until their bus arrives).
 
 Table 10-1: DRIVE TEAM roles
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Role** | **Description** | **Max./** **DRIVE TEAM** | **Criteria** |
+|---|---|---|---|
+| **DRIVE COACH** | a guide or advisor | 1 | any team member and may be an adult, must wear "DRIVE COACH" badge |
+| **DRIVER** | an operator and controller of the ROBOT | 3 | STUDENT, must wear a "DRIVE TEAM" badge |
+| **HUMAN PLAYER** | a SCORING ELEMENT manager |  |  |
 
 A STUDENT is a person who has not completed high-school, secondary school, or the comparable level in their HOME REGION as of September 1st of the current season.
 
@@ -46,7 +50,7 @@ Figure 10-2: SCORING ELEMENT staging positions
 
 [Figure]
 
-Each HIVE is tilted such that one CELL is pointed down, and the other CELL is pointed up, as shown. (An easy way to remember this is the CELL which “points at” a FLOWER should be the one tilted down.) SCORING ELEMENTS are staged on the FIELD as follows (Figure 10-2):
+Each HIVE is tilted such that one CELL is pointed down, and the other CELL is pointed up, as shown. (An easy way to remember this is the CELL which "points at" a FLOWER should be the one tilted down.) SCORING ELEMENTS are staged on the FIELD as follows (Figure 10-2):
 
 A. 40 POLLEN are staged on the FIELD as follows:
 
@@ -80,7 +84,7 @@ A. Only DRIVE TEAM members assigned to the upcoming MATCH are present.
 
 B. Only DRIVE TEAM members whose ROBOTS have passed initial, complete inspection are present.
 
-C. DRIVE TEAM members are staged in their designated ALLIANCE AREA. If members of the ALLIANCE cannot agree where their DRIVE TEAM members will be staged, the team listed on the MATCH schedule as “Red 1” or “Blue 1” will stage closest to the audience.
+C. DRIVE TEAM members are staged in their designated ALLIANCE AREA. If members of the ALLIANCE cannot agree where their DRIVE TEAM members will be staged, the team listed on the MATCH schedule as "Red 1" or "Blue 1" will stage closest to the audience.
 
 D. DRIVE TEAM members clearly display their designated DRIVE TEAM badges above their waists.
 
@@ -88,13 +92,13 @@ E. If a Playoff MATCH, the ALLIANCE CAPTAIN clearly displays their designated AL
 
 ### 10.3.3 OPERATOR CONSOLES
 
-DRIVE TEAMS set up their OPERATOR CONSOLES as soon as they are staged in their ALLIANCE AREA. OPERATOR CONSOLES must be compliant with all relevant rules, specifically those in Section 12.9 **OPERATOR CONSOLE. A DRIVE TEAM obstructing or delaying OPERATOR CONSOLE set up is at risk of violating G301.
+DRIVE TEAMS set up their OPERATOR CONSOLES as soon as they are staged in their ALLIANCE AREA. OPERATOR CONSOLES must be compliant with all relevant rules, specifically those in Section 12.9 OPERATOR CONSOLE. A DRIVE TEAM obstructing or delaying OPERATOR CONSOLE set up is at risk of violating G301.
 
 A. DRIVE TEAMS intending to run an OpMode during AUTO must select an OpMode within their DRIVER STATION app with the 30 second timer enabled.
 
 B. Otherwise, DRIVE TEAMS must select a TELEOP OpMode within the DRIVER STATION app.
 
-C. The selected OpMode must be initialized by pressing the “INIT” button on the DRIVER STATION app.
+C. The selected OpMode must be initialized by pressing the "INIT" button on the DRIVER STATION app.
 
 ### 10.3.4 ROBOTS
 
@@ -152,7 +156,7 @@ Achievements scored before the MATCH starts, during the AUTO-to-TELEOP transitio
 
 ### 10.5.1 HIVE Scoring Criteria
 
-***HIVE TIP***
+**HIVE TIP**
 
 The HIVE is considered TIPPED when:
 
@@ -170,7 +174,7 @@ Teams should be aware that LAUNCHING at the downward-facing CELL while a HIVE is
 
 LAUNCHING into the upward-facing CELL is the only allowed way to earn a HIVE TIP. ROBOTS must follow G417 and cannot disrupt or cause a HIVE TIP in other ways.
 
-***POLLEN and NECTAR remaining in CELL***
+**POLLEN and NECTAR remaining in CELL**
 
 At the end of the MATCH, any POLLEN and/or NECTAR left in an upward-facing CELL will earn points for that ALLIANCE.
 
@@ -186,11 +190,11 @@ FLOWER scoring cannot begin until there is one minute remaining in the MATCH per
 
 Placing SCORING ELEMENTS into the top of the FLOWER is the only allowable way to score. ROBOTS must follow G418 while interacting with the FLOWER.
 
-***Bottom NECTAR Bonus***
+**Bottom NECTAR Bonus**
 
 The ALLIANCE that has the bottom-most NECTAR of its color that meets the criteria for scoring in a FLOWER earns points.
 
-***FLOWER Owner***
+**FLOWER Owner**
 
 The ALLIANCE that has the top-most NECTAR of its color that meets the criteria for scoring in a FLOWER owns that FLOWER and will earn points for every POLLEN and NECTAR that meet the scoring criteria for that FLOWER, regardless of which ALLIANCE placed the POLLEN and/or NECTAR in the FLOWER.
 
@@ -214,11 +218,11 @@ Figure 10-6: GARDEN Scoring
 
 ### 10.5.4 ROBOT Scoring Criteria
 
-***LEAVE***
+**LEAVE**
 
 To qualify for LEAVE points, a ROBOT must move so that it is no longer contacting the perimeter wall.
 
-***PARK***
+**PARK**
 
 To qualify for PARK points, a ROBOT must move so that it is at least partially in the LOADING ZONE. (Figure 10-7)
 
@@ -232,17 +236,17 @@ Table 10-2: BIOBUZZ Point Values
 
 | ** ** |  | **MATCH points** |  | **RANKING POINTS** |
 |---|---|---|---|---|
-|  |  | **AUTO** | **TELEOP** |  |
+| ** ** |  | **AUTO** | **TELEOP** | **RANKING POINTS** |
 | **LEAVE** |  | 3 |  | - |
 | **PARK** |  | 5 | 5 | - |
 | **HIVE** | HIVE TIP | 20 | 20 | - |
-|  | POLLEN and/or NECTAR remaining in CELL | - | 2 | - |
+| **HIVE** | POLLEN and/or NECTAR remaining in CELL | - | 2 | - |
 | **FLOWER** | Bottom NECTAR Bonus | - | 5 | - |
-|  | POLLEN and/or NECTAR in an owned FLOWER | - | 2 | - |
+| **FLOWER** | POLLEN and/or NECTAR in an owned FLOWER | - | 2 | - |
 | **GARDEN** | POLLEN and/or NECTAR in GARDEN | - | 1 | - |
-| **SWARM RP –** Combined LEAVE + PARK points earned at or above threshold |  |  |  | 1 |
-| **POLLINATOR 1 RP –** The number of TIPS at or above threshold |  |  |  | 1 |
-| **POLLINATOR 2 RP –** The number of TIPS at or above threshold |  |  |  | 1 |
+| **SWARM RP --** Combined LEAVE + PARK points earned at or above threshold |  |  |  | 1 |
+| **POLLINATOR 1 RP --** The number of TIPS at or above threshold |  |  |  | 1 |
+| **POLLINATOR 2 RP --** The number of TIPS at or above threshold |  |  |  | 1 |
 | **WIN** | Completing a MATCH with more MATCH points than your opponent |  |  | 3 |
 | **TIE** | Completing a MATCH with the same MATCH points as your opponent |  |  | 1 |
 
@@ -280,7 +284,7 @@ A. multiple warnings are given during an individual MATCH for the same violation
 
 B. multiple VERBAL WARNINGS are issued to a team over multiple MATCHES for the same violation that individually can be perceived to be accidental or unforeseeable.
 
-Accidental situations that are then deliberately used to a team’s advantage will be viewed as STRATEGIC.
+Accidental situations that are then deliberately used to a team's advantage will be viewed as STRATEGIC.
 
 Unless otherwise noted, all penalties are assigned for each instance of a rule violation, and a single action may violate multiple rules. A description of the penalties is listed in Table 10-4. All rules throughout the Game Rules section are called as perceived by a REFEREE.
 
@@ -289,8 +293,8 @@ Table 10-4: Rule violations
 | **Penalty** | **Description** |
 |---|---|
 | **VERBAL WARNING** | a warning issued by event staff or the Head REFEREE |
-| **MINOR FOUL** | a credit of 5 points towards the opponent’s MATCH point total |
-| **MAJOR FOUL** | a credit of 20 points towards the opponent’s MATCH point total |
+| **MINOR FOUL** | a credit of 5 points towards the opponent's MATCH point total |
+| **MAJOR FOUL** | a credit of 20 points towards the opponent's MATCH point total |
 | **YELLOW CARD** | a warning issued by the Head REFEREE for egregious ROBOT or team member behavior or rule violations. A subsequent YELLOW CARD within the same tournament phase results in a RED CARD |
 | **RED CARD** | a penalty issued by the Head REFEREE for egregious ROBOT or team member behavior or rule violations which results in a team being DISQUALIFIED for the MATCH. |
 | **DISABLED** | The REFEREE instructs the team to stop the ROBOT which will deactivate all outputs, rendering the ROBOT inoperable for the remainder of the MATCH. |
@@ -334,7 +338,12 @@ YELLOW and RED CARDS are applied based on the following:
 
 Table 10-5: YELLOW and RED CARD application
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Time YELLOW or RED CARDS earned:** | **MATCH to which CARD is applied:** |
+|---|---|
+| **Prior to Qualification MATCHES** | REFEREES may or may not be present at the FIELD before the start of Qualification MATCHES. With input from event staff, the Head REFEREE may opt to perpetuate a VERBAL WARNING or YELLOW CARD earned prior to Qualification MATCHES to the first Qualification MATCH for particularly egregious behavior. |
+| **during the Qualification MATCHES** | team's current (or just completed) MATCH in which they are not a SURROGATE. For SURROGATE MATCHES the card is applied to the team's previous Qualification MATCH. |
+| **between the end of Qualification MATCHES and the start of Playoff MATCHES** | ALLIANCE'S first Playoff MATCH |
+| **during the Playoff MATCHES** | ALLIANCE'S current (or just completed) MATCH |
 
 A MATCH is no longer the current MATCH once the results of the MATCH have been posted or the Head REFEREE or their designee has indicated that teams can collect their ROBOTS, whichever is later.
 
@@ -342,7 +351,7 @@ Please see examples of the application of YELLOW and RED CARDS as shown in Secti
 
 ### 10.6.3 YELLOW and RED CARDS during Playoff MATCHES
 
-During Playoff MATCHES, YELLOW and RED CARDS are assigned to the violating team’s entire ALLIANCE instead of to only the violating team. If an ALLIANCE receives 2 YELLOW CARDS, the entire ALLIANCE is issued a RED CARD which results in DISQUALIFICATION for the associated MATCH.
+During Playoff MATCHES, YELLOW and RED CARDS are assigned to the violating team's entire ALLIANCE instead of to only the violating team. If an ALLIANCE receives 2 YELLOW CARDS, the entire ALLIANCE is issued a RED CARD which results in DISQUALIFICATION for the associated MATCH.
 
 ### 10.6.4 Violation Details
 
@@ -350,7 +359,17 @@ There are several styles of violation wording used in this manual. Below are som
 
 Table 10-6: Violation examples
 
-*[A table appears here in the official manual; it did not survive conversion and is omitted.]*
+| **Example Violation** | **Expanded Interpretation** |
+|---|---|
+| **MINOR FOUL** | Upon violation, a MINOR FOUL is assessed against the violating ALLIANCE. |
+| **MAJOR FOUL and YELLOW CARD per instance.** | Upon violation, a MAJOR FOUL is assessed against the violating ALLIANCE. After the MATCH, the team is issued a YELLOW CARD. |
+| **MINOR FOUL per SCORING ELEMENT.** | Upon violation, a MINOR FOUL is assessed against the violating ALLIANCE equal to the number of SCORING ELEMENTS used in violation of the rule. |
+| **MAJOR FOUL per instance. MAJOR FOUL per instance and YELLOW CARD per MATCH if REPEATED.** | Upon initial violation in a MATCH, a MAJOR FOUL is assessed against the violating ALLIANCE per instance of a violation occurring. If the condition of REPEATED in the second statement is met -- the ROBOT repeats the infraction in the MATCH, then an additional MAJOR FOUL is assessed against the violating ALLIANCE and after the MATCH, the violating team is issued a YELLOW CARD. Assuming no additional infractions of that rule by that ROBOT in that MATCH, the ROBOT is assessed two MAJOR FOULS and a YELLOW CARD for their ALLIANCE. Additional violations during the MATCH would increase the number of MAJOR FOULS assessed during the MATCH but not the number of YELLOW CARDS issued for the MATCH. |
+| **MAJOR FOUL and an additional MAJOR FOUL for every 3 seconds in which the situation is not corrected** | Upon violation, a MAJOR FOUL is assessed against the violating ALLIANCE and the REFEREE begins to count. Their count continues until the criteria to discontinue the count are met, and for each 3 seconds within that time, an additional MAJOR FOUL is assessed against the violating ALLIANCE. A ROBOT in violation of this type of rule for 15 seconds is assessed a total of 6 MAJOR FOULS (assuming no other rules were being simultaneously violated). |
+| **VERBAL WARNING. MAJOR FOUL and YELLOW CARD per MATCH, if STRATEGIC.** | Upon a general violation of the rule, a VERBAL WARNING is issued to the violating team. However, if the violation is perceived to be STRATEGIC by the REFEREES, then a MAJOR FOUL is assessed against the violating ALLIANCE and after the MATCH, the violating team is issued a YELLOW CARD. |
+| **MAJOR FOUL per instance of violation. MAJOR FOUL and YELLOW CARD if REPEATED.** | Upon the first violation, a MAJOR FOUL is assessed against the violating team. If the condition "if REPEATED" (e.g., a subsequent violation by the same team in the same MATCH) is met, then the violating team is issued another MAJOR FOUL. If these are the only violations during the MATCH: after the MATCH, the violating team is assessed a YELLOW CARD for the second violation of this rule. In total, 2 MAJOR FOULS and a YELLOW CARD were assessed during the MATCH. |
+| **VERBAL WARNING. YELLOW CARD if subsequent violations occur during the event.** | Upon the first violation, a VERBAL WARNING is issued to the violating team. If an additional violation of the same rule occurs later in the event, that is: a MATCH during the same event phase or a later event phase, then following any subsequent violation: after the MATCH, the violating team is issued a YELLOW CARD. |
+| **VERBAL WARNING. MAJOR FOUL and YELLOW CARD per instance, if STRATEGIC. MAJOR FOUL and RED CARD per instance, if STRATEGIC and either CONTINUOUS opponent ROBOT is unable to drive.** | Upon a general violation of this rule, a VERBAL WARNING is issued to the violating team. However, if the violation is perceived to be STRATEGIC by the REFEREES, then a MAJOR FOUL is assessed against the violating ALLIANCE and after the MATCH, the team is issued a YELLOW CARD. However, if the violation is perceived to be STRATEGIC by the REFEREES and the opponent ROBOT is unable to drive or the entanglement persists for 10 seconds or more, then upon violation, a MAJOR FOUL is assessed against the violating ALLIANCE. After the MATCH, the team is issued a RED CARD. Only 1 MAJOR FOUL and 1 CARD can be earned for a single violation instance; however, multiple MAJOR FOULS and CARDS may be earned in a single MATCH if multiple instances of the violation occurred during the MATCH. |
 
 ## 10.7 Head REFEREE
 
@@ -366,7 +385,7 @@ The FTA, LRI, or Head REFEREE may prohibit a team from participating in a Practi
 
 POLLEN that exits the FIELD will be reintroduced into the FIELD at the earliest safe opportunity by FIELD STAFF in the nearest convenient location.
 
-NECTAR that exits the FIELD will be returned to that ALLIANCE’S DRIVE TEAM for reintroduction per Section 11.4.6 Human. An ARENA FAULT is not called for MATCHES in which there are reasonable delays in FIELD STAFF reintroducing POLLEN to the FIELD or returning NECTAR to a DRIVE TEAM.
+NECTAR that exits the FIELD will be returned to that ALLIANCE'S DRIVE TEAM for reintroduction per Section 11.4.6 Human. An ARENA FAULT is not called for MATCHES in which there are reasonable delays in FIELD STAFF reintroducing POLLEN to the FIELD or returning NECTAR to a DRIVE TEAM.
 
 An ARENA FAULT (an error in ARENA operation described in Section 13.2 MATCH Replays) is not called for MATCHES that accidentally begin with:
 

@@ -72,7 +72,7 @@ If a ROBOT has passed initial, complete inspection, at least 1 member of its DRI
 
 Violation: DISQUALIFIED from the current MATCH.
 
-The team should inform the Lead Queuer if the team’s ROBOT is not able to participate.
+The team should inform the Lead Queuer if the team's ROBOT is not able to participate.
 
 If there are extenuating circumstances which prevent at least 1 member of a team from attending each of their MATCHES, that team should discuss with FIELD STAFF whether an accommodation is available.
 
@@ -96,9 +96,9 @@ Egregious behavior beyond what is listed in the rules or subsequent violations o
 
 In addition to rule violations explicitly listed in this manual and witnessed by a REFEREE, the Head REFEREE may assign a YELLOW or RED CARD for egregious ROBOT actions or team member behavior at any time during the event.
 
-Continued violations will be brought to *FIRST* Headquarters’ attention. *FIRST* Headquarters will work with event staff to determine if further escalations are necessary, which can include removal from award consideration and removal from the event.
+Continued violations will be brought to *FIRST* Headquarters' attention. *FIRST* Headquarters will work with event staff to determine if further escalations are necessary, which can include removal from award consideration and removal from the event.
 
-Deliberately violating a rule because the benefit of the violation outweighs the penalty is not in the spirit of *FIRST* and is an example of egregious behavior. For example, multiple violations of rules without an escalation path because the cumulative benefit outweighs the cumulative penalty. Violating a rule that only results in a YELLOW CARD in an ALLIANCE’S potential last MATCH prior to cards clearing per Section 10.6.1 YELLOW and RED CARDS or the end of an event (such as a team’s last qualification MATCH, a lower bracket MATCH) will be under increased scrutiny and will likely result in a RED CARD.
+Deliberately violating a rule because the benefit of the violation outweighs the penalty is not in the spirit of *FIRST* and is an example of egregious behavior. For example, multiple violations of rules without an escalation path because the cumulative benefit outweighs the cumulative penalty. Violating a rule that only results in a YELLOW CARD in an ALLIANCE'S potential last MATCH prior to cards clearing per Section 10.6.1 YELLOW and RED CARDS or the end of an event (such as a team's last qualification MATCH, a lower bracket MATCH) will be under increased scrutiny and will likely result in a RED CARD.
 
 Please see Section 10.6.1 YELLOW and RED CARDS for additional detail.
 
@@ -110,7 +110,7 @@ The Head REFEREE may assign a YELLOW or RED CARD for a single instance of a rule
 
 ## 11.3 Pre-MATCH
 
-#### G301 — Don’t delay MATCHES. [Evergreen rule]
+#### G301 — Don't delay MATCHES. [Evergreen rule]
 
 DRIVE TEAM members may not cause significant delays to the start of their MATCH. Both of these conditions must be met prior to team actions being considered:
 
@@ -120,9 +120,9 @@ B. the DRIVE TEAM has access to the ARENA.
 
 In order for a team to cause a significant delay, the Head REFEREE must perceive that the team is neither MATCH ready (G303) nor making a good faith effort to quickly become MATCH ready.
 
-During Qualification MATCHES, the expected start time of the MATCH is the time indicated on the MATCH schedule or ~3 minutes after the end of the previous MATCH on the same FIELD, whichever is later.
+During Qualification MATCHES, the expected start time of the MATCH is the time indicated on the MATCH schedule or \~3 minutes after the end of the previous MATCH on the same FIELD, whichever is later.
 
-During Playoff MATCHES, the expected start time of the MATCH is the time indicated on the MATCH schedule or 8 minutes from either ALLIANCE’S previous MATCH, whichever is later
+During Playoff MATCHES, the expected start time of the MATCH is the time indicated on the MATCH schedule or 8 minutes from either ALLIANCE'S previous MATCH, whichever is later
 
 During back-to-back MATCHES, T406 is in effect, and teams may have a longer minimum break.
 
@@ -130,15 +130,15 @@ Teams that have 1 DRIVE TEAM member present and have informed FIELD STAFF that t
 
 Violation: VERBAL WARNING. MAJOR FOUL for the upcoming MATCH if a subsequent violation occurs within the tournament phase. In a Playoff MATCH, the VERBAL WARNING is issued to the entire ALLIANCE.
 
-If the team/ALLIANCE is not MATCH ready within 2 minutes of the VERBAL WARNING/MAJOR FOUL having been issued, and the Head REFEREE perceives no good faith effort by the DRIVE TEAM(S) to quickly become MATCH ready, the offending team’s ROBOT is DISABLED.
+If the team/ALLIANCE is not MATCH ready within 2 minutes of the VERBAL WARNING/MAJOR FOUL having been issued, and the Head REFEREE perceives no good faith effort by the DRIVE TEAM(S) to quickly become MATCH ready, the offending team's ROBOT is DISABLED.
 
 The intent of this rule is to provide an equitable amount of time for both ALLIANCES to prepare for each MATCH and give DRIVE TEAMS grace given extenuating circumstances that cause them to be late. Teams should avoid disrupting ARENA operations and proactively communicate with the Head REFEREE and FIELD STAFF to let them know their status.
 
 FIELD STAFF will make a good faith effort to wait for missing or unprepared teams and will avoid beginning any MATCH when teams are not present or not MATCH ready and making good faith effort to become MATCH ready.
 
-Once a VERBAL WARNING/MAJOR FOUL is issued, the Head REFEREE starts a 2-minute timer and makes a good faith effort to share the timer’s status with the delaying DRIVE TEAM.
+Once a VERBAL WARNING/MAJOR FOUL is issued, the Head REFEREE starts a 2-minute timer and makes a good faith effort to share the timer's status with the delaying DRIVE TEAM.
 
-In general, good faith efforts to quickly become MATCH ready are entirely for the purposes of transitioning the ROBOT into a MATCH ready state (i.e., not attempts to significantly alter a ROBOT’S capabilities). Examples of good faith efforts to quickly become MATCH ready that would not be a violation include but are not limited to:
+In general, good faith efforts to quickly become MATCH ready are entirely for the purposes of transitioning the ROBOT into a MATCH ready state (i.e., not attempts to significantly alter a ROBOT'S capabilities). Examples of good faith efforts to quickly become MATCH ready that would not be a violation include but are not limited to:
 
 A. walking safely towards the FIELD with a ROBOT that a team is not actively modifying,
 
@@ -148,17 +148,17 @@ C. waiting for a DRIVER STATION device to boot,
 
 D. actively working with field technical staff, including the FTA, to resolve an issue in a reasonable amount of time, or
 
-E. performing a MOMENTARY “wiggle test” to confirm communication between the DRIVER STATION and the ROBOT CONTROLLER. The ROBOT should not drive or interact with SCORING ELEMENTS (except contact with pre-loaded POLLEN) while performing this test.
+E. performing a MOMENTARY "wiggle test" to confirm communication between the DRIVER STATION and the ROBOT CONTROLLER. The ROBOT should not drive or interact with SCORING ELEMENTS (except contact with pre-loaded POLLEN) while performing this test.
 
 #### G302 — Limit what you bring to the FIELD [Evergreen rule]
 
-. Items brought to the FIELD to be used for a MATCH, in addition to the ROBOT and OPERATOR CONSOLE, must fit in the team’s designated ALLIANCE AREA, be worn or held by members of the DRIVE TEAM, or be an item used as an accommodation (e.g., crutches, cushions, kneeling mats, or single-step stools no more than 12 in. tall (30.5 cm) that are designed to be stood on and are locked such that they do not roll/fold).
+. Items brought to the FIELD to be used for a MATCH, in addition to the ROBOT and OPERATOR CONSOLE, must fit in the team's designated ALLIANCE AREA, be worn or held by members of the DRIVE TEAM, or be an item used as an accommodation (e.g., crutches, cushions, kneeling mats, or single-step stools no more than 12 in. tall (30.5 cm) that are designed to be stood on and are locked such that they do not roll/fold).
 
 Regardless of whether the equipment fits the criteria above, it may not:
 
 A. be employed in a way that disrupts normal ARENA operations or introduces a safety hazard,
 
-B. extend more than 6 ft. 6 in. (~198 cm) above the TILES,
+B. extend more than 6 ft. 6 in. (\~198 cm) above the TILES,
 
 C. communicate with anything or anyone outside of the ARENA with the exception of medically required equipment,
 
@@ -190,7 +190,7 @@ C. is the only team-provided item left in the FIELD, and
 
 D. has ROBOT SIGNS that indicate the correct ALLIANCE color (see R402).
 
-Violation: The MATCH will not start until all requirements are met if there is a quick remedy. DISABLED if it is not a quick remedy, and, at the discretion of the Head REFEREE, ROBOT must be re-inspected. RED CARD if a team’s ROBOT is not compliant with G303.B participates in the MATCH.
+Violation: The MATCH will not start until all requirements are met if there is a quick remedy. DISABLED if it is not a quick remedy, and, at the discretion of the Head REFEREE, ROBOT must be re-inspected. RED CARD if a team's ROBOT is not compliant with G303.B participates in the MATCH.
 
 For assessment of many of the items listed above, the Head REFEREE is likely to consult with the LRI.
 
@@ -198,7 +198,7 @@ For assessment of many of the items listed above, the Head REFEREE is likely to 
 
 A ROBOT must be positioned on the FIELD such that it meets all of the following requirements:
 
-A. fully contained on its own ALLIANCE’s side of the FIELD (FIELD columns A, B, C for red, or FIELD columns D, E, F for blue) (Figure 9-4),
+A. fully contained on its own ALLIANCE's side of the FIELD (FIELD columns A, B, C for red, or FIELD columns D, E, F for blue) (Figure 9-4),
 
 B. not attached to, entangled with, or suspended from any FIELD element,
 
@@ -244,13 +244,13 @@ Rules in this section pertain to gameplay once a MATCH begins.
 
 AUTO is the first 30 seconds of the MATCH, during which DRIVERS may not provide input to their ROBOTS, so ROBOTS operate with only their pre-programmed instructions. Rules in this section apply only during the AUTO period.
 
-#### G401 — Don’t interact with a ROBOT during AUTO. [Evergreen rule]
+#### G401 — Don't interact with a ROBOT during AUTO. [Evergreen rule]
 
 As soon as the countdown to start the MATCH begins and until the end of AUTO, DRIVE TEAM members may not directly or indirectly interact with a ROBOT or an OPERATOR CONSOLE, with the following exceptions:
 
 A. to press the (▶) start button within a MOMENTARY margin of the start of the MATCH,
 
-B. to press the (■) stop button either at the team’s discretion or instruction of the Head REFEREE per T402, or
+B. to press the (■) stop button either at the team's discretion or instruction of the Head REFEREE per T402, or
 
 C. for personal safety or OPERATOR CONSOLE safety.
 
@@ -268,7 +268,7 @@ Violation: MAJOR FOUL per MATCH. MAJOR FOUL and YELLOW CARD per MATCH, if STRATE
 
 During AUTO, FIELD columns A, B, C constitute the red side of the FIELD, and columns D, E, F (Figure 9-5) constitute the blue side of the FIELD. Each ALLIANCE has priority over those FIELD and SCORING ELEMENTS on their side of the FIELD.
 
-Navigating into the opposing ALLIANCE’S side of the FIELD during AUTO is a risky gameplay strategy that may be seen as STRATEGIC.
+Navigating into the opposing ALLIANCE'S side of the FIELD during AUTO is a risky gameplay strategy that may be seen as STRATEGIC.
 
 SCORING ELEMENTS that happen to enter the other side of the FIELD after being deflected by another object in the FIELD (e.g., FIELD element, ROBOT) will likely not be penalized.
 
@@ -330,27 +330,27 @@ A. A ROBOT that picks up and CONTROLS 6 or more SCORING ELEMENTS, moving them to
 
 B. Multiple instances of greater than MOMENTARY CONTROL of 5 or more SCORING ELEMENTS by a ROBOT throughout a MATCH.
 
-Examples of actions that are likely to ***not*** be perceived as STRATEGIC include, but are not limited to:
+Examples of actions that are likely to **not** be perceived as STRATEGIC include, but are not limited to:
 
-C. A ROBOT MOMENTARILY CONTROLS 5 SCORING ELEMENTS which they “reverse” quickly so that at least one SCORING ELEMENT returns to approximately its original state.
+C. A ROBOT MOMENTARILY CONTROLS 5 SCORING ELEMENTS which they "reverse" quickly so that at least one SCORING ELEMENT returns to approximately its original state.
 
 Teams are encouraged to design their ROBOTS to prevent inadvertent or deliberate CONTROL of more than 4 SCORING ELEMENTS. This could involve guards to prevent SCORING ELEMENTS from accidentally becoming stuck on top of the ROBOT and systems to prevent active pickup/intaking of more than 4 SCORING ELEMENTS.
 
-Examples of interaction with a SCORING ELEMENT that are not “CONTROL” and would not be a violation of this rule include, but are not limited to:
+Examples of interaction with a SCORING ELEMENT that are not "CONTROL" and would not be a violation of this rule include, but are not limited to:
 
-D. “bulldozing” (inadvertent contact with a SCORING ELEMENT while in the path of the ROBOT moving about the FIELD)
+D. "bulldozing" (inadvertent contact with a SCORING ELEMENT while in the path of the ROBOT moving about the FIELD)
 
-E. “deflecting” (being hit by a SCORING ELEMENT that bounces into or off a ROBOT), or
+E. "deflecting" (being hit by a SCORING ELEMENT that bounces into or off a ROBOT), or
 
 F. SCORING ELEMENTS that have been LAUNCHED by a ROBOT that are no longer in contact with the ROBOT.
 
-#### G408 — Don’t CONTROL opponent NECTAR.
+#### G408 — Don't CONTROL opponent NECTAR.
 
-A ROBOT may not CONTROL the opponent’s NECTAR.
+A ROBOT may not CONTROL the opponent's NECTAR.
 
 Violation: VERBAL WARNING. YELLOW CARD per MATCH, if STRATEGIC.
 
-#### G409 — Don’t catch SCORING ELEMENTS.
+#### G409 — Don't catch SCORING ELEMENTS.
 
 A ROBOT may not catch or deflect a SCORING ELEMENT released by a TIPPED HIVE unless and until that SCORING ELEMENT contacts anything else besides that ROBOT.
 
@@ -368,7 +368,7 @@ B. A ROBOT has a MECHANISM at the top of their ROBOT that opens wide to accept S
 
 C. A ROBOT REPEATEDLY positions itself so multiple SCORING ELEMENTS that fall from the HIVE hit the ROBOT and move with an advantageous vector before contacting anything else.
 
-Examples of actions that are likely to ***not*** be perceived as STRATEGIC include, but are not limited to:
+Examples of actions that are likely to **not** be perceived as STRATEGIC include, but are not limited to:
 
 D. A ROBOT drives under the HIVE and has one or two POLLEN land on a flat surface of their ROBOT while driving by.
 
@@ -428,7 +428,7 @@ Violation: VERBAL WARNING. RED CARD, if STRATEGIC.
 
 #### G414 — ROBOTS must be identifiable. [Evergreen rule]
 
-A ROBOT’S team number and ALLIANCE color must not become indeterminate, as perceived by the Head REFEREE.
+A ROBOT'S team number and ALLIANCE color must not become indeterminate, as perceived by the Head REFEREE.
 
 Violation: VERBAL WARNING. YELLOW CARD, if STRATEGIC.
 
@@ -484,13 +484,13 @@ B. ramming into the HIVE frame multiple times in a short time period,
 
 C. deliberately LAUNCHING NECTAR or POLLEN into the external bottom, sides, or top faces of a CELL,
 
-D. impeding the TIP of an opponent’s HIVE by LAUNCHING NECTAR or POLLEN at it,
+D. impeding the TIP of an opponent's HIVE by LAUNCHING NECTAR or POLLEN at it,
 
 E. contacting a HIVE directly or transitively through a CONTROLLED SCORING ELEMENT, or
 
 F. actions that are REPEATED after a warning has been given.
 
-Examples of actions that are likely to ***not*** be perceived as STRATEGIC include, but are not limited to:
+Examples of actions that are likely to **not** be perceived as STRATEGIC include, but are not limited to:
 
 G. A ROBOT accidentally bumping into a HIVE frame while attempting to pick up POLLEN, or
 
@@ -530,7 +530,7 @@ G. A ROBOT deliberately drives into the perimeter wall at high-speed causing a S
 
 H. A ROBOT deliberately holds a NECTAR up to the side of the FLOWER pipes such that it meets the FLOWER scoring criteria.
 
-Examples of actions that are likely to ***not*** be perceived as STRATEGIC include but are not limited to:
+Examples of actions that are likely to **not** be perceived as STRATEGIC include but are not limited to:
 
 I. A ROBOT drives into a FLOWER while attempting to pick up POLLEN off the TILES and causes a POLLEN to fall out the top of a FLOWER, or
 
@@ -556,7 +556,7 @@ B. exposed or unprotected wiring, or
 
 C. a delicately constructed MECHANISM (such as an intake).
 
-When a team’s ROBOT is interacting with an opponent ROBOT that is in a precarious or disadvantaged position, that team should make it obvious and unambiguous that they are trying to avoid damaging their opponent.
+When a team's ROBOT is interacting with an opponent ROBOT that is in a precarious or disadvantaged position, that team should make it obvious and unambiguous that they are trying to avoid damaging their opponent.
 
 Examples of actions that are likely to be perceived as STRATEGIC include, but are not limited to:
 
@@ -566,9 +566,9 @@ Examples of functionally impairing another ROBOT include, but are not limited to
 
 E. disconnecting wires inside the ROBOT CHASSIS required for operation of a COMPONENT,
 
-F. disconnecting the opponent ROBOT’S battery (this example also clearly results in a RED CARD because the ROBOT is no longer able to drive), or
+F. disconnecting the opponent ROBOT'S battery (this example also clearly results in a RED CARD because the ROBOT is no longer able to drive), or
 
-G. powering off an opponent’s ROBOT by contacting their reasonably well-protected power switch. (This example also clearly results in a RED CARD because the ROBOT is no longer able to drive.)
+G. powering off an opponent's ROBOT by contacting their reasonably well-protected power switch. (This example also clearly results in a RED CARD because the ROBOT is no longer able to drive.)
 
 At the conclusion of the MATCH, the Head REFEREE may elect to visually inspect a ROBOT to confirm violations of this rule made during a MATCH and remove the violation if the damage cannot be verified.
 
@@ -594,9 +594,9 @@ Tipping as an unintended consequence of normal ROBOT-to-ROBOT interaction, inclu
 
 #### G421 — There is a 3-count on PINS. [Evergreen rule]
 
-A ROBOT may not PIN an opponent’s ROBOT for more than 3 seconds. A ROBOT is PINNING if it is preventing the movement of an opponent ROBOT by contact, either direct or transitive (such as against a FIELD element). A PIN count ends once any of the following criteria below are met:
+A ROBOT may not PIN an opponent's ROBOT for more than 3 seconds. A ROBOT is PINNING if it is preventing the movement of an opponent ROBOT by contact, either direct or transitive (such as against a FIELD element). A PIN count ends once any of the following criteria below are met:
 
-A. the ROBOTS have separated by at least 2 ft. (~61 cm) from each other for more than 3 seconds,
+A. the ROBOTS have separated by at least 2 ft. (\~61 cm) from each other for more than 3 seconds,
 
 B. either ROBOT has moved 2 ft. from where the PIN initiated for more than 3 seconds, or
 
@@ -618,7 +618,7 @@ Violation: VERBAL WARNING. MINOR FOUL per instance, if STRATEGIC.
 
 The intent of this rule is to prevent DRIVE TEAM members from leaving their assigned ALLIANCE AREA during a MATCH to gain a competitive advantage. For example, moving to another part of the FIELD for better viewing or reaching into the FIELD. Simply breaking the plane of the AREA during normal MATCH play is not a violation.
 
-DRIVE TEAMS may be anywhere in their ALLIANCE AREA during a MATCH. DRIVE TEAM members may retrieve their own ALLIANCE’S NECTAR that has left the FIELD that they can reach while remaining in the ALLIANCE AREA.
+DRIVE TEAMS may be anywhere in their ALLIANCE AREA during a MATCH. DRIVE TEAM members may retrieve their own ALLIANCE'S NECTAR that has left the FIELD that they can reach while remaining in the ALLIANCE AREA.
 
 Exceptions are granted in cases concerning safety.
 
@@ -712,7 +712,7 @@ If DRIVE TEAM members come into possession of any POLLEN or opposing ALLIANCE NE
 
 Note: When introducing NECTAR, DRIVE TEAM members must avoid contacting a SCORING ELEMENT that is also in contact with a TILE to avoid violating G425.
 
-#### G428 — Humans, don’t remove SCORING ELEMENTS from the FIELD.
+#### G428 — Humans, don't remove SCORING ELEMENTS from the FIELD.
 
 DRIVE TEAM members may not remove SCORING ELEMENTS from the FIELD.
 

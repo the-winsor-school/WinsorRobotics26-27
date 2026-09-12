@@ -7,12 +7,11 @@
 # Source is rendered/index.htm, not rendered/manual.md. manual.md is produced by
 # Update-CompetitionManual.ps1 with --to=gfm-raw_html, and GFM pipe tables cannot
 # express the merged cells these tables use, so pandoc drops 25 of them -- the
-# scoring tables, the award criteria and the entire Glossary -- leaving "[TABLE]".
-# Converting the same HTML to grid tables keeps all of them, and this script then
-# folds them back down to pipe tables.
+# scoring tables, the award criteria and the whole Glossary -- leaving "[TABLE]".
+# Converting the same HTML with grid tables enabled keeps every one of them.
 #
-# Needs the same pandoc the updater pins; it reuses the updater's cached copy if
-# present, else pandoc on PATH, else falls back to manual.md with the tables missing.
+# Needs the pandoc the updater pins; it reuses the updater's cached copy if present,
+# else pandoc on PATH, else falls back to manual.md with those tables still missing.
 #
 # Cleanups applied, all aimed at making the text legible to an LLM reader:
 #   - drop the ~950 <a id="_Toc..."></a> bookmark anchors carried over from Word
@@ -22,7 +21,7 @@
 #   - unescape \- \< \> \[ \] \# \* left over from the HTML conversion
 #   - images -> "[Figure: alt text]" (Flint can't follow the file paths)
 #   - internal #anchor links -> their link text
-#   - grid tables -> pipe tables; empty and figure-only tables flattened
+#   - tables -> compact pipe tables, with merged cells repeated down their span
 #   - rule IDs (G101, R702, ...) become #### headings so each rule is findable
 
 use strict;
@@ -41,55 +40,24 @@ my $manual = '2026-2027 *FIRST* Tech Challenge Competition Manual — BIOBUZZ, V
 
 my @lines = read_source();
 
-# ---------------------------------------------------------------- line cleanup
-my @clean;
-for my $l (@lines) {
-    $l =~ s{<a id="[^"]*"></a>}{}g;      # Word bookmark anchors
-    $l =~ s{</?a\b[^>]*>}{}g;            # any stray anchor tags
-    $l =~ s{\x{00a0}}{ }g;               # non-breaking spaces
-    $l =~ s{\x{2011}}{-}g;               # non-breaking hyphens
-
-    $l =~ s{\[([^\]]*)\]\{\.underline\}}{$1}g;   # underline spans
-    $l =~ s{\s*\{[#.][^}]*\}}{}g;                # heading/span attributes
-    $l =~ s{\{[^}]*=[^}]*\}}{}g;                 # image width/height/border
-
-    $l =~ s{\^\(?®\)?\^?}{®}g;
-    $l =~ s{\^\(?(?:TM|™)\)?\^?}{™}g;
-    $l =~ s{\^\((st|nd|rd|th)\)}{$1}g;   # gfm spelling
-    $l =~ s{\^(st|nd|rd|th)\^}{$1}g;     # pandoc-markdown spelling
-
-    $l =~ s{\\([-<>\[\]#*'"])}{$1}g;     # undo pandoc's escaping
-
-    # images -> figure notes; alt text is the only part Flint can use
-    $l =~ s{!\[([^\]]*)\]\([^)]*\)}{ my $a = $1; $a =~ s/\s+$//; $a ne '' ? "[Figure: $a]" : '[Figure]' }ge;
-
-    # internal cross-reference links keep their text, lose the dead anchor
-    $l =~ s{\[([^\]]*)\]\(#[^)]*\)}{$1}g;
-
-    $l =~ s{\[TABLE\]}{*[A table appears here in the official manual; it did not survive conversion and is omitted.]*}g;
-
-    $l =~ s{\s+$}{};
-    $l = '' if $l =~ m{^\\\s*$};         # pandoc's lone-backslash line breaks
-    $l = '' if $l =~ m{^[*\s]+$};        # "* *" separator artifacts
-    push @clean, $l;
-}
-
-# --------------------------------------------------- tables, rules, blank runs
+# ------------------------------------------------------- tables, rules, blanks
+# Table blocks are handled before any other cleanup: grid tables are parsed by
+# column position, so rewriting their text first would shift the cell boundaries.
 my @body;
-for (my $i = 0; $i < @clean; $i++) {
-    my $l = $clean[$i];
+for (my $i = 0; $i < @lines; $i++) {
+    my $l = $lines[$i];
 
-    # a table block: grid (+---+ rules) or pipe. Collect and re-emit compactly.
     if ($l =~ /^[+|]/) {
         my @block;
-        while ($i < @clean && $clean[$i] =~ /^[+|]/) { push @block, $clean[$i]; $i++ }
+        while ($i < @lines && $lines[$i] =~ /^[+|]/) { push @block, $lines[$i]; $i++ }
         $i--;
-        push @body, rebuild_table(@block);
+        push @body, render_table(@block);
         next;
     }
 
-    # squeeze runs of spaces only outside tables, where they carry no meaning
-    $l =~ s{ {2,}}{ }g;
+    $l = tidy($l);
+    next if $l =~ /^\\\s*$/;             # pandoc's lone-backslash line breaks
+    $l = '' if $l =~ /^[*\s]+$/;         # "* *" separator artifacts
 
     # G101 / R702 / I103 ... -> their own heading, with the rule text after it.
     # The source runs headline and body together on one line; the headline ends
@@ -166,6 +134,40 @@ sub flush {
     close $fh;
 }
 
+# ---------------------------------------------------------------- text cleanup
+sub tidy {
+    my ($t) = @_;
+    return '' unless defined $t;
+
+    $t =~ s{<a id="[^"]*"></a>}{}g;      # Word bookmark anchors
+    $t =~ s{</?a\b[^>]*>}{}g;            # any stray anchor tags
+    $t =~ s{\x{00a0}}{ }g;               # non-breaking spaces
+    $t =~ s{\x{2011}}{-}g;               # non-breaking hyphens
+
+    $t =~ s/\[([^\]]*)\]\{\.underline\}/$1/g;    # underline spans
+    $t =~ s/\s*\{[#.][^}]*\}//g;                 # heading/span attributes
+    $t =~ s/\{[^}]*=[^}]*\}//g;                  # image width/height/border
+
+    $t =~ s{\^\(?®\)?\^?}{®}g;
+    $t =~ s{\^\(?(?:TM|™)\)?\^?}{™}g;
+    $t =~ s{\^\((st|nd|rd|th)\)}{$1}g;   # gfm spelling
+    $t =~ s{\^(st|nd|rd|th)\^}{$1}g;     # pandoc-markdown spelling
+
+    $t =~ s{\\([-<>\[\]#*'"])}{$1}g;     # undo pandoc's escaping
+
+    # images -> figure notes; alt text is the only part Flint can use
+    $t =~ s{!\[([^\]]*)\]\([^)]*\)}{ my $a = $1; $a =~ s/\s+$//; $a ne '' ? "[Figure: $a]" : '[Figure]' }ge;
+
+    # internal cross-reference links keep their text, lose the dead anchor
+    $t =~ s{\[([^\]]*)\]\(#[^)]*\)}{$1}g;
+
+    $t =~ s{\[TABLE\]}{*[A table appears here in the official manual; it did not survive conversion and is omitted.]*}g;
+
+    $t =~ s/ {2,}/ /g;
+    $t =~ s/^\s+|\s+$//g;
+    return $t;
+}
+
 # ------------------------------------------------------------------- the source
 # Prefer converting the HTML ourselves so the complex tables survive.
 sub read_source {
@@ -185,9 +187,10 @@ sub read_source {
         my $out = File::Spec->catfile(File::Spec->tmpdir, "biobuzz-grid-$$.md");
         my @cmd = ($pandoc,
             '--from=html',
-            # grid tables only: the one markdown table syntax that can carry
-            # merged cells and multi-paragraph cells without data loss
-            '--to=markdown-raw_html-simple_tables-multiline_tables-pipe_tables',
+            # leave pipe and grid tables enabled: pandoc uses pipe where it fits
+            # and grid -- the only syntax that carries merged and multi-paragraph
+            # cells -- everywhere else, so no table is dropped
+            '--to=markdown-raw_html-simple_tables-multiline_tables',
             '--wrap=none',
             '--markdown-headings=atx',
             "--lua-filter=$dir/../../scripts/strip-word-styles.lua",
@@ -234,41 +237,30 @@ sub find_pandoc {
     return undef;
 }
 
-# ------------------------------------------------------------------ table rebuild
-# Accepts a grid table (+---+ rules) or a pipe table and returns a compact pipe
-# table. Grid cells may span several lines; those are joined back into one.
-sub rebuild_table {
+# --------------------------------------------------------------------- tables
+# Turn one table block -- grid or pipe -- into a compact pipe table.
+sub render_table {
     my @block = @_;
-    my (@rows, @pending);
+    my $rows = (grep { /^\+/ } @block) ? parse_grid(@block) : parse_pipe(@block);
 
-    for my $l (@block) {
-        if ($l =~ /^\+/) {                       # rule line ends the current row
-            push @rows, join_row(@pending) if @pending;
-            @pending = ();
-            next;
-        }
-        next if $l =~ /^\|[\s:|-]*\|?\s*$/ && $l =~ /-/;   # pipe-table separator
-        push @pending, $l;
-    }
-    push @rows, join_row(@pending) if @pending;
-
-    @rows = grep { grep { /\S/ } @$_ } @rows;    # drop wholly empty rows
-    return () unless @rows;
+    @$rows = grep { grep { /\S/ } @$_ } @$rows;    # drop wholly empty rows
+    return () unless @$rows;
 
     # a table that only carries figures reads better as plain lines
-    my $textual = grep { my $r = $_; grep { /\S/ && !/^\[Figure/ } @$r } @rows;
+    my $textual = grep { my $r = $_; grep { /\S/ && !/^\[Figure/ } @$r } @$rows;
     unless ($textual) {
-        return ('', (map { my $r = $_; grep { /\S/ } @$r } @rows), '');
+        return ('', (map { my $r = $_; grep { /\S/ } @$r } @$rows), '');
     }
 
     my $width = 0;
-    for my $r (@rows) { $width = @$r if @$r > $width }
+    for my $r (@$rows) { $width = @$r if @$r > $width }
 
     my @lines = ('');
     my $first = 1;
-    for my $r (@rows) {
+    for my $r (@$rows) {
         my @c = @$r;
         push @c, '' while @c < $width;
+        s/\|/\\|/g for @c;
         push @lines, '| ' . join(' | ', @c) . ' |';
         if ($first) { push @lines, '|' . ('---|' x $width); $first = 0 }
     }
@@ -276,25 +268,99 @@ sub rebuild_table {
     return @lines;
 }
 
-# one row, possibly spread over several physical lines, -> list of cell strings
-sub join_row {
-    my @cells;
+# A pipe table: one row per line, minus the separator.
+sub parse_pipe {
+    my @rows;
     for my $l (@_) {
+        next if $l =~ /^\|[\s:|-]*\|?\s*$/ && $l =~ /-/;
         my $b = $l;
         $b =~ s/^\|//;
         $b =~ s/\|\s*$//;
-        my @c = split /\|/, $b, -1;
-        for my $i (0 .. $#c) {
-            my $t = $c[$i];
-            $t =~ s/\\\s*$//;                    # hard line break inside a cell
-            $t =~ s/^\s+|\s+$//g;
-            $t =~ s/ {2,}/ /g;
-            next if $t eq '';
-            $cells[$i] = (defined $cells[$i] && $cells[$i] ne '') ? "$cells[$i] $t" : $t;
+        push @rows, [ map { tidy($_) } split /\|/, $b, -1 ];
+    }
+    return \@rows;
+}
+
+# A grid table. Cells are located by column position, because a merged cell
+# simply omits the "|" at the boundary it spans. Rules that start mid-line
+# (they begin with "|") close a sub-row inside a row-spanning group: whatever
+# columns that rule does not cover are still spanned, so their value is carried
+# down and repeated -- which is what makes the scoring tables readable as rows.
+sub parse_grid {
+    my @block = @_;
+    my ($top) = grep { /^\+/ } @block;
+    my @bounds;
+    while ($top =~ /\+/g) { push @bounds, pos($top) - 1 }
+    return parse_pipe(@block) if @bounds < 2;
+
+    my (@rows, @pending, @carry);
+
+    for my $l (@block) {
+        if ($l =~ /^\+/) {                      # full-width rule: row group ends
+            push @rows, close_row(\@pending, \@carry, \@bounds) if @pending;
+            @pending = ();
+            @carry   = ();
+            next;
+        }
+        if ($l =~ /\+[-=]/) {                   # interior rule: sub-row ends
+            push @rows, close_row(\@pending, \@carry, \@bounds) if @pending;
+            @pending = ();
+            for my $i (0 .. $#bounds - 1) {
+                my $seg = substr($l, $bounds[$i], $bounds[$i + 1] - $bounds[$i] + 1);
+                $carry[$i] = undef if $seg =~ /[-=]/;   # this column is not spanned
+            }
+            next;
+        }
+        push @pending, $l;
+    }
+    push @rows, close_row(\@pending, \@carry, \@bounds) if @pending;
+    return \@rows;
+}
+
+# One sub-row: its physical lines, the values spanned down from above, and the
+# column boundaries. Returns the finished list of cell strings.
+sub close_row {
+    my ($lines, $carry, $bounds) = @_;
+    my @cells;
+
+    for my $l (@$lines) {
+        my @pipes;
+        while ($l =~ /\|/g) { push @pipes, pos($l) - 1 }
+        next if @pipes < 2;
+        for my $p (0 .. $#pipes - 1) {
+            my ($from, $to) = ($pipes[$p], $pipes[$p + 1]);
+            my $text = substr($l, $from + 1, $to - $from - 1);
+            next unless $text =~ /\S/;
+            $text =~ s/\\\s*$//;                # hard line break inside a cell
+            $text = tidy($text);
+            next if $text eq '';
+            my $col = column_of($from, $bounds);
+            $cells[$col] = defined $cells[$col] && $cells[$col] ne ''
+                ? "$cells[$col] $text" : $text;
+        }
+    }
+
+    for my $i (0 .. $#$bounds - 1) {
+        if (defined $cells[$i] && $cells[$i] ne '') {
+            $carry->[$i] = $cells[$i];                   # may span rows below
+        } elsif (defined $carry->[$i]) {
+            $cells[$i] = $carry->[$i];                   # repeat the spanned value
         }
     }
     $_ = defined $_ ? $_ : '' for @cells;
     return \@cells;
+}
+
+# Which column does a "|" at this position open? Merged cells and rows whose
+# rule lines sit at slightly different offsets mean it may not land exactly on
+# a boundary, so take the nearest boundary at or before it.
+sub column_of {
+    my ($pos, $bounds) = @_;
+    my $col = 0;
+    for my $i (0 .. $#$bounds - 1) {
+        $col = $i if $bounds->[$i] <= $pos;
+    }
+    return $col;
 }
 
 # ------------------------------------------------------------------ README index

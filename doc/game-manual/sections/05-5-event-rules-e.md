@@ -46,7 +46,7 @@ Examples of inappropriate behavior include, but are not limited to:
 
 A. use of offensive language or other uncivil conduct towards someone,
 
-B. “weaponizing *Gracious Professionalism*” by accusing another person or team of being “not GP”,
+B. "weaponizing *Gracious Professionalism*" by accusing another person or team of being "not GP",
 
 C. intentionally blocking the view of other participants or spectators for an extended period (Team members momentarily holding up team signs while directly supporting their team is not considered a violation of this rule.), and
 
@@ -56,7 +56,7 @@ Examples of particularly contemptible behavior that may result in ejection from 
 
 E. assault, e.g., throwing something that hits another person (even if unintended),
 
-F. threat, e.g., saying something like “if you don’t reverse that call, I’ll make you regret it,”
+F. threat, e.g., saying something like "if you don't reverse that call, I'll make you regret it,"
 
 G. harassment, e.g., badgering someone with no new information after a decision has been made or a question has been answered,
 
@@ -64,7 +64,7 @@ H. bullying, e.g., using body or verbal language to cause another person to feel
 
 I. insulting, e.g., telling someone they do not deserve to be on a team,
 
-J. swearing at another person (versus swearing under one’s breath or at oneself), and
+J. swearing at another person (versus swearing under one's breath or at oneself), and
 
 K. yelling at another person(s) in anger or frustration.
 
@@ -78,7 +78,7 @@ Teams may not damage the venue, including but not limited to bleachers, floors, 
 
 #### E105 — Event resources are for competing teams only. [Evergreen rule]
 
-Only teams registered for an event may use that event’s competition FIELD, practice FIELD, and inspection unless pre-approved by the Event Director or the Program Delivery Partner. Host teams supplying practice FIELD elements and/or machine shop resources may use them; however, teams registered for that event must be granted priority.
+Only teams registered for an event may use that event's competition FIELD, practice FIELD, and inspection unless pre-approved by the Event Director or the Program Delivery Partner. Host teams supplying practice FIELD elements and/or machine shop resources may use them; however, teams registered for that event must be granted priority.
 
 #### E106 — Practice only when/where permitted. [Evergreen rule]
 
@@ -94,7 +94,7 @@ At the event venue, teams may only produce FABRICATED ITEMS as follows:
 
 A. in their pit area,
 
-B. in another team’s pit area with permission from that team,
+B. in another team's pit area with permission from that team,
 
 C. while queued for a MATCH or practice FIELD (given space constraints, extra scrutiny regarding safety is required),
 
@@ -108,7 +108,7 @@ Do not bring or use the following:
 
 A. Skateboards,
 
-B. ‘hoverboards,’
+B. 'hoverboards,'
 
 C. drones,
 
@@ -146,7 +146,7 @@ D. Get permission from the Event Director before hanging banners outside of your
 
 E. Hang signs and banners in a safe manner.
 
-F. Banners hung outside team pits must not be larger than 25 ft.² (~2.3 m²).
+F. Banners hung outside team pits must not be larger than 25 ft.^2^ (\~2.3 m^2^).
 
 We encourage teams to bring team flags and/or signs for display in their pits and/or the ARENA.
 
@@ -156,7 +156,7 @@ Respect venue-specific rules regarding sign location and hanging methods. At the
 
 Flags and flagpoles may not be of unreasonable size and weight if they are going to be used around the FIELD.
 
-As a guideline, reasonable flags are less than 3 ft. by 5 ft. (~91 cm by 152 cm) in size and weigh less than 2 lbs. (~907g). Reasonable flagpoles may not be more than 8 ft. (~243 cm) long and must weigh less than 3 lbs. (~1360g).
+As a guideline, reasonable flags are less than 3 ft. by 5 ft. (\~91 cm by 152 cm) in size and weigh less than 2 lbs. (\~907g). Reasonable flagpoles may not be more than 8 ft. (\~243 cm) long and must weigh less than 3 lbs. (\~1360g).
 
 #### E114 — No firearms or other weapons. [Evergreen rule]
 
@@ -168,11 +168,11 @@ A team may only use a practice FIELD with a ROBOT that has passed an initial, co
 
 #### E116 — Do not record anyone at the event without their consent. [Evergreen rule]
 
-Do not record interactions with anyone at an event, without the person’s consent. *FIRST* event staff and volunteers are empowered to excuse themselves from an interaction in which they are being recorded after declining consent.
+Do not record interactions with anyone at an event, without the person's consent. *FIRST* event staff and volunteers are empowered to excuse themselves from an interaction in which they are being recorded after declining consent.
 
 Please note that many *FIRST* events are livestreamed and *FIRST* participants have given permission to appear in footage from *FIRST*. This does not mean that people can record specific interactions without additional consent.
 
-Laws regarding recording of conversations vary state-to-state and country-to country, and, in some cases, recording without consent may be criminal. Introducing the idea of recording a conversation with an implied reason of proving someone’s error can escalate a discussion and is likely to increase its adversarial nature.
+Laws regarding recording of conversations vary state-to-state and country-to country, and, in some cases, recording without consent may be criminal. Introducing the idea of recording a conversation with an implied reason of proving someone's error can escalate a discussion and is likely to increase its adversarial nature.
 
 #### E117 — Enter only 1 ROBOT in the tournament. [Evergreen rule]
 
@@ -194,7 +194,7 @@ The Event Director may reserve seats for attendees who require accessible seatin
 
 ## 5.2 Machine Shops and Host Team Build Spaces
 
-Rarely, some events host a machine shop or open their team’s build space, during specific hours (see the event public agenda), to help teams with repair and fabrication of their ROBOT. Machine shops are typically sponsored by the local host organization. In most cases, the machine shop is on site and readily accessible to all teams. All competing teams should have access to the same resources.
+Rarely, some events host a machine shop or open their team's build space, during specific hours (see the event public agenda), to help teams with repair and fabrication of their ROBOT. Machine shops are typically sponsored by the local host organization. In most cases, the machine shop is on site and readily accessible to all teams. All competing teams should have access to the same resources.
 
 ## 5.3 Wireless Rules
 
@@ -210,7 +210,7 @@ Bluetooth uses 2.4GHz frequencies to communicate which can interfere with venue 
 
 Many R/C toys (including drones, wireless vehicles, FPV systems) use 2.4GHz and 5GHz communications. Do not operate these in the venue.
 
-#### E302 — Don’t interfere with wireless networks. [Evergreen rule]
+#### E302 — Don't interfere with wireless networks. [Evergreen rule]
 
 Participants may not interfere, attempt to interfere, or attempt to connect with any other team or *FIRST* wireless network without expressed permission.
 
@@ -220,11 +220,11 @@ Teams are encouraged to report suspected wireless security vulnerabilities to th
 
 Some large events (often multi-day events) may set specific time frames, published on the event public schedule, in which teams are invited to load their ROBOT and equipment into their pit areas before pits officially open.
 
-Load-in can be stressful for teams and volunteers, which can be mitigated by preparation and planning. Unanticipated factors, like traffic or weather, can change a team’s scheduled arrival time, making the process difficult. The most important things a team should remember are to be safe, gracious, and professional.
+Load-in can be stressful for teams and volunteers, which can be mitigated by preparation and planning. Unanticipated factors, like traffic or weather, can change a team's scheduled arrival time, making the process difficult. The most important things a team should remember are to be safe, gracious, and professional.
 
 ## 5.5 Pits
 
-A team pit is the designated space, varying in size but typically no larger than a 10 ft. by 10 ft. by 10 ft. (~3 m x 3 m x 3 m) area, where a team may work on their ROBOT. Each team is assigned a pit space typically marked with their team number. This helps team members, JUDGES, and visitors find teams easily. Pit spaces may vary based on competition venue size limits.
+A team pit is the designated space, varying in size but typically no larger than a 10 ft. by 10 ft. by 10 ft. (\~3 m x 3 m x 3 m) area, where a team may work on their ROBOT. Each team is assigned a pit space typically marked with their team number. This helps team members, JUDGES, and visitors find teams easily. Pit spaces may vary based on competition venue size limits.
 
 The pit area refers to the general area where team pits are located which encompasses the aisles between the pits, pit admin, ROBOT inspection, practice FIELD, or other areas where ROBOTS may be active or worked on. All pit rules apply to the full pit area.
 
@@ -262,7 +262,7 @@ Examples of tools that violate this rule include, but are not limited to: welder
 
 Small machinery is allowed but floor standing power tools are prohibited. The Event Director may impose additional limitations.
 
-‘Small’ machinery is machinery that can be easily lifted by one person and examples include, but are not limited to: 3D printers, small band saws, small drill presses, desktop CNC mills, and sanders.
+'Small' machinery is machinery that can be easily lifted by one person and examples include, but are not limited to: 3D printers, small band saws, small drill presses, desktop CNC mills, and sanders.
 
 Examples of prohibited machinery include, but are not limited to: full-size free standing drill presses, and band saws.
 
@@ -284,7 +284,7 @@ Popup tents may be used assuming they comply with E502, but the coverings may vi
 
 Any aerosol or chemical that produces noxious fumes or sprays particulates should only be used in approved areas. Not all venues will allow the use of these products anywhere on site.
 
-#### E510 — Don’t heat or cool ROBOT components to gain an advantage. [Evergreen rule]
+#### E510 — Don't heat or cool ROBOT components to gain an advantage. [Evergreen rule]
 
 Teams may not attempt to gain a competitive advantage by heating or cooling ROBOT parts above or below the ambient temperature of the venue.
 
@@ -348,7 +348,7 @@ A. use power tools,
 
 B. use loud hand tools (hammers, saws, etc.), or
 
-C. shout, yell, or use loud voices in a way that’s disruptive to the ceremony.
+C. shout, yell, or use loud voices in a way that's disruptive to the ceremony.
 
 #### E702 — Pit person limit during ceremonies is 5. [Evergreen rule]
 

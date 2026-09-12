@@ -6,7 +6,7 @@
 
 **Engineer a Thriving Planet with *FIRST***
 
-Nothing on Earth thrives alone. Every gene, species, and ecosystem is part of a rich web of biological diversity that powers clean air, fresh water, and food. With STEM as their tool and nature as inspiration, today’s boldest innovators are finding new ways to strengthen the connections that protect our shared home.
+Nothing on Earth thrives alone. Every gene, species, and ecosystem is part of a rich web of biological diversity that powers clean air, fresh water, and food. With STEM as their tool and nature as inspiration, today's boldest innovators are finding new ways to strengthen the connections that protect our shared home.
 
 Building. Problem solving. Growing stronger through teamwork.
 
