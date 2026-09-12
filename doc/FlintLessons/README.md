@@ -54,6 +54,26 @@ main sequence.
 | [AprilTags and Navigation](Advanced/apriltags-and-navigation.md) | Getting Started 4; Advanced/Control Ownership |
 | [Defining Extension Methods Well](Advanced/extension-methods.md) | Getting Started 1; Lesson 3 |
 
+## Mechanical -- building the physical robot
+
+Standalone lessons on this team's build system:  REV Robotics DUO, the 15mm structural
+grid and 5mm hex shaft standard.  Unlike Advanced, this track teaches a new skill domain
+rather than deepening a software topic, so the first lesson assumes no prior building
+experience;  each lesson still names its own prerequisite and can be revisited out of
+order once the first three are done.
+
+| Lesson | Builds on |
+|---|---|
+| [Structure, Fasteners, and Shafts](Mechanical/structure-and-fasteners.md) | none |
+| [Actuators, Gearing, and Sizing a Mechanism](Mechanical/actuators-and-mechanism-sizing.md) | Mechanical/Structure and Fasteners |
+| [Power Transmission and Wheels](Mechanical/power-transmission-and-wheels.md) | Mechanical/Structure and Fasteners; Mechanical/Actuators and Mechanism Sizing |
+| [Linear Motion and Control Electronics](Mechanical/linear-motion-and-control-electronics.md) | Mechanical/Actuators and Mechanism Sizing |
+| [Learning From Kits and Starter Bots](Mechanical/kits-and-starter-bots.md) | all four lessons above |
+
+These lessons quote `doc/rev-duo/*.md`, this team's own verified REV DUO parts and
+engineering reference -- see [rev-duo/README.md](../rev-duo/README.md) for the full guide
+directory, official REV links, and the "6 Golden Rules" of building with this system.
+
 ## Companion documents
 
 These are written for humans to read directly, rather than as tutor prompts.
@@ -69,4 +89,5 @@ These are written for humans to read directly, rather than as tutor prompts.
 
 These lessons quote real code, so a refactor can leave a lesson describing something that
 has changed.  When you change a signature or rename a class, search this folder for it.
-Lessons 2, 4, 8, 9, and 10, and all five Advanced lessons, contain quoted source.
+Lessons 2, 4, 8, 9, and 10, all five Advanced lessons, and all five Mechanical lessons,
+contain quoted source -- the Mechanical lessons quote `doc/rev-duo/*.md` rather than Java.
