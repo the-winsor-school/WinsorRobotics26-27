@@ -60,9 +60,9 @@ The FIELD variant used at an event will be determined by the local Program Deliv
 
 FIELD areas, zones, and markings of consequence are described below.
 
-- The term "zone" is used to identify spaces within the FIELD.
+- The term “zone” is used to identify spaces within the FIELD.
 
-- The term "area" is used to describe spaces outside of the FIELD.
+- The term “area” is used to describe spaces outside of the FIELD.
 
 Unless otherwise specified, the tape used to mark lines and zones throughout the FIELD can be either 1 in. (2.50 cm) wide or 2 in. (5.10 cm) wide [ProGaff® Premium Professional Grade Gaffer Tape](https://www.protapes.com/products/pro-gaff-tape-premium-professional-grade-gaffer-tape), or comparable gaffers tape in red, and electric blue. Areas outside the FIELD may be marked with other types or widths of tape, depending on the event.
 
@@ -181,7 +181,7 @@ Figure 9-14: SCORING ELEMENTS: NECTAR
 
 AprilTags for BIOBUZZ are 3.25 in. (8.25 cm) square targets from the 36h11 tag family (Figure 9-17) which are used to aid in ROBOT navigation and targeting.
 
-AprilTags are arranged in AprilTag Clusters, consisting of four AprilTags laid out on a single sticker. Each individual AprilTag has an identifying "ID" text label. The AprilTag Clusters are applied to the CELLS as part of a single sticker, that is aligned using Reference Holes. These Reference Holes can be used to measure the location of the AprilTag Cluster relative to the rest of the FIELD. AprilTag dimensions are shown in Figure 9-15.
+AprilTags are arranged in AprilTag Clusters, consisting of four AprilTags laid out on a single sticker. Each individual AprilTag has an identifying “ID” text label. The AprilTag Clusters are applied to the CELLS as part of a single sticker, that is aligned using Reference Holes. These Reference Holes can be used to measure the location of the AprilTag Cluster relative to the rest of the FIELD. AprilTag dimensions are shown in Figure 9-15.
 
 Figure 9-15: AprilTag Cluster and Reference Hole layout
 
@@ -199,17 +199,17 @@ Figure 9-16: AprilTag Cluster on CELL
 
 The AprilTags are located in the following locations on the FIELD, and in the order indicated in Figure 9-17:
 
-- AprilTag ID's 30, 31, 32, 33 on the red CELL on the side of the FIELD opposite of the audience.
+- AprilTag ID’s 30, 31, 32, 33 on the red CELL on the side of the FIELD opposite of the audience.
 
-- AprilTag ID's 34, 35, 36, 37 on the red CELL on the audience side.
+- AprilTag ID’s 34, 35, 36, 37 on the red CELL on the audience side.
 
-- AprilTag ID's 38, 39, 40, 41 on the blue CELL on the audience side.
+- AprilTag ID’s 38, 39, 40, 41 on the blue CELL on the audience side.
 
-- AprilTag ID's 42, 43, 44, 45 on the blue CELL on the side of the FIELD opposite of the audience.
+- AprilTag ID’s 42, 43, 44, 45 on the blue CELL on the side of the FIELD opposite of the audience.
 
 Figure 9-17: AprilTag Locations on the BIOBUZZ FIELD
 
-[Figure: Diagram of top view of field showing AprilTag ID locations.]\
+[Figure: Diagram of top view of field showing AprilTag ID locations.]
 
 ## 9.10 FIELD STAFF
 
@@ -217,7 +217,7 @@ FIELD STAFF are volunteers present in and around the ARENA that are responsible 
 
 FIELD STAFF roles are filled by volunteers from the community who prepare for the event with thorough training and certification. There are 3 FIELD-side key volunteer roles with whom teams should be familiar with and are encouraged to use as resources to make their event experience valuable.
 
-- **Head REFEREE** -- trains, directs, and supervises REFEREES and Official Scorers. They oversee all scoring processes and procedures in collaboration with other FIELD STAFF. They interact with STUDENTS, volunteers, and event staff. The Head REFEREE has final authority for decisions regarding MATCH scores, FOULS, and YELLOW and RED CARD assignments.
+- **Head REFEREE** – trains, directs, and supervises REFEREES and Official Scorers. They oversee all scoring processes and procedures in collaboration with other FIELD STAFF. They interact with STUDENTS, volunteers, and event staff. The Head REFEREE has final authority for decisions regarding MATCH scores, FOULS, and YELLOW and RED CARD assignments.
 
 - ***FIRST* Technical Advisor** **(FTA)** - ensures events run smoothly, safely, and in accordance with *FIRST* requirements. The FTA collaborates with *FIRST* staff, event staff, and other event volunteers in many different areas at events. The FTA focuses on all technical things related to the FIELD, ROBOTS, and game, and acts as a team advocate for all teams competing at the event.
 
@@ -235,13 +235,13 @@ Table 9-1 Audio cues
 
 | **Event** | **Timer Value** | **Audio Cue** |
 |---|---|---|
-| **MATCH start** | 2:30 | "This MATCH begins in 3, 2, 1, GO" (optional) "Cavalry Charge" |
-| **AUTO ends** | 2:00 | "Buzzer x 3" |
-| **AUTO to TELEOP Transition** | 0:08 to 0:01 | "Drivers, pick up your controllers, 3-2-1" |
-| **TELEOP begins** | 2:00 | "3 Bells" |
+| **MATCH start** | 2:30 | “This MATCH begins in 3, 2, 1, GO” (optional) “Cavalry Charge” |
+| **AUTO ends** | 2:00 | “Buzzer x 3” |
+| **AUTO to TELEOP Transition** | 0:08 to 0:01 | “Drivers, pick up your controllers, 3-2-1” |
+| **TELEOP begins** | 2:00 | “3 Bells” |
 | **FLOWER Ownership Unlocked** | 1:00 | [TBD] |
-| **Final 20 seconds** | 0:20 | "Train Whistle" |
-| **MATCH end** | 0:00 | "3-second Buzzer" |
-| **MATCH stopped** | N/A | "Foghorn" |
+| **Final 20 seconds** | 0:20 | “Train Whistle” |
+| **MATCH end** | 0:00 | “3-second Buzzer” |
+| **MATCH stopped** | N/A | “Foghorn” |
 
 [Figure]

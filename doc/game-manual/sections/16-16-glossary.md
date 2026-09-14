@@ -15,7 +15,7 @@ The following definitions and terms are used for the *FIRST* Tech Challenge game
 | **ARENA FAULT** | an error in ARENA operation |
 | **AUTO** | the first 30 seconds of the MATCH, during which DRIVERS may not provide input to their ROBOTS, so ROBOTS operate with only their pre-programmed instructions |
 | **CELL** | a three-dimensional structure that can hold NECTAR and POLLEN |
-| **CHASSIS** | ROBOT'S MAJOR MECHANISM that enables it to move around a FIELD |
+| **CHASSIS** | ROBOT’S MAJOR MECHANISM that enables it to move around a FIELD |
 | **COMPONENT** | any part in its most basic configuration, which cannot be disassembled without damaging or destroying the part or altering its fundamental function |
 | **CONTINUOUS** | describes durations that are more than approximately 10 seconds |
 | **CONTROL** | an action by a ROBOT in which the SCORING ELEMENT is fully supported by or stuck in, on, or under the ROBOT or it intentionally pushes a SCORING ELEMENT to a desired location or in a preferred direction (i.e., herding). CONTROL requires contact with a ROBOT, either directly or transitively through other SCORING ELEMENTS. Typically, CONTROL requires one of the following to be true: A. The SCORING ELEMENT is fully supported by the ROBOT B. The ROBOT is moving the SCORING ELEMENT in a preferred direction with a flat or concave face of the ROBOT |
@@ -42,11 +42,11 @@ The following definitions and terms are used for the *FIRST* Tech Challenge game
 | **LEAVE** | a scoring achievement in which a ROBOT must move so that it is no longer contacting the perimeter wall |
 | **LOADING ZONE** | an approximately 23 in. (58.40 cm) wide by 11 in. (27.95 cm) deep infinitely tall volume bounded by red or blue tape and the adjoining FIELD perimeters |
 | **LRI** | Lead ROBOT INSPECTOR |
-| **MAJOR FOUL** | a credit of 20 points towards the opponent's MATCH point total |
+| **MAJOR FOUL** | a credit of 20 points towards the opponent’s MATCH point total |
 | **MAJOR MECHANISM** | a group of COMPONENTS and/or MECHANISMS assembled together to address at least 1 game challenge: ROBOT movement, SCORING ELEMENT manipulation, FIELD element manipulation, or performance of a scorable task without the assistance of another ROBOT |
 | **MATCH** | a 30-second AUTO period, an 8-second transition period between AUTO and TELEOP, and a 2-minute TELEOP period in which the ROBOT plays the current season game |
 | **MECHANISM** | an assembly of COMPONENTS that provide specific functionality on the ROBOT. A MECHANISM can be disassembled (and then reassembled) into individual COMPONENTS without damage to the parts. |
-| **MINOR FOUL** | a credit of 5 points towards the opponent's MATCH point total |
+| **MINOR FOUL** | a credit of 5 points towards the opponent’s MATCH point total |
 | **MOMENTARY** | describes durations that are fewer than approximately 3 seconds |
 | **NECTAR** | approximately 3.6 in. (9.1 cm) Gopher ResisDent™ polyethelene balls |
 | **OPERATOR CONSOLE** | the set of COMPONENTS and MECHANISMS used by the DRIVE TEAM to relay commands to the ROBOT |
@@ -56,14 +56,14 @@ The following definitions and terms are used for the *FIRST* Tech Challenge game
 | **POLLINATOR 1 RP** | an RP earned when the number of TIPS at or above threshold |
 | **POLLINATOR 2 RP** | an RP earned when the number of TIPS at or above threshold |
 | **PORTFOLIO** | a document used as part of the judging process with requirements outlined in A201 |
-| **RANKING POINTS (RP)** | credited to a team based on their ALLIANCE'S performance in Qualification MATCHES |
+| **RANKING POINTS (RP)** | credited to a team based on their ALLIANCE’S performance in Qualification MATCHES |
 | **RANKING SCORE (RS)** | the average number of RANKING POINTS earned by a team throughout their Qualification MATCHES |
 | **RED CARD** | a penalty issued by the Head REFEREE for egregious ROBOT or team member behavior or rule violations which results in a team being DISQUALIFIED for the MATCH. |
-| **REFEREE** | an official who is certified by *FIRST* to enforce the rules of the current season's game, an event volunteer role |
+| **REFEREE** | an official who is certified by *FIRST* to enforce the rules of the current season’s game, an event volunteer role |
 | **REPEATED** | describes actions that happen more than once within a MATCH |
-| **ROBOT** | an electromechanical assembly built by a *FIRST* Tech Challenge team to play the current season's game and includes all the basic systems required to be an active participant in the game --power, communications, control, and movement about the FIELD |
+| **ROBOT** | an electromechanical assembly built by a *FIRST* Tech Challenge team to play the current season’s game and includes all the basic systems required to be an active participant in the game –power, communications, control, and movement about the FIELD |
 | **ROBOT CONTROLLER** | Android device (a REV Control Hub (REV-31-1595) or a smartphone Android device connected to a REV Expansion Hub (REV-31-1153)) that runs the ROBOT CONTROLLER app to control the ROBOT as defined in R701 |
-| **ROBOT SIGN** | a required assembly which attaches to the ROBOT and simultaneously identifies a ROBOT'S team number as well as its ALLIANCE affiliation |
+| **ROBOT SIGN** | a required assembly which attaches to the ROBOT and simultaneously identifies a ROBOT’S team number as well as its ALLIANCE affiliation |
 | **SCORING ELEMENT** | SCORING ELEMENTS for BIOBUZZ are POLLEN and NECTAR |
 | **STRATEGIC** | describes actions done with the aim of gaining a competitive advantage |
 | **STARTING CONFIGURATION** | the physical configuration in which a ROBOT starts a MATCH |
