@@ -6,6 +6,8 @@ import com.qualcomm.hardware.limelightvision.Limelight3A;
 import java.util.Arrays;
 
 public class LimelightExtensions {
+    // TODO (students): BIOBUZZ goals are AprilTag *clusters* (4 tags sharing one origin).
+    // Add cluster search + origin estimation here - see doc/limelight3a/cluster-targeting-plan.md
     /**
      * *look for a specific AprilTag Id using the limelight camera
      * If the tag is not found, this method returns NULL

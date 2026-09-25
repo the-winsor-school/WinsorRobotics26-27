@@ -52,6 +52,7 @@ main sequence.
 | [Control Ownership and Resource Locking](Advanced/control-ownership.md) | Lesson 9, Advanced/State Machines |
 | [Common Pitfalls](Advanced/common-pitfalls.md) | the full main sequence; Advanced/State Machines and Advanced/Control Ownership |
 | [AprilTags and Navigation](Advanced/apriltags-and-navigation.md) | Getting Started 4; Advanced/Control Ownership |
+| [AprilTag Clusters](Advanced/apriltag-clusters.md) | Getting Started 4; Advanced/AprilTags and Navigation -- pairs with [the student task plan](../limelight3a/cluster-targeting-plan.md) |
 | [Defining Extension Methods Well](Advanced/extension-methods.md) | Getting Started 1; Lesson 3 |
 
 ## Mechanical -- building the physical robot
@@ -89,5 +90,5 @@ These are written for humans to read directly, rather than as tutor prompts.
 
 These lessons quote real code, so a refactor can leave a lesson describing something that
 has changed.  When you change a signature or rename a class, search this folder for it.
-Lessons 2, 4, 8, 9, and 10, all five Advanced lessons, and all five Mechanical lessons,
+Lessons 2, 4, 8, 9, and 10, all six Advanced lessons, and all five Mechanical lessons,
 contain quoted source -- the Mechanical lessons quote `doc/rev-duo/*.md` rather than Java.
