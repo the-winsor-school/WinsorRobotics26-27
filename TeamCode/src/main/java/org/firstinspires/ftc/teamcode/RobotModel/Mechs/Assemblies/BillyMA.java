@@ -11,11 +11,13 @@ import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.SpinnyIntake;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.PusherServo;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Turret;
 
+import java.util.Set;
+
 public class BillyMA extends MechAssembly {
 
     public interface BillyAssemblyStrategy extends IAssemblyStrategy
     {
-        void execute(BillyMA mechAssembly, Gamepad gamepad);
+        void execute(BillyMA mechAssembly, Gamepad gamepad, Set<Part> claimed);
     }
 
     public enum Part {
@@ -30,6 +32,7 @@ public class BillyMA extends MechAssembly {
     private final DoubleShooter flywheel;
     private final Turret turret;
     private BillyRapidFire BRF = null;
+    private final MacroManager<Part> macros = new MacroManager<>();
 
     // TODO: this field shadows the inherited `protected Telemetry telemetry` on
     //  MechAssembly. Two fields with the same name now exist on every BillyMA: this one
@@ -116,21 +119,15 @@ public class BillyMA extends MechAssembly {
                 });
         this.telemetry = tel;
 
-        strategy = (mechAssembly, gamepad) -> {
-            
-            if(gamepad.a && BRF.isComplete())
-            {
-                BRF.reset(3);
-            }
-            if(!BRF.isComplete())
-            {
-                BRF.updateState();
-                return;
-            }
+        strategy = (mechAssembly, gamepad, claimed) -> {
 
-            intake.move(gamepad);
-            ballPusher.move(gamepad);
-            flywheel.move(gamepad);
+            if (!claimed.contains(Part.INTAKE))
+                intake.move(gamepad);
+            if (!claimed.contains(Part.PUSHER))
+                ballPusher.move(gamepad);
+            if (!claimed.contains(Part.FLYWHEEL))
+                flywheel.move(gamepad);
+
             // This line is a bug! because Turret has nothing to do with BillyRapidFire,
             // AND it is wholly owned by LimelightAutoTarget.
             // TODO: the turret has two uncoordinated owners at once - this manual gamepad
@@ -206,7 +203,8 @@ public class BillyMA extends MechAssembly {
      */
     @Override
     public void giveInstructions(Gamepad gamepad) {
-       strategy.execute(this, gamepad);
+        macros.update(gamepad);                              // 1. step the macro (and release it when done)
+        strategy.execute(this, gamepad, macros.claimed());    // 2. manual control on whatever's free
     }
 
     /**

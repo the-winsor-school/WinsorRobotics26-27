@@ -21,7 +21,6 @@ public class MacroManager<R>
             return;           
         active.cancel();
         active = null;       
-
     }
     public void update(Gamepad gamepad) 
     {
@@ -30,7 +29,6 @@ public class MacroManager<R>
         active.update(gamepad);     
         if(active.isComplete())   
             active = null;     
-
     }
     public Set<R> claimed() 
     {  
@@ -41,6 +39,5 @@ public class MacroManager<R>
     public boolean isRunning() 
     {           
         return active != null;      // true while a macro is running
-
     }
 }
