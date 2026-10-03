@@ -166,7 +166,7 @@ public class BillyMA extends MechAssembly {
     /**
      * Propagates telemetry to all four components so each can lazily create its own
      * autonomous behavior object, then assembles {@code AutonomousBillyMA} from the
-     * results. {@code BillyRapidFire} is also created here and immediately aborted so
+     * results. {@code BillyRapidFire} is also created here so
      * it is never null when {@link #giveInstructions} first runs (Susan Zuo —
      * two-phase initialization pattern; previously the constructor accepted a
      * {@code Telemetry} arg, coupling construction to telemetry lifetime).
@@ -185,7 +185,6 @@ public class BillyMA extends MechAssembly {
                 turret.getAutonomousBehaviors(),
                 telemetry);
         BRF = new BillyRapidFire(auton, 3);
-        BRF.abort();
     }
 
     @Override
@@ -203,6 +202,12 @@ public class BillyMA extends MechAssembly {
      */
     @Override
     public void giveInstructions(Gamepad gamepad) {
+        if(gamepad.aWasPressed()) {
+            macros.request(BRF);
+        } 
+        if(gamepad.bWasPressed()) {
+            macros.cancel();
+        }
         macros.update(gamepad);                              // 1. step the macro (and release it when done)
         strategy.execute(this, gamepad, macros.claimed());    // 2. manual control on whatever's free
     }
