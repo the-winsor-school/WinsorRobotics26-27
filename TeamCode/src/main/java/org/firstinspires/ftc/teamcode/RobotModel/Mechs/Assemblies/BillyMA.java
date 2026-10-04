@@ -34,6 +34,7 @@ public class BillyMA extends MechAssembly {
     private BillyRapidFire BRF = null;
     private final MacroManager<Part> macros = new MacroManager<>();
 
+
     // TODO: this field shadows the inherited `protected Telemetry telemetry` on
     //  MechAssembly. Two fields with the same name now exist on every BillyMA: this one
     //  gets assigned, the inherited one stays null forever. Any code written in
@@ -117,10 +118,10 @@ public class BillyMA extends MechAssembly {
 
             if (!claimed.contains(Part.INTAKE))
                 intake.move(gamepad);
-            if (!claimed.contains(Part.PUSHER))
-                ballPusher.move(gamepad);
-            if (!claimed.contains(Part.FLYWHEEL))
-                flywheel.move(gamepad);
+            //if (shooterEnabled && !claimed.contains(Part.PUSHER))
+                //ballPusher.move(gamepad);
+            //if (shooterEnabled && !claimed.contains(Part.FLYWHEEL))
+                //flywheel.move(gamepad);
 
             // This line is a bug! because Turret has nothing to do with BillyRapidFire,
             // AND it is wholly owned by LimelightAutoTarget.
@@ -196,7 +197,7 @@ public class BillyMA extends MechAssembly {
      */
     @Override
     public void giveInstructions(Gamepad gamepad) {
-        if(gamepad.aWasPressed()) {
+        if(shooterEnabled && gamepad.aWasPressed()) {
             macros.request(BRF);
         } 
         if(gamepad.bWasPressed()) {
