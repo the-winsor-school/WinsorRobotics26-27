@@ -262,13 +262,18 @@ public class MecanumDrive extends DriveTrain
                                 Math.abs(rf),
                                 Math.abs(rb))));
 
-        if (n > 1.0)
+        if (n > 1)
         {
             lf/=n;
             lb/=n;
             rf/=n;
             rb/=n;
         }
+        lf *= 0.5;
+        lb *= 0.5;
+        rf *= 0.5;
+        rb *= 0.5;
+       
 
         RF.setPower(rf);
         RB.setPower(rb);
