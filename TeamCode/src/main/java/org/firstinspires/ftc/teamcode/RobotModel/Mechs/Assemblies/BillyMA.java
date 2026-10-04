@@ -197,7 +197,7 @@ public class BillyMA extends MechAssembly {
      */
     @Override
     public void giveInstructions(Gamepad gamepad) {
-        if(shooterEnabled && gamepad.aWasPressed()) {
+        if(gamepad.aWasPressed()) {
             macros.request(BRF);
         } 
         if(gamepad.bWasPressed()) {
