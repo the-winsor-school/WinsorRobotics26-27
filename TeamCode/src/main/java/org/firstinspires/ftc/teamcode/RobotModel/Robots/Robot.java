@@ -6,6 +6,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.MechAssembly;
 import org.firstinspires.ftc.vision.VisionPortal;
+import java.util.Set;
 
 /**
  * Abstract base for all robots in the system.
@@ -51,8 +52,17 @@ import org.firstinspires.ftc.vision.VisionPortal;
 public abstract class Robot
 {
 
-    protected interface IRobotStrategy { }
+    protected interface IRobotStrategy {}
+
     protected Robot.IRobotStrategy strategy;
+
+    public interface IAssistRobotStrategy<R>
+    { 
+        Set<R> claims();
+        void start();
+        void update(Gamepad gamepad_a, Gamepad gamepad_b);
+        void stop();
+    }
 
     /**
      * Autonomous-facing surface for the full robot. Provides
