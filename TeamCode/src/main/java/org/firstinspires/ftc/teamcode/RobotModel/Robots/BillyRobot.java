@@ -134,6 +134,13 @@ public class BillyRobot extends Robot {
                 tagID);
 
         strategy = (robot, gamepad1, gamepad2)  -> {
+            if (gamepad1.yWasPressed()) {
+                if (assist == null)
+                    startAssist(targeter);
+                else
+                    stopAssist();
+            }
+            telemetry.addData("Auto-target", assist != null ? "ON" : "off");
             driveTrain.drive(gamepad1);
             ((BillyMA)mechAssembly).giveInstructions(gamepad2, assistClaims());
             if(assist != null) {
