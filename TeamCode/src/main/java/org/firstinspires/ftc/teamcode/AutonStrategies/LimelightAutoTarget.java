@@ -6,6 +6,11 @@ import com.qualcomm.hardware.limelightvision.Limelight3A;
 import org.firstinspires.ftc.teamcode.Extensions.IState;
 import org.firstinspires.ftc.teamcode.Extensions.LimelightExtensions;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Turret;
+import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.BillyMA;
+import org.firstinspires.ftc.teamcode.RobotModel.Robots.Robot;
+import com.qualcomm.robotcore.hardware.Gamepad;
+import java.util.EnumSet;
+import java.util.Set;
 
 /**
  * State machine that rotates the turret until the target AprilTag is centred in
@@ -16,7 +21,8 @@ import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Turret;
  * model"). All reporting now goes through
  * {@code turret.reportStatus/reportData} so the single-flush rule is respected.
  */
-public class LimelightAutoTarget extends StateMachine {
+public class LimelightAutoTarget extends StateMachine implements Robot.IAssistRobotStrategy<BillyMA.Part>
+{
     private final int targetTagId;
     private final Limelight3A limelight;
     private final Turret.AutonomousTurretBehaviors turret;
@@ -38,6 +44,29 @@ public class LimelightAutoTarget extends StateMachine {
         this.targetTagId = tagId;
         currentState = lookForTag();
     }
+
+    @Override
+    public Set<BillyMA.Part> claims()
+    {
+        return EnumSet.of(BillyMA.Part.TURRET);
+    }
+    @Override
+    public void start()
+    {
+        currentState = lookForTag();
+    }
+    @Override 
+    public void update(Gamepad driver, Gamepad mech)
+    {
+        updateState();
+    }
+    @Override 
+    public void stop()
+    {
+        abort();
+        turret.stop();
+    }
+    
 
     public IState rotateCCW(double tx){
         return () ->
