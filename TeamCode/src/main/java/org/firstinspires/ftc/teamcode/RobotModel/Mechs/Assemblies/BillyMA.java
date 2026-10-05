@@ -11,6 +11,8 @@ import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.SpinnyIntake;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.PusherServo;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Turret;
 
+import java.util.EnumSet;
+
 import java.util.Set;
 
 public class BillyMA extends MechAssembly {
@@ -127,16 +129,8 @@ public class BillyMA extends MechAssembly {
                 ballPusher.move(gamepad);
             if (!claimed.contains(Part.FLYWHEEL))
                 flywheel.move(gamepad);
-
-            // This line is a bug! because Turret has nothing to do with BillyRapidFire,
-            // AND it is wholly owned by LimelightAutoTarget.
-            // TODO: the turret has two uncoordinated owners at once - this manual gamepad
-            // strategy AND LimelightAutoTarget (see BillyRobot's update strategy), which
-            // runs every loop regardless of what happens here. Whichever one calls
-            // turret.move()/setPower() last in a given loop silently wins. Give the turret
-            // a real resource-ownership rule (see doc/ControlStrategyExpansionPlan.md and
-            // Flint Lessons 5 & 7) so only one strategy commands it at a time.
-            turret.move(gamepad);
+            if (!claimed.contains(Part.TURRET))
+                turret.move(gamepad);
 
         };
     }
@@ -202,14 +196,23 @@ public class BillyMA extends MechAssembly {
      */
     @Override
     public void giveInstructions(Gamepad gamepad) {
+        giveInstructions(gamepad, EnumSet.noneOf(Part.class));
+    }
+
+    public void giveInstructions(Gamepad gamepad, Set<Part> robotClaims) {
         if(gamepad.aWasPressed()) {
             macros.request(BRF);
         } 
         if(gamepad.bWasPressed()) {
             macros.cancel();
-        }
-        macros.update(gamepad);                              // 1. step the macro (and release it when done)
-        strategy.execute(this, gamepad, macros.claimed());    // 2. manual control on whatever's free
+        }                         
+
+        macros.update(gamepad);     // 1. step the macro (and release it when done)  
+
+        Set<Part> claimed = EnumSet.noneOf(Part.class);
+        claimed.addAll(macros.claimed());
+        claimed.addAll(robotClaims);
+        strategy.execute(this, gamepad, claimed);
     }
 
     /**

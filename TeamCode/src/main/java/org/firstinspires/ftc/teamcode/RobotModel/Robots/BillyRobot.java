@@ -18,6 +18,9 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
+import java.util.Set;
+import java.util.EnumSet;
+
 
 public class BillyRobot extends Robot {
     public class AutonomousMecanumRobot extends AutonomousRobot
@@ -131,7 +134,8 @@ public class BillyRobot extends Robot {
                 tagID);
 
         strategy = (robot, gamepad1, gamepad2)  -> {
-            super.update(gamepad1, gamepad2);
+            driveTrain.drive(gamepad1);
+            ((BillyMA)mechAssembly).giveInstructions(gamepad2, assistClaims());
             if(assist != null) {
                 assist.update(gamepad1, gamepad2); 
             };
@@ -150,6 +154,13 @@ public class BillyRobot extends Robot {
         }
         assist = newAssist;
         assist.start();
+    }
+
+    public Set<BillyMA.Part> assistClaims() {
+        if(assist == null) {
+            return EnumSet.noneOf(BillyMA.Part.class);
+        }
+        return assist.claims();
     }
 
     public void stopAssist() {
