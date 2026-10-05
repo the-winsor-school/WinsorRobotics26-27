@@ -60,7 +60,7 @@ public abstract class Robot
     { 
         Set<R> claims();
         void start();
-        void update(Gamepad gamepad_a, Gamepad gamepad_b);
+        void update(Gamepad gamepad1, Gamepad gamepad2);
         void stop();
     }
 

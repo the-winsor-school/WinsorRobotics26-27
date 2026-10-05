@@ -58,6 +58,7 @@ public class BillyRobot extends Robot {
     public final IMU imu;
 
     public final LimelightAutoTarget targeter;
+    private IAssistRobotStrategy<BillyMA.Part> assist = null; //null = no assist on
 
     protected BillyRobotStrategy strategy;
 
@@ -131,13 +132,31 @@ public class BillyRobot extends Robot {
 
         strategy = (robot, gamepad1, gamepad2)  -> {
             super.update(gamepad1, gamepad2);
-            if(!targeter.isComplete())
-                targeter.updateState();
-        };
+            if(assist != null) {
+                assist.update(gamepad1, gamepad2); 
+            };
+        };  
+        startAssist(targeter);
     }
 
     @Override
     public void update(Gamepad gamepad1, Gamepad gamepad2) {
        strategy.execute(this, gamepad1, gamepad2);
+    }
+
+    public void startAssist(IAssistRobotStrategy<BillyMA.Part> newAssist) {
+        if(assist != null) {
+            assist.stop();
+        }
+        assist = newAssist;
+        assist.start();
+    }
+
+    public void stopAssist() {
+        if(assist == null) {
+            return;
+        }
+        assist.stop();
+        assist = null;
     }
 }
