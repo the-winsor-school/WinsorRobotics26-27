@@ -20,6 +20,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
 import java.util.Set;
 import java.util.EnumSet;
+import java.util.Collections;
 
 
 public class BillyRobot extends Robot {
@@ -144,29 +145,35 @@ public class BillyRobot extends Robot {
             BillyMA mech = (BillyMA)mechAssembly;
             if (gamepad2.aWasPressed()) {
                 mech.requestRapidFire();
+                if (overlaps(mech.macroClaims(), assistClaims()))
+                    stopAssist();
             }
+
             if (gamepad2.bWasPressed()) {
                 mech.cancelMacro();
             }
 
-            if(gamepad1.xWasPressed()) {
-                mech.toggleTurretLock();
+            if(gamepad1.bWasPressed()) {
+                stopAll();
             }
 
             telemetry.addData("Auto-target", assist != null ? "ON" : "off");
             driveTrain.drive(gamepad1);
             mech.giveInstructions(gamepad2, assistClaims());
             if(assist != null) {
-                assist.update(gamepad1, gamepad2); 
+                assist.update(gamepad1, gamepad2);
             }
-
         };
         startAssist(targeter);
+    }
 
-        public void stopAll(){
-            ((BillyMA)mechAssembly).stopAll();
-            driveTrain.stopAll();
-        }
+    public void stopAll() {
+        ((BillyMA)mechAssembly).cancelMacro();
+        stopAssist();
+    }
+
+    private boolean overlaps(Set<BillyMA.Part> a, Set<BillyMA.Part> b) {
+        return !Collections.disjoint(a, b);
     }
 
     @Override
@@ -175,7 +182,11 @@ public class BillyRobot extends Robot {
     }
 
     public void startAssist(IAssistRobotStrategy<BillyMA.Part> newAssist) {
-        if(assist != null) {
+        BillyMA mech = (BillyMA) mechAssembly;
+        if (overlaps(newAssist.claims(), mech.macroClaims()))
+            mech.cancelMacro();
+
+        if (assist != null) {
             assist.stop();
         }
         assist = newAssist;
