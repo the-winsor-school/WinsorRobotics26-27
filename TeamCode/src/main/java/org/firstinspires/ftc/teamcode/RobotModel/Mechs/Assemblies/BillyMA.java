@@ -66,7 +66,7 @@ public class BillyMA extends MechAssembly {
         intake = new SpinnyIntake(hardwareMap, "intakeMotor",
                 (motor, gamepad) -> {
                     // TODO: dpad_up and dpad_down are two separate if-statements, not one
-                    // if/else-if/else chain. Pressing dpad_up alone sets power to 0.75 here,
+                    // if/elseif/else chain. Pressing dpad_up alone sets power to 0.75 here,
                     // then the dpad_down check below immediately overwrites it back to 0
                     // (since dpad_down is false, its else branch runs) - forward intake never
                     // actually turns the motor on. Combine these into a single chain.
