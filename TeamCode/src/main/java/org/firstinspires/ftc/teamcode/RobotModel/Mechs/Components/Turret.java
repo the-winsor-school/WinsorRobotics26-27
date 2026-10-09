@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Extensions.ThreadExtensions;
 
 public class Turret extends MechComponent
 {
@@ -21,15 +20,8 @@ public class Turret extends MechComponent
             servo.setPower(power);
             reportData("Turret power", power);
         }
-        // TODO: these two block for 100ms every call. An autonomous verb should command
-        //  the hardware and return immediately - the caller decides how long to wait.
-        //  LimelightAutoTarget calls into this turret every single teleop loop, so a
-        //  sleep here stalls the whole robot loop (drive train included) 10 times a
-        //  second. Note setPower() and stop() right here don't sleep, so the component
-        //  isn't even consistent with itself. Drop the sleeps; if a caller needs a timed
-        //  turn, that's what StateMachine.doAndWait() is for (Flint Lesson 9).
-        public void turnCCW() { servo.setPower(1); reportStatus("Turret: CCW"); ThreadExtensions.TrySleep(100); }
-        public void turnCW() { servo.setPower(-1); reportStatus("Turret: CW"); ThreadExtensions.TrySleep(100); }
+        public void turnCCW() { servo.setPower(1); reportStatus("Turret: CCW"); }
+        public void turnCW() { servo.setPower(-1); reportStatus("Turret: CW"); }
         public void stop() { servo.setPower(0); reportStatus("Turret: stopped"); }
     }
 

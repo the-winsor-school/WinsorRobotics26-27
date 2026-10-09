@@ -64,6 +64,7 @@ public abstract class MechAssembly
         void update(Gamepad gamepad);
         boolean isComplete();
         void cancel();
+        String name();
     }
     protected MechAssembly.IAssemblyStrategy strategy;
 

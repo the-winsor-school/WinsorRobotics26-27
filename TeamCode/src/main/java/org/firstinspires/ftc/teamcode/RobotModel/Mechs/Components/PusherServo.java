@@ -13,21 +13,12 @@ public class PusherServo extends MechComponent {
             super(telemetry);
         }
 
-        // TODO: pushBalls() and retractPusher() (the two verbs BillyRapidFire actually
-        // uses) never call servoR.setDirection(...) - only setPosition(double) does, and
-        // only the teleop strategy lambda in BillyMA sets REVERSE otherwise. A pure-
-        // autonomous run that calls pushBalls()/retractPusher() before move() has ever
-        // run leaves the servo at its hardware-default FORWARD direction, so these
-        // position values (tuned assuming REVERSE) land in the wrong physical spot. Set
-        // the direction once, e.g. in the constructor or initializeTelemetry(), instead
-        // of leaving it to whichever caller happens to run first.
         public void pushBalls() {
             servoR.setPosition(0.8);
             reportStatus("Pusher: push");
         }
 
         public void setPosition(double position) {
-            servoR.setDirection(Servo.Direction.REVERSE);
             servoR.setPosition(position);
             reportData("Pusher position", position);
         }
@@ -58,6 +49,7 @@ public class PusherServo extends MechComponent {
                        PusherTelemetryStrategy telemetryStrategy) {
         super(strategy);
         this.servoR = hardwareMap.get(Servo.class, servoNameR);
+        this.servoR.setDirection(Servo.Direction.REVERSE);
         this.strategy = strategy;
         this.telemetryStrategy = telemetryStrategy;
     }
