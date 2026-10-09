@@ -140,14 +140,33 @@ public class BillyRobot extends Robot {
                 else
                     stopAssist();
             }
+            
+            BillyMA mech = (BillyMA)mechAssembly;
+            if (gamepad2.aWasPressed()) {
+                mech.requestRapidFire();
+            }
+            if (gamepad2.bWasPressed()) {
+                mech.cancelMacro();
+            }
+
+            if(gamepad1.xWasPressed()) {
+                mech.toggleTurretLock();
+            }
+
             telemetry.addData("Auto-target", assist != null ? "ON" : "off");
             driveTrain.drive(gamepad1);
-            ((BillyMA)mechAssembly).giveInstructions(gamepad2, assistClaims());
+            mech.giveInstructions(gamepad2, assistClaims());
             if(assist != null) {
                 assist.update(gamepad1, gamepad2); 
-            };
-        };  
+            }
+
+        };
         startAssist(targeter);
+
+        public void stopAll(){
+            ((BillyMA)mechAssembly).stopAll();
+            driveTrain.stopAll();
+        }
     }
 
     @Override

@@ -28,6 +28,19 @@ public class BillyMA extends MechAssembly {
         FLYWHEEL,
         TURRET
     }
+
+    public void requestRapidFire()
+    {
+        macros.request(BRF);
+    }
+    public void cancelMacro()
+    {
+        macros.cancel();
+    }
+    public Set<Part> macroClaims()
+    {
+        return macros.claimed();
+    }
     
     private final SpinnyIntake intake;
     private final PusherServo ballPusher;
@@ -199,13 +212,7 @@ public class BillyMA extends MechAssembly {
         giveInstructions(gamepad, EnumSet.noneOf(Part.class));
     }
 
-    public void giveInstructions(Gamepad gamepad, Set<Part> robotClaims) {
-        if(gamepad.aWasPressed()) {
-            macros.request(BRF);
-        } 
-        if(gamepad.bWasPressed()) {
-            macros.cancel();
-        }                         
+    public void giveInstructions(Gamepad gamepad, Set<Part> robotClaims) {                     
 
         macros.update(gamepad);     // 1. step the macro (and release it when done)  
 
