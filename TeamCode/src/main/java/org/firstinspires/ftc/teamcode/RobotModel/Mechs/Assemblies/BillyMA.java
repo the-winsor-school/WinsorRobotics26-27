@@ -33,15 +33,14 @@ public class BillyMA extends MechAssembly {
     {
         macros.request(BRF);
     }
-    public void cancelMacro()
-    {
-        macros.cancel();
-    }
+    public void cancelMacro(String reason) { macros.cancel(reason); }
+    public String lastMacroEnd() { return macros.lastEnd(); }
     public Set<Part> macroClaims()
     {
         return macros.claimed();
     }
-    
+    public String macroName() { return macros.activeName(); }
+
     private final SpinnyIntake intake;
     private final PusherServo ballPusher;
     private final DoubleShooter flywheel;

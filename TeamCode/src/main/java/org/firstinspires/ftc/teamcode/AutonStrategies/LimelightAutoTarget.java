@@ -50,6 +50,11 @@ public class LimelightAutoTarget extends StateMachine implements Robot.IAssistRo
     {
         return EnumSet.of(BillyMA.Part.TURRET);
     }
+    @Override 
+    public String name()
+    {
+        return "LimelightAutoTarget";
+    }
     @Override
     public void start()
     {

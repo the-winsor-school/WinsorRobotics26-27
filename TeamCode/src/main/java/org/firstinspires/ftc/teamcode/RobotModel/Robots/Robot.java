@@ -62,6 +62,7 @@ public abstract class Robot
         void start();
         void update(Gamepad gamepad1, Gamepad gamepad2);
         void stop();
+        String name();
     }
 
     /**
