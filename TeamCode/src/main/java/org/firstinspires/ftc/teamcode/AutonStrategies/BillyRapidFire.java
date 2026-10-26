@@ -72,6 +72,13 @@ public class BillyRapidFire extends StateMachine
         currentState = startShooter();
     }
 
+    @Override
+    public String name()
+    {
+        return "BillyRapidFire";
+    }
+
+
 
     public IState startShooter() {
         mechAssembly.reportStatus("startShooter");

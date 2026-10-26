@@ -14,14 +14,9 @@ public class SpinnyIntake extends MechComponent
             super(telemetry);
         }
 
-        // TODO: check these signs against BillyMA's teleop strategy for this same motor -
-        // there, dpad_up (the "intake" gesture) uses +0.75 and dpad_down (reverse) uses
-        // -0.75. startIntake() and reverseIntake() here use the opposite signs from each
-        // other's teleop equivalents, so an autonomous routine calling startIntake() would
-        // actually run the intake backwards.
         public void startIntake()
         {
-            intake.setPower(-1);
+            intake.setPower(1);
             reportStatus("Intake: running");
         }
 
@@ -33,7 +28,7 @@ public class SpinnyIntake extends MechComponent
 
         public void reverseIntake()
         {
-            intake.setPower(1);
+            intake.setPower(-1);
             reportStatus("Intake: reversed");
         }
     }

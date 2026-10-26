@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.AutonStrategies.LimelightAutoTarget;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.BillyMA;
 
-import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+
 
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 
@@ -56,7 +56,7 @@ public class BillyRobot extends Robot {
         void execute (BillyRobot robot, Gamepad g, Gamepad h);
     }
 
-    private final AprilTagProcessor aprilTag;
+
     private final AutonomousMecanumRobot auton;
     public final Limelight3A limelight;
     public final IMU imu;
@@ -96,7 +96,7 @@ public class BillyRobot extends Robot {
                 DcMotorSimple.Direction.FORWARD)
         );
 
-        mechAssembly = new BillyMA(hardwareMap, telemetry);
+        mechAssembly = new BillyMA(hardwareMap);
 
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
         limelight.setPollRateHz(100);
@@ -115,12 +115,7 @@ public class BillyRobot extends Robot {
         imu.initialize(parameters);
         imu.resetYaw();
 
-        // TODO: aprilTag is constructed here but never attached to a VisionPortal (the
-        // inherited `visionPortal` field from Robot is never assigned anywhere) - it will
-        // never receive camera frames or produce detections until it's wired up. Either
-        // build a VisionPortal for it, or remove it if Limelight-based targeting
-        // (LimelightAutoTarget, below) is meant to fully replace this.
-        aprilTag = AprilTagProcessor.easyCreateWithDefaults();
+        
 
         initializeSubsystems();
 
@@ -139,28 +134,27 @@ public class BillyRobot extends Robot {
                 if (assist == null)
                     startAssist(targeter);
                 else
-                    stopAssist();
+                    stopAssist("turned off by y");
             }
-            
+
             BillyMA mech = (BillyMA)mechAssembly;
             if (gamepad2.aWasPressed()) {
                 mech.requestRapidFire();
                 if (overlaps(mech.macroClaims(), assistClaims()))
-                    stopAssist();
+                    stopAssist("replaced by " + mech.macroName());
             }
 
             if (gamepad2.bWasPressed()) {
-                mech.cancelMacro();
+                mech.cancelMacro("cancelled by b");
             }
 
             if(gamepad1.bWasPressed()) {
                 stopAll();
             }
 
-            telemetry.addData("Auto-target", assist != null ? "ON" : "off");
             driveTrain.drive(gamepad1);
             mech.giveInstructions(gamepad2, assistClaims());
-            if(assist != null) {
+            if (assist != null) {
                 assist.update(gamepad1, gamepad2);
             }
         };
@@ -168,8 +162,8 @@ public class BillyRobot extends Robot {
     }
 
     public void stopAll() {
-        ((BillyMA)mechAssembly).cancelMacro();
-        stopAssist();
+        ((BillyMA)mechAssembly).cancelMacro("stopped by stop all");
+        stopAssist("stopped by stop all");
     }
 
     private boolean overlaps(Set<BillyMA.Part> a, Set<BillyMA.Part> b) {
@@ -181,17 +175,33 @@ public class BillyRobot extends Robot {
        strategy.execute(this, gamepad1, gamepad2);
     }
 
+    @Override
+    public void updateTelemetry() {
+        BillyMA mech = (BillyMA) mechAssembly;
+        if (assist == null)
+            telemetry.addData("Assist", "None");
+        else
+            telemetry.addData("Assist", assist.name() + " " + assist.claims());
+        telemetry.addData("Macro", mech.macroName() + " " + mech.macroClaims());
+        telemetry.addData("Last macro", mech.lastMacroEnd());
+        telemetry.addData("Last assist", lastAssistEnd);
+        super.updateTelemetry();
+    }
+
     public void startAssist(IAssistRobotStrategy<BillyMA.Part> newAssist) {
         BillyMA mech = (BillyMA) mechAssembly;
         if (overlaps(newAssist.claims(), mech.macroClaims()))
-            mech.cancelMacro();
+            mech.cancelMacro("replaced by " + newAssist.name());
 
         if (assist != null) {
+            lastAssistEnd = assist.name() + " replaced by " + newAssist.name();
             assist.stop();
         }
         assist = newAssist;
         assist.start();
     }
+
+    private String lastAssistEnd = "None";
 
     public Set<BillyMA.Part> assistClaims() {
         if(assist == null) {
@@ -200,11 +210,11 @@ public class BillyRobot extends Robot {
         return assist.claims();
     }
 
-    public void stopAssist() {
-        if(assist == null) {
+    public void stopAssist(String reason) {
+        if (assist == null)
             return;
-        }
         assist.stop();
+        lastAssistEnd = assist.name() + " " + reason;
         assist = null;
     }
 }
