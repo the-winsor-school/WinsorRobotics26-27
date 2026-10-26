@@ -223,6 +223,7 @@ public class BillyMA extends MechAssembly {
      */
     @Override
     public void updateTelemetry() {
+        turret.update();
         // TODO: this method never visits any component, so none of the four
         // mechanisms (intake, ballPusher, flywheel, turret) ever report telemetry to
         // the driver station. Call each component's own telemetry-reporting behavior

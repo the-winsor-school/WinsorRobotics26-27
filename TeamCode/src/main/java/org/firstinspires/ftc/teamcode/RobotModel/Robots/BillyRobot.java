@@ -141,6 +141,7 @@ public class BillyRobot extends Robot {
                     stopAssist();
             }
             telemetry.addData("Auto-target", assist != null ? "ON" : "off");
+            telemetry.addData("g2 RB / LB", gamepad2.right_bumper + " / " + gamepad2.left_bumper);
             driveTrain.drive(gamepad1);
             ((BillyMA)mechAssembly).giveInstructions(gamepad2, assistClaims());
             if(assist != null) {
