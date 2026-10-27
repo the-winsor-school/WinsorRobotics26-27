@@ -25,10 +25,13 @@ uncommitted and waiting on Jason.
   Chapters 8 and 11, completed 10, finished 7's opening and notes, extended
   the source checker, and built and visually reviewed Chapters 6-11.
   Added the short script-run record protocol to PROCESS.
+- **2026-10-26, Codex**, Chapter 13 continuation.  Completed 13.2-13.10,
+  replaced 13.1's source placeholder, added notes and opening, source-checked
+  the chapter, and built and visually reviewed the 13-page standalone draft.
 
 ## Chapters
 
-Snapshot updated 2026-10-26 after Codex's Part 3 continuation.  Original
+Snapshot updated 2026-10-26 after Codex's Chapter 13 continuation.  Original
 Claude drafter ids are historical; no Codex sub-agents were launched.
 
 | Ch | State at snapshot | Drafter (agent id, resumable with SendMessage) |
@@ -46,7 +49,7 @@ Claude drafter ids are historical; no Codex sub-agents were launched.
 | 10 | 8 entries, notes, opening; checked and rendered | Claude draft, Codex completion |
 | 11 | 8 entries, notes, opening; checked and rendered | Codex |
 | 12 | 9 entries, notes, opening | `a805554bac31d3f33` (Ch 12-13) |
-| 13 | 1 entry; no notes or opening | same |
+| 13 | 10 entries, notes, opening; checked and rendered | Claude start, Codex completion |
 | 14 | 9 entries, notes, opening | `a7a5e9fc94915d1a5` (Ch 14-15) |
 | 15 | 9 entries, notes;  no opening | same |
 | 16-20 | drafted;  voice pass done;  checks pass | done |
@@ -123,11 +126,42 @@ start, 2 had six entries;  4 had two;  7 had nine and closing sections;
 - No physical robot tests.  Title-page openings are saved and source-checked;
   the standalone chapter build doesn't include book title-page layout.
 
+### Chapter 13 continuation
+
+### Chapter 13 build and review - Codex, 2026-10-26
+
+- Goal:  build the completed ownership chapter, render its pages, and inspect
+  code boxes, tables, and closing sections.
+- Start:  2026-10-26 22:44 America/New_York, this Windows workspace/session.
+- Commands from the repo root:
+  `pandoc lua doc/FieldGuide/reference/build_book.lua 13`, then
+  `& ./doc/FieldGuide/reference/preview_pages.ps1 -Keys @('13')`.
+- Logs:  `build/chapter13-build.txt`, `build/chapter13-preview.txt`.
+  Source checks already passed:  `build/chapter13-check.txt`.
+- Expected outputs:  `build/word/FieldGuide_Chapter13.docx` and
+  `build/preview/chapter_13.pdf`, page PNGs, and contact sheet.
+- First build and preview finished, exit 0:  build PID 20364, preview PID
+  23916.  Output:  15 pages.  Contact sheet and pages 8, 10, 14 inspected.
+  Two trailing cross-reference lines occupied otherwise empty pages.
+- Trimmed repeated prose in 13.7/13.8; rerunning the same commands to check
+  those breaks.  Logs:  `build/chapter13-build-final.txt` and
+  `build/chapter13-preview-final.txt`.
+- Final build and preview completed synchronously, PID 18552, exit 0.
+  No persistent tool session was needed.  Final output:  13 pages.
+- **Finished and reviewed:**  final contact sheet and large pages 8/9 checked.
+  Cross-reference lines now fit with their entries; code and tables fit.
+  Final selected source/structure check passed.  No physical robot test.
+- No build or preview process remains pending.  Book title-page opening is
+  saved and source-checked; its combined-book layout awaits that later pass.
+
+**Completed continuation, Codex:**  Chapter 13 has ten entries, closing
+sections, notes, and opening.  It explains claims, selection, manual dispatch,
+cleanup, and telemetry using current source.  No robot code changed.
+
 ### Next writing checkpoint
 
-Chapter 13 is the natural next continuation after the completed 11/12 drafts:
-read its lesson sources and current code, create notes, and continue from
-13.2 after checking what 13.1 already covers.  Then finish 2, 4, 5, 15's
+Continue Chapter 2 from **2.7, LimelightExtensions**, after reading its notes,
+source lesson, and current helper implementation.  Then finish 4, 5, 15's
 supporting files, and 22.  Use the process's run record for long scripts.
 
 1. Finish drafting 1-15 and 21-22.

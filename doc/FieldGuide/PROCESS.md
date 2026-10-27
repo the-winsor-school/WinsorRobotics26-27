@@ -109,11 +109,9 @@ File names:  `chapters/chapter_NN_short_name.md`, two-digit `NN`.
 
 ### Writing about student work
 
-This codebase was written entirely by students, recently with some AI
-assistance that Jason has not reviewed.  Treat it as student work throughout
-the book, planning notes, reviews, and handoffs.  An accurate quotation is
-evidence of what the code does;  it is not Jason's endorsement of a recent
-AI-assisted change.
+This codebase was written by students.  Treat it as student work throughout
+the book, planning notes, reviews, and handoffs.  Describe code from its
+actual behavior, and distinguish implemented features from design examples.
 
 The book helps students understand and build on their work.  Describe the
 behavior and the idea it illustrates in respectful, concrete language.

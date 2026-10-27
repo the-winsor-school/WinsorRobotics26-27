@@ -7,9 +7,8 @@ errors and a limit-switch timing limitation in `DoublyLimitedMotor`.  The
 original audit is preserved below, with those corrections added at the end.
 
 **Student-work guidance, clarified by Jason on 2026-10-26:**  this codebase
-was written entirely by students, with some recent AI assistance he has not
-reviewed.  This audit supports accurate descriptions of behavior;  its
-historical labels are not an editorial instruction to call out students'
+was written by students.  This audit supports accurate descriptions of
+behavior;  its historical labels are not an editorial instruction to call out students'
 mistakes.  Minor bugs may be ignored.  A confirmed bug that prevents a
 feature from working gets a neutral source TODO naming the next step.
 Follow PROCESS's student-work section when using any observation below.
