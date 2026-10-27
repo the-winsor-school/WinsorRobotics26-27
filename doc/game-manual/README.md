@@ -9,6 +9,20 @@ internet connection.
 The official online manual remains authoritative. The mirror records its source URL,
 revision, HTTP metadata, and SHA-256 digest in [`rendered/source.json`](rendered/source.json).
 
+## Split sections for AI tutors
+
+[`sections/`](sections/) holds the same manual cut into one file per major section and
+cleaned up for upload to Flint, whose document limit is 24,000 words. Regenerate it with:
+
+```
+perl split-manual.pl
+```
+
+It reads `rendered/index.htm` rather than `rendered/manual.md`, because the `--to=gfm`
+conversion below silently drops 25 tables — the scoring tables, the award criteria and
+the whole Glossary — that GFM pipe tables cannot represent. Re-run it after refreshing
+the mirror. It lives outside `rendered/`, which the updater deletes and recreates.
+
 ## Refreshing the mirror
 
 From the repository root, run:

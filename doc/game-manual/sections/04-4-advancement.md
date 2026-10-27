@@ -18,15 +18,15 @@ Figure 4-2: Tournament Advancement Structure
 
 [Figure: Tournament Advancement structure diagram.]
 
-*1,3,5 -- Optional event, not offered in all regions.*
+*1,3,5 – Optional event, not offered in all regions.*
 
-*2 -- All teams within a League play in the League Tournament.*
+*2 – All teams within a League play in the League Tournament.*
 
-*4 -- Can also be called State, Region, or Country Championship.*
+*4 – Can also be called State, Region, or Country Championship.*
 
-*6 -- Only in select new or emerging regions.*
+*6 – Only in select new or emerging regions.*
 
-Teams may advance from their region's Qualifying Tournaments or League Tournament to either a Super Qualifying Tournament (SQT) or directly to a Regional Championship (RCMP). Super Qualifying Tournaments (SQT) are an optional advancement level often used in large regions which need more levels of competition. A team may only participate in one Super Qualifying Tournament (SQT).
+Teams may advance from their region’s Qualifying Tournaments or League Tournament to either a Super Qualifying Tournament (SQT) or directly to a Regional Championship (RCMP). Super Qualifying Tournaments (SQT) are an optional advancement level often used in large regions which need more levels of competition. A team may only participate in one Super Qualifying Tournament (SQT).
 
 Teams in a few specific geographical regions may advance from a Pilot event - the highest tier of competition within a new or emerging region - to *FIRST* Championship and/or a *FIRST* Premier Event.
 
@@ -67,11 +67,11 @@ Table 4-2 Advancement Sorting Criteria Including Tiebreakers
 
 The calculation of Qualification Phase Performance points is done using the equation below. This equation is an inverse error function which utilizes the following variables:
 
-- **R** -- the qualification rank of the team at the event at the conclusion of Qualification MATCHES (as reported by the Event Management Software and defined in Section 13.6.3 Qualification Ranking)
+- **R** – the qualification rank of the team at the event at the conclusion of Qualification MATCHES (as reported by the Event Management Software and defined in Section 13.6.3 Qualification Ranking)
 
-- **N** -- the number of *FIRST* Tech Challenge teams participating in the Qualification rounds at the event
+- **N** – the number of *FIRST* Tech Challenge teams participating in the Qualification rounds at the event
 
-- **Alpha (α)** -- a static value (1.07) used to standardize the distribution of points at events
+- **Alpha (α)** – a static value (1.07) used to standardize the distribution of points at events
 
 [Figure]
 
@@ -81,15 +81,15 @@ Table 4-3 displays sample Qualification Phase Performance points for variously r
 
 Table 4-3 Sample Qualification Round Point Assignments
 
-| **Rank** | 1 | 2 | 3 | 4 | ... | 12 | 13 | 14 | ... | 25 | 26 | 27 | 28 |
+| **Rank** | 1 | 2 | 3 | 4 | … | 12 | 13 | 14 | … | 25 | 26 | 27 | 28 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Points** | 16 | 15 | 14 | 14 | ... | 10 | 10 | 10 | ... | 6 | 5 | 5 | 4 |
+| **Points** | 16 | 15 | 14 | 14 | … | 10 | 10 | 10 | … | 6 | 5 | 5 | 4 |
 
 ### 4.1.2 ALLIANCE Selection Results
 
 This attribute measures both individual team Qualification round seeding performance and recognition by peers.
 
-ALLIANCE Leads are recognized based on their Qualification phase seeding rank. This rank is a result of the rules of the game, which typically incorporate several team performance attributes. ALLIANCE partners are rewarded based on peer recognition. To be invited to join an ALLIANCE, a team's peers have decided that the team has attributes that are desirable.
+ALLIANCE Leads are recognized based on their Qualification phase seeding rank. This rank is a result of the rules of the game, which typically incorporate several team performance attributes. ALLIANCE partners are rewarded based on peer recognition. To be invited to join an ALLIANCE, a team’s peers have decided that the team has attributes that are desirable.
 
 Note also that ALLIANCE leads are given the same number of points as the team drafted in the same sequence. For example, the team who accepts the pick from the 3rd ALLIANCE lead receives the same number of points as the 3rd ALLIANCE lead. Numerical analysis supports the idea that ALLIANCE leads are about as strong in ROBOT performance as equivalently drafted teams.
 
@@ -107,7 +107,7 @@ This attribute measures team performance with respect to team awards judged at t
 
 *The points earned for team awards in this system are not intended to capture the full value of the award to the team winning the award or to represent the full value of the award to FIRST.*
 
-Points are being assigned to awards in this system only to help teams recognize that *FIRST* continues to be "*More than Robots*®," and to assist in elevating award-winning teams above non-award-winning teams in the ranking system.
+Points are being assigned to awards in this system only to help teams recognize that *FIRST* continues to be “*More than Robots*®,” and to assist in elevating award-winning teams above non-award-winning teams in the ranking system.
 
 Teams only get points for team awards judged at the event and are limited to win only a specific number of awards per A215. If an award is not judged, is not for a team (e.g., the *FIRST* Leadership Award), or is not judged at the event (e.g., Safety Animation Award), no points are earned. Points for awards not given at the event are not assigned to any team. See A211 for the list of points-eligible awards.
 
