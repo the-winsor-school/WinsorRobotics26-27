@@ -10,7 +10,7 @@ chapters come from.
 
 ## What this book is
 
-The 19 lessons in [`doc/FlintLessons/`](../FlintLessons/README.md) are tutor
+The lessons in [`doc/FlintLessons/`](../FlintLessons/README.md) are tutor
 prompts.  They're written to a chatbot ("Ask the student...") and they run one
 session each, in order.  This book takes the same material and turns it into
 something a student reads alone, in any order, to look up one big idea at a
@@ -38,12 +38,35 @@ doc/FieldGuide/
   book/opening_NN.md        each chapter's title-page opening
   planning/
     code-facts.md           the current code, checked against every lesson
+    BACKLOG.md              what's done, who has what, and what's next
     chapter_NN_notes.md     each drafter's notes:  guesses, unverified claims, open questions
   reference/                the build:  build_book.lua, finish_book.ps1, make_art.ps1, make_cover.ps1
   build/
     word/                   one .docx per chapter, for Flint
     book/                   the printed book, its art and cover
 ```
+
+### Leaving work another session can finish
+
+A session can stop partway, and the first run of this book did.  So
+`planning/BACKLOG.md` says what's done, who has what, and what's next.  Read
+it after this file, and update it when you take a chapter or hand one back.
+
+Save the chapter and its notes after each finished entry, and have the notes
+name the next entry.  Then an interrupted draft loses one entry, at most.  A
+build's output proves something ran;  open it to see what it made.
+
+Before starting a script that may outlive its writer's session, add a short
+run entry to `planning/BACKLOG.md`:  its goal, exact command, start time,
+expected outputs, and log path.  Record the process id and tool session id
+as soon as they are available.  Include the machine/session context:  a
+reused process id alone doesn't identify an old task.
+
+When the script finishes, record its exit status separately from the review
+result.  Name the output you opened and what you checked.  Until someone
+has inspected it, mark it **finished, awaiting review**.  On recovery, read
+the log and inspect existing outputs before deciding whether to rerun.
+This record can be a few bullets;  it doesn't need a separate task runner.
 
 ## The chapters
 
@@ -84,19 +107,48 @@ File names:  `chapters/chapter_NN_short_name.md`, two-digit `NN`.
 
 ## The rule:  every line of code is real
 
-Every line of code in a chapter is copied from the repository as it is on
-`master` today.  `planning/code-facts.md` is where to start, and the file
+### Writing about student work
+
+This codebase was written entirely by students, recently with some AI
+assistance that Jason has not reviewed.  Treat it as student work throughout
+the book, planning notes, reviews, and handoffs.  An accurate quotation is
+evidence of what the code does;  it is not Jason's endorsement of a recent
+AI-assisted change.
+
+The book helps students understand and build on their work.  Describe the
+behavior and the idea it illustrates in respectful, concrete language.
+Minor bugs may be ignored.  Finding a bug is not by itself a reason to put
+it in the book or make it a lesson about what a student did wrong.
+
+When a confirmed bug prevents a feature from working, the next step belongs
+in a neutral `TODO` comment in the source.  Drafters propose the comment, word
+for word with its file and line, in their notes file, and it goes into the
+code after review, so several writers working at once never edit the robot's
+code.  Say what the feature needs to do,
+with enough context to act on it.  Avoid judgments about the work or its
+author.  Distinguish a feature that fails from an optional capability that
+has not been added.  Keep uncertain observations provisional until checked.
+
+Technical accuracy still matters.  Explain how to use the current code
+accurately, and give necessary operating instructions.  Keep any discussion
+of a source TODO brief and useful to the reader's task.
+
+Every line of code in a chapter is copied from the repository at the source
+revision recorded in the backlog and chapter notes.  Start with `master`'s
+checked revision, and recheck if the code changes.  `planning/code-facts.md`
+is where to start, and the file
 itself is the authority.  Open it and copy from it.
 
 - **The code wins.**  The lessons were written in September, and the code has
   moved since.  Where a lesson and the code disagree, write what the code
   does.  `code-facts.md` lists every place they disagree.
-- **A fixed bug is still a good story.**  When a lesson teaches a bug that has
-  since been fixed, tell it in the past tense, short, and show the fix:  "This
-  used to be a bug.  Here's what it did, and here's the line that fixed it."
-- **An open bug is presented as open.**  Name the `TODO` and the file.  Give
-  the shape of the fix where the lesson does, and leave the fixing to a real
-  pull request.
+- **Historical changes need a teaching purpose.**  Use an earlier version
+  only when it helps explain the idea.  Describe the behavior and the change
+  neutrally.  Leave minor bugs out.
+- **A feature that needs work gets a TODO.**  For a confirmed feature-breaking
+  bug, propose a neutral source comment naming the next step (above).  Mention it in
+  the chapter only where the reader needs it to use that feature.  Leave
+  implementation changes to separate coding work.
 - **`...` may stand for lines left out** of a block.  Nothing inside a code
   block is ever paraphrased.
 - **Invented code says it's invented.**  A counter-example, a sketch, or a
@@ -107,13 +159,11 @@ itself is the authority.  Open it and copy from it.
   it was:  copy it from `git show <commit>:<path>` and say which version it
   is ("`BillyMA.java` as it was before commit `1a6809a`").  That's real code
   too.
-- **The current design leads.**  The audit found most of the bugs the lessons
-  teach already fixed, and the ownership system the lessons call unbuilt
-  partly built (`claims()`, `MacroManager`, `BillyMA.Part`).  So an entry
-  explains what the code does now, first.  A fixed bug appears only where it
-  teaches the entry's idea better than anything current does, and then
-  briefly.  A chapter that reads like a museum of old bugs has the balance
-  wrong.
+- **The current design leads.**  The ownership system the lessons call unbuilt
+  is partly built (`claims()`, `MacroManager`, `BillyMA.Part`).  Explain what
+  the code does now, starting with the student's working design and the idea
+  it illustrates.  The audit supports accurate writing;  it is not a list
+  of faults to present to students.
 - **Don't state a count you haven't checked.**  The lessons say eighteen
   `TODO`s.  There are seventeen now.  Count again before you write a number.
 
@@ -126,6 +176,13 @@ against the exact versions this repository builds against:
 | Limelight methods and behavior | `doc/limelight3a/*.md` |
 | FTC SDK types | the samples in `FtcRobotController/.../external/samples/`, and the SDK release notes at the top of the root `README.md` |
 | The game | `doc/game-manual/` |
+
+Those references can contain mistakes too.  When their numbers contradict
+each other, check the arithmetic and the linked manufacturer's documentation.
+Record the discrepancy, source URL, date checked, and the decision in the
+chapter notes.  Give a corrected specification its source in the chapter.
+The code audit already identifies a version mismatch in the Limelight
+reference;  check the relevant SDK version before relying on it.
 
 A claim about the world outside this repository (who invented AprilTags, what
 NASA uses) stays only if the lesson already makes it.  Add no new ones.  Put
@@ -217,6 +274,10 @@ Chapter 2 opening was *The museum of bad dice is open.  Please don't roll the
 exhibits.* above the program's own output.  The joke has to be about something
 true in the chapter.  Never name the device.
 
+For a mechanical chapter, the quoted moment may be a passage, calculation,
+or table from the chapter.  Use the actual chapter text.  An opening needs
+something true to point at;  leave a forced joke out and flag it in the notes.
+
 ### Your notes file
 
 Each drafter writes `planning/chapter_NN_notes.md` for each chapter:
@@ -278,9 +339,9 @@ chapters 1 to 22 leave it out.
 **For a middle schooler:**  short sentences, one idea to a paragraph, every
 term defined where it first appears in the chapter (or pointed to), and
 concrete before abstract.  Technical words are welcome when they do real work.
-Explain them;  never water them down.  Keep the trade-offs, the open bugs, and
-the unsolved design questions.  Kids can handle a codebase with visible gaps,
-and the lessons say so.
+Explain them;  never water them down.  Keep the trade-offs and the unsolved
+design questions.  Apply the student-work guidance above when deciding
+whether a bug belongs in a chapter or a source TODO.
 
 **Design choices are trade-offs.**  Jason's word, hyphenated.  Introduce a
 choice with its cost first, then what it buys, and call it a trade-off once.

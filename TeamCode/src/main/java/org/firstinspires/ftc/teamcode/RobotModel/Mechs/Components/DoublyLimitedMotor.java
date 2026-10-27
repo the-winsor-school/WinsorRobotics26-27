@@ -10,6 +10,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public  class DoublyLimitedMotor extends MechComponent {
 
+    // TODO: Keep checking the travel limits while an autonomous movement is active,
+    // so reaching a limit stops the motor after goForward() or goBackward().
     public class AutonomousDLMBehaviors extends MechComponent.AutonomousComponentBehaviors
     {
         public AutonomousDLMBehaviors(Telemetry telemetry) {

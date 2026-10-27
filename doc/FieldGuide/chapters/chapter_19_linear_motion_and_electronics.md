@@ -5,7 +5,7 @@
 ---
 
 This chapter puts two topics side by side.  The first is the elevator, the
-mechanism this team builds most often to reach a high scoring spot.  The second
+mechanism for reaching a high scoring spot.  The second
 is the electronics every mechanism plugs into:  the hubs, the wires, and the
 sensors.
 
@@ -74,13 +74,16 @@ gets its own loop of cord, and the stages pull each other along.
 In **continuous rigging**, one cord runs through the whole lift.  The stages
 extend one after another, bottom to top.
 
-Here is how they compare, for a lift with $n$ stages.
+Here is how the reference compares them, for a lift with $n$ moving stages.
+The speed and pull ratios describe an ideal lift with the same spool radius,
+the same payload, and negligible stage weight and friction.  Include those
+extra loads when sizing the real lift (17.8).
 
 | | Cascading | Continuous |
 |---|---|---|
 | Extension | all stages at once | one stage after another |
-| Speed | $n \times$ spool speed | equal to spool speed |
-| Motor torque needed | $n \times$ load weight | $1 \times$ load weight |
+| Carriage speed | $n \times$ cord speed at the spool | equal to cord speed at the spool |
+| Spool pull needed | $n \times$ payload weight | $1 \times$ payload weight |
 | Rigging | a separate cord loop for every stage | one cord run |
 | Coming down | driven by the motor (19.4) | usually gravity or springs |
 | Cord slack risk | low, if the stages are pre-tensioned | high.  A fast drop can jump the cord off a pulley. |
@@ -95,15 +98,11 @@ through every stage at once.  19.3 shows where the three comes from.
 So cascading costs torque, and a cord loop to rig and tension for every stage.
 It buys speed, a motor-driven trip back down, and a cord that keeps its tension.
 Continuous costs speed, and its cord can go slack on a fast drop.  It buys a
-lift that any motor strong enough to carry the load can raise, with one cord to
-route.  That's the trade-off:  speed, paid for in torque.  The team's
+lighter pull at the spool for the same carriage, and one cord to route.
+That's the trade-off:  speed, paid for in torque at a given spool
+radius.  The team's
 reference puts cascading on fast competition lifts and hanging, and continuous
 on simpler reach mechanisms and light arms.
-
-Here's the choice in practice.  A 3-stage lift has to reach full height in
-under a second, and the only motor can lift the carriage's weight once.  A
-cascade would need three times that.  Continuous is the only rig this motor can
-raise, and whether it's fast enough is a gearing question for Chapter 17.
 
 *See also:*  19.3, 19.4, 19.5, 20.6
 
@@ -164,7 +163,8 @@ cord and pays out the lift cord, and the lift comes down under full motor power.
 This matters because of **cycle time**, the time it takes to collect a game
 piece, score it, and get back for the next one.  A slide that falls under
 gravity comes down as fast as friction and its own weight let it.  An actively
-retracted slide comes down as fast as the driver commands.
+retracted slide comes down under motor power, as fast as the driver commands
+and the gearing allows.
 
 A motor that drives the lift down at full power can also drive it into its
 bottom stop, so this lift needs the bottom limit switch in 19.6.
@@ -177,22 +177,26 @@ A **constant-force spring** is a rolled strip of spring steel that pulls with
 the same force however far it's unrolled.  REV sells them as REV-41-1644.  On a
 lift, they solve a current problem.
 
-Picture the lift paused at the top to score.  The motor isn't turning, and it's
-still pushing as hard as it needs to keep the carriage from falling.  A motor
-that pushes and doesn't turn is at stall (Chapter 17), and a motor at stall
-draws its heaviest current.
+Picture the lift paused at the top to score.  The motor isn't turning, but it
+still has to push to keep the carriage from falling.  A motor that pushes
+without turning moves nothing, so every bit of the current it draws becomes
+heat.  The harder it pushes, the more current it draws, and a motor pushing
+with all it has against a stopped output is at stall (17.5).
 
-> **Watch out.**  A lift parked at the top under motor power keeps its motor at
-> stall current the whole time.  The motor heats up, and it can trip a breaker
-> in the middle of a match.  A heavy carriage needs a counterbalance.
+> **Watch out.**  A lift held at the top under motor power heats its motor for
+> the whole hold.  A heavy carriage held long enough can overheat the motor in
+> the middle of a match.  Feel the motor after a long hold in practice, and
+> counterbalance a heavy carriage.
 
-Springs are the counterbalance.  Two 1.5 lb constant-force springs offset 3 lb
-of carriage weight.  With the weight offset, the motor holding that carriage
-at the top only has to fight friction.
+Springs can provide that counterbalance.  Two 1.5 lb constant-force springs
+provide 3 lb of pull.  Applied directly upward to a 3 lb carriage, they nearly
+balance its weight.  A 2 kg carriage weighs about 4.4 lb, so the same springs
+leave about 1.4 lb of weight to support.  Match the spring force and its
+routing to the real load.
 
-That frees up the gearing, too.  A motor that no longer fights gravity while it
-holds can run a faster gear ratio, with less reduction (Chapter 17), and it
-won't stall on the hold.
+Reducing the gravity load may make less reduction and faster travel practical
+(17.3).  Recalculate the moving load as well as the holding load before
+changing cartridges.  Springs also pull when the lift is coming down.
 
 > **Argue it.**  Two springs make a 3 lb carriage feel nearly weightless to the
 > motor.  Go back to the motor in 19.2 that could lift the carriage only once.
@@ -210,9 +214,10 @@ holding the stick down for two more seconds.  The motor keeps pulling.  The
 cord snaps, a bracket bends, or the motor stalls against the aluminum at the
 end of travel.  It takes one bad button press in a real match.
 
-> **Watch out.**  Put a limit switch at each end of a slide before it ever runs
-> under power.  A driver mistake or a software crash will drive an unprotected
-> slide into its stops.
+> **Watch out.**  Put a limit switch at each end, and check the stopping code
+> before you run a slide through its travel.  A switch only reports.  It
+> protects the slide only while the code keeps reading it and setting the
+> motor's power.
 
 A **limit switch** is a sensor at the end of a mechanism's travel that reports
 when the mechanism gets there.  On this team that's a REV Touch Sensor, which
@@ -222,23 +227,23 @@ The switch only reports.  Code has to listen.  On Wildbots2025, the lift is
 built in `RobotModel/Mechs/Assemblies/CascadeArm.java`:
 
 ```java
-cascade = new DoublyLimitedMotor(
-        hardwareMap,
-        "cascadeMotor",
-        "topLiftLimit",
-        "bottomLiftLimit",
-        // Control strategy
-        (gamepad, dlm) ->
-        {
-             double power = GamepadExtensions.GetLeftStickY(gamepad);
-             dlm.setPower(power);
-        },
-        ((dlm, telemetry) ->
-        {
-            telemetry.addData("Can Go Up", dlm.canGoForward());
-            telemetry.addData("Can Go Down", dlm.canGoReverse());
-        })
-        );
+        cascade = new DoublyLimitedMotor(
+                hardwareMap,
+                "cascadeMotor",
+                "topLiftLimit",
+                "bottomLiftLimit",
+                // Control strategy
+                (gamepad, dlm) ->
+                {
+                     double power = GamepadExtensions.GetLeftStickY(gamepad);
+                     dlm.setPower(power);
+                },
+                ((dlm, telemetry) ->
+                {
+                    telemetry.addData("Can Go Up", dlm.canGoForward());
+                    telemetry.addData("Can Go Down", dlm.canGoReverse());
+                })
+                );
 ```
 
 The constructor takes six things, in this order:  the hardware map (Chapter 3);
@@ -275,34 +280,40 @@ Every move the strategy makes goes through `setPower`.  Here it is, whole:
 
 `canGoForward()` is true while the forward switch is unpressed.  So pushing up
 with the top switch pressed sends zero, and pulling down with the bottom switch
-pressed sends zero.  Driving *away* from a pressed switch always works, so the
-lift can leave the end it's sitting at.
+pressed sends zero.  Driving away is allowed when the switch at the other end
+is unpressed, so the lift can leave the end it's sitting at.
 
 The motor itself is a `private` field.  The strategy, and the autonomous verbs
 `goForward()`, `goBackward()` and `stop()`, can reach it only through this
-method, so every path to the motor passes the check.  Wrapping a method that
-way is a decorator (Chapter 8), and the class as a whole is a component
+method, so every power command passes the check.  Wrapping a method that way
+is a decorator (Chapter 8), and the class as a whole is a component
 (Chapter 7).
 
-So the switch and the code each do half the job.  The switch knows where the
-lift is, and the code decides what to do about it.  Each one is useless alone:
-a switch only reports, and the code can only act on what a switch reports.  The
-aluminum stop at the end of travel is what the lift hits if both of them fail.
+The check runs when `setPower` is called, and only then.  A strategy calls it
+every loop, so a lift driven from the gamepad gets checked every loop.  An
+autonomous verb like `goForward()` calls it once.  The motor keeps that power
+after the switch presses, until something calls `setPower` again.  So code
+that drives the lift on its own has to keep checking the switch itself.
+
+The switch knows where the lift is, and the code decides what to do about it.
+The aluminum stop at the end of travel is what the lift hits if both of them
+fail, and hitting it under power can damage the lift.
 
 > **Watch out.**  Forward is whichever end the motor reaches on positive
 > power.  Pass the two names in the wrong order and the guard protects the
 > wrong end:  at the top, pushing up still runs the motor.  Reversing the
 > motor's direction swaps the ends too.  Check the order every time you wire a
-> new lift.  The lift example in `doc/rev-duo/linear-motion.md` passes the
-> bottom switch first, and the compiler rejects it besides, so build from
-> `CascadeArm` instead.
+> new lift.  Use `CascadeArm`'s construction as the example, and match its
+> forward and reverse sensor names to the direction the actual motor moves.
 
 > **Try it.**  Run *Example TeleOp (Wildbots2025)* and lower the lift until it
 > presses its bottom switch.  The Driver Station shows `Can Go Down` as
 > `false` and `Can Go Up` as `true`.  Pull gamepad 2's left stick down:  the
-> lift motor stays still.  Push it up gently, and the lift rises off the
+> lift motor should stop.  Push it up gently, and the lift should rise off the
 > switch.  If the motor runs when you pull down, let go of the stick.  The names
-> are in the wrong order, or the switch isn't being pressed.
+> may be in the wrong order, or the switch may have a wiring or mounting fault.
+> `CascadeArm` also reports its drawbridge with the same `Can Go` captions;
+> identify which readings belong to the lift when checking the display.
 
 *See also:*  19.7, 19.10, Chapter 7, Chapter 8
 
@@ -314,7 +325,8 @@ means "where the lift was at the last reset," and that might be the bottom, or
 halfway up.
 
 **Zeroing** is finding a known physical position and resetting the count there.
-After that, 1,000 ticks means the same height every time.
+After that, a given tick count refers to a height above that home position,
+for the same gearing, spool, and rigging.
 
 For a lift with a bottom switch, the team's reference gives the sequence.
 
@@ -338,14 +350,15 @@ switch again.
 Every target is off by the same amount, because the count started from some
 unknown number.  Ask for the scoring height and the lift drives to a spot higher
 or lower than you meant.  Ask for something near the top and it can drive past
-the real top into its stop.  The top limit switch is what catches that.
+the real top into its stop.  The movement code must keep checking the top
+limit and stop the motor when it is reached;  19.6's wrapper checks only
+when a power command passes through it.
 
-**An open gap.**  `DoublyLimitedMotor` can do step 1 today:  `setPower(-0.15)`
-drives down, and its own check stops the motor when the bottom switch presses.
-Steps 2 and 3 need the motor itself, and the class keeps its `DcMotor` private
-with no method for run modes or positions.  Its autonomous verbs run at full
-power or stop.  Building a zeroing verb into the component is open work, and
-the file has no `TODO` for it yet.
+To add this procedure to `DoublyLimitedMotor`, put the zeroing behavior inside
+the component that owns the motor (Chapter 7).  Repeated calls to
+`setPower(-0.15)` drive down and send zero once the bottom switch presses.
+The encoder reset and position-control steps belong with that motor too.
+Expose the completed procedure as an autonomous verb (Chapter 11).
 
 *See also:*  19.6, Chapter 3, Chapter 11
 
@@ -401,7 +414,7 @@ connectors to fight that.
 |---|---|---|
 | XT30 | 12V power:  the battery, the power switch, and the line to the Expansion Hub | yellow, polarized, rated for 30A continuous |
 | JST VH | motor power | white, 2-pin, locking.  Push until the latch clicks. |
-| JST PH | sensors and encoders | small, 2.0mm pin spacing.  4-pin for I2C and encoders, 3-pin for analog and digital. |
+| JST PH | sensors, encoders, and the RS485 link | small, 2.0mm pin spacing.  4-pin sensor/encoder connectors;  3-pin RS485. |
 
 > **Aside:  I2C**
 >
@@ -462,7 +475,7 @@ sensor types the same way, and shows the Java for each.
 | REV Color Sensor v3 (REV-31-1557) | RGB color plus IR proximity | "What color is it, and is something close?" | I2C |
 | REV Magnetic Limit Switch (REV-31-1462) | Hall effect | "Is a magnet here?" | digital |
 | REV Touch Sensor (REV-31-1425) | momentary push-button | "Is something pressing on it?" | digital |
-| REV Through Bore Encoder (REV-11-1271) | quadrature plus absolute PWM, 8,192 counts per revolution | "Exactly what angle or position, with no drift?" | motor encoder port, and a digital port |
+| REV Through Bore Encoder (REV-11-1271) | quadrature plus absolute PWM, 8,192 counts per revolution | "How far has the shaft turned, or what angle is it at?" | motor encoder port, and a digital port |
 | Control Hub IMU | 6-axis or 9-axis gyro and accelerometer | "Which way is the robot facing?" | built into the Control Hub |
 
 - **Time-of-Flight** means the sensor times how long a pulse of laser light
@@ -477,7 +490,9 @@ sensor types the same way, and shows the Java for each.
 For a lift's home position, the magnetic switch has one real advantage over a
 touch sensor.  A touch sensor works by getting hit, every single time the lift
 comes home.  The magnetic switch only needs the magnet on the moving stage to
-pass within 10mm, so a hard stop can't break it.
+pass near it.  That lets you mount the sensor clear of the moving stage's
+contact path.  Check the actual detection range and mounting before relying
+on the home position.
 
 > **Argue it.**  `DoublyLimitedMotor` reads its limits as `TouchSensor`s
 > (19.6), and the code is written around a switch that gets pressed.  The
@@ -563,7 +578,7 @@ there.  (19.7)
 3. Why does a lift paused at the top draw so much current, and what do two
    1.5 lb constant-force springs do about a 3 lb carriage?  (19.5)
 4. What does the limit switch contribute to protecting a lift, and what does
-   `DoublyLimitedMotor` contribute?  Why is either one useless alone?  (19.6)
+   `DoublyLimitedMotor` contribute?  When must the software check again?  (19.6)
 5. A new lift's top switch was passed in as the reverse sensor.  What happens
    when the driver pushes up at the top?  (19.6)
 6. Put the zeroing steps in order from memory.  What goes wrong if the reset is

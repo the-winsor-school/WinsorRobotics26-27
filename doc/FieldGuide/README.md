@@ -40,6 +40,24 @@ doc/FieldGuide/
 
 ## Building it
 
+What's done and what's next is in [`planning/BACKLOG.md`](planning/BACKLOG.md).
+`reference/check_chapters.ps1` checks chapter structure, cross-references and
+that Java excerpts match source text (ignoring line-edge whitespace and
+allowing standalone ellipses for omissions);  labelled historical examples
+are checked against their named commits.  `reference/preview_pages.ps1` renders
+built chapters to page images for layout review.
+
+To check just a finished section from PowerShell:
+
+```powershell
+& ./doc/FieldGuide/reference/check_chapters.ps1 -Keys @('06','07','08','09','10','11')
+```
+
+The default checks every available chapter, including partial drafts that
+will report missing entries or openings.  Selected checks validate entry
+references within that selection; cross-references to the rest of the book
+still need the final whole-book review.
+
 Needs pandoc 3 and Word.
 
 ```

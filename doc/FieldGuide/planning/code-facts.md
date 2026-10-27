@@ -2,6 +2,18 @@
 
 Audited 2026-10-26 against `master` at `305fb81`.  Lessons last edited at `34c22ea` (2026-09-25).
 
+**Read section E as well.**  The continuation found further hardware-reference
+errors and a limit-switch timing limitation in `DoublyLimitedMotor`.  The
+original audit is preserved below, with those corrections added at the end.
+
+**Student-work guidance, clarified by Jason on 2026-10-26:**  this codebase
+was written entirely by students, with some recent AI assistance he has not
+reviewed.  This audit supports accurate descriptions of behavior;  its
+historical labels are not an editorial instruction to call out students'
+mistakes.  Minor bugs may be ignored.  A confirmed bug that prevents a
+feature from working gets a neutral source TODO naming the next step.
+Follow PROCESS's student-work section when using any observation below.
+
 **Conventions**
 
 - Java paths are relative to `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/`.  Lesson paths are relative to `doc/FlintLessons/`.  Line numbers are file line numbers.
@@ -3660,3 +3672,52 @@ public class BillyRapidFire extends StateMachine
 19. **`StandardTankDrive` vs `OneStickTank`:**  GS02's table puts `StandardTankDrive` with "four `DcMotor` + `IMU`";  both tank drives have two motors and no IMU.  Config names `"leftTread"` / `"rightTread"` (`StandardTankDrive.java:66-67`, `OneStickTank.java:88-89`).
 20. **Mechanical lesson 19's `DoublyLimitedMotor` snippet** (and `doc/rev-duo/linear-motion.md:88-97`) won't compile and reverses the limits;  see chapter 19.  Use `CascadeArm.java:45-61` as the real example.
 21. **Paths the lessons cite all still exist**, except the absent `BallDetectionComponent`.  Not yet created (the cluster plan asks students to make them):  `Extensions/TagCluster.java`, `OpModes/LimelightClusterProbe.java`.
+
+---
+
+## E.  Continuation findings, 2026-10-26
+
+Added by Codex while drafting and reviewing Chapters 16-20.  The original
+audit above remains a record of its checks against `305fb81`.
+
+1. **DoublyLimitedMotor checks a limit only on a call to `setPower`.**
+   `goForward()` and `goBackward()` call it once.  The component's `update()`
+   only reports telemetry.  A switch pressed after a one-time autonomous
+   command will require another check and a stop request.  The guard is not
+   continuous enforcement or an independent hardware cutoff.  Chapter 19
+   now says this;  carry it into software chapters describing the decorator,
+   autonomous verbs, state machines, and safeguards.  Following Jason's
+   student-work guidance, a neutral source TODO now records the next step
+   for stopping autonomous movement when a travel limit is reached.
+2. **Core Hex reference errors extend beyond the original audit.**
+   [REV's specifications](https://docs.revrobotics.com/duo-build/motion/motors/core-hex-motor)
+   give a 72:1 internal ratio, four counts per motor revolution, and 288 per
+   output revolution.  The local 20:1 value and physical output-encoder
+   description are wrong.  Use the published count's reference shaft.
+3. **HD Hex maximum output is 15 W in the manufacturer specification.**
+   The earlier audit correctly questioned 40 W using a simplified estimate.
+   [REV's motor page](https://docs.revrobotics.com/duo-build/motion/motors/hd-hex-motor)
+   supplies the actual published rating.  The 31.4 W lift example cannot be
+   approved for one motor on the local guide's stated reasoning.
+4. **Use exact fractions before rounding compounded ratios.**
+   From [REV's cartridge table](https://docs.revrobotics.com/rev-crossover-products/ultraplanetary/cartridge-details),
+   `(68/13)*(76/21)` is about 18.93040 and multiplying by `84/29` gives
+   54.83289.  Chapter 17 rounds these to 18.93 and 54.83.
+5. **Servo current limits are grouped.**
+   [Control Hub specifications](https://docs.revrobotics.com/duo-control/control-system-overview/control-hub-basics)
+   give 2A per servo-port pair and 5A shared across servo and auxiliary 5V
+   ports.  Local "2A total" is wrong.  Analog and digital connectors are
+   four-pin JST PH, while RS485 is three-pin.  [SPM documentation](https://docs.revrobotics.com/rev-crossover-products/servo/spm)
+   gives 15A total, 3A per output, and screw-terminal power input.
+6. **Mecanum source conflict resolved in favor of the manufacturer.**
+   [REV's setup guide](https://docs.revrobotics.com/duo-build/mecanum-drivetrain-v2/mecanum-wheel-setup-and-behavior)
+   specifies the roller X viewed from above.  The local top-O/bottom-X
+   wording and its diagram are confusing.  Chapter 18 uses the manufacturer's
+   instruction and a labeled top-view sketch.
+7. **The preview starter-bot URL is stale.**
+   The manufacturer now has a [2026-27 starter-bot page](https://docs.revrobotics.com/ftc-kickoff-concepts/home/2026-27-rev-duo-ftc-starter-bot.md).
+   Chapter 20 points there.  Historical bot summaries were checked only
+   against the local reference during this continuation.
+
+Manufacturer pages above were read on 2026-10-26.  Chapter notes hold the
+specific decisions, remaining uncertainties, and intended next checks.

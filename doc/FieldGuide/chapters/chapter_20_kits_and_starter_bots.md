@@ -44,7 +44,7 @@ drivetrain, a lift, or a Class Bot.  What it builds is a general-purpose
 mechanism.  A drivetrain kit drives the same way in any game, so one build can
 serve robot after robot.
 
-A **Kickoff Starter Bot** is a complete, competition-legal robot that REV
+A **Kickoff Starter Bot** is a complete reference robot that REV
 engineers release at the FTC Season Kickoff every year.  It's built entirely
 from REV DUO parts (Chapter 16), and it's built to do that season's game tasks.
 
@@ -72,8 +72,8 @@ that students can analyze, build, and adapt."  The kit guides lean toward
 
 *Where it lives:*  `doc/rev-duo/kits-and-starter-bots.md`
 
-The team's reference tracks five seasons of starter bots, plus a preview bot
-for 2026-27.
+The team's reference summarizes five past seasons of starter bots.  Their
+mechanisms give you starting points for studying the build guides.
 
 | Season | The starter bot's mechanisms |
 |---|---|
@@ -86,8 +86,8 @@ for 2026-27.
 Every one of these was built for a game that's over.  A cone gripper from
 POWERPLAY has no cones to grip this year.
 
-So the mechanism itself is the wrong thing to study.  Study the **pattern**:
-the way the engineers solved a problem that comes back every season.
+Study the mechanism for its **pattern**:  the way the engineers solved a
+problem that can come back in another game.
 
 - How did they mount a motor so it survives shock loads, the sudden hits a
   robot takes in a match?
@@ -110,16 +110,16 @@ wheel came back.
 The team's reference gives three rules for using a reference design.  The
 first, in its own words, is "Never copy blindly."
 
-Start with what's good about a starter bot, because it's a lot.  It works.
-REV's engineers built it, it plays the real game, and it's legal.  Building it
-would put a robot on the field fast.
+Start with what a starter bot gets right.  REV's engineers built it to play
+the real game, and its frame, its parts list, and its programming guide can get
+a team's robot running sooner.
 
 Here's the other half, also in the reference's words:  "A starter bot is built
 to be simple and accessible, not optimized for world-championship
 performance."  It's designed so that a team can build it from a guide, and so
 that it looks clear in a demonstration video.  Those are real goals, and
-they're REV's goals.  Yours are winning matches in this season's game, with
-this team's parts and skills.
+they're REV's goals.  Your design also has to fit this season's tasks,
+this team's parts, and the time available to build and test it.
 
 So treat a starter bot as a **baseline**:  the version you measure your own
 ideas against, and the floor you're trying to build above.
@@ -143,10 +143,9 @@ and asking of each one how it solved its one problem.  The question to ask is
 scoring mechanism, one at a time.  "Should we build this whole robot?" is the
 question to skip.
 
-The reason is what a real robot looks like at the end of a season.  A team's
-robot almost always mixes and matches:  a drivetrain from one idea, an intake
-from another, a lift of its own.  Decomposing gives you pieces you can keep or
-drop one at a time.
+You can combine a drivetrain from one design with an intake from another and
+a lift of your own.  Decomposing gives you pieces you can evaluate and change
+one at a time.
 
 Take the INTO THE DEEP starter bot from 20.2.  It splits into three questions.
 
@@ -195,9 +194,9 @@ autonomous verbs, and report telemetry.  Components that have to work together
 go into a **`MechAssembly`**, which coordinates them (Chapter 9).
 
 So a borrowed mechanism enters this codebase as a component, or a few
-components in an assembly.  It never arrives as "the starter bot's code."
+components in an assembly, using this team's control and reporting contracts.
 
-That holds even for a mechanism REV built and proved.  The team's software
+That applies even to a mechanism REV built and tested.  The team's software
 model is a fixed contract every mechanism honors, whichever season's starter
 bot first inspired it:  the control strategies (Chapter 8), the autonomous
 verbs (Chapter 11), and the telemetry rules (Chapter 7).  Several starter bots
@@ -298,13 +297,15 @@ mechanics.  The team's reference lists two.
 
 Be honest about the cost first.  A Class Bot takes parts and build hours, and
 REV lists it with the educational kits, apart from every season's starter bot.
-It's built to teach, and building it gets you no closer to this season's game.
+Its instructions target learning the mechanics rather than solving this
+season's scoring tasks.
 
 Here's the case for it anyway.  **Squaring a frame** means making its corners
 true right angles, so the rectangle really is a rectangle.  **Counterbalancing**
 an arm means offsetting its weight with a spring or a weight, the way 19.5
-offsets a lift's carriage.  Every competition robot needs both.  The Class Bot
-is a cheap place to learn them.
+offsets a lift's carriage.  Squaring carries over to a competition frame,
+and counterbalancing carries over to a loaded arm or lift.  A Class Bot gives
+you a place to practice both before using them in a competition mechanism.
 
 Finding a squaring mistake on a practice robot costs an afternoon.  Finding it
 on the competition drivetrain two weeks before a tournament costs a great deal
@@ -323,8 +324,10 @@ This chapter is really about a habit, for this season and every season after
 it, including the ones nobody on the team has seen yet.  When a new game comes
 out, the habit runs in four steps.
 
-1. Find this season's Kickoff Starter Bot.  For 2026-27, the team's reference
-   already lists REV's preview bot.
+1. Find this season's Kickoff Starter Bot.  For 2026-27, use
+   [REV's current starter-bot page](https://docs.revrobotics.com/ftc-kickoff-concepts/home/2026-27-rev-duo-ftc-starter-bot.md),
+   which links the build guide, parts list, and programming walkthrough.
+   The preview link in the local reference needs updating.
 2. Decompose it, mechanism by mechanism (20.4).
 3. Decide which patterns are worth keeping.  Keep ideas, and let the parts go
    (20.2, 20.3).
@@ -392,7 +395,7 @@ spring or a weight.  (20.7)
 **decomposing a design** -- splitting a finished robot into its mechanisms and
 asking of each one how it solved its one problem.  (20.4)
 
-**Kickoff Starter Bot** -- a complete, competition-legal robot REV releases at
+**Kickoff Starter Bot** -- a complete reference robot REV releases at
 each season's Kickoff, built for that season's game.  (20.1)
 
 **kit guide** -- REV's step-by-step assembly guide for one general-purpose

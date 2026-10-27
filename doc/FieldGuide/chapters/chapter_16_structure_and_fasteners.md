@@ -6,7 +6,7 @@
 
 Every mechanism on the robot hangs off a frame, and every frame this team builds comes from one system:  **REV DUO**.  This chapter covers the aluminum that makes up the frame, and the screws, nuts, and shafts that hold it together.
 
-Look here when you're choosing what to build a frame from, bolting a bracket onto extrusion, putting a shaft through bearings, or cutting a part to length.  Most of it is about doing small things the right way every time.  The team's parts reference says fastening mistakes are the number one cause of mechanical failure during FTC matches, more than any part breaking.
+Look here when you're choosing what to build a frame from, bolting a bracket onto extrusion, putting a shaft through bearings, or cutting a part to length.  Most of it is about doing small things the right way every time.  A loose bracket or a shaft that slides out stops a mechanism with every part in it still whole.
 
 This is the first chapter about building, and it assumes you've never built anything.  Have the real parts in front of you if you can:  a length of extrusion, an M3 screw, a nyloc nut, and a hex shaft.  Point at each one as you read about it.
 
@@ -28,13 +28,13 @@ This is the first chapter about building, and it assumes you've never built anyt
 REV DUO is the build system made by REV Robotics, and Winsor Robotics builds with it exclusively.  Two numbers define it.
 
 - **A 15mm grid.**  The structural pieces are 15 millimeters across, and their holes and slots are laid out to match.
-- **A 5mm hex shaft.**  Every shaft that spins something is a six-sided steel rod 5mm across, and every gear, sprocket, pulley, and wheel has a hex hole that fits it.
+- **A 5mm hex shaft.**  The shafts are six-sided steel rods 5mm across, and REV's gears, sprockets, pulleys, and wheels have hex holes that fit them.
 
-Because every part shares those two numbers, parts from opposite corners of the catalog bolt together with no adapters.  A bracket, a bearing, and a motor mount bought a year apart still line up with each other.
+Because the parts share those two numbers, a shaft or a mount from one mechanism fits the next one.  A few devices need an adapter, so check a part's hole pattern and bore before you plan around it.
 
 **M3.**  Nearly every screw on the robot is an M3.  The M means metric, and the 3 is the screw's diameter:  3 millimeters.  The threads on an M3 screw are 0.5mm apart, so the tool that cuts M3 threads into a hole is called an M3 × 0.5 tap.  REV sells M3 hex cap screws, plain M3 nuts, and M3 nyloc nuts.  16.4 and 16.5 cover how they go together.
 
-The team's parts reference opens with six "Golden Rules" that every builder is expected to know before turning a wrench.  Four of them are in this chapter, and one is in Chapter 17 (17.4).  The first one applies to every screw you'll ever tighten.
+The team's parts reference opens with six "Golden Rules" that every builder is expected to know before turning a wrench.  Five are in this chapter, and the gearbox rule is in 17.4.  The first one applies to every screw you'll ever tighten.
 
 > **Watch out.**  Snug, not stuck.  Aluminum threads strip under too much force, and so do threads in Delrin, the tough, slippery plastic REV uses for spacers and some gears.  Tighten an M3 screw until it's firmly seated, and stop there.  Forcing a screw until it refuses to turn is how threads get stripped.  On anything that shakes, use a nyloc nut or Blue Loctite (16.5).
 
@@ -145,17 +145,17 @@ Why bother with the nylon?  A robot shakes.  It drives over the field, it hits w
 
 ## 16.6  Why a hex shaft?
 
-Every shaft on a REV DUO robot is a **5mm hex shaft**:  a six-sided rod of stainless steel, 5mm across.
+The **5mm hex shaft** used throughout this build system is a six-sided rod of stainless steel, 5mm across.
 
 > **Predict.**  A round shaft is simpler to make.  So why would a whole build system standardize on six sides?
 
 The answer is torque.  **Torque** is twisting force:  how hard something is being turned (17.1).  A motor puts torque into a shaft, and the shaft has to pass it on to whatever is mounted on it.
 
-On a round shaft, a gear is held on by a **set screw**, a small screw that threads through the gear's hub and presses on the shaft at a single point.  Now suppose the motor stalls, which means something stops it turning while it's still pushing as hard as it can.  All that torque arrives at one small point, and the set screw slips.  The motor turns, and the gear sits there.
+On a round shaft, a gear is often held by a **set screw**, a small screw that threads through the gear's hub and presses on the shaft at a single point.  Now suppose the motor stalls, which means something stops it turning while it's still pushing as hard as it can.  All that torque arrives at one small point, and the set screw slips.  The motor turns, and the gear sits there.
 
-A hex shaft passes torque through all six of its flat faces.  The hole in the gear is a hexagon too, so the gear is locked to the shaft's turning.  When the shaft turns, the gear turns, however hard the mechanism stalls.
+A hex shaft passes torque through its flat faces.  The hole in a matching gear is a hexagon too, so when the shaft turns, the gear turns with it.  The shape does the work that the set screw's grip was doing.  The parts still have limits, and a big enough load can round out a bore or twist a shaft, but a gear slipping on its shaft is off the list.
 
-The second payoff is that everything fits everything.  Gears, sprockets, pulleys, compliant wheels, and encoders all have the same 5mm hex hole, so any of them goes on any shaft.
+The second payoff is reuse.  REV's gears, sprockets, pulleys, and wheels share the same 5mm hex bore, so one shaft takes any of them.  A few devices need an adapter:  the Through Bore Encoder in 19.10 uses an insert to fit this shaft.
 
 Hex shafts come in four stock lengths.
 
@@ -208,7 +208,7 @@ Sooner or later you'll need a part in a length REV doesn't sell, and extrusion a
 2. **Cut it.**  Use a horizontal bandsaw with the part clamped in its vise, or a hacksaw with a miter box.  Cut along the inside of the line.
 3. **Deburr it.**  Run a flat metal file over the fresh cut end.  Cutting leaves **burrs**, sharp little curls of metal along the edge, and filing them off is called deburring.  A burr left in a T-slot jams screw heads, and a burr on an edge slices the insulation off wires.
 
-> **Watch out.**  Cut 15mm extrusion on a bandsaw or with a hacksaw, and only those two.  Keep it away from the chop saw and the powered miter saw.  A high-speed wood blade grabs the light aluminum profile and throws it violently out of the vise.  That wrecks the piece and damages the blade, and it can badly hurt whoever is standing there.  A bandsaw or a hacksaw cuts slowly enough that the extrusion stays put in the vise.
+> **Watch out.**  Cut 15mm extrusion on a bandsaw or with a hacksaw, with the work clamped and a mentor there.  Keep it away from the chop saw and the powered miter saw.  A high-speed wood blade grabs the light aluminum profile and throws it out of the vise.  That wrecks the piece and the blade, and it can badly hurt whoever is standing there.  A bandsaw or a hacksaw cuts slowly enough that a clamped extrusion stays put.
 
 Learn the reason well enough to explain it to the next person who reaches for the chop saw.
 
@@ -218,7 +218,7 @@ Learn the reason well enough to explain it to the next person who reaches for th
 
 ## Chapter summary
 
-The frame is REV DUO:  a 15mm grid and a 5mm hex shaft, so every part lines up with every other.  Extrusion bends a little and lets you change your mind, and channel is stiff and gives every shaft a seat.  Screws go in Studs Up, brackets go ribs in, and nyloc nuts go bevel out.  A hex shaft takes any amount of twisting, so the job left is to trap it from both sides.  Every cut is made on a bandsaw or with a hacksaw, and every cut end gets deburred.
+The frame is REV DUO:  a 15mm grid and a 5mm hex shaft, so the parts line up with each other.  Extrusion lets you slide things along and change your mind, and channel is stiff and gives every shaft a seat.  Screws go in Studs Up, brackets go ribs in, and nyloc nuts go bevel out.  A gear on a hex shaft can't slip, so the job left is to trap the shaft from both sides.  Cut on a bandsaw or with a hacksaw, clamped, and deburr every cut end.
 
 The team's six Golden Rules, and where each one is explained:
 
@@ -251,7 +251,7 @@ The team's six Golden Rules, and where each one is explained:
 
 **extrusion** -- a long, square aluminum bar with a T-slot down each side, for bolting things on at any spot.  (16.2)
 
-**hex shaft** -- the six-sided, 5mm stainless steel shaft every REV DUO mechanism turns on.  (16.6)
+**hex shaft** -- the six-sided, 5mm steel shaft REV DUO mechanisms turn on.  (16.6)
 
 **M3** -- the metric screw size used all over the robot:  3mm across, with threads 0.5mm apart.  (16.1)
 
@@ -277,8 +277,8 @@ The team's six Golden Rules, and where each one is explained:
 2. Two motor faceplates both bolt to the same 16mm bolt circle.  What does that let the team do later?  (16.3)
 3. State the Studs Up rule.  Why is it the screw head that goes in the slot, and the nut that stays outside?  (16.4)
 4. A bracket on the robot sits at a slight angle, with a gap along one edge.  What's the likeliest mistake, and how do you fix it?  (16.5)
-5. Why does a hex shaft need no set screw to keep a gear from slipping, when a round shaft does?  (16.6)
-6. A hex shaft won't twist, and it still needs something to keep it from sliding.  Name two parts the team uses to do that, and say where they go on a shaft with a sprocket in the middle.  (16.7)
+5. Why does a gear on a hex shaft need no set screw to keep from slipping, when a gear on a round shaft does?  (16.6)
+6. A hex shaft turns its gear with no set screw, and it still needs something to keep it from sliding along its length.  Name two parts the team uses to stop that sliding, and say where they go on a shaft with a sprocket in the middle.  (16.7)
 7. Why does extrusion get cut on a bandsaw or with a hacksaw, and never on a chop saw?  And why deburr the cut?  (16.8)
 
 ## Where to go next
