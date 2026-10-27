@@ -11,47 +11,53 @@ import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.SpinnyIntake;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.PusherServo;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Turret;
 
+import java.util.EnumSet;
+
+import java.util.Set;
+
 public class BillyMA extends MechAssembly {
 
     public interface BillyAssemblyStrategy extends IAssemblyStrategy
     {
-        void execute(BillyMA mechAssembly, Gamepad gamepad);
+        void execute(BillyMA mechAssembly, Gamepad gamepad, Set<Part> claimed);
     }
 
+    public enum Part {
+        INTAKE,
+        PUSHER,
+        FLYWHEEL,
+        TURRET
+    }
+
+    public void requestRapidFire()
+    {
+        macros.request(BRF);
+    }
+    public void cancelMacro(String reason) { macros.cancel(reason); }
+    public String lastMacroEnd() { return macros.lastEnd(); }
+    public Set<Part> macroClaims()
+    {
+        return macros.claimed();
+    }
+    public String macroName() { return macros.activeName(); }
 
     private final SpinnyIntake intake;
     private final PusherServo ballPusher;
     private final DoubleShooter flywheel;
     private final Turret turret;
     private BillyRapidFire BRF = null;
-
-    // TODO: this field shadows the inherited `protected Telemetry telemetry` on
-    //  MechAssembly. Two fields with the same name now exist on every BillyMA: this one
-    //  gets assigned, the inherited one stays null forever. Any code written in
-    //  MechAssembly itself that touches `telemetry` would silently hit the null one.
-    //  Delete this declaration - the base class already provides the field.
-    private Telemetry telemetry;
+    private final MacroManager<Part> macros = new MacroManager<>();
     protected BillyAssemblyStrategy strategy;
 
-    // TODO: the `tel` parameter is left over from before the telemetry refactor.
-    //  Telemetry now arrives via initializeTelemetry(), which BillyRobot triggers
-    //  through initializeSubsystems(). Nothing needs it at construction time - see
-    //  CascadeArm and ExampleIntakeAssembly, whose constructors take only a HardwareMap.
-    //  Remove the parameter and update BillyRobot's call site.
-    public BillyMA(HardwareMap hardwareMap, Telemetry tel) {
+    public BillyMA(HardwareMap hardwareMap) {
         intake = new SpinnyIntake(hardwareMap, "intakeMotor",
                 (motor, gamepad) -> {
-                    // TODO: dpad_up and dpad_down are two separate if-statements, not one
-                    // if/else-if/else chain. Pressing dpad_up alone sets power to 0.75 here,
-                    // then the dpad_down check below immediately overwrites it back to 0
-                    // (since dpad_down is false, its else branch runs) - forward intake never
-                    // actually turns the motor on. Combine these into a single chain.
                     if (gamepad.dpad_up) {
-                        motor.setPower(0.75);
-                    }
-                    if (gamepad.dpad_down) {
-                        motor.setPower(-0.75);
-                    } else {
+                    motor.setPower(0.75); }
+                    else if (gamepad.dpad_down) {
+                    motor.setPower(-0.75);
+                    } 
+                    else {
                         motor.setPower(0);
                     }
                 });
@@ -59,7 +65,6 @@ public class BillyMA extends MechAssembly {
         ballPusher = new PusherServo(hardwareMap,
                 "ballPusherServo",
                 (servoR, gamepad) -> {
-                    servoR.setDirection(Servo.Direction.REVERSE);
                     if (gamepad.x) {
                         servoR.setPosition(0.8);
                     } else {
@@ -108,51 +113,17 @@ public class BillyMA extends MechAssembly {
                 (servo, telemetry) -> {
                     telemetry.addData("turret position", servo.getPower());
                 });
-        this.telemetry = tel;
 
-        // TODO: everything from here to the end of the constructor is dead - and worse,
-        //  it builds objects that are quietly broken. Each component only creates its
-        //  own autonomous-behaviors object inside initializeTelemetry(), so at this
-        //  point all four getAutonomousBehaviors() calls below return null. That means
-        //  this AutonomousBillyMA has four null fields, and the BillyRapidFire built
-        //  from it points at nothing. initializeTelemetry() re-creates both correctly a
-        //  moment later, which is the only reason this doesn't crash. Delete this block;
-        //  initializeTelemetry() is the one place that should build them.
-        auton = new AutonomousBillyMA(
-                intake.getAutonomousBehaviors(),
-                ballPusher.getAutonomousBehaviors(),
-                flywheel.getAutonomousBehaviors(),
-                turret.getAutonomousBehaviors(),
-                telemetry
-        );
-        BRF = new BillyRapidFire(auton, 3);
-        BRF.abort();
-        strategy = (mechAssembly, gamepad) -> {
-            
-            if(gamepad.a && BRF.isComplete())
-            {
-                BRF.reset(3);
-                telemetry.addLine("Start Rapid Fire");
-                telemetry.update();
-            }
-            if(!BRF.isComplete())
-            {
-                BRF.updateState();
-                return;
-            }
+        strategy = (mechAssembly, gamepad, claimed) -> {
 
-            intake.move(gamepad);
-            ballPusher.move(gamepad);
-            flywheel.move(gamepad);
-            // This line is a bug! because Turret has nothing to do with BillyRapidFire,
-            // AND it is wholly owned by LimelightAutoTarget.
-            // TODO: the turret has two uncoordinated owners at once - this manual gamepad
-            // strategy AND LimelightAutoTarget (see BillyRobot's update strategy), which
-            // runs every loop regardless of what happens here. Whichever one calls
-            // turret.move()/setPower() last in a given loop silently wins. Give the turret
-            // a real resource-ownership rule (see doc/ControlStrategyExpansionPlan.md and
-            // Flint Lessons 5 & 7) so only one strategy commands it at a time.
-            turret.move(gamepad);
+            if (!claimed.contains(Part.INTAKE))
+                intake.move(gamepad);
+            if (!claimed.contains(Part.PUSHER))
+                ballPusher.move(gamepad);
+            if (!claimed.contains(Part.FLYWHEEL))
+                flywheel.move(gamepad);
+            if (!claimed.contains(Part.TURRET))
+                turret.move(gamepad);
 
         };
     }
@@ -182,7 +153,7 @@ public class BillyMA extends MechAssembly {
     /**
      * Propagates telemetry to all four components so each can lazily create its own
      * autonomous behavior object, then assembles {@code AutonomousBillyMA} from the
-     * results. {@code BillyRapidFire} is also created here and immediately aborted so
+     * results. {@code BillyRapidFire} is also created here so
      * it is never null when {@link #giveInstructions} first runs (Susan Zuo —
      * two-phase initialization pattern; previously the constructor accepted a
      * {@code Telemetry} arg, coupling construction to telemetry lifetime).
@@ -201,7 +172,6 @@ public class BillyMA extends MechAssembly {
                 turret.getAutonomousBehaviors(),
                 telemetry);
         BRF = new BillyRapidFire(auton, 3);
-        BRF.abort();
     }
 
     @Override
@@ -219,7 +189,17 @@ public class BillyMA extends MechAssembly {
      */
     @Override
     public void giveInstructions(Gamepad gamepad) {
-       strategy.execute(this, gamepad);
+        giveInstructions(gamepad, EnumSet.noneOf(Part.class));
+    }
+
+    public void giveInstructions(Gamepad gamepad, Set<Part> robotClaims) {                     
+
+        macros.update(gamepad);     // 1. step the macro (and release it when done)  
+
+        Set<Part> claimed = EnumSet.noneOf(Part.class);
+        claimed.addAll(macros.claimed());
+        claimed.addAll(robotClaims);
+        strategy.execute(this, gamepad, claimed);
     }
 
     /**
@@ -230,11 +210,11 @@ public class BillyMA extends MechAssembly {
      */
     @Override
     public void updateTelemetry() {
-        // TODO: this method never visits any component, so none of the four
-        // mechanisms (intake, ballPusher, flywheel, turret) ever report telemetry to
-        // the driver station. Call each component's own telemetry-reporting behavior
-        // here, the same way giveInstructions() above visits every component for
-        // gamepad input (see Flint Lesson 4). CascadeArm.updateTelemetry() and
-        // ExampleIntakeAssembly.updateTelemetry() both show the shape you want.
+        telemetry.addLine("--- BillyMA ---");
+        intake.update();
+        ballPusher.update();
+        flywheel.update();
+        turret.update();
     }
+
 }

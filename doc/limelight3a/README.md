@@ -5,6 +5,7 @@ Researched on **2026-09-12**. These are locally readable reference notes, not a 
 - [Java objects and runtime behavior](java-objects.md) — start here for the Java library
 - [API reference and Java example](api.md)
 - [Java objects, JSON keys, units, and compatibility notes](data-shapes.md)
+- [Student TODO plan: aiming at BIOBUZZ AprilTag clusters](cluster-targeting-plan.md)
 
 ## Camera setup
 

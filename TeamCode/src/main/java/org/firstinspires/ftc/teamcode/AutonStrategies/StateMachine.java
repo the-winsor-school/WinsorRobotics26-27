@@ -19,15 +19,9 @@ public abstract class StateMachine {
 
 
     /* Abort the Current execution - no questions asked! */
-    // TODO: this clears currentState but leaves elapsedTime as-is. doAndWait() below
-    // uses "elapsedTime == null" as its signal that a state is just starting (that's
-    // when it actually runs the state's action). If abort() is called mid-wait
-    // (elapsedTime non-null) and the machine is later restarted via reset(), the first
-    // doAndWait state of the new run will see a stale non-null elapsedTime, skip
-    // re-running its action, and use the leftover timer instead - a state transition
-    // with no corresponding physical action. Reset elapsedTime here too.
     public void abort() {
         currentState = null;
+        elapsedTime = null;
     }
 
 

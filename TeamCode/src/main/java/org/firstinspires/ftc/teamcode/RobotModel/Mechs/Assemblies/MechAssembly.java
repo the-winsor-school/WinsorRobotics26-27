@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+import java.util.Set;
+
 /**
  * Composite of all mech components on the robot. Inheritors hold discrete
  * {@link org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.MechComponent}
@@ -54,6 +56,16 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public abstract class MechAssembly
 {
     protected interface IAssemblyStrategy { }
+    
+    public interface IMacroAssemblyStrategy<R>
+    { 
+        Set<R> claims();
+        void start();
+        void update(Gamepad gamepad);
+        boolean isComplete();
+        void cancel();
+        String name();
+    }
     protected MechAssembly.IAssemblyStrategy strategy;
 
     /**
