@@ -10,6 +10,9 @@ import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.MechAssembly;
 import java.util.EnumSet;
 import java.util.Set;
 
+//TODO: not yet tested on hardware - needs a lift and drawbridge with limit switches.
+
+
 public class CascadeStow extends StateMachine
         implements MechAssembly.IMacroAssemblyStrategy<CascadeArm.Part>
 {
