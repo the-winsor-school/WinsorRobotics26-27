@@ -216,7 +216,18 @@ Expose intention, not tuning noise.
 
 The `Robot` layer is a facade over the drive train and mech assembly.
 
-`BillyRobot` shows the expected structure:
+**First, check whether you need a robot class at all.**  If the robot is just a drive train plus, optionally, one assembly -- no robot-wide sensors, no autonomous API, no macros or assists -- skip the class and build it in the OpMode:
+
+```java
+robot = new RobotBuilder(telemetry)
+        .driveTrain(new OneStickTank(hardwareMap))
+        .mechAssembly(new ExampleIntakeAssembly(hardwareMap))   // optional
+        .build();
+```
+
+`build()` does the construction steps below for you, including `initializeSubsystems()`, and refuses to build a robot with no drive train.  This is ideal for test chassis and early prototypes.  Once the robot needs sensors, an autonomous API or its own strategy, write a class.
+
+`BillyRobot` shows the expected structure for a full robot class:
 
 1. Call `super(telemetry)` first, so `Robot` holds the reference before anything else runs.
 2. Fetch and initialize the IMU with this robot's hub orientation.  The drive train
@@ -614,6 +625,14 @@ Examples:
 - `BillyRapidFire`
 - `LimelightAutoTarget`
 - `StateMachine` + `IState`
+
+### Builder Pattern
+
+Used when an object is assembled step by step, and one final call checks the parts and builds it.
+
+Example:
+
+- `RobotBuilder` -- `.driveTrain(...)`, `.mechAssembly(...)`, then `.build()`, which rejects a robot with no drive train
 
 ### Resource Claims
 

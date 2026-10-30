@@ -4,7 +4,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.Robot;
-import org.firstinspires.ftc.teamcode.RobotModel.Robots.StandardTankRobot;
+
+import org.firstinspires.ftc.teamcode.RobotModel.Robots.RobotBuilder;
+import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Tank.StandardTankDrive;
+
 
 /**
  * The smallest complete OpMode in the project: build a Robot, then loop.
@@ -14,11 +17,17 @@ import org.firstinspires.ftc.teamcode.RobotModel.Robots.StandardTankRobot;
  * driver stops it. Everything that makes one robot different from another lives in the
  * {@code RobotModel}, not here.
  *
- * <p>To drive a different robot, change the one line that constructs it. Try swapping
- * {@link StandardTankRobot} (two sticks, one motor each) for
- * {@link org.firstinspires.ftc.teamcode.RobotModel.Robots.OneStickTankRobot}
- * (one stick, arcade-style, plus an intake assembly) — nothing else in this file changes.
+ * <p>To drive a different robot, change the one statement that builds it.  For the
+ * one-stick, arcade-style robot with an intake, build:
+ * <pre>
+ * new RobotBuilder(telemetry)
+ *         .driveTrain(new OneStickTank(hardwareMap))
+ *         .mechAssembly(new ExampleIntakeAssembly(hardwareMap))
+ *         .build();
+ * </pre>
+ * Nothing else in this file changes.
  */
+
 @TeleOp(name = "Example TeleOp (Tank)", group = "Example")
 public class ExampleTankTeleOp extends LinearOpMode
 {
@@ -27,7 +36,9 @@ public class ExampleTankTeleOp extends LinearOpMode
     @Override
     public void runOpMode() throws InterruptedException
     {
-        robot = new StandardTankRobot(hardwareMap, telemetry);
+        robot = new RobotBuilder(telemetry)
+        .driveTrain(new StandardTankDrive(hardwareMap))
+        .build();
 
         telemetry.addLine("initialized");
         telemetry.update();
