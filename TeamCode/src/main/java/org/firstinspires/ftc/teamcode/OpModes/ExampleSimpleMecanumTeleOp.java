@@ -39,9 +39,8 @@ public class ExampleSimpleMecanumTeleOp extends LinearOpMode
                 .driveTrain(new MecanumDriveBuilder(hardwareMap)
                         .leftFront(DcMotorSimple.Direction.FORWARD)
                         .leftBack(DcMotorSimple.Direction.FORWARD)
-                        
-                        .rightFront(DcMotorSimple.Direction.FORWARD)
-                        .rightBack(DcMotorSimple.Direction.FORWARD)
+                        .rightFront(DcMotorSimple.Direction.REVERSE)
+                        .rightBack(DcMotorSimple.Direction.REVERSE)
                         .imu(imu)
                         .build())
                 .build();
