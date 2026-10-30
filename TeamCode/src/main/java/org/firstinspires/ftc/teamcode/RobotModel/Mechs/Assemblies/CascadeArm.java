@@ -8,8 +8,39 @@ import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Claw;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.DoublyLimitedMotor;
 
+import java.util.Set;
+
+import org.firstinspires.ftc.teamcode.AutonStrategies.CascadeStow;
+
 public class CascadeArm extends MechAssembly
 {
+    public interface CascadeArmStrategy extends IAssemblyStrategy
+    {
+        void execute(CascadeArm mechAssembly, Gamepad gamepad, Set<Part> claimed);
+    }
+
+    public enum Part {
+        CASCADE,
+        DRAWBRIDGE,
+        CLAW
+    }
+
+    private final MacroManager<Part> macros = new MacroManager<>();
+    private CascadeStow stow = null;
+    protected CascadeArmStrategy strategy;
+
+    public void requestStow()
+    {
+        macros.request(stow);
+    }
+    public void cancelMacro(String reason) { macros.cancel(reason); }
+    public String lastMacroEnd() { return macros.lastEnd(); }
+    public Set<Part> macroClaims()
+    {
+        return macros.claimed();
+    }
+    public String macroName() { return macros.activeName(); }
+
     public class AutonomousCascadeArm extends AutonomousMechBehaviors
     {
         public final DoublyLimitedMotor.AutonomousDLMBehaviors cascade;
@@ -85,6 +116,15 @@ public class CascadeArm extends MechAssembly
                     telemetry.addData("Claw Position", servo.getPower());
                 }
         );
+
+        strategy = (mechAssembly, gamepad, claimed) -> {
+            if (!claimed.contains(Part.CASCADE))
+                cascade.move(gamepad);
+            if (!claimed.contains(Part.DRAWBRIDGE))
+                drawbridge.move(gamepad);
+            if (!claimed.contains(Part.CLAW))
+                claw.move(gamepad);
+        };
     }
 
     /**
@@ -103,13 +143,13 @@ public class CascadeArm extends MechAssembly
                 drawbridge.getAutonomousBehaviors(),
                 claw.getAutonomousBehaviors(),
                 telemetry);
+        stow = new CascadeStow(auton);
     }
 
     @Override
     public void giveInstructions(Gamepad gamepad) {
-        cascade.move(gamepad);
-        drawbridge.move(gamepad);
-        claw.move(gamepad);
+        macros.update(gamepad);
+        strategy.execute(this, gamepad, macros.claimed());
     }
 
     /**

@@ -33,6 +33,10 @@ public  class DoublyLimitedMotor extends MechComponent {
             setPower(-1);
             reportStatus("DLM: backward");
         }
+        public boolean isAtReverseLimit()
+        {
+            return !canGoReverse();
+        }
     }
 
     public interface DoublyLimitedMotorControlStrategy extends IControlStrategy{

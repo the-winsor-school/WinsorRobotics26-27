@@ -19,7 +19,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
 import java.util.Set;
-import java.util.EnumSet;
 import java.util.Collections;
 
 
@@ -62,7 +61,7 @@ public class BillyRobot extends Robot {
     public final IMU imu;
 
     public final LimelightAutoTarget targeter;
-    private IAssistRobotStrategy<BillyMA.Part> assist = null; //null = no assist on
+    private final AssistManager<BillyMA.Part> assist = new AssistManager<>();
 
     protected BillyRobotStrategy strategy;
 
@@ -131,7 +130,7 @@ public class BillyRobot extends Robot {
 
         strategy = (robot, gamepad1, gamepad2)  -> {
             if (gamepad1.yWasPressed()) {
-                if (assist == null)
+                if (!assist.isRunning())
                     startAssist(targeter);
                 else
                     stopAssist("turned off by y");
@@ -154,9 +153,7 @@ public class BillyRobot extends Robot {
 
             driveTrain.drive(gamepad1);
             mech.giveInstructions(gamepad2, assistClaims());
-            if (assist != null) {
-                assist.update(gamepad1, gamepad2);
-            }
+            assist.update(gamepad1, gamepad2);
         };
         startAssist(targeter);
     }
@@ -178,13 +175,13 @@ public class BillyRobot extends Robot {
     @Override
     public void updateTelemetry() {
         BillyMA mech = (BillyMA) mechAssembly;
-        if (assist == null)
+        if (!assist.isRunning())
             telemetry.addData("Assist", "None");
         else
-            telemetry.addData("Assist", assist.name() + " " + assist.claims());
+            telemetry.addData("Assist", assist.activeName() + " " + assist.claimed());
         telemetry.addData("Macro", mech.macroName() + " " + mech.macroClaims());
         telemetry.addData("Last macro", mech.lastMacroEnd());
-        telemetry.addData("Last assist", lastAssistEnd);
+        telemetry.addData("Last assist", assist.lastEnd());
         super.updateTelemetry();
     }
 
@@ -193,28 +190,14 @@ public class BillyRobot extends Robot {
         if (overlaps(newAssist.claims(), mech.macroClaims()))
             mech.cancelMacro("replaced by " + newAssist.name());
 
-        if (assist != null) {
-            lastAssistEnd = assist.name() + " replaced by " + newAssist.name();
-            assist.stop();
-        }
-        assist = newAssist;
-        assist.start();
+        assist.start(newAssist);
     }
 
-    private String lastAssistEnd = "None";
-
     public Set<BillyMA.Part> assistClaims() {
-        if(assist == null) {
-            return EnumSet.noneOf(BillyMA.Part.class);
-        }
-        return assist.claims();
+        return assist.claimed();
     }
 
     public void stopAssist(String reason) {
-        if (assist == null)
-            return;
-        assist.stop();
-        lastAssistEnd = assist.name() + " " + reason;
-        assist = null;
+        assist.stop(reason);
     }
 }
