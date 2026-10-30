@@ -51,10 +51,17 @@ import java.util.Set;
  */
 public abstract class Robot
 {
-
+    /**
+     * Marker interface for robot-level strategies.
+     *
+     * <p>It has no methods because each robot's strategy needs a different
+     * {@code execute(...)}: {@code BillyRobot}'s takes a {@code BillyRobot},
+     * {@code Wildbots2025}'s takes a {@code Wildbots2025}. No single method
+     * signature fits both, so each robot declares its own.
+     *
+     * <p>Example: {@link BillyRobot.BillyRobotStrategy} extends it.
+     */
     protected interface IRobotStrategy {}
-
-    protected Robot.IRobotStrategy strategy;
 
     public interface IAssistRobotStrategy<R>
     { 
@@ -96,8 +103,6 @@ public abstract class Robot
         public void reportData(String key, Object value) { telemetry.addData(key, value); }
         public void clearTelemetry() { telemetry.clear(); }
     }
-
-    protected interface IControlStrategy {  }
 
 
     /**

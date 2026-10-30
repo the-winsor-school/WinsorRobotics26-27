@@ -55,8 +55,18 @@ import java.util.Set;
  */
 public abstract class MechAssembly
 {
+    /**
+     * Marker interface for assembly-level strategies.
+     *
+     * <p>It has no methods because each assembly's strategy needs a different
+     * {@code execute(...)}: {@code BillyMA}'s takes a {@code Set<BillyMA.Part>},
+     * {@code CascadeArm}'s takes a {@code Set<CascadeArm.Part>}. No single
+     * method signature fits both, so each assembly declares its own.
+     *
+     * <p>Example: {@link BillyMA.BillyAssemblyStrategy} extends it.
+     */
     protected interface IAssemblyStrategy { }
-    
+
     public interface IMacroAssemblyStrategy<R>
     { 
         Set<R> claims();
@@ -66,7 +76,6 @@ public abstract class MechAssembly
         void cancel();
         String name();
     }
-    protected MechAssembly.IAssemblyStrategy strategy;
 
     /**
      * Autonomous-facing surface for this assembly. Provides
