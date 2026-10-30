@@ -88,20 +88,6 @@ public class BillyRobot extends Robot {
     public BillyRobot(HardwareMap hardwareMap, Telemetry telemetry, int tagID) {
         super(telemetry);
 
-        driveTrain = new MecanumDrive(hardwareMap, new MecanumDrive.OrientationConfiguration(
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.REVERSE,
-                DcMotorSimple.Direction.FORWARD)
-        );
-
-        mechAssembly = new BillyMA(hardwareMap);
-
-        limelight = hardwareMap.get(Limelight3A.class, "limelight");
-        limelight.setPollRateHz(100);
-        limelight.start();
-        limelight.pipelineSwitch(0);
-
         imu = hardwareMap.get(IMU.class, "imu");
 
         IMU.Parameters parameters = new IMU.Parameters(
@@ -114,7 +100,18 @@ public class BillyRobot extends Robot {
         imu.initialize(parameters);
         imu.resetYaw();
 
-        
+        driveTrain = new MecanumDrive(hardwareMap, new MecanumDrive.OrientationConfiguration(
+                DcMotorSimple.Direction.FORWARD,
+                DcMotorSimple.Direction.FORWARD,
+                DcMotorSimple.Direction.REVERSE,
+                DcMotorSimple.Direction.FORWARD), imu);
+
+        mechAssembly = new BillyMA(hardwareMap);
+
+        limelight = hardwareMap.get(Limelight3A.class, "limelight");
+        limelight.setPollRateHz(100);
+        limelight.start();
+        limelight.pipelineSwitch(0);
 
         initializeSubsystems();
 

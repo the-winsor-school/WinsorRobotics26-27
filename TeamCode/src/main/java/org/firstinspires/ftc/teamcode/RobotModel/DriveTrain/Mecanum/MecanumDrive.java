@@ -144,7 +144,8 @@ public class MecanumDrive extends DriveTrain
 
     public MecanumDrive(
             HardwareMap hardwareMap,
-            OrientationConfiguration orientationConfiguration)
+            OrientationConfiguration orientationConfiguration, 
+            IMU imu)
     {
         LB = hardwareMap.get(DcMotor.class, "lb");
         LB.setDirection(orientationConfiguration.getLb());
@@ -155,23 +156,7 @@ public class MecanumDrive extends DriveTrain
         RF = hardwareMap.get(DcMotor.class, "rf");
         RF.setDirection(orientationConfiguration.getRf());
 
-        // TODO: this grabs the IMU but never calls imu.initialize(...) with a
-        //  RevHubOrientationOnRobot, so it has no idea how the hub is mounted. BillyRobot
-        //  happens to initialize the same device separately in its own constructor, so
-        //  Billy works by luck - but Wildbots2025 also uses a MecanumDrive and never
-        //  initializes the IMU anywhere, so its turnToAngle() and yaw telemetry read from
-        //  an unconfigured device. Two classes own the same piece of hardware, and only
-        //  one of them knows it needs setup.
-        //
-        //  The IMU is a ROBOT-level sensor. It reports the whole chassis's heading, not
-        //  this drive train's state, and more than one subsystem can want it. So the fix
-        //  follows the pattern BillyRobot already uses for the Limelight: the Robot
-        //  fetches it, initializes it once with the hub orientation for THAT robot, and
-        //  hands it down to whoever needs it. Take the IMU as a constructor parameter
-        //  here rather than fetching it - the same way OrientationConfiguration already
-        //  passes in what varies per robot - and delete this lookup. One owner, one
-        //  initialize, and Wildbots2025 stops reading garbage.
-        imu = hardwareMap.get(IMU.class, "imu");
+        this.imu = imu;
     }
 
     // Lazily initialized — created in initializeTelemetry once telemetry is

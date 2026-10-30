@@ -22,11 +22,9 @@ import java.util.Set;
  *       it, and passes it into {@code LimelightAutoTarget} alongside the turret's
  *       autonomous behaviors. Neither the turret nor the assembly knows a camera
  *       exists.</li>
- *   <li>The <b>IMU</b> is the pattern done wrong, for now. It reports the whole
- *       chassis's heading, so it belongs here - but {@code MecanumDrive} fetches
- *       its own copy and {@code BillyRobot} fetches and initializes another, and
- *       {@code Wildbots2025} initializes none at all. See the TODO in
- *       {@code MecanumDrive}'s constructor.</li>
+ *   <li>The <b>IMU</b> now follows the same pattern as the Limelight. Each
+ *       robot fetches it, initializes it once with its own hub orientation,
+ *       and passes it into {@code MecanumDrive}.</li>
  * </ul>
  *
  * <p>The sorting rule runs all the way down the model: a sensor guiding one
