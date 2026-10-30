@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.OpModes;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.BillyRobot;
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.Robot;
 
+@Disabled   // temporarily hidden while testing Example TeleOp (Simple Mecanum)
 @TeleOp(name="BillyRED")
 public class BillyTeleOpRED extends LinearOpMode {
 

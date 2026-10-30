@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.RobotModel.Robots.RobotBuilder;
  * {@link MecanumDriveBuilder} working together:  the drive builder names each wheel's
  * direction, and the robot builder wraps the finished drive train in a robot.
  */
-@TeleOp(name = "Example TeleOp (Simple Mecanum)", group = "Example")
+@TeleOp(name = "Example TeleOp (Simple Mecanum)")
 public class ExampleSimpleMecanumTeleOp extends LinearOpMode
 {
     Robot robot;
