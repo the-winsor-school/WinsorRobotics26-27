@@ -52,7 +52,7 @@ public void update(Gamepad gamepad1, Gamepad gamepad2) {
 }
 ```
 
-This fixes the *default* runtime orchestration for every robot:  driver gamepad goes to the drive train, mech gamepad goes to the mech assembly.  The simple robots (`StandardTankRobot`, `OneStickTankRobot`) use it exactly as written.  Concrete robots are expected to build *around* this where they can.  Here is how `BillyRobot` first did it:
+This fixes the *default* runtime orchestration for every robot:  driver gamepad goes to the drive train, mech gamepad goes to the mech assembly.  Simple robots use it exactly as written:  `StandardTankRobot` and `OneStickTankRobot`, and any robot `RobotBuilder` builds from just a drive train and an optional assembly (see `ExampleTankTeleOp`) -- none of them needs its own `update()`.  Concrete robots are expected to build *around* this where they can.  Here is how `BillyRobot` first did it:
 
 ```java
 // BillyRobot, before the strategy-system rework

@@ -35,7 +35,9 @@ injected as a strategy lambda:
 
 **Robots** -- `BillyRobot` (the full example:  mecanum + Limelight + IMU + auton surface),
 `Wildbots2025` (mecanum + cascade arm), `StandardTankRobot` and `OneStickTankRobot`
-(minimal, teleop-only).
+(minimal, teleop-only).  *Later in the season, `RobotBuilder` was added, which builds any
+simple robot like these from a drive train and an optional assembly.  The two tank robot
+classes were kept, but `ExampleTankTeleOp` now uses the builder.*
 
 **Autonomous** -- `StateMachine` and its `doAndWait` helper, `BillyRapidFire` and
 `LimelightAutoTarget` as the two worked state machines, `ExampleAutonomousStrategies`
@@ -66,7 +68,8 @@ All of it is still in `WinsorRobotics25-26` under `Archive/`, with full git hist
   `BasicApriltagTracking`, and `lime.java` (an unmodified vendor sample that had been
   copied into `TeamCode`).  (`Archive/Deprecated/`)
 - **`AppleRobot`** -- an incomplete practice robot; a drive train and a to-do comment.
-  `StandardTankRobot` covers the same "minimal robot" ground and actually works.
+  `StandardTankRobot` covers the same "minimal robot" ground and actually works.  (So
+  does `RobotBuilder`, added later.)
 - **`BillyExampleAuton`** -- its constructor calls `new BillyRobot(hardwareMap, ...)`
   before `hardwareMap` exists, and a field initializer dereferences `robot` before it's
   assigned.  It would `NullPointerException` on init.  `ExampleStateMachineAuton` (below)

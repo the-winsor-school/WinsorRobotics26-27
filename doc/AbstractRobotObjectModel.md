@@ -311,7 +311,7 @@ driveTrain.drive(gamepad1);
 mechAssembly.giveInstructions(gamepad2);
 ```
 
-Simple robots (`StandardTankRobot`, `OneStickTankRobot`) use it unchanged.  It was designed as a template method:  subclasses were expected to extend around it, and Billy originally did exactly that -- it called `super.update(gamepad1, gamepad2)` and then layered robot-wide target tracking on top.
+Simple robots -- `StandardTankRobot`, `OneStickTankRobot`, and any robot `RobotBuilder` makes from a drive train and an optional assembly -- use it unchanged.  It was designed as a template method:  subclasses were expected to extend around it, and Billy originally did exactly that -- it called `super.update(gamepad1, gamepad2)` and then layered robot-wide target tracking on top.
 
 That stopped fitting once the strategy system gained **resource claims** (see section 7 below).  Billy now has to tell its assembly which parts the running assist owns, with `mech.giveInstructions(gamepad2, assistClaims())`, and the base algorithm has no way to pass that along.  So `BillyRobot` and `Wildbots2025` now override `update()` completely, running their own strategy lambda:
 
