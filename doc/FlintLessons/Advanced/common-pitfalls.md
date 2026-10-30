@@ -17,6 +17,13 @@ detail that gives the pattern away before you've traced the whole bug.  Drill th
 
 ## Content to teach
 
+**Most of these examples have since been fixed.**  They were real bugs in this codebase, and
+most were fixed in commit `1a6809a` (the IMU one in `a198b53`).  That makes them better
+teaching material, not worse:  the student can study the bug, predict the fix, then check
+their answer with `git show`.  Two are still open and marked with `TODO`s:
+`turnToAngle`'s blocking loop (category 1) and the mecanum turn signs (category 2).  The
+"tells" are what matter, and they don't care whether a given example is fixed.
+
 ### 1.  The loop must never stop
 
 **The tell:**  a `while` loop, or any call, paired with `Thread.sleep` or
@@ -46,9 +53,11 @@ for as long as the turn takes.  It is marked with a `TODO` for exactly this, wit
 pointer back to `doAndWait` from Lesson 9 as the pattern that exists specifically so a timed
 action doesn't have to own the whole loop.
 
-`Turret.AutonomousTurretBehaviors.turnCW`/`turnCCW` is the same shape at a smaller scale:
+`Turret.AutonomousTurretBehaviors.turnCW`/`turnCCW` used to be the same shape at a smaller
+scale:
 
 ```java
+// before the fix in 1a6809a
 public void turnCCW() { servo.setPower(1); reportStatus("Turret: CCW"); ThreadExtensions.TrySleep(100); }
 ```
 
@@ -56,7 +65,8 @@ One sleep, 100ms, doesn't look dangerous in isolation.  Ask the student to conne
 something they already know from **Advanced/State Machines**:  `LimelightAutoTarget` calls
 into this turret's behaviors *every single teleop loop*.  A 100ms stall that seemed small
 in isolation becomes a 100ms stall on the entire robot's drive train, ten times a second,
-for as long as target-assist is active.
+for as long as target-assist is active.  The fix was simply deleting the sleeps:  the verb
+now sets the power and returns, and the caller decides how long to wait.
 
 The rule to leave them with:  anything invoked from inside a per-tick update path --
 `giveInstructions`, `updateState`, a strategy lambda -- must return quickly every time.  A
@@ -69,13 +79,13 @@ inside code the main loop calls repeatedly.
 verb, written at different times by (maybe) different people, commanding the same piece of
 hardware with no shared constant or shared code path between them.
 
-`SpinnyIntake` is the clean example.  Its teleop strategy, written in `BillyMA`:
+`SpinnyIntake` was the clean example.  Its teleop strategy, written in `BillyMA`:
 
 ```java
 if (gamepad.dpad_up) { motor.setPower(0.75); }   // "intake": positive
 ```
 
-Its autonomous verb, written in `SpinnyIntake` itself:
+Its autonomous verb, written in `SpinnyIntake` itself, before the fix in `1a6809a`:
 
 ```java
 public void startIntake() {
@@ -84,11 +94,13 @@ public void startIntake() {
 }
 ```
 
-Same gesture, opposite sign.  Nothing enforces agreement between these two, because they
+Same gesture, opposite sign.  Nothing enforced agreement between these two, because they
 are two independent code paths into the same `DcMotor` -- one reached through a gamepad
-lambda, one reached through an autonomous behaviors call.  An autonomous routine that calls
-`startIntake()` expecting "the same thing dpad_up does" gets the opposite direction.  This
-one is marked with its own `TODO` right where `startIntake()` is defined.
+lambda, one reached through an autonomous behaviors call.  An autonomous routine that
+called `startIntake()` expecting "the same thing dpad_up does" got the opposite direction.
+The fix flipped `startIntake()` to `+1` (and `reverseIntake()` to `-1`) to match teleop.
+Ask the student what would stop this from happening *again*:  nothing yet -- the two paths
+still don't share a constant, so the shape is still there, waiting for the next edit.
 
 `MecanumDrive` has the same shape at the whole-drive-train level:  compare the sign
 conventions in `AutonomousMecanumDrive.drive(x, y, t)` against the teleop `drive(Gamepad)`
@@ -110,29 +122,40 @@ has both.
 device, or otherwise reaches the same object, and only one of those call sites does the
 setup that device actually needs.
 
-`IMU` in `MecanumDrive`'s constructor is the clean example:
+`IMU` in `MecanumDrive`'s constructor was the clean example, until it was fixed in commit
+`a198b53`.  Before the fix, the constructor did this:
 
 ```java
-// TODO: this grabs the IMU but never calls imu.initialize(...) with a
-//  RevHubOrientationOnRobot, so it has no idea how the hub is mounted. BillyRobot
-//  happens to initialize the same device separately in its own constructor, so
-//  Billy works by luck - but Wildbots2025 also uses a MecanumDrive and never
-//  initializes the IMU anywhere, so its turnToAngle() and yaw telemetry read from
-//  an unconfigured device.
-imu = hardwareMap.get(IMU.class, "imu");
+// MecanumDrive constructor, before the fix
+imu = hardwareMap.get(IMU.class, "imu");   // fetched, never initialized
 ```
 
-Ask the student the question this TODO answers for you:  "Why does Billy work at all, if
-this line never initializes the IMU?"  Because `BillyRobot`, a completely different class,
-happens to fetch and initialize the same-named `"imu"` device separately.  `MecanumDrive`
-never checks that this has happened;  it just assumes whoever built the robot did it
-somewhere.  Nothing enforces that assumption, so the very next robot built on
-`MecanumDrive` -- `Wildbots2025` -- inherits the same drive train code and gets an
-uninitialized IMU, silently, because nobody re-did the lucky part.
+Ask the student:  "Why did Billy work at all, if this line never initialized the IMU?"
+Because `BillyRobot`, a completely different class, happened to fetch and initialize the
+same-named `"imu"` device separately.  `MecanumDrive` never checked that this had
+happened;  it just assumed whoever built the robot did it somewhere.  Nothing enforced
+that assumption, so the very next robot built on `MecanumDrive` -- `Wildbots2025` --
+inherited the same drive train code and got an uninitialized IMU, silently, because nobody
+re-did the lucky part.
+
+The fix removed the second `hardwareMap.get` entirely.  The robot now fetches and
+initializes the IMU once, then hands it down:
+
+```java
+// BillyRobot constructor, after the fix
+imu = hardwareMap.get(IMU.class, "imu");
+imu.initialize(parameters);
+imu.resetYaw();
+
+driveTrain = new MecanumDrive(hardwareMap, orientation, imu);
+```
+
+Have the student run `git show a198b53` and find the line where `Wildbots2025` gained the
+setup it never had.
 
 This is the same shape, one layer down, as the turret problem in **Advanced/Control
 Ownership and Resource Locking** -- there, two classes both *command* one resource with no
-declared owner;  here, two classes both *assume* one resource has been *set up* by the
+declared owner;  here, two classes both *assumed* one resource had been *set up* by the
 other.  Point the student at that lesson rather than re-deriving the ownership discussion
 here;  the tell to leave them with is narrower and purely mechanical:  whenever you see a
 second `hardwareMap.get(SameType.class, "sameName")` anywhere in the codebase, go find the
@@ -143,7 +166,7 @@ first one and check whether initialization went with it, or got left behind.
 **The tell:**  two separate `if` statements (not one `if`/`else if`/`else` chain) that each
 assign the same variable based on different conditions.
 
-`BillyMA`'s intake teleop strategy is the clean example:
+`BillyMA`'s intake teleop strategy, before the fix in `1a6809a`, is the clean example:
 
 ```java
 if (gamepad.dpad_up) {
@@ -159,12 +182,14 @@ if (gamepad.dpad_down) {
 Walk the student through pressing `dpad_up` alone, one line at a time.  Line 1:
 `dpad_up` is true, `motor.setPower(0.75)` runs.  Line 2:  this is a *new, independent* `if`
 statement -- `dpad_down` is false, so its `else` branch runs, and `motor.setPower(0)`
-overwrites the value the first block just set.  The forward intake gesture can never
-actually turn the motor on, and the bug is invisible from reading either block alone --
+overwrites the value the first block just set.  The forward intake gesture could never
+properly turn the motor on, and the bug is invisible from reading either block alone --
 you only see it by noticing that both blocks touch `motor`, in sequence, unconditionally
-with respect to each other.
+with respect to each other.  (On the real robot the motor didn't sit still, either:  it
+got `0.75` then `0` every loop, so it pulsed weakly instead of running.)
 
-Ask the student to state the general rule, then check it against the fix:  when two
+Ask the student to state the general rule, then check it against the fix in `1a6809a`,
+which joined the two blocks with `else if`:  when two
 conditions are meant to be mutually exclusive settings of the same target, they must be
 arms of *one* `if`/`else if`/`else` chain, not two separate `if` statements that each get a
 full, unconditional say over the same variable.
@@ -175,7 +200,7 @@ full, unconditional say over the same variable.
 `null`, an empty result, or an out-of-range sentinel, with no check before the next line
 uses the result -- especially when that call happens from inside a per-tick path.
 
-`LimelightExtensions.tryGetFiducial` is the clean example:
+`LimelightExtensions.tryGetFiducial`, before the fix in `1a6809a`, is the clean example:
 
 ```java
 public static LLResultTypes.FiducialResult tryGetFiducial(
@@ -199,8 +224,20 @@ then?"  Guide them to the gap:  `getLatestResult()` itself can return `null` -- 
 and nothing here checks for that *before* calling `.getFiducialResults()` on it.  That's a
 different, uncaught failure a line earlier than the one this method was clearly written to
 handle.  And because `LimelightAutoTarget.lookForTag()` calls this every single teleop
-loop, that one unguarded null doesn't just fail one lookup -- it throws all the way out and
-crashes the entire OpMode.
+loop, that one unguarded null didn't just fail one lookup -- it threw all the way out and
+crashed the entire OpMode.
+
+The fix checks at the boundary, exactly where the rule below says to:
+
+```java
+LLResult result = limelight.getLatestResult();
+if (result == null)
+    return null;
+
+return result
+    .getFiducialResults()
+    ...
+```
 
 The rule:  a `null` your own method returns on purpose is not the only `null` in the
 picture.  Anything you call *into*, especially vendor or SDK code, can hand back an absent
@@ -208,6 +245,9 @@ or sentinel result of its own, and that has to be checked at the boundary where 
 it, not assumed away because your own contract already accounts for a different `null`.
 
 ## Guided practice
+
+Both exercises below use code as it was *before* commit `1a6809a`, which fixed both bugs.
+Let the student find each bug first, then have them check their fix against the commit.
 
 Give the student `PusherServo`'s two autonomous verbs cold, without the comment above them,
 and ask them to find the bug themselves using category 2's tell:
@@ -223,15 +263,16 @@ public void retractPusher() {
 }
 ```
 
-Then show them that only `setPosition(double)`, a *third* method on this same class, ever
-calls `servoR.setDirection(Servo.Direction.REVERSE)` -- and that method is the one the
-*teleop* strategy calls, never the two above.  Ask:  "If an autonomous routine calls
+Then show them that, back then, only `setPosition(double)`, a *third* method on this same
+class, ever called `servoR.setDirection(Servo.Direction.REVERSE)` -- and that method is the
+one the *teleop* strategy calls, never the two above.  Ask:  "If an autonomous routine calls
 `pushBalls()` before `move()` has ever run once, what direction is this servo in?"  Guide
 them to the answer:  hardware-default `FORWARD`, because nothing set `REVERSE` yet -- so the
 `0.8` and `0.0` values, tuned assuming `REVERSE`, land in the wrong physical position.  Ask
 which category this is, precisely:  it's category 2 with a twist -- the two paths don't just
 disagree on a sign, one of them silently depends on setup work the *other* path happens to
-do first.
+do first.  The fix moved `setDirection(REVERSE)` into `PusherServo`'s constructor, so it
+runs once, before *either* path can.
 
 Then hand them `LimelightAutoTarget.rotateCW` and `rotateCCW` side by side and ask them to
 find the asymmetry themselves, using the same tell:
@@ -259,7 +300,7 @@ Have them compare the sign of `power` in the default branch (`1` in both) agains
 the proportional branch computes as `tx` grows large in each direction, and connect it back
 to the failure:  a tag far to one side drives the turret at full power *away* from center
 in one of these two methods, and since `tx` only grows as the turret turns the wrong way,
-it never recovers.
+it never recovers.  The fix changed `rotateCW`'s default to `-1`, so both branches agree.
 
 Finally, give them this snippet, unseen, and ask them to name which of the five categories
 it belongs to before explaining the bug:

@@ -100,10 +100,10 @@ Control Hub, and calls the result a **botpose**.  From the SDK's own Limelight s
 Pose3D botpose = result.getBotpose();
 ```
 
-Ask the student to connect this back to `BillyRobot`:  Billy already builds a `Limelight3A`
-*and* an unused `AprilTagProcessor`, both marked with `TODO`s in Getting Started 4.  Either
-one is already capable of a full field pose.  Neither is ever asked for one -- `BillyRobot`
-only ever reads `tx`.  This is genuinely unused capability sitting in hardware the team
+Ask the student to connect this back to `BillyRobot`:  Billy already builds a `Limelight3A`,
+which is already capable of a full field pose.  It is never asked for one -- `BillyRobot`
+only ever reads `tx`.  (Billy also used to build an unused `AprilTagProcessor`;  Getting
+Started 4 covers why it was removed.)  This is genuinely unused capability sitting in hardware the team
 already owns, not a hypothetical upgrade requiring new parts.
 
 ### MegaTag1, MegaTag2, and why a camera would ever want your IMU

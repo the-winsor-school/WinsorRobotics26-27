@@ -140,10 +140,12 @@ The IMU lives inside the Control Hub, so the SDK has to be told how the hub is *
 -- that is what `RevHubOrientationOnRobot` describes, and getting it wrong silently gives
 you rotations about the wrong axis.
 
-This one carries a live bug worth showing.  `MecanumDrive` fetches the IMU and stops
-there, leaving `initialize(...)` to somebody else;  `BillyRobot` initializes the same
-device separately.  Billy works by luck, and `Wildbots2025` reads an unconfigured IMU.
-It is marked with a `TODO`.  Ask the student who they think *should* own the IMU, and why.
+This one carried a bug worth showing, even though it is fixed now.  `MecanumDrive` used to
+fetch the IMU and stop there, leaving `initialize(...)` to somebody else;  `BillyRobot`
+initialized the same device separately.  Billy worked by luck, and `Wildbots2025` read an
+unconfigured IMU.  Ask the student who they think *should* own the IMU, and why, before
+showing them the fix:  each robot now fetches and initializes the IMU once, then passes it
+into `MecanumDrive`'s constructor.  `git show a198b53` shows the before and after.
 
 **"What can I see?"**  Two routes, and Getting Started lesson 4 is entirely about them:
 

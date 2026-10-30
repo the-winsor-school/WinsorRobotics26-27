@@ -302,25 +302,30 @@ This has real consequences:
 - control mappings stay close to subsystem composition
 - different robots can reuse the same component with different behavior policies
 
-## 4.  The base `Robot` class acts like a template method
+## 4.  The base `Robot` class provides a default main loop
 
-`Robot.update(...)` is a fixed algorithm:
+`Robot.update(...)` is a default algorithm:
 
 ```java
 driveTrain.drive(gamepad1);
 mechAssembly.giveInstructions(gamepad2);
 ```
 
-Concrete robots usually do not replace that algorithm.  They extend around it.
+Simple robots (`StandardTankRobot`, `OneStickTankRobot`) use it unchanged.  It was designed as a template method:  subclasses were expected to extend around it, and Billy originally did exactly that -- it called `super.update(gamepad1, gamepad2)` and then layered robot-wide target tracking on top.
 
-Billy shows this clearly:
+That stopped fitting once the strategy system gained **resource claims** (see section 7 below).  Billy now has to tell its assembly which parts the running assist owns, with `mech.giveInstructions(gamepad2, assistClaims())`, and the base algorithm has no way to pass that along.  So `BillyRobot` and `Wildbots2025` now override `update()` completely, running their own strategy lambda:
 
-- it calls `super.update(gamepad1, gamepad2)`
-- then it layers in robot-wide target tracking
+```java
+// BillyRobot
+strategy = (robot, gamepad1, gamepad2) -> {
+    // ...buttons that start and stop macros and assists...
+    driveTrain.drive(gamepad1);
+    mech.giveInstructions(gamepad2, assistClaims());
+    assist.update(gamepad1, gamepad2);
+};
+```
 
-So the base class defines how the main loop is structured, while subclasses optionally add cross-cutting behavior.
-
-That is a template-method style design even though the class name does not say so explicitly.
+The drive-then-mech *order* is still the same everywhere -- it is just written in more than one place now.  If the base loop ever needs a new step, every robot that overrides `update()` has to add it too.  A protected hook in `Robot` (for example, one that returns the parts currently claimed) would let robots go back to extending the base loop instead of replacing it.
 
 ## 5.  Autonomous behavior is exposed through nested behavior objects
 
@@ -367,6 +372,31 @@ Upward flow:
 
 That is why the autonomous wrappers matter so much.  They gather low-level capability into higher-level command surfaces.
 
+## 7.  Higher-level strategies declare which parts they claim
+
+Section 3's strategies control one component each.  Two kinds of strategy sit above them and can take over several parts at once:
+
+- a **macro** belongs to an assembly and runs a multi-step sequence on demand, then finishes on its own -- `BillyRapidFire`, `CascadeStow`
+- an **assist** belongs to a robot and runs alongside the driver until turned off -- `LimelightAutoTarget`
+
+Both declare their resources up front:
+
+```java
+// MechAssembly.IMacroAssemblyStrategy and Robot.IAssistRobotStrategy both require:
+Set<R> claims();
+```
+
+`BillyRapidFire` claims the pusher and flywheel;  `LimelightAutoTarget` claims the turret.  Each assembly describes its parts with an enum (`BillyMA.Part`, `CascadeArm.Part`), and its manual strategy skips any part that is currently claimed -- by its own macro, or by an assist passed down from the robot.
+
+Two small manager classes do the bookkeeping, so strategies never coordinate with each other directly:
+
+- `MacroManager` (per assembly) runs at most one macro, ignores new requests while one is running, and releases it when it completes
+- `AssistManager` (per robot) runs at most one assist;  starting a new one replaces the old one
+
+When a macro and an assist claim the same part, the robot cancels the older one -- the newest request wins.  Every macro and assist also has a `name()`, and each manager remembers why the last one ended, so the driver station can show who owns what.
+
+The empty `IAssemblyStrategy` and `IRobotStrategy` interfaces are only markers;  the contracts that matter are `IMacroAssemblyStrategy` and `IAssistRobotStrategy`.  `doc/ControlStrategyExpansionPlan.md` explains why the design looks this way.
+
 ## Abstract Contracts vs Concrete Choices
 
 The table below shows how the model separates "must do" from "how it is done."
@@ -400,8 +430,10 @@ Shared obligations:
 
 Different choices:
 
-- Billy adds Limelight, IMU setup, and turret targeting
-- Wildbots2025 is simpler and only wires drive plus arm assembly
+- Billy adds a Limelight, the turret-targeting assist, and its own IMU setup
+- Wildbots2025 is simpler:  drive, arm assembly, and its own IMU setup
+
+Both fetch and initialize the IMU themselves and pass it into `MecanumDrive`, because hub orientation differs per robot.
 
 So both satisfy the same abstract role, but at different levels of complexity.
 
@@ -440,8 +472,8 @@ Shared obligations:
 
 Different choices:
 
-- Billy coordinates shooter-related mechanisms and includes rapid fire sequencing
-- CascadeArm coordinates arm motion, drawbridge motion, and claw control
+- Billy coordinates shooter-related mechanisms and runs the `BillyRapidFire` macro
+- CascadeArm coordinates arm motion, drawbridge motion, and claw control, and runs the `CascadeStow` macro
 
 Again, the assembly contract stays constant while subsystem content changes.
 

@@ -21,13 +21,12 @@ Components don't invent their own strategies.  The `MechAssembly` that owns them
 intake = new SpinnyIntake(hardwareMap, "intakeMotor",
     (motor, gamepad) -> {
         if (gamepad.dpad_up) { motor.setPower(0.75); }
-        if (gamepad.dpad_down) { motor.setPower(-0.75); }
+        else if (gamepad.dpad_down) { motor.setPower(-0.75); }
         else { motor.setPower(0); }
     });
 
 ballPusher = new PusherServo(hardwareMap, "ballPusherServo",
     (servoR, gamepad) -> {
-        servoR.setDirection(Servo.Direction.REVERSE);
         if (gamepad.x) { servoR.setPosition(0.8); } else { servoR.setPosition(0.0); }
     },
     (servo, telemetry) -> { telemetry.addData("pusher position", servo.getPosition()); });
@@ -41,7 +40,7 @@ turret = new Turret(hardwareMap, "turretServo",
     (servo, telemetry) -> { telemetry.addData("turret position", servo.getPower()); });
 ```
 
-**Heads-up for the tutor:**  two of those three lambdas contain real, known bugs, and they're marked with `TODO` comments in the actual source.  The intake lambda uses two separate `if` statements where a single `if`/`else if`/`else` chain belongs, so pressing `dpad_up` sets power to 0.75 and the very next statement resets it to 0 -- forward intake leaves the motor at zero.  And the pusher lambda calls `setDirection(...)` inside the strategy, which means the direction is only ever set if the *teleop* path runs first.  Present these for their **shape**, and say plainly that the bodies are buggy.  They are excellent material if the student spots one -- let them, and follow it -- but this lesson is about the *pattern* the three share, and the bodies are incidental to it.
+**Heads-up for the tutor:**  two of those three lambdas used to contain real bugs, both fixed in commit `1a6809a`.  The intake lambda used two separate `if` statements where a single `if`/`else if`/`else` chain belongs, so pressing `dpad_up` set power to 0.75 and the very next statement reset it to 0.  And the pusher lambda called `setDirection(...)` inside the strategy, which meant the direction was only ever set if the *teleop* path ran first;  it now lives in `PusherServo`'s constructor, so it is set once no matter who uses the servo.  That second fix is itself a small lesson in this pattern:  *setup the hardware always needs* belongs to the component, and only *button mapping* belongs in the lambda.  If the student is curious, `git show 1a6809a` shows both before-and-afters, but this lesson is about the *pattern* the three share, and the bodies are incidental to it.
 
 Point out to the student:  `SpinnyIntake`, `PusherServo`, and `Turret` are three completely different component classes, each with their own strategy interface -- but the *pattern* is identical every time.  Hardware knowledge lives in the component.  Button-mapping knowledge lives in the lambda the assembly supplies.  Each stays clear of the other's internals.
 

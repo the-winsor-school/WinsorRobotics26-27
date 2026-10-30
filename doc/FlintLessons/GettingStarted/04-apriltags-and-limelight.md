@@ -117,7 +117,7 @@ and overshooting;  slow, and possibly still crawling when the match ends.)
 ### The team's wrapper
 
 The team has a helper, so callers skip digging through raw results by hand.  From
-`Extensions/LimelightExtensions.java`:
+`Extensions/LimelightExtensions.java`, as it was first written:
 
 ```java
 public static LLResultTypes.FiducialResult tryGetFiducial(Limelight3A limelight, int tagId)
@@ -149,8 +149,18 @@ The chain calls `.getFiducialResults()` on `null`, and the OpMode dies with a
 the whole OpMode goes down, mid-match.  The Limelight can also drop out briefly while
 running, so `start()` having been called is a weaker guarantee than it looks.
 
-This is marked with a `TODO` in the file.  The SDK sample shows the fix in its own shape:
-guard with `result != null && result.isValid()` before touching the contents.
+This was a real bug, since fixed in commit `1a6809a`.  The SDK sample shows the fix in its
+own shape:  guard with `result != null && result.isValid()` before touching the contents.
+The team's fix does the first half of that:
+
+```java
+LLResult result = limelight.getLatestResult();
+if (result == null)
+    return null;
+```
+
+Ask the student whether the `isValid()` half is still worth adding, and what an invalid
+result would mean for the turret.
 
 ### Where this lands:  `LimelightAutoTarget`
 
@@ -181,8 +191,8 @@ and holds.
 
 Two things worth pointing out.  First, this code commands the turret through
 `turret.setPower(...)` and `turret.reportData(...)` -- the turret's *autonomous behaviors*
-object, rather than the raw servo.  Second, there is a second real bug here.  Put
-`rotateCCW` and `rotateCW` side by side:
+object, rather than the raw servo.  Second, there was a second real bug here.  Put
+`rotateCCW` and `rotateCW` side by side, as they were before commit `1a6809a`:
 
 ```java
 public IState rotateCCW(double tx) { double power = 1; if (tx > -10) power = -tx / 10.0; ... }
@@ -190,9 +200,10 @@ public IState rotateCW(double tx)  { double power = 1; if (tx <  10) power = -tx
 ```
 
 Ask the student to trace a tag far off to one side through `rotateCW`.  The default power
-is `+1`, but the proportional branch produces a *negative* power for that same case, so
-the two disagree about direction.  Far off target, the turret drives full speed the wrong
-way, `tx` grows, and the turret keeps driving further off.  Marked with a `TODO`.
+was `+1`, but the proportional branch produces a *negative* power for that same case, so
+the two disagreed about direction.  Far off target, the turret drove full speed the wrong
+way, `tx` grew, and the turret kept driving further off.  The fix changed `rotateCW`'s
+default to `-1`.  Have the student check that both branches now agree.
 
 ### The webcam path, and Billy's unfinished half
 
@@ -225,21 +236,21 @@ The `metadata != null` check matters:  metadata arrives only for tags in the sea
 library, and `ftcPose` needs the tag's real-world size to mean anything.  An unknown tag
 still reports an ID.
 
-**Now look at `BillyRobot`:**
+**Billy used to have half of this.**  `BillyRobot` once contained:
 
 ```java
 aprilTag = AprilTagProcessor.easyCreateWithDefaults();
 ```
 
-That line exists.  A `VisionPortal` to feed it is missing, so the inherited
-`visionPortal` field stays null.  So the processor sits there, correctly built,
-receiving no camera frames, producing no detections, forever.  It is marked with a `TODO`,
-and the fix is one line -- the `easyCreateWithDefaults` call above.
+But no `VisionPortal` was ever built to feed it, so the processor sat there, correctly
+built, receiving no camera frames, producing no detections, forever.
 
 Ask the student the design question rather than the code question:  *should* Billy have
 both?  The Limelight already tracks tags for the turret.  Is a second AprilTag pipeline
 earning its Control Hub CPU, or should that processor be deleted?  There is a defensible
-answer either way, and saying so honestly is the point.
+answer either way.  The team chose to delete it (commit `1a6809a`), so the Limelight is
+Billy's only vision.  Ask the student what Billy would gain by adding a webcam pipeline
+back, and what it would cost.
 
 ### Practical things that bite
 
@@ -279,7 +290,8 @@ Have the student explain, from memory:
 - what `tx` measures, and what value means "pointed right at it"
 - why the code scales power down as `tx` approaches zero, and what full power all the way
   in would do
-- one of the two open bugs in the tracking code, and what goes wrong on the field
+- one of the two bugs the tracking code used to have, what went wrong on the field, and
+  how it was fixed
 
 If they can describe the `null` crash or the `rotateCW` sign flip in their own words, they
 have read this code properly, which is the whole goal of the Getting Started track.

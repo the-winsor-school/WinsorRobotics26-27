@@ -167,9 +167,12 @@ Billy shows an important assembly-level behavior:
 
 - `BillyRapidFire` is not a single component behavior.
 - It coordinates flywheel and pusher actions together.
-- `BillyMA` also blocks manual control while rapid fire is running.
+- It is a **macro**:  it implements `MechAssembly.IMacroAssemblyStrategy` and declares the parts it needs with `claims()` (the pusher and flywheel).
+- `BillyMA` runs it through a `MacroManager`, and its manual strategy skips any claimed part -- so while rapid fire runs, the driver keeps the intake and turret.
 
 That is exactly what assemblies are for:  coordinating multiple components and resolving control conflicts.
+
+If your assembly needs a macro, copy this shape:  a `Part` enum, a `MacroManager<Part>`, and a manual strategy that takes the claimed set and checks it before moving each part.  `CascadeArm` and its `CascadeStow` macro are a second, smaller example.
 
 ### 7.  Expose autonomous behaviors as verbs, not hardware
 
@@ -216,23 +219,28 @@ The `Robot` layer is a facade over the drive train and mech assembly.
 `BillyRobot` shows the expected structure:
 
 1. Call `super(telemetry)` first, so `Robot` holds the reference before anything else runs.
-2. Create the drive train.
-3. Create the mech assembly.
-4. Create robot-wide sensors and helpers.
-5. Call `initializeSubsystems()`.  This propagates telemetry into the drive train and the
+2. Fetch and initialize the IMU with this robot's hub orientation.  The drive train
+   needs it, so it has to exist before step 3.
+3. Create the drive train, passing in the IMU.
+4. Create the mech assembly.
+5. Create the other robot-wide sensors and helpers (for Billy, the Limelight).
+6. Call `initializeSubsystems()`.  This propagates telemetry into the drive train and the
    mech assembly, which in turn propagate it to every component -- the moment the whole
    tree becomes usable.
-6. Build a typed `AutonomousRobot` object from the subsystems' autonomous surfaces.
-   This must come *after* step 5;  until then, `getAutonomousDriving()` and
+7. Build a typed `AutonomousRobot` object from the subsystems' autonomous surfaces.
+   This must come *after* step 6;  until then, `getAutonomousDriving()` and
    `getAutonomousBehaviors()` still return `null`.
-7. Override `update()` only if the robot has robot-wide background behavior.
+8. Override `update()` only if the robot has robot-wide behavior -- buttons that start
+   and stop macros or assists, or claims to pass down.
 
-Billy uses `update()` for one robot-level behavior:
+Billy overrides `update()` to run its robot-level strategy:
 
-- manual drive and manual mech control happen in `super.update(gamepad1, gamepad2)`
-- automatic turret tracking happens afterward through `targeter.updateState()`
+- buttons start and stop the rapid-fire macro and the auto-aim assist, and gamepad1 `b` stops both
+- the drive train gets gamepad1, as usual
+- the mech assembly gets gamepad2 *plus the parts the assist currently claims*, through `mech.giveInstructions(gamepad2, assistClaims())`, so manual control leaves the turret alone while auto-aim runs
+- the assist (`LimelightAutoTarget`, run through an `AssistManager`) advances one step
 
-This is the right place for cross-cutting coordination that does not belong to a single component or assembly.
+This is the right place for cross-cutting coordination that does not belong to a single component or assembly.  A robot with no macros or assists can skip step 8 and use `Robot`'s default `update()`.
 
 ### 9.  Keep TeleOp OpModes thin
 
@@ -305,8 +313,8 @@ The phrase "control strategy" means different things at different layers.  Stude
 |---|---|---|---|
 | Component strategy | `Gamepad` buttons/sticks | actuator power or position | intake, pusher, turret lambdas in `BillyMA` |
 | Component safety logic | sensor state | filtered actuator command | `DoublyLimitedMotor.setPower()` |
-| Assembly strategy | multiple components + operator state | coordinated subsystem behavior | `BillyRapidFire` |
-| Robot strategy | multiple subsystems + robot sensors | whole-robot assistance behavior | `LimelightAutoTarget` in `BillyRobot.update()` |
+| Assembly strategy (macro) | multiple components + operator state | coordinated subsystem behavior, claiming the parts it uses | `BillyRapidFire` via `MacroManager` |
+| Robot strategy (assist) | multiple subsystems + robot sensors | whole-robot assistance behavior, claiming the parts it uses | `LimelightAutoTarget` via `AssistManager` |
 | Autonomous strategy | field objectives + time + sensors | complete routine sequencing | `ExampleStateMachineAuton` |
 
 Use this as a sorting rule:
@@ -469,9 +477,17 @@ public class NewRobot extends Robot {
     public NewRobot(HardwareMap hardwareMap, Telemetry telemetry) {
         super(telemetry);                    // Robot stores the reference first
 
-        driveTrain = new MecanumDrive(hardwareMap, /* orientation config */);
+        // The robot owns the IMU:  fetch it, set THIS robot's hub orientation once,
+        // then hand it to the drive train.
+        IMU imu = hardwareMap.get(IMU.class, "imu");
+        imu.initialize(new IMU.Parameters(new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,   // check on your robot
+                RevHubOrientationOnRobot.UsbFacingDirection.UP)));
+        imu.resetYaw();
+
+        driveTrain = new MecanumDrive(hardwareMap, /* orientation config */, imu);
         mechAssembly = new NewRobotMA(hardwareMap);
-        // ...robot-wide sensors (IMU, Limelight) go here...
+        // ...other robot-wide sensors (e.g. a Limelight) go here...
 
         initializeSubsystems();              // propagates telemetry down both branches
 
@@ -587,6 +603,7 @@ Examples:
 - `Telemetry`
 - target tag ID
 - drivetrain orientation configuration
+- the IMU, which each robot initializes and passes into `MecanumDrive`
 
 ### State Machine Pattern
 
@@ -597,6 +614,16 @@ Examples:
 - `BillyRapidFire`
 - `LimelightAutoTarget`
 - `StateMachine` + `IState`
+
+### Resource Claims
+
+Used when more than one strategy could command the same part.  Each macro or assist declares the parts it needs with `claims()`;  a manager runs it, and the manual strategy skips any claimed part.
+
+Examples:
+
+- `BillyRapidFire` claims the pusher and flywheel, through `MacroManager`
+- `LimelightAutoTarget` claims the turret, through `AssistManager`
+- `CascadeStow` claims the cascade and drawbridge
 
 ## Student Checklist
 

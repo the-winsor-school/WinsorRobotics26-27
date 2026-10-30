@@ -177,7 +177,7 @@ else {
 One chain, so exactly one branch runs.  Press right bumper and the servo gets `-1`, and
 Java skips the rest.
 
-Now show them the intake, a few lines up in the same file:
+Now show them how the intake, a few lines up in the same file, used to be written:
 
 ```java
 if (gamepad.dpad_up) {
@@ -195,9 +195,27 @@ this line by line.  What power does the motor end up with?"**
 
 Let them work it out.  The first `if` sets `0.75`.  Then a *separate* `if` starts:
 `dpad_down` is false, so its `else` runs and sets the power back to `0`.  The intake
-stays at zero.  This is a real, currently-open bug in the team's code, marked with
-a `TODO` right above it, and it is the classic beginner mistake:  two separate `if`
-statements where one chain belongs.
+stays at zero.  This was a real bug in the team's code, and it is the classic beginner
+mistake:  two separate `if` statements where one chain belongs.
+
+It has since been fixed (commit `1a6809a`) by turning the two `if`s into one chain, the
+same shape as the turret above:
+
+```java
+if (gamepad.dpad_up) {
+    motor.setPower(0.75);
+}
+else if (gamepad.dpad_down) {
+    motor.setPower(-0.75);
+}
+else {
+    motor.setPower(0);
+}
+```
+
+On the real robot, the old version did not quite sit at zero.  The motor got `0.75` and
+then `0` dozens of times a second, so it pulsed weakly.  A good reminder that a bug can
+look "sort of working" on hardware.
 
 This is the payoff of the whole lesson.  A student who can find that bug can read Java.
 
@@ -227,7 +245,8 @@ and know it means "code handed over as a value."
 beginning `TODO` marks a known, still-open defect, described in place with enough context
 to work out the fix.  Searching the project for `TODO` is a real way to find work.
 
-Tell the student that the bug they found above is one of eighteen.
+Tell the student that the bug they found above was one of these, and that about a dozen are
+still open.  Fixing one is a good first contribution.
 
 ## Guided practice
 

@@ -10,6 +10,27 @@ This is a design document only.
 
 Instead, it defines the reasoning, desired architecture, and migration plan for a future refactor.
 
+## Implementation Status (October 2026)
+
+**This plan has been built.**  The rest of this document is kept as written, as a record of the reasoning;  where it says "today" or "currently," it describes the code *before* the refactor.  For how the code works now, see [AbstractRobotObjectModel.md](./AbstractRobotObjectModel.md) section 7 and the Flint lessons 5, 7 and **Advanced/Control Ownership**.
+
+| Phase | Status | What was built | Commits |
+|---|---|---|---|
+| 1. Vocabulary | Done | default / assist / macro / mode, used across the docs and Flint lessons | -- |
+| 2. Assembly strategy | Done | `MechAssembly.IMacroAssemblyStrategy` (`claims`, `start`, `update`, `isComplete`, `cancel`, `name`) and `MacroManager`;  `BillyRapidFire` became a macro claiming the pusher and flywheel | Oct 2, e.g. `560fdda` |
+| 3. Robot strategy | Done | `Robot.IAssistRobotStrategy` (`claims`, `start`, `update`, `stop`, `name`);  `LimelightAutoTarget` became an assist claiming the turret;  `BillyRobot` passes assist claims down to `BillyMA` | `54433ed` to `30acb74` |
+| 4. Selection and arbitration | Done | overlapping claims cancel the older strategy ("newest request wins");  `stopAll()` on gamepad1 `b` | `c34c7c8`, `ef6697b` |
+| 5. Telemetry | Done | driver station shows the running macro and assist, what each claims, and why the last one ended | `962e265` |
+| 6. Expand robot-by-robot | Done | `AssistManager` extracted from `BillyRobot`;  `CascadeArm` got parts, a `MacroManager` and the `CascadeStow` macro;  `Wildbots2025` wired to it | `a8f6309` |
+
+Where the build is **smaller than this plan** -- on purpose, following the "Risks and Tradeoffs" section:
+
+- Each manager holds **one** strategy at a time.  There is no priority scheduler and no lifecycle-state machine beyond start, update, complete or cancel/stop.
+- Arbitration is a single rule:  if claims overlap, the newest request wins.  Safety beats everything through `stopAll()`.
+- **Mode** strategies and drive-train-level assists were not built;  nothing needs one yet.
+- `CascadeStow` has not been tested on hardware (the Wildbots2025 arm no longer exists).
+- `BillyRobot` and `Wildbots2025` now override `Robot.update()` completely, because the base loop has no way to pass claims down.  A hook in `Robot` could restore the template-method shape.
+
 Reference classes:
 
 - [MechComponent](../TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RobotModel/Mechs/Components/MechComponent.java)
@@ -19,6 +40,9 @@ Reference classes:
 - [BillyRapidFire](../TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonStrategies/BillyRapidFire.java)
 - [LimelightAutoTarget](../TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonStrategies/LimelightAutoTarget.java)
 - [StateMachine](../TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonStrategies/StateMachine.java)
+- [MacroManager](../TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RobotModel/Mechs/Assemblies/MacroManager.java) (built in Phase 2)
+- [AssistManager](../TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RobotModel/Robots/AssistManager.java) (built in Phase 6)
+- [CascadeStow](../TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonStrategies/CascadeStow.java) (built in Phase 6)
 
 Related architecture guides:
 
@@ -483,6 +507,8 @@ It is not a good candidate for a single large rewrite.
 
 ### Phase 1:  Define the vocabulary
 
+**Status:** done.  See Implementation Status at the top.
+
 Document the intended strategy categories and their roles:
 
 - component strategy
@@ -496,6 +522,8 @@ Goal:
 - make future design conversations consistent before changing architecture
 
 ### Phase 2:  Formalize assembly-level strategy as a concept
+
+**Status:** done -- `IMacroAssemblyStrategy` and `MacroManager`.  See Implementation Status at the top.
 
 Introduce a standard architectural place for:
 
@@ -513,6 +541,8 @@ Primary migration candidate:
 
 ### Phase 3:  Formalize robot-level strategy as a concept
 
+**Status:** done -- `IAssistRobotStrategy`, with claims passed from `BillyRobot` to `BillyMA`.  See Implementation Status at the top.
+
 Introduce a standard architectural place for:
 
 - robot-wide assist behaviors
@@ -529,6 +559,8 @@ Primary migration candidate:
 
 ### Phase 4:  Introduce runtime selection and arbitration
 
+**Status:** done -- newest request wins on overlapping claims;  `stopAll()`.  See Implementation Status at the top.
+
 Once the strategy layers exist, add a standard selection model:
 
 - default selection
@@ -542,6 +574,8 @@ Goal:
 
 ### Phase 5:  Standardize telemetry and observability
 
+**Status:** done -- active strategy, claims and end reason on the driver station.  (Lifecycle state is shown only as running or not.)  See Implementation Status at the top.
+
 Strategies should report status in a consistent way:
 
 - active strategy name
@@ -554,6 +588,8 @@ Goal:
 - make strategy-driven behavior debuggable during driver practice and competition
 
 ### Phase 6:  Expand robot-by-robot
+
+**Status:** done for Billy and Wildbots2025 -- `AssistManager`, `CascadeArm` macros, `CascadeStow` (untested on hardware).  Drive-train-level assists not built.  See Implementation Status at the top.
 
 Only after the architectural pattern is stable should it be applied more widely:
 

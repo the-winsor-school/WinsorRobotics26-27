@@ -193,8 +193,9 @@ Ask:  "If you get the sign of x wrong, what does the turret do?"  It aims at a p
 mirrored to the wrong side of the tag.  With one tag visible, that can mean 13 inches off
 target, and the code looks perfectly reasonable when you read it.  That's why *Task 3* is a
 bench test before any math.  Move a printed tag right, up and away, and write down what
-changes.  Tie this to the existing `TODO` in `LimelightAutoTarget.rotateCW`.  This codebase
-already has one real bug from a guessed sign.  The student shouldn't add a second.
+changes.  Tie this to the old `LimelightAutoTarget.rotateCW` bug (fixed in commit `1a6809a`).
+This codebase has already had one real bug from a guessed sign.  The student shouldn't add
+a second.
 
 ### Combining tags, and knowing which cluster a tag belongs to
 

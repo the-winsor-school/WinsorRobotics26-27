@@ -5,9 +5,11 @@ platform) as the configuration for one session.  They are addressed to the tutor
 than to the student:  "Ask the student...", "Have them explain...".  Paste one file, hand
 the student the chat, and the tutor runs that lesson.
 
-All of them teach *this repository's actual code*, including its open bugs.  Where a
-lesson walks a student into a defect, that defect is real and is marked with a `TODO` in
-the source.  Search the project for `TODO` to see all eighteen.
+All of them teach *this repository's actual code*, including its bugs.  Where a lesson
+walks a student into a defect, that defect is real.  If it is still open, it is marked
+with a `TODO` in the source;  if it has since been fixed, the lesson says so and names the
+commit, so the student can compare their fix with `git show`.  Search the project for
+`TODO` to see the ones still open.
 
 ## Getting Started - for absolute beginners
 
@@ -82,7 +84,7 @@ These are written for humans to read directly, rather than as tutor prompts.
 - [AbstractRobotObjectModel.md](../AbstractRobotObjectModel.md) -- the architecture, stated as a rule set
 - [TelemetryContract.md](../TelemetryContract.md) -- the two telemetry rules and why they exist
 - [NewRobotDesignWorkflow.md](../NewRobotDesignWorkflow.md) -- the build order and templates for a new robot
-- [ControlStrategyExpansionPlan.md](../ControlStrategyExpansionPlan.md) -- a design proposal for the unfinished half of the strategy system
+- [ControlStrategyExpansionPlan.md](../ControlStrategyExpansionPlan.md) -- the design proposal behind the macro/assist strategy system (now built;  see Advanced/Control Ownership)
 - [Migration-2026-27.md](../Migration-2026-27.md) -- what carried over from last season, and what stayed behind
 - [limelight3a/README.md](../limelight3a/README.md) -- verified Limelight 3A Java reference (methods, types, gotchas), checked against the exact SDK version this repo builds against
 

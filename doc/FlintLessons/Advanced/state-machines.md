@@ -11,7 +11,9 @@ This lesson is not part of the main ten-lesson sequence and has no fixed slot --
 first of an open-ended "Advanced" set that goes deeper into machinery the main sequence
 only introduces.  Where Lesson 9 taught what one state machine *is*, this lesson is about
 what happens once a robot has **more than one running at once**:  how they coexist, how
-they get restarted safely, and two real, marked bugs that only show up at that scale.
+they get restarted safely, and two real bugs that only showed up at that scale.  Both bugs
+have since been fixed -- by students on this team -- which makes them ideal to study:  the
+student can find each bug, propose a fix, then compare it with the real commit.
 
 ## Content to teach
 
@@ -19,40 +21,36 @@ they get restarted safely, and two real, marked bugs that only show up at that s
 
 Put both of these in front of the student side by side.
 
-`BillyMA`'s strategy lambda drives `BillyRapidFire`:
+`BillyMA` runs `BillyRapidFire` through a `MacroManager`:
 
 ```java
-strategy = (mechAssembly, gamepad) -> {
-    if(gamepad.a && BRF.isComplete()) {
-        BRF.reset(3);
-    }
-    if(!BRF.isComplete()) {
-        BRF.updateState();
-        return;
-    }
-    intake.move(gamepad);
-    ballPusher.move(gamepad);
-    flywheel.move(gamepad);
-    turret.move(gamepad);
-};
+public void requestRapidFire() {
+    macros.request(BRF);
+}
+
+public void giveInstructions(Gamepad gamepad, Set<Part> robotClaims) {
+    macros.update(gamepad);     // steps BRF, and releases it when it completes
+    // ...then runs the manual strategy on every part nobody has claimed...
+}
 ```
 
-`BillyRobot`'s strategy lambda, completely separately, drives `LimelightAutoTarget`:
+`BillyRobot`, completely separately, runs `LimelightAutoTarget` through an `AssistManager`:
 
 ```java
 strategy = (robot, gamepad1, gamepad2) -> {
-    super.update(gamepad1, gamepad2);
-    if(!targeter.isComplete())
-        targeter.updateState();
+    // ...buttons...
+    driveTrain.drive(gamepad1);
+    mech.giveInstructions(gamepad2, assistClaims());
+    assist.update(gamepad1, gamepad2);   // steps the targeter
 };
 ```
 
 Ask the student directly:  "These two `StateMachine` objects, `BRF` and `targeter` -- do
 they know about each other?  Does either one ever call into the other?"  The answer is no,
-and that is the point.  `BillyMA` owns and ticks `BRF`;  `BillyRobot` owns and ticks
-`targeter`.  Each is advanced once per loop by whatever object owns it, at whatever layer
-that object lives at.  Nothing coordinates them except the fact that both loops run inside
-the same OpMode tick.
+and that is the point.  `BillyMA` owns `BRF`;  `BillyRobot` owns `targeter`.  Each is
+advanced once per loop by its owner's manager, at whatever layer that owner lives at.  The
+only thing connecting them is a set of *claimed parts* passed from the robot down to the
+assembly -- the machines themselves stay independent.
 
 This is how this codebase does "multiple things happening at once":  not one big state
 machine with nested regions, but **several independent `StateMachine` instances, each
@@ -94,42 +92,47 @@ reason this codebase composes multiple whole `StateMachine` objects (`BRF`, `tar
 instead of building one machine with parallel regions:  the timer mechanism itself only
 supports one timed wait in flight per instance.
 
-### Restart safety:  construct-abort-idle, then reset
+### Restart safety:  idle until started, and one at a time
 
-`BillyMA.initializeTelemetry` does something that looks strange out of context:
+`BillyMA.initializeTelemetry` builds rapid fire once, and leaves it there:
 
 ```java
 BRF = new BillyRapidFire(auton, 3);
-BRF.abort();
 ```
 
-Ask why you'd build a state machine and immediately kill it.  Walk them to the answer:
-`BillyRapidFire`'s constructor sets `currentState = startShooter()` -- if this object is
-going to exist as a field before anyone is ready to fire, it needs to sit **idle**
-(`isComplete() == true`) until something deliberately starts it.  `abort()` is the move
-that gets a freshly-built machine into that idle state.  This is the same two-phase-init
-idea from Lesson 6 (build now, activate later), applied to a state machine instead of a
-telemetry reference.
+Ask why this object can safely exist long before anyone fires.  Walk them to the answer:
+`BillyRapidFire`'s constructor only stores its fields -- it never sets `currentState` -- so
+a freshly-built machine is **idle** (`isComplete() == true`) until something deliberately
+starts it.  Starting is a separate step, `start()`, which calls `reset(shotsPerRun)`.  This
+is the same two-phase idea from Lesson 6 (build now, activate later), applied to a state
+machine.  (An earlier version set `currentState` in the constructor and then had to call
+`BRF.abort()` right after building it, just to make it sit idle.  Ask the student which
+version is easier to get right, and why.)
 
-Then show the actual re-entry point, and make them read the guard on it carefully:
+Then show the actual re-entry point -- `MacroManager.request` -- and make them read its
+first line carefully:
 
 ```java
-if(gamepad.a && BRF.isComplete()) {
-    BRF.reset(3);
+public void request(MechAssembly.IMacroAssemblyStrategy<R> macro)
+{
+    if (active != null) return;   // something's already running, so ignore this request
+    active = macro;
+    active.start();
 }
 ```
 
-Ask:  "Why does this check `isComplete()` before allowing a restart, instead of just
-resetting on every `gamepad.a` press?"  Walk them to the failure mode if that guard were
-removed:  pressing `a` in the middle of an in-progress rapid-fire sequence would yank
-`currentState` back to `startShooter()` mid-cycle, abandoning whatever the flywheel/pusher
-were doing without ever running `stopShooter()`.  The guard is what makes `reset()` safe to
-wire to a single button instead of a press-and-release pair.
+Ask:  "Why does this refuse a new request while a macro is running, instead of just
+restarting on every `a` press?"  Walk them to the failure mode if that guard were removed:
+pressing `a` in the middle of an in-progress rapid-fire sequence would yank `currentState`
+back to `startShooter()` mid-cycle, abandoning whatever the flywheel and pusher were doing
+without ever running `stopShooter()`.  The guard is what makes `start()` safe to wire to a
+single button.  (The first version put this same guard -- `gamepad.a && BRF.isComplete()` --
+inside `BillyMA`'s strategy lambda.  Moving it into the manager means every future macro
+gets it for free.)
 
-### The bug in `abort()` itself
+### The bug that was in `abort()`
 
-This one is marked with a `TODO` in `StateMachine.java` -- have the student open the file
-and read it before you explain it.
+`StateMachine.abort()` used to look like this:
 
 ```java
 public void abort() {
@@ -137,8 +140,8 @@ public void abort() {
 }
 ```
 
-`abort()` clears `currentState`, but it does **not** touch `elapsedTime`.  Walk the student
-through the exact sequence that breaks:
+`abort()` cleared `currentState`, but it did **not** touch `elapsedTime`.  Walk the student
+through the exact sequence that broke:
 
 1. `BRF` is mid-sequence, inside `fire()`'s `doAndWait` -- `elapsedTime` is a live,
    non-null timer that started when `fire()` began.
@@ -154,60 +157,73 @@ through the exact sequence that breaks:
 
 Ask the student to state the failure in one sentence:  a state transition happened with no
 corresponding physical action.  The robot's state machine says the flywheel spun up;  the
-flywheel never moved.  Then ask them to propose the fix directly from the `TODO` comment's
-description, without you supplying it:  `abort()` needs to null out `elapsedTime` too, so a
-future `reset()` always starts clean.  This is a good moment to note that the bug exists at
-all *because* `elapsedTime` is shared machine-wide state (previous section) rather than
-being scoped to the one state that owns a given wait -- the two issues come from the same
-design decision.
+flywheel never moved.  Then ask them to propose the fix themselves, before showing them the
+real one (commit `e89bec0`, made by a student on this team):
+
+```java
+public void abort() {
+    currentState = null;
+    elapsedTime = null;
+}
+```
+
+This bug matters more now than when it was written, because cancelling is now a normal
+action:  gamepad2 `b` cancels rapid fire, gamepad1 `b` stops everything, and
+`BillyRapidFire.cancel()` calls `abort()` every time.  Note too that the bug existed at all
+*because* `elapsedTime` is shared machine-wide state (previous section) rather than being
+scoped to the one state that owns a given wait -- the two issues come from the same design
+decision.
 
 ### Resource contention:  two owners, one servo
 
-This is a different flavor of bug -- not inside one state machine, but between the
-non-state-machine gamepad path and a state machine that both reach the same hardware.
-`BillyMA`'s strategy calls `turret.move(gamepad)` unconditionally at the bottom of every
-tick that isn't mid-`BRF`.  `BillyRobot`'s strategy calls `targeter.updateState()` every
-single tick, and `targeter` is `LimelightAutoTarget`, whose `rotateCW`/`rotateCCW`/
-`stopTurret` states all call straight into the same `Turret`.
+This is a different flavor of problem -- not inside one state machine, but between the
+gamepad path and a state machine that both reach the same hardware.  In the first version,
+`BillyMA`'s strategy called `turret.move(gamepad)` on every tick that wasn't mid-`BRF`,
+while `BillyRobot` called `targeter.updateState()` every tick -- and `targeter` is
+`LimelightAutoTarget`, whose `rotateCW`/`rotateCCW`/`stopTurret` states all call straight
+into the same `Turret`.
 
-Ask the student:  "In one robot loop tick, both of these can run.  Which one wins?"  There
-is no arbitration -- whichever call happens to execute later in that tick's code path is
-the one whose `servo.setPower(...)` sticks, and the other's command is silently discarded.
-This is marked with a `TODO` in `BillyMA.java`.  The lesson to draw:  a `StateMachine`
-advancing correctly, in isolation, guarantees nothing about a hardware resource it doesn't
-exclusively own.  Ownership of a servo or motor has to be a designed rule (whose job is it
-to decide, this tick, whether the driver or the targeter gets the turret?), not an accident
-of call order.  Point them at the `TODO`'s suggestion -- a real ownership rule, along the
-lines already sketched in `doc/ControlStrategyExpansionPlan.md` -- without going through
-that document line by line;  it's out of scope here.
+Ask the student:  "In one robot loop tick, both of these could run.  Which one won?"  There
+was no arbitration -- whichever call happened later in that tick's code path was the one
+whose `servo.setPower(...)` stuck, and the other's command was silently discarded.  The
+lesson to draw:  a `StateMachine` advancing correctly, in isolation, guarantees nothing
+about a hardware resource it doesn't exclusively own.  Ownership has to be a designed rule,
+not an accident of call order.
+
+That rule now exists:  `LimelightAutoTarget.claims()` returns the turret, `BillyRobot` passes
+those claims down, and `BillyMA` skips `turret.move(gamepad)` while the turret is claimed.
+**Advanced/Control Ownership and Resource Locking** covers that design in depth -- point
+the student there rather than re-deriving it here.
 
 ## Guided practice
 
-Ask the student to trace `BillyMA`'s strategy lambda for three consecutive ticks by hand:
-tick 1, `gamepad.a` is pressed and `BRF.isComplete()` is `true`;  tick 2, `gamepad.a` is
-still held down and `BRF` is now mid-sequence;  tick 3, `gamepad.a` is released.  For each
-tick, have them state whether `reset(3)` runs, whether `updateState()` runs, and whether
-`turret.move(gamepad)` runs.  (Tick 1:  reset fires, then `updateState` on the very same
-tick advances the freshly-reset machine one step, `turret.move` does not run.  Tick 2:  no
-reset -- the guard's `isComplete()` half is now false -- `updateState` runs,
-`turret.move` does not run.  Tick 3:  same as tick 2, `gamepad.a` no longer matters because
-`BRF` still isn't complete.)
+Ask the student to trace three consecutive ticks by hand, starting with rapid fire idle and
+auto-aim on:  tick 1, gamepad2 `a` is pressed;  tick 2, `a` is still held down;  tick 3, `a`
+is released.  For each tick, have them state whether `BRF.start()` runs, whether
+`BRF.updateState()` runs, and which of `ballPusher.move`, `flywheel.move` and `turret.move`
+run.  (Tick 1:  `aWasPressed()` is true, so `requestRapidFire()` -> `request()` ->
+`start()` resets the machine;  then `giveInstructions` steps it once with `updateState()`;
+the pusher and flywheel are claimed by `BRF` and the turret by auto-aim, so none of the
+three `move` calls run -- only the intake's does.  Tick 2:  `aWasPressed()` only fires on
+the press itself, so no request happens -- and even if it did, `request()` would ignore it
+because `BRF` is active;  `updateState()` runs;  same `move` calls skipped.  Tick 3:  same as
+tick 2.)
 
-Then give them a variant of the `abort()` bug to diagnose cold:  "Suppose `retract()`'s
-`doAndWait` is the one running when `abort()` gets called, instead of `fire()`'s.  Does the
-bug still happen, and does it matter which state was active when `abort()` was called?"
-Guide them to see it doesn't matter which state -- `elapsedTime` is one field shared by
-every `doAndWait` call in the whole machine, so whichever state is live at `abort()` time
-leaves behind the same kind of stale timer for whichever state runs first after `reset()`.
+Then give them a variant of the `abort()` bug to diagnose, using the old code:  "Suppose
+`retract()`'s `doAndWait` is the one running when `abort()` gets called, instead of
+`fire()`'s.  Does the bug still happen, and does it matter which state was active?"  Guide
+them to see it doesn't matter which state -- `elapsedTime` was one field shared by every
+`doAndWait` call in the whole machine, so whichever state was live at `abort()` time left
+behind the same kind of stale timer for whichever state ran first after `reset()`.
 
 ## Wrap-up check
 
-Have the student explain, without notes, why `BillyMA` builds `BillyRapidFire` and then
-immediately calls `abort()` on it in the same method.
+Have the student explain, without notes, why `BillyMA` can build `BillyRapidFire` long
+before anyone fires, and what makes it sit idle until then.
 
-Then have them narrate the exact sequence of method calls that turns a mid-sequence
-`abort()` into a flywheel that never spins up on the next run, ending with which single
-line in `StateMachine.java` would fix it.
+Then have them narrate the exact sequence of method calls that used to turn a mid-sequence
+`abort()` into a flywheel that never spins up on the next run, ending with the single line
+that fixed it in `StateMachine.java`.
 
 Finally, ask them to state in one sentence why this robot uses two separate `StateMachine`
 objects (`BRF` and `targeter`) rather than one combined machine, tying the answer back to

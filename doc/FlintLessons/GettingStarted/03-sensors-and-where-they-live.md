@@ -141,7 +141,8 @@ that owns both.
 That is also the fix for the 2200ms guess from earlier.  `BillyRapidFire` could wait on a
 real signal.
 
-**Robot level -- one example done right, one done wrong.**  Both are instructive.
+**Robot level -- one example done right, one that was done wrong and then fixed.**  Both
+are instructive.
 
 Done right:  `BillyRobot` owns the **Limelight**.  It is a camera looking at the field,
 so it describes the robot's situation rather than any mechanism's state, and the turret
@@ -149,14 +150,17 @@ is only one of the things that might want it.  `BillyRobot` fetches it, configur
 passes it into `LimelightAutoTarget` along with the turret's autonomous behaviors.  The
 `Turret` class itself has no idea a camera exists.
 
-Done wrong:  the **IMU**.  It reports the whole chassis's heading, so by the rule it
-belongs at the robot layer.  Instead `MecanumDrive` fetches its own copy, `BillyRobot`
-fetches and initializes another, and `Wildbots2025` skips initializing entirely -- so
-Wildbots reads heading from a device still set to the factory orientation.  Billy
-works by accident.  It is marked with a `TODO`.
+Done wrong, then fixed:  the **IMU**.  It reports the whole chassis's heading, so by the
+rule it belongs at the robot layer.  It used to be split:  `MecanumDrive` fetched its own
+copy, `BillyRobot` fetched and initialized another, and `Wildbots2025` skipped
+initializing entirely -- so Wildbots read heading from a device still set to the factory
+orientation, and Billy worked by accident.
 
-Ask the student what the Limelight does that the IMU fails to do.  The answer to reach:
-**one owner, one setup, handed down to whoever needs it.**
+Ask the student what the Limelight did that the IMU failed to do.  The answer to reach:
+**one owner, one setup, handed down to whoever needs it.**  That is exactly how it was
+fixed:  each robot now fetches the IMU, initializes it once with its own hub orientation,
+and passes it into `MecanumDrive`'s constructor.  `git show a198b53` shows the before and
+after side by side.
 
 ### Sensors change what a component *is*
 

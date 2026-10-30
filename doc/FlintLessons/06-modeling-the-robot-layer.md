@@ -52,9 +52,10 @@ public void update(Gamepad gamepad1, Gamepad gamepad2) {
 }
 ```
 
-This fixes the *default* runtime orchestration for every robot:  driver gamepad goes to the drive train, mech gamepad goes to the mech assembly.  Concrete robots are expected to build *around* this, not replace it.  Watch how `BillyRobot` actually does it:
+This fixes the *default* runtime orchestration for every robot:  driver gamepad goes to the drive train, mech gamepad goes to the mech assembly.  The simple robots (`StandardTankRobot`, `OneStickTankRobot`) use it exactly as written.  Concrete robots are expected to build *around* this where they can.  Here is how `BillyRobot` first did it:
 
 ```java
+// BillyRobot, before the strategy-system rework
 strategy = (robot, gamepad1, gamepad2) -> {
     super.update(gamepad1, gamepad2);
     if (!targeter.isComplete())
@@ -67,11 +68,26 @@ public void update(Gamepad gamepad1, Gamepad gamepad2) {
 }
 ```
 
-Ask the student to find the exact line that proves this is a template method rather than a full rewrite:  it's `super.update(gamepad1, gamepad2)`.  `BillyRobot` still calls the base class's fixed drive-then-mech algorithm first -- it just layers one more thing (`targeter.updateState()`, an automatic turret-tracking behavior you'll meet in lesson 7) on top, afterward.  The base algorithm's shape survives untouched; the subclass adds behavior around it, it doesn't replace it.
+Ask the student to find the exact line that proves this is a template method rather than a full rewrite:  it's `super.update(gamepad1, gamepad2)`.  `BillyRobot` called the base class's fixed drive-then-mech algorithm first, then layered one more thing (`targeter.updateState()`, an automatic turret-tracking behavior you'll meet in lesson 7) on top, afterward.  The base algorithm's shape survived untouched.
+
+### When the template stops fitting
+
+That version had a problem (lessons 5 and 7 cover it):  the targeter and the gamepad both drove the turret, and nothing decided who won.  The fix needed `BillyRobot` to tell `BillyMA` *which parts the targeter currently owns*, so `BillyMA` can leave them alone.  `Robot.update()` can't do that -- it only knows `mechAssembly.giveInstructions(gamepad2)`, with no way to pass anything extra.  So `BillyRobot` now replaces the default instead of extending it:
+
+```java
+strategy = (robot, gamepad1, gamepad2) -> {
+    // ...button handling for assists and macros...
+    driveTrain.drive(gamepad1);
+    mech.giveInstructions(gamepad2, assistClaims());
+    assist.update(gamepad1, gamepad2);
+};
+```
+
+Ask the student:  "Is this still a template method?"  Honestly, no -- `Robot.update()` is now a *default* that Billy overrides completely.  That's a real trade-off, not a mistake:  the drive-then-mech order is now written in two places, and a future change to the base version won't reach Billy automatically.  Ask what the base class would need for Billy to go back to *extending* it -- for example, a protected method `Robot.update()` calls to ask "which parts are claimed right now?", which subclasses can override.
 
 ### `BillyRobot` as a Facade
 
-`Robot` presents one simplified surface -- `update`, `updateTelemetry`, `getAutonomousRobot` -- over everything underneath.  `BillyRobot`'s constructor is where all the real wiring happens:  it builds a `MecanumDrive` with a specific wheel-direction configuration, builds a `BillyMA`, initializes a Limelight and an IMU as *robot-wide* sensors (not owned by any one component or assembly -- they belong here because more than one subsystem might need them), calls `initializeSubsystems()` to propagate telemetry downward, and finally builds its `AutonomousMecanumRobot` object by gathering the drive train's and mech assembly's autonomous surfaces:
+`Robot` presents one simplified surface -- `update`, `updateTelemetry`, `getAutonomousRobot` -- over everything underneath.  `BillyRobot`'s constructor is where all the real wiring happens:  it initializes the IMU as a *robot-wide* sensor and hands it to a `MecanumDrive` built with a specific wheel-direction configuration, builds a `BillyMA`, initializes a Limelight as another robot-wide sensor (neither is owned by any one component or assembly -- they belong here because more than one subsystem might need them), calls `initializeSubsystems()` to propagate telemetry downward, and finally builds its `AutonomousMecanumRobot` object by gathering the drive train's and mech assembly's autonomous surfaces:
 
 ```java
 auton = new BillyRobot.AutonomousMecanumRobot(
@@ -88,10 +104,10 @@ Ask the student to reason about this before you answer it:  why do the Limelight
 
 ## Guided practice
 
-Ask the student:  "If `BillyRobot` had instead written its own `update()` method from scratch -- calling `driveTrain.drive()` and `mechAssembly.giveInstructions()` directly, without calling `super.update()` -- what would still work, and what would you have to be careful to not accidentally break?" Look for them to notice:  functionally the drive/mech dispatch would still work if copied correctly, but you'd now have two copies of that logic to keep in sync everywhere the base class changes, and you'd lose the "subclasses extend, not replace" discipline that makes future robots consistent.
+Ask the student:  "`BillyRobot` now writes its own `update()` from scratch, calling `driveTrain.drive()` and `mech.giveInstructions()` directly instead of `super.update()`.  What still works, and what do you have to be careful not to break?" Look for them to notice:  the drive/mech dispatch works because it was copied correctly, but there are now two copies of that logic to keep in sync -- and `Wildbots2025` made a third when it got its own strategy.  If the base class ever adds a step (say, a safety check every loop), every robot that replaced `update()` has to add it by hand.
 
-Then:  "Where would you add a second robot-wide assist behavior -- say, an automatic drivetrain heading-hold -- using the same pattern Billy uses for the turret targeter?" Get them to describe adding it inside the strategy lambda, after `super.update(...)`, the same shape as `targeter.updateState()`.
+Then:  "Where would you add a second robot-wide assist behavior -- say, an automatic drivetrain heading-hold?"  Point them at how the turret targeter is wired today:  it implements `Robot.IAssistRobotStrategy`, and `BillyRobot` runs it through an `AssistManager`.  Then ask the harder question:  `AssistManager` holds *one* assist at a time, and starting a new one replaces the old one.  What would have to change for heading-hold and the turret targeter to run together?  (Listen for:  they claim different parts, so they don't conflict -- the manager would need to hold a list, and only replace an assist whose claims overlap.)
 
 ## Wrap-up check
 
-Have the student explain, without notes, why `Robot.update()` and `Robot.updateTelemetry()` are concrete methods with real bodies, while `getAutonomousRobot()` is abstract.  The answer should connect to lesson 1:  the *orchestration order* (drive then mech; gather then flush) is the same for every robot, so it belongs in the base class -- but *which* autonomous robot type, built from *which* concrete drive train and assembly, is different for every robot, so that has to be supplied by the subclass.
+Have the student explain, without notes, why `Robot.update()` and `Robot.updateTelemetry()` are concrete methods with real bodies, while `getAutonomousRobot()` is abstract.  The answer should connect to lesson 1:  the *orchestration order* (drive then mech; gather then flush) is the same for every robot, so it belongs in the base class -- but *which* autonomous robot type, built from *which* concrete drive train and assembly, is different for every robot, so that has to be supplied by the subclass.  As a follow-up, ask why Billy overriding `update()` completely doesn't break that argument -- it changes *what* gets passed down, not the drive-then-mech order itself.

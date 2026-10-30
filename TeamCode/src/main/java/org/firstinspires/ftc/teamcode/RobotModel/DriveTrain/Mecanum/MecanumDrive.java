@@ -184,8 +184,8 @@ public class MecanumDrive extends DriveTrain
     // TODO (project, and a good one for somebody who wants the drive train to feel
     //  better rather than just work): this drive train owns an IMU and uses it for
     //  exactly one thing - turnToAngle() in autonomous. Teleop ignores it completely.
-    //  Two worthwhile projects live here, in increasing order of difficulty. Both want
-    //  the IMU ownership TODO in the constructor sorted out first.
+    //  Two worthwhile projects live here, in increasing order of difficulty. Both need
+    //  an initialized IMU, which the robot now passes in through the constructor.
     //
     //  1. FIELD-RELATIVE DRIVE. Right now pushing the stick "forward" means "forward for
     //     the robot", so the driver has to think in the robot's frame the whole match and
