@@ -78,7 +78,7 @@ Before coding, decide:
 
 Billy shows this in the `BillyRobot` constructor:
 
-- the drive motors are configured through `MecanumDrive.OrientationConfiguration`
+- each drive motor's direction is set by name through `MecanumDriveBuilder` (`.leftFront(...)`, `.rightBack(...)`)
 - the Limelight and IMU are initialized once at robot construction time
 - the alliance-specific tag target is passed in as a constructor parameter instead of duplicating robot code
 
@@ -496,7 +496,14 @@ public class NewRobot extends Robot {
                 RevHubOrientationOnRobot.UsbFacingDirection.UP)));
         imu.resetYaw();
 
-        driveTrain = new MecanumDrive(hardwareMap, /* orientation config */, imu);
+        // Name each wheel's direction; build() refuses to run if one is missing.
+        driveTrain = new MecanumDriveBuilder(hardwareMap)
+                .leftFront(DcMotorSimple.Direction.FORWARD)    // check each on your robot
+                .leftBack(DcMotorSimple.Direction.FORWARD)
+                .rightFront(DcMotorSimple.Direction.REVERSE)
+                .rightBack(DcMotorSimple.Direction.REVERSE)
+                .imu(imu)
+                .build();
         mechAssembly = new NewRobotMA(hardwareMap);
         // ...other robot-wide sensors (e.g. a Limelight) go here...
 

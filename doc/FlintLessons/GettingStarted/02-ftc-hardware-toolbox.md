@@ -50,9 +50,22 @@ motor.getCurrentPosition();                            // encoder ticks, if wire
 
 `setDirection` deserves emphasis.  On any robot with motors facing opposite ways, half of
 them must be reversed so that "forward" means the same thing to all of them.  This team
-does it through a configuration object -- look at `MecanumDrive.OrientationConfiguration`,
-which takes all four directions as constructor arguments so one class serves robots wired
-differently.
+does it through `MecanumDriveBuilder`, so one drive-train class serves robots wired
+differently:
+
+```java
+new MecanumDriveBuilder(hardwareMap)
+        .leftFront(DcMotorSimple.Direction.FORWARD)
+        .leftBack(DcMotorSimple.Direction.FORWARD)
+        .rightFront(DcMotorSimple.Direction.FORWARD)
+        .rightBack(DcMotorSimple.Direction.REVERSE)
+        .imu(imu)
+        .build();
+```
+
+It used to be four unnamed constructor arguments, `OrientationConfiguration(F, F, R, F)`,
+in the order left-back, left-front, right-back, right-front.  Ask the student which wheel
+the `R` was, and why naming each one is safer.
 
 **Run modes** change what `setPower` even means:
 

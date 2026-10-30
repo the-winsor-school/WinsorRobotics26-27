@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.RobotModel.Robots;
 
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDriveBuilder;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -63,15 +64,14 @@ public class Wildbots2025 extends Robot
         imu.initialize(parameters);
         imu.resetYaw();
 
-        driveTrain = new MecanumDrive(
-                hardwareMap,
-                new MecanumDrive.OrientationConfiguration(
-                        DcMotorSimple.Direction.REVERSE,
-                        DcMotorSimple.Direction.FORWARD,
-                        DcMotorSimple.Direction.FORWARD,
-                        DcMotorSimple.Direction.REVERSE
-                    ), imu
-                );
+        driveTrain = new MecanumDriveBuilder(hardwareMap)
+                .leftFront(DcMotorSimple.Direction.FORWARD)
+                .leftBack(DcMotorSimple.Direction.REVERSE)
+                .rightFront(DcMotorSimple.Direction.REVERSE)
+                .rightBack(DcMotorSimple.Direction.FORWARD)
+                .imu(imu)
+                .build();
+        
         mechAssembly = new CascadeArm(hardwareMap);
 
         initializeSubsystems();

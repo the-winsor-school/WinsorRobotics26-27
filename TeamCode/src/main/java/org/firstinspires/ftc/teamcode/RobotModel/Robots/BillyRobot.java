@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.AutonStrategies.LimelightAutoTarget;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.BillyMA;
 
-
+import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDriveBuilder;
 
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 
@@ -100,11 +100,13 @@ public class BillyRobot extends Robot {
         imu.initialize(parameters);
         imu.resetYaw();
 
-        driveTrain = new MecanumDrive(hardwareMap, new MecanumDrive.OrientationConfiguration(
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.REVERSE,
-                DcMotorSimple.Direction.FORWARD), imu);
+        driveTrain = new MecanumDriveBuilder(hardwareMap)
+                .leftFront(DcMotorSimple.Direction.FORWARD)
+                .leftBack(DcMotorSimple.Direction.FORWARD)
+                .rightFront(DcMotorSimple.Direction.FORWARD)
+                .rightBack(DcMotorSimple.Direction.REVERSE)
+                .imu(imu)
+                .build();
 
         mechAssembly = new BillyMA(hardwareMap);
 
