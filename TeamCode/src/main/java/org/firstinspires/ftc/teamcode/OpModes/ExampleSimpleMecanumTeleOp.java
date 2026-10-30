@@ -25,6 +25,7 @@ public class ExampleSimpleMecanumTeleOp extends LinearOpMode
 
     @Override
     public void runOpMode() throws InterruptedException
+
     {
         // The robot owns the IMU:  set it up once with Billy's hub orientation.
         IMU imu = hardwareMap.get(IMU.class, "imu");
@@ -38,8 +39,9 @@ public class ExampleSimpleMecanumTeleOp extends LinearOpMode
                 .driveTrain(new MecanumDriveBuilder(hardwareMap)
                         .leftFront(DcMotorSimple.Direction.FORWARD)
                         .leftBack(DcMotorSimple.Direction.FORWARD)
+                        
                         .rightFront(DcMotorSimple.Direction.FORWARD)
-                        .rightBack(DcMotorSimple.Direction.REVERSE)
+                        .rightBack(DcMotorSimple.Direction.FORWARD)
                         .imu(imu)
                         .build())
                 .build();
