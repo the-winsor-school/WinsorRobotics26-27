@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.BillyRobot;
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.Robot;
 
-@Disabled   // temporarily hidden while testing Example TeleOp (Simple Mecanum)
+//@Disabled   // temporarily hidden while testing Example TeleOp (Simple Mecanum)
 @TeleOp(name="BillyBLUE")
 public class BillyTeleOpBLUE extends LinearOpMode {
 

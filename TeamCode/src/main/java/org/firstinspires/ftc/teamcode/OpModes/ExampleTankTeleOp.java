@@ -29,7 +29,7 @@ import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Tank.StandardTankDri
  * Nothing else in this file changes.
  */
 
-@Disabled   // temporarily hidden while testing Example TeleOp (Simple Mecanum)
+//@Disabled   // temporarily hidden while testing Example TeleOp (Simple Mecanum)
 @TeleOp(name = "Example TeleOp (Tank)", group = "Example")
 public class ExampleTankTeleOp extends LinearOpMode
 {
