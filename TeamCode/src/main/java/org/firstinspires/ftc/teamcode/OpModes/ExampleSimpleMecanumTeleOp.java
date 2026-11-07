@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDriveBuilder;
+import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.BillyMA;
+import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.SpinnyIntakeMA;
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.Robot;
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.RobotBuilder;
 
@@ -37,12 +39,13 @@ public class ExampleSimpleMecanumTeleOp extends LinearOpMode
         // Same wheel directions as BillyRobot.
         robot = new RobotBuilder(telemetry)
                 .driveTrain(new MecanumDriveBuilder(hardwareMap)
-                        .leftFront(DcMotorSimple.Direction.FORWARD)
-                        .leftBack(DcMotorSimple.Direction.FORWARD)
-                        .rightFront(DcMotorSimple.Direction.REVERSE)
-                        .rightBack(DcMotorSimple.Direction.REVERSE)
+                        .leftFront(DcMotorSimple.Direction.REVERSE)
+                        .leftBack(DcMotorSimple.Direction.REVERSE)
+                        .rightFront(DcMotorSimple.Direction.FORWARD)
+                        .rightBack(DcMotorSimple.Direction.FORWARD)
                         .imu(imu)
                         .build())
+                .mechAssembly(new SpinnyIntakeMA(hardwareMap))
                 .build();
 
         telemetry.addLine("initialized");
