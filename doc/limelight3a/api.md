@@ -1,8 +1,8 @@
-# Limelight 3A API (FTC SDK 11.2.1)
+# Limelight 3A API (FTC SDK 12.0.0)
 
 For class responsibilities, result ownership, lifecycle details, field-map construction, and calibration, see [Java objects and runtime behavior](java-objects.md).
 
-All camera classes below use `com.qualcomm.hardware.limelightvision`. Signatures and implementation notes were checked against the [published 11.2.1 source archive](https://repo.maven.apache.org/maven2/org/firstinspires/ftc/Hardware/11.2.1/Hardware-11.2.1-sources.jar). See also the [Limelight3A Javadoc](https://javadoc.io/static/org.firstinspires.ftc/Hardware/11.2.1/com/qualcomm/hardware/limelightvision/Limelight3A.html).
+All camera classes below use `com.qualcomm.hardware.limelightvision`. Signatures and implementation notes were checked against the [published 12.0.0 source archive](https://repo.maven.apache.org/maven2/org/firstinspires/ftc/Hardware/12.0.0/Hardware-12.0.0-sources.jar). See also the [Limelight3A Javadoc](https://javadoc.io/static/org.firstinspires.ftc/Hardware/12.0.0/com/qualcomm/hardware/limelightvision/Limelight3A.html).
 
 ## Driver methods
 
@@ -91,7 +91,7 @@ public class LimelightReadTag extends LinearOpMode {
 }
 ```
 
-In 11.2.1, `getLatestResult()` synthesizes an empty invalid result when its cache is null. Older samples describe null before startup. Keep the null guard, but never use non-null alone to establish validity. A failed poll can leave an old valid result cached. `getStaleness()` measures time since SDK parsing, not image exposure; repeated responses containing the same camera frame can look newly received. Compare `getTimestamp()` across iterations when a control algorithm must process each camera frame only once.
+In 12.0.0, `getLatestResult()` synthesizes an empty invalid result when its cache is null. Older samples describe null before startup. Keep the null guard, but never use non-null alone to establish validity. A failed poll can leave an old valid result cached. `getStaleness()` measures time since SDK parsing, not image exposure; repeated responses containing the same camera frame can look newly received. Compare `getTimestamp()` across iterations when a control algorithm must process each camera frame only once.
 
 MegaTag2 additionally requires ongoing `updateRobotOrientation(yawDegrees)` calls using an IMU heading aligned to the loaded field map, followed by `result.getBotpose_MT2()`. Configure camera mounting pose and the correct field map before interpreting either MegaTag pose. See the [FTC programming guide](https://docs.limelightvision.io/docs/docs-limelight/apis/ftc-programming).
 

@@ -1,8 +1,8 @@
 # Limelight 3A Java objects and behavior
 
-This guide describes the **FTC Hardware 11.2.1 Java library**, matching this repository. Verified on 2026-09-12 against the [published SDK source archive](https://repo.maven.apache.org/maven2/org/firstinspires/ftc/Hardware/11.2.1/Hardware-11.2.1-sources.jar). Implementation details below are version-specific. Camera firmware and hardware were not exercised.
+This guide describes the **FTC Hardware 12.0.0 Java library**, matching this repository. Verified on 2026-09-12 against the 11.2.1 sources, and re-verified on 2026-11-11 against the [published 12.0.0 source archive](https://repo.maven.apache.org/maven2/org/firstinspires/ftc/Hardware/12.0.0/Hardware-12.0.0-sources.jar). Implementation details below are version-specific. Camera firmware and hardware were not exercised.
 
-All Limelight classes use `com.qualcomm.hardware.limelightvision`. The [Java API index](https://javadoc.io/static/org.firstinspires.ftc/Hardware/11.2.1/com/qualcomm/hardware/limelightvision/package-summary.html) provides upstream navigation. See [driver signatures and complete OpMode example](api.md) and [getter/type tables](data-shapes.md) for companion references.
+All Limelight classes use `com.qualcomm.hardware.limelightvision`. The [Java API index](https://javadoc.io/static/org.firstinspires.ftc/Hardware/12.0.0/com/qualcomm/hardware/limelightvision/package-summary.html) provides upstream navigation. See [driver signatures and complete OpMode example](api.md) and [getter/type tables](data-shapes.md) for companion references.
 
 ## Object relationships
 
@@ -45,7 +45,7 @@ Here, **property** means a value exposed by a Java getter unless a public field 
 
 Initialize once per OpMode, select the pipeline, set the poll rate, and call `start()`. Keep one hardware device reference. The public constructor takes SDK connection objects; normal team code should use `hardwareMap` so robot configuration supplies those values.
 
-| Operation | Behavior in 11.2.1 |
+| Operation | Behavior in 12.0.0 |
 | --- | --- |
 | `start()` | Schedules background polling; repeated calls while starting/running do nothing. Can recreate an executor after `stop()`. |
 | `pause()` | Disables polling work but leaves the scheduled executor in place. `start()` resumes it. |
@@ -69,7 +69,7 @@ HardwareDevice metadata is separate from vision data: `getManufacturer()` return
 | --- | --- | --- | --- |
 | `isValid()` | `boolean` | Pipeline reports valid targeting. | First targeting gate; not proof that a particular tag or pose exists. |
 | `getPipelineIndex()` | `int` | Pipeline slot that produced the response. | Reject old-pipeline data after a switch. |
-| `getPipelineType()` | `String` | Pipeline kind text. | Diagnostic labeling; 11.2.1 reads a different key from documented firmware `pTYPE`, so it can be empty. |
+| `getPipelineType()` | `String` | Pipeline kind text. | Diagnostic labeling; 12.0.0 reads a different key from documented firmware `pTYPE`, so it can be empty. |
 | `getTx()` | `double`, degrees | Selected target horizontal offset from the configured crosshair. | Horizontal aim/turn error; verify motor direction on the robot. |
 | `getTy()` | `double`, degrees | Selected target vertical offset from the configured crosshair. | Vertical alignment or calibrated geometric ranging. |
 | `getTxNC()` | `double`, degrees | Horizontal offset from the optical principal pixel. | Geometry independent of the user crosshair offset. |
@@ -102,7 +102,7 @@ HardwareDevice metadata is separate from vision data: `getManufacturer()` return
 
 Capture one result reference at the beginning of a control iteration. Background polling replaces the driver's cached reference; an older result object does not update itself. Repeated calls may return the same object, or different responses if polling completes between calls.
 
-The constructor and parser are not public team APIs. Obtain results through the driver. Before the first response, 11.2.1 creates an empty invalid result if its cache is null. Older examples describe null, and failed parsing can also return null internally, so retaining a null guard is sensible.
+The constructor and parser are not public team APIs. Obtain results through the driver. Before the first response, 12.0.0 creates an empty invalid result if its cache is null. Older examples describe null, and failed parsing can also return null internally, so retaining a null guard is sensible.
 
 Use separate checks for separate questions:
 
@@ -264,7 +264,7 @@ Exposes the angle, pixel, area, and corner getters plus `getFamily(): String` an
 
 ## Pose3D and Java navigation types
 
-These supporting classes belong to **RobotCore**, rather than the Limelight package. The following properties and behaviors were checked against the [RobotCore 11.2.1 sources](https://repo.maven.apache.org/maven2/org/firstinspires/ftc/RobotCore/11.2.1/RobotCore-11.2.1-sources.jar). Coverage here focuses on interpreting values returned by Limelight.
+These supporting classes belong to **RobotCore**, rather than the Limelight package. The following properties and behaviors were checked against the [RobotCore 12.0.0 sources](https://repo.maven.apache.org/maven2/org/firstinspires/ftc/RobotCore/12.0.0/RobotCore-12.0.0-sources.jar). Coverage here focuses on interpreting values returned by Limelight.
 
 ### Pose3D properties and behavior
 
@@ -431,7 +431,7 @@ Construct a tag with `new LLFieldMap.Fiducial(int id, double size, String family
 
 Map getters are `getFiducials()`, `getType()`, `getNumberOfTags()`, and `isValid()`. Tag getters are `getId()`, `getSize()`, `getFamily()`, `getTransform()`, and `isUnique()`. JSON constructors and `toJson()` are protected; ordinary TeamCode cannot call them as public import/export utilities.
 
-**11.2.1 validity bug:** `LLFieldMap.isValid()` compares type strings to `"ftc"` and `"frc"` using Java reference inequality (`!=`), not `.equals()`. Thus a nonempty map made with the literal `"ftc"` passes the type test, while an equal string loaded or constructed at runtime may fail it. When constructing an FTC map, pass the literal `"ftc"`. The method also does not validate tag IDs, sizes, families, duplicate IDs, or matrix contents. `uploadFieldmap()` rejects maps that fail this limited check; do not pass null.
+**Validity bug (12.0.0 and 12.0.0):** `LLFieldMap.isValid()` compares type strings to `"ftc"` and `"frc"` using Java reference inequality (`!=`), not `.equals()`. Thus a nonempty map made with the literal `"ftc"` passes the type test, while an equal string loaded or constructed at runtime may fail it. When constructing an FTC map, pass the literal `"ftc"`. The method also does not validate tag IDs, sizes, families, duplicate IDs, or matrix contents. `uploadFieldmap()` rejects maps that fail this limited check; do not pass null.
 
 ## CalibrationResult: reading camera calibration
 
@@ -477,7 +477,7 @@ All methods below belong to `Limelight3A`. Boolean results report request succes
 | `captureSnapshot(String snapname)` | Save an image for later tuning. | Changes camera storage; returns success flag. |
 | `deleteSnapshot(String snapname)` | Remove one saved image. | Deletes camera data. |
 | `deleteSnapshots()` | Remove all saved snapshots. | Deletes camera data. |
-| `resetDeviceConfigurationForOpMode()` | SDK lifecycle hook. | No-op in 11.2.1; does not reset pipeline or clear observations. |
+| `resetDeviceConfigurationForOpMode()` | SDK lifecycle hook. | No-op in 12.0.0; does not reset pipeline or clear observations. |
 
 `updatePythonInputs(double[])` accepts 1–32 values and returns false for null, empty, or longer arrays. An overload takes exactly eight scalar doubles. The outgoing values have no built-in meanings; define a slot contract with your SnapScript.
 

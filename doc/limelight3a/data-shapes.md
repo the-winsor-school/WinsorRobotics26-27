@@ -2,7 +2,7 @@
 
 For Java object semantics and usage examples, start with [Java objects and runtime behavior](java-objects.md). This page is the compact getter/type and wire-format companion.
 
-This is an FTC SDK **11.2.1** consumer reference. Mappings and fallback behavior come from `LLResult.java`, `LLResultTypes.java`, `LLStatus.java`, and `LLFieldMap.java` in the [published SDK sources](https://repo.maven.apache.org/maven2/org/firstinspires/ftc/Hardware/11.2.1/Hardware-11.2.1-sources.jar). Raw firmware fields can exceed what this SDK exposes.
+This is an FTC SDK **12.0.0** consumer reference. Mappings and fallback behavior come from `LLResult.java`, `LLResultTypes.java`, `LLStatus.java`, and `LLFieldMap.java` in the [published SDK sources](https://repo.maven.apache.org/maven2/org/firstinspires/ftc/Hardware/12.0.0/Hardware-12.0.0-sources.jar). Raw firmware fields can exceed what this SDK exposes.
 
 ## LLResult: one pipeline result
 
@@ -37,7 +37,7 @@ This is an FTC SDK **11.2.1** consumer reference. Mappings and fallback behavior
 | `getBarcodeResults()` | `List<LLResultTypes.BarcodeResult>` | `Barcode` |
 | `toString()` | `String` | Underlying JSON serialization |
 
-Missing lists become empty lists. Many missing numeric keys become zero; missing text becomes empty text. Missing standard-deviation arrays become six zeros; a supplied array keeps its supplied length. In 11.2.1, `getPythonOutput()` always returns **32 elements**, zero-padding shorter firmware arrays and truncating longer ones. Define which slots your script populates; zero padding is not evidence of a script measurement. Zero values do not establish that a measurement exists.
+Missing lists become empty lists. Many missing numeric keys become zero; missing text becomes empty text. Missing standard-deviation arrays become six zeros; a supplied array keeps its supplied length. In 12.0.0, `getPythonOutput()` always returns **32 elements**, zero-padding shorter firmware arrays and truncating longer ones. Define which slots your script populates; zero padding is not evidence of a script measurement. Zero values do not establish that a measurement exists.
 
 ## Per-target objects
 
@@ -137,7 +137,7 @@ Failed status requests return a default `LLStatus`, so zero diagnostics are not 
 
 ## Vendor documentation discrepancies
 
-The shared [JSON specification](https://docs.limelightvision.io/docs/docs-limelight/apis/json-results-specification) differs from the 11.2.1 consumer in several places:
+The shared [JSON specification](https://docs.limelightvision.io/docs/docs-limelight/apis/json-results-specification) differs from the 12.0.0 consumer in several places:
 
 - Firmware documents `pTYPE`; `LLResult.getPipelineType()` reads `pipelineType`, so it can return empty text. `LLStatus.getPipelineType()` reads the documented status key correctly.
 - Some per-tag pose descriptions list pitch/yaw/roll; the SDK interprets indices 3–5 as roll/pitch/yaw.
