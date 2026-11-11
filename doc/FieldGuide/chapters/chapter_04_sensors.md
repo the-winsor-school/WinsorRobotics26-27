@@ -415,40 +415,55 @@ telling it what to do.
 
 ## 4.9  Who sets up the IMU?
 
-*Where it lives:*  `RobotModel/DriveTrain/Mecanum/MecanumDrive.java`
+*Where it lives:*  `RobotModel/Robots/Wildbots2025.java`
 
 The IMU reports which way the whole chassis faces (3.7).  By the rule in 4.6,
-it belongs to the robot, like the Limelight.  Today two classes fetch it.
+it belongs to the robot, like the Limelight.  The drive train wants it too, for
+`turnToAngle()`.  So the robot fetches it, sets it up once, and hands it down.
 
-`BillyRobot` fetches the IMU, tells it how the hub is mounted, and zeroes it
-(3.7 shows the code).  `MecanumDrive` fetches the same device again in its own
-constructor, and uses it for `turnToAngle()`:
+Here's `Wildbots2025` doing all three:
 
 ```java
-        imu = hardwareMap.get(IMU.class, "imu");
+        IMU imu = hardwareMap.get(IMU.class, "imu");
+
+        // TODO: orientation copied from Billy - not checked on Wildbots hardware
+        IMU.Parameters parameters = new IMU.Parameters(
+            new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
+                RevHubOrientationOnRobot.UsbFacingDirection.UP
+            )
+        );
+        imu.initialize(parameters);
+        imu.resetYaw();
+        ...
+                .imu(imu)
+                .build();
 ```
 
-On Billy that works, because `BillyRobot` has already set up the device both
-classes are reading.  `Wildbots2025` also uses a `MecanumDrive`, and nothing in
-it calls `initialize`.  So on that robot, `turnToAngle()` reads heading from an
-IMU that was never told how its hub is mounted.
+Fetch it, tell it how the hub is mounted, zero it, then pass it to the
+`MecanumDriveBuilder` (3.2).  `MecanumDrive` takes the IMU as a constructor
+parameter, beside the wheel directions, and keeps what it's handed.  It never
+looks the device up itself.  `BillyRobot` does the same, with its own setup.
 
-A `TODO` above that line describes the next step, and it follows the
-Limelight's pattern.  The robot fetches the IMU, initializes it once with
-that robot's own hub orientation, and hands it down.  `MecanumDrive` takes it
-as a constructor parameter, the way it already takes its
-`OrientationConfiguration`, and its own lookup goes away.  The `TODO` sums it
-up as "One owner, one initialize."
+It used to be different, and the earlier version shows why the rule matters.
+`MecanumDrive` once fetched the IMU for itself and never initialized it.
+`BillyRobot` set up the same device in its own constructor, so Billy's turns
+worked.  `Wildbots2025` set it up nowhere, so its `turnToAngle()` read heading
+from an IMU that had never been told how its hub was mounted.  Two classes
+fetched one sensor, and only one of them knew it needed setting up.  Now the
+IMU follows the Limelight's pattern from 4.8:  one owner, one setup, handed
+down to whoever needs it.
 
-The difference between the two sensors is the whole lesson.  The Limelight has
-one owner and one setup, and it's handed down to whoever needs it.  The IMU
-has two classes fetching it, and only one of them knows it needs setting up.
+> **Watch out.**  The `TODO` in that excerpt means what it says.
+> `Wildbots2025` copied Billy's mounting, logo right and USB up, and it hasn't
+> been checked against the hub on that robot.  Until it is, treat its heading
+> as unproven.  The Try it in 3.7 is the check.
 
-Two projects wait on this one.  Another `TODO` in `MecanumDrive` describes
+Two projects were waiting on this one.  A `TODO` in `MecanumDrive` describes
 **field-relative drive**, where pushing the stick forward always means "away
 from the driver," whichever way the robot faces.  It also describes **heading
-hold**, which keeps a strafing robot from slowly turning.  Both need the IMU,
-and the `TODO` asks for the ownership question to be sorted out first.
+hold**, which keeps a strafing robot from slowly turning.  Both need an
+initialized IMU, and the drive train now has one.
 
 *See also:*  3.7, 4.6, 4.8, 10.8, Chapter 14
 
@@ -510,7 +525,7 @@ or the whole robot.
 | which layer owns a sensor | 4.6 |
 | where Billy's ball-ready sensor would go | 4.7 |
 | why the Limelight belongs to `BillyRobot` | 4.8 |
-| why the IMU has two owners, and the plan to fix it | 4.9 |
+| why the robot sets up the IMU and hands it down | 4.9 |
 | what to check before adding a sensor to a component | 4.10 |
 
 ### Java in this chapter
@@ -576,8 +591,8 @@ what it says:  the component, the assembly, or the robot.  (4.6)
 9. A distance sensor on the front bumper is used to stop before a wall and to
    line up the scoring mechanism.  Which layer owns it?  (4.6, 4.8)
 10. Why can't the intake own Billy's ball-ready sensor?  (4.7)
-11. What does `Wildbots2025`'s `turnToAngle()` read from, and what's the fix
-    the `TODO` describes?  (4.9)
+11. Where does `Wildbots2025`'s `turnToAngle()` get its IMU, and what does
+    the `TODO` beside its setup still ask for?  (4.9)
 12. Name the three ways a command could get past a limit check on `Claw`.
     (4.10)
 

@@ -336,9 +336,7 @@ The robot then advances the active assist after the assembly call:
 ```java
             driveTrain.drive(gamepad1);
             mech.giveInstructions(gamepad2, assistClaims());
-            if (assist != null) {
-                assist.update(gamepad1, gamepad2);
-            }
+            assist.update(gamepad1, gamepad2);
 ```
 
 The targeter can now command the turret through its autonomous
@@ -383,17 +381,31 @@ The robot also has a rule for starting an assist:
         if (overlaps(newAssist.claims(), mech.macroClaims()))
             mech.cancelMacro("replaced by " + newAssist.name());
 
-        if (assist != null) {
-            lastAssistEnd = assist.name() + " replaced by " + newAssist.name();
-            assist.stop();
-        }
-        assist = newAssist;
-        assist.start();
+        assist.start(newAssist);
     }
 ```
 
-An arriving assist cancels an overlapping macro and stops any existing
-assist.  Even disjoint assists replace each other:  Billy has one assist slot.
+An arriving assist cancels an overlapping macro, then goes to `assist`.
+That field is an `AssistManager`, the robot layer's counterpart to
+`MacroManager` (13.5).  It holds one active assist, and its `start` does the
+replacing:
+
+```java
+    public void start(Robot.IAssistRobotStrategy<R> macro) 
+    { 
+       if (active != null) {
+        lastEnd = active.name() + " replaced by " + macro.name();
+        active.stop();      // stop the OLD one
+       }
+        active = macro;
+        active.start();         // start the NEW one
+    }
+```
+
+The two managers differ on one rule.  `MacroManager.request` ignores a new
+macro while one is running.  `AssistManager.start` always takes the new
+assist, stopping the old one and recording the replacement.  Even disjoint
+assists replace each other:  Billy has one assist slot.
 
 The macro-button branch makes the check in the other direction.
 After requesting rapid fire, it compares the active macro's claims
@@ -481,13 +493,13 @@ Billy adds four selection lines before gathering the ordinary robot
 report.  The first lines choose how to describe the active assist:
 
 ```java
-        if (assist == null)
+        if (!assist.isRunning())
             telemetry.addData("Assist", "None");
         else
-            telemetry.addData("Assist", assist.name() + " " + assist.claims());
+            telemetry.addData("Assist", assist.activeName() + " " + assist.claimed());
         telemetry.addData("Macro", mech.macroName() + " " + mech.macroClaims());
         telemetry.addData("Last macro", mech.lastMacroEnd());
-        telemetry.addData("Last assist", lastAssistEnd);
+        telemetry.addData("Last assist", assist.lastEnd());
 ```
 
 The current selection and its history answer different questions:
@@ -530,7 +542,8 @@ command value and a measured physical result are different evidence.
 ## 13.10  The current system has a small, explicit scope
 
 *Where it lives:*  `MechAssembly.IMacroAssemblyStrategy`,
-`Robot.IAssistRobotStrategy`, `MacroManager`, and `BillyRobot`.
+`Robot.IAssistRobotStrategy`, `MacroManager`, `AssistManager`, and
+`BillyRobot`.
 
 The macro interface describes what a manager can ask a job to do:
 
@@ -551,6 +564,12 @@ its internal states.  `BillyRapidFire` supplies their implementation,
 using its state machine to advance the sequence.  The manager
 only needs the interface to start, update, and finish tracking it.
 
+`CascadeStow`, on `Wildbots2025`'s arm, is a second implementation.  It
+lowers the lift and the drawbridge until each reaches its bottom switch, with
+a three-second timeout, and it claims those two parts while it runs.
+`CascadeArm` keeps its own `MacroManager` for it.  A `TODO` at the top of
+`CascadeStow` says it hasn't been tested on hardware yet.
+
 The assist interface has `claims`, `start`, `update`, `stop`, and
 `name`.  Its update accepts both gamepads.  It has no completion
 test; Billy's assist selection changes through explicit start and
@@ -560,7 +579,7 @@ machine without reading the gamepad arguments.
 | Current facility | Scope to remember |
 |---|---|
 | `MacroManager<R>` | One active macro, with new requests ignored while occupied |
-| Assist field in `BillyRobot` | One active assist; starting another replaces it |
+| `AssistManager<R>` in `BillyRobot` | One active assist; starting another replaces it |
 | `BillyMA.Part` | Four assembly mechanisms; no drivetrain translation or rotation values |
 | Default assembly strategy | Calls manual controls for unclaimed parts |
 | Robot arbitration | Methods and button checks in Billy's concrete class |
@@ -569,7 +588,7 @@ machine without reading the gamepad arguments.
 Use this table when considering another behavior.  A second macro
 can implement the interface, but the manager still offers one slot.
 Even if two macros used disjoint parts, this manager wouldn't run
-both at once.  Similarly, the assist field can hold one selected
+both at once.  Similarly, the assist manager holds one selected
 object; disjoint claims alone don't create more assist slots.
 
 The limited scope keeps the policy short enough to trace directly.

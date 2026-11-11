@@ -75,7 +75,7 @@ Java spells it.
 
 **build order** -- the fixed order the files of a new robot are written in, following what depends on what.  (21.3)
 
-**builder** -- an object whose only job is to put another object together, a piece at a time, and hand it over at the end.  The `RobotBuilder` in `Robot.java`'s `TODO` would be one.  (21.10)
+**builder** -- an object whose only job is to put another object together, a piece at a time, and hand it over at the end.  `RobotBuilder` and `MecanumDriveBuilder` are two.  (21.10)
 
 **burr** -- a sharp curl of metal left along a fresh cut.  Filing it off is deburring.  (16.8)
 

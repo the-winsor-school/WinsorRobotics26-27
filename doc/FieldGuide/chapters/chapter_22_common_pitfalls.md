@@ -234,12 +234,20 @@ of them sets it up, the other one gets that setup too, without knowing it.
 That's the trap.  The second class works because of something a different
 class did, and nothing in its own code says so.
 
-The IMU is this codebase's live example, and 4.9 tells the whole story.
-`MecanumDrive` fetches the IMU and never initializes it.  `BillyRobot` fetches
-the same device and initializes it, so Billy's turns work.  `Wildbots2025`
-also builds a `MecanumDrive` and never initializes the IMU anywhere.  Same
-drive train code, and on that robot the heading comes from a device that was
-never told how its hub is mounted.
+The IMU was this codebase's example, and 4.9 tells the whole story.
+`MecanumDrive` used to fetch the IMU and never initialize it.  `BillyRobot`
+fetched the same device and initialized it, so Billy's turns worked.
+`Wildbots2025` also built a `MecanumDrive` and never initialized the IMU
+anywhere.  Same drive train code, and on that robot the heading came from a
+device that had never been told how its hub was mounted.  The fix gave the
+IMU one owner:  each robot now fetches it, sets it up, and hands it to its
+drive train.
+
+The fix left a smaller relative of the same trap behind.  `Wildbots2025`'s
+setup copies Billy's mounting, and a `TODO` beside it says it hasn't been
+checked on that robot's hub.  The code has the right shape, and the
+assumption underneath it is still unverified.  The difference is that now
+it's written down where the next reader will see it.
 
 It's the same shape as the turret problem in Chapter 13, one layer down.
 There, two pieces of code both *command* one part with no declared owner.
@@ -253,8 +261,11 @@ one owner, one setup, handed down (4.8).
 
 > **Try it.**  Run `grep -rn 'hardwareMap.get' TeamCode/src/main/java` from
 > the repository root, and sort the hits by configuration name.  You should
-> find `"imu"` twice, once in `BillyRobot` and once in `MecanumDrive`.  For
-> each other name, check that exactly one class fetches it.
+> find `"imu"` three times:  in `BillyRobot`, in `Wildbots2025`, and in the
+> OpMode *Example TeleOp (Simple Mecanum)*.  Each belongs to a different
+> robot, so only one of them runs at a time, and each sets the device up
+> itself.  For each other name, check that only one class per robot fetches
+> it.
 
 *See also:*  4.8, 4.9, Chapter 13
 
@@ -406,8 +417,9 @@ the whole bug.  (22.1)
    the loop?  (22.2)
 5. A wrist's TeleOp strategy scores at `0.7`, and its autonomous verb scores
    at `0.3`.  Which category, and what's the fix?  (22.3)
-6. Why does Billy's `turnToAngle()` read a correct heading, when
-   `MecanumDrive` never initializes the IMU?  (22.4)
+6. When `MecanumDrive` fetched the IMU for itself, why did Billy's
+   `turnToAngle()` still read a correct heading, and what was different on
+   `Wildbots2025`?  (22.4)
 7. In the old intake code, what did pressing down on the d-pad do, and why
    did it work when up didn't?  (22.5)
 8. Name the two `null`s in `tryGetFiducial`.  Which one did commit `1a6809a`

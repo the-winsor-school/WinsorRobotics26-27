@@ -90,18 +90,19 @@ gives each robot two fields, one for each half of the third level:
 mechanisms:
 
 ```java
-        driveTrain = new MecanumDrive(hardwareMap, new MecanumDrive.OrientationConfiguration(
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.REVERSE,
-                DcMotorSimple.Direction.FORWARD)
-        );
+        driveTrain = new MecanumDriveBuilder(hardwareMap)
+                .leftFront(DcMotorSimple.Direction.FORWARD)
+                .leftBack(DcMotorSimple.Direction.FORWARD)
+                .rightFront(DcMotorSimple.Direction.FORWARD)
+                .rightBack(DcMotorSimple.Direction.REVERSE)
+                .imu(imu)
+                .build();
 
         mechAssembly = new BillyMA(hardwareMap);
 ```
 
 The four directions tell `MecanumDrive` which way each of Billy's wheel motors
-faces (Chapter 3).  `BillyMA` gets the hardware map and builds its own four
+faces, and the `imu` line hands it the robot's heading sensor (Chapter 3).  `BillyMA` gets the hardware map and builds its own four
 components from it, so the components are the assembly's business.
 `BillyRobot` talks to the assembly, and the assembly talks to them.
 
@@ -276,23 +277,23 @@ gamepad2)`.
 
 `gamepad1` goes to the drive train and `gamepad2` goes to the mech assembly.
 The `!= null` checks let a robot with only a drive train use the same method
-(6.7).  `Wildbots2025` and both tank robots run this method exactly as `Robot`
-wrote it.
+(6.7).  Both tank robots, and any robot `RobotBuilder` makes, run this method
+exactly as `Robot` wrote it.
 
-Billy writes its own `update`, because it has more to do each loop.  It
-watches the buttons that start and stop its rapid-fire sequence and its
-targeter.  Its version still ends with the same two hand-offs:
+Billy and `Wildbots2025` write their own `update`, because each has more to do
+each loop.  Each watches buttons that start and stop a sequence of moves, and
+Billy also watches its targeter.  Billy's version still ends with the same two
+hand-offs:
 
 ```java
             driveTrain.drive(gamepad1);
             mech.giveInstructions(gamepad2, assistClaims());
-            if (assist != null) {
-                assist.update(gamepad1, gamepad2);
-            }
+            assist.update(gamepad1, gamepad2);
 ```
 
 The extra argument, `assistClaims()`, tells the assembly which mechanisms the
-targeter is using this loop, so the assembly leaves those to it.  Chapter 10
+targeter is using this loop, so the assembly leaves those to it.  The last line
+moves the targeter along, when it's on.  Chapter 10
 covers Billy's `update`, and Chapter 13 covers claims.
 
 **Assembly to components.**  `BillyMA`'s `giveInstructions` steps its
@@ -482,8 +483,8 @@ has `update(Gamepad, Gamepad)` and a robot twin.
 
 *Where it lives:*  `RobotModel/Robots/`
 
-The team has four robot classes, and each one is a different set of parts
-plugged into the same four layers.
+The team has five robot classes, and each one is a set of parts plugged into
+the same four layers.
 
 | Robot | Drive train | Mech assembly |
 |---|---|---|
@@ -491,20 +492,23 @@ plugged into the same four layers.
 | `Wildbots2025` | `MecanumDrive` | `CascadeArm` |
 | `OneStickTankRobot` | `OneStickTank` | `ExampleIntakeAssembly` |
 | `StandardTankRobot` | `StandardTankDrive` | none |
+| `SimpleRobot` | whichever it's handed | whichever it's handed, or none |
+
+The first four build their own parts.  `SimpleRobot` is the one `RobotBuilder`
+makes, out of whatever parts it's given (21.10).
 
 Here's `Wildbots2025`'s constructor filling the same two fields Billy fills in
 6.1:
 
 ```java
-        driveTrain = new MecanumDrive(
-                hardwareMap,
-                new MecanumDrive.OrientationConfiguration(
-                        DcMotorSimple.Direction.REVERSE,
-                        DcMotorSimple.Direction.FORWARD,
-                        DcMotorSimple.Direction.FORWARD,
-                        DcMotorSimple.Direction.REVERSE
-                    )
-                );
+        driveTrain = new MecanumDriveBuilder(hardwareMap)
+                .leftFront(DcMotorSimple.Direction.FORWARD)
+                .leftBack(DcMotorSimple.Direction.REVERSE)
+                .rightFront(DcMotorSimple.Direction.REVERSE)
+                .rightBack(DcMotorSimple.Direction.FORWARD)
+                .imu(imu)
+                .build();
+
         mechAssembly = new CascadeArm(hardwareMap);
 ```
 
@@ -561,10 +565,9 @@ Chapter 7 calls that the second kind of component.  Chapter 4 sorts sensors
 by the same questions.
 
 The IMU, the sensor inside the Control Hub that knows which way the robot
-faces (Chapter 3), sorts to the robot layer by question 2.  On Billy,
-`BillyRobot` sets it up.  `MecanumDrive` also fetches it for its own turning,
-and a `TODO` in `MecanumDrive`'s constructor says how to give the IMU one
-owner at the robot layer.  Chapter 4 covers it.
+faces (Chapter 3), sorts to the robot layer by question 2.  Each robot sets
+it up and hands it to its `MecanumDrive`, which uses it for turning.  Chapter 4
+covers it.
 
 Chapter 8 asks the same questions about rules instead of parts:  which layer
 should enforce a rule that protects one mechanism, and which one a rule that
@@ -641,7 +644,7 @@ gamepads.  Also the code written for it.  (6.3)
    Write one sentence for each layer saying what it does.  (6.1, 6.5)
 2. The string `"intakeMotor"` appears in one file.  Which one, and why is
    that the right file?  (6.2)
-3. Billy writes its own `update`, and `Wildbots2025` doesn't.  What do both
+3. Billy writes its own `update`, and `StandardTankRobot` doesn't.  What do both
    versions do with the two gamepads?  (6.4)
 4. An autonomous program calls `startIntake()`.  Why is that better than
    handing `move` a pretend gamepad?  (6.6)

@@ -58,21 +58,20 @@ The telemetry object is the one the OpMode was given, and `Robot` is the only
 layer that receives it in its constructor.  Everything below gets it later,
 passed down (9.4).
 
-`Wildbots2025` is the plainest real robot.  Here's its whole constructor:
+`Wildbots2025` is the plainest of the season robots.  Here's its constructor,
+with the IMU setup (4.9), three of the wheel directions, and its button
+handling left out:
 
 ```java
 public Wildbots2025(HardwareMap hardwareMap, Telemetry telemetry)
 {
     super(telemetry);
-    driveTrain = new MecanumDrive(
-            hardwareMap,
-            new MecanumDrive.OrientationConfiguration(
-                    DcMotorSimple.Direction.REVERSE,
-                    DcMotorSimple.Direction.FORWARD,
-                    DcMotorSimple.Direction.FORWARD,
-                    DcMotorSimple.Direction.REVERSE
-                )
-            );
+    ...
+    driveTrain = new MecanumDriveBuilder(hardwareMap)
+            .leftFront(DcMotorSimple.Direction.FORWARD)
+            ...
+            .build();
+
     mechAssembly = new CascadeArm(hardwareMap);
 
     initializeSubsystems();
@@ -81,15 +80,17 @@ public Wildbots2025(HardwareMap hardwareMap, Telemetry telemetry)
             driveTrain.getAutonomousDriving(),
             mechAssembly.getAutonomousBehaviors(),
             telemetry);
+    ...
 }
 ```
 
-It does four things, in order.  It hands telemetry to `Robot` with
-`super(...)` (Chapter 1).  It builds a drive train and an assembly.  It calls
-`initializeSubsystems()`, which passes telemetry down to both (10.2).  Then it
-builds its autonomous object from theirs (10.2, Chapter 11).
+Its main work comes in four steps, in order.  It hands telemetry to `Robot`
+with `super(...)` (Chapter 1).  It builds a drive train and an assembly.  It
+calls `initializeSubsystems()`, which passes telemetry down to both (10.2).
+Then it builds its autonomous object from theirs (10.2, Chapter 11).  The
+part left out at the end sets up what its buttons do each loop (10.3).
 
-The repository has four robots:
+The repository has five robots:
 
 | Robot | Drive train | Assembly |
 |---|---|---|
@@ -97,6 +98,7 @@ The repository has four robots:
 | `Wildbots2025` | `MecanumDrive` | `CascadeArm` |
 | `StandardTankRobot` | `StandardTankDrive` | none |
 | `OneStickTankRobot` | `OneStickTank` | `ExampleIntakeAssembly` |
+| `SimpleRobot` | whichever `RobotBuilder` hands it | whichever it's handed, or none |
 
 Billy and `Wildbots2025` share a drive train class and differ in their
 assemblies.  A robot is mostly a choice of parts.  That's composition, the
@@ -199,16 +201,19 @@ public void update(Gamepad gamepad1, Gamepad gamepad2)
 Two steps, always in this order.  The first gamepad, the driver's, goes to the
 drive train.  The second gamepad, the mechanism driver's, goes to the assembly.
 
-`Wildbots2025` has no `update` of its own, so this exact method is
-`Wildbots2025`'s main loop.  Follow one loop through it.  `driveTrain` is a
-`MecanumDrive`, so `drive(gamepad1)` turns the sticks into four wheel powers.
-`mechAssembly` is a `CascadeArm`, so `giveInstructions(gamepad2)` hands the
-gamepad to the lift, the drawbridge, and the claw (9.3).  `Robot` wrote the
-two steps and their order.  The drive train and the assembly each decided
-what their step means.
+`SimpleRobot` has no `update` of its own, so this exact method is its main
+loop.  Follow one loop through the robot that *Example TeleOp (Simple
+Mecanum)* builds, a `SimpleRobot` with a `MecanumDrive` and a `SpinnyIntakeMA`.
+`driveTrain` is the `MecanumDrive`, so `drive(gamepad1)` turns the sticks into
+four wheel powers.  `mechAssembly` is the `SpinnyIntakeMA`, so
+`giveInstructions(gamepad2)` hands the gamepad to the intake (9.3).  `Robot`
+wrote the two steps and their order.  The drive train and the assembly each
+decided what their step means.
 
 `StandardTankRobot` and `OneStickTankRobot` have no `update` of their own
-either.  Three of the four robots run this method as written.
+either.  Three of the five robots run this method as written.  Billy and
+`Wildbots2025` write their own, because each one starts and stops a sequence
+of moves from its buttons (10.5).
 
 > **Predict.**  `StandardTankRobot` has a drive train and no assembly.  What
 > does this method do for it each loop?
@@ -248,13 +253,13 @@ its own extra work, and still run the base class's version by calling it with
 @Override
 public void updateTelemetry() {
     BillyMA mech = (BillyMA) mechAssembly;
-    if (assist == null)
+    if (!assist.isRunning())
         telemetry.addData("Assist", "None");
     else
-        telemetry.addData("Assist", assist.name() + " " + assist.claims());
+        telemetry.addData("Assist", assist.activeName() + " " + assist.claimed());
     telemetry.addData("Macro", mech.macroName() + " " + mech.macroClaims());
     telemetry.addData("Last macro", mech.lastMacroEnd());
-    telemetry.addData("Last assist", lastAssistEnd);
+    telemetry.addData("Last assist", assist.lastEnd());
     super.updateTelemetry();
 }
 ```
@@ -326,9 +331,7 @@ strategy = (robot, gamepad1, gamepad2)  -> {
     ...
     driveTrain.drive(gamepad1);
     mech.giveInstructions(gamepad2, assistClaims());
-    if (assist != null) {
-        assist.update(gamepad1, gamepad2);
-    }
+    assist.update(gamepad1, gamepad2);
 };
 ```
 
@@ -547,9 +550,10 @@ constructor describes the actual hub mounting when it initializes the IMU:
 ```
 
 Those directions describe Billy's mounting.  A different robot needs the
-directions that describe its own hub.  The current `MecanumDrive` constructor
-also fetches the IMU.  Its source TODO proposes having the robot initialize
-it once and pass it down, following the camera's ownership pattern.
+directions that describe its own hub.  Billy then hands the initialized IMU
+to its `MecanumDriveBuilder`, so the drive train turns with the same device
+and never sets it up a second time.  That's the camera's ownership pattern
+again:  the robot initializes it once and passes it down (4.9).
 
 Use the sensor's meaning to choose its layer.  A switch that limits one
 lift belongs with the lift.  A reading about the transfer between two
@@ -612,7 +616,7 @@ template-method-style design using the robot's chosen parts.  (10.3)
 
 1. What does `Wildbots2025` build before it calls `initializeSubsystems`,
    and what can it build afterward?  (10.1, 10.2)
-2. Trace one call to the inherited `Robot.update` on `Wildbots2025`.
+2. Trace one call to the inherited `Robot.update` on a `SimpleRobot`.
    What happens for a robot whose assembly is `null`?  (10.3)
 3. Why does Billy write its telemetry lines before calling
    `super.updateTelemetry()`?  (10.4, 10.6)

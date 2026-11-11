@@ -64,13 +64,14 @@ as one subsystem.  Its work is passing things down to its components and
 collecting what they report.  The hardware itself belongs to the components.
 Every assembly extends `MechAssembly`.
 
-The repository has three:
+The repository has four:
 
 | Assembly | Its components | Used by |
 |---|---|---|
 | `BillyMA` | intake, pusher, flywheel, turret | `BillyRobot` |
 | `CascadeArm` | a cascade lift, a drawbridge, a claw | `Wildbots2025` |
 | `ExampleIntakeAssembly` | an intake, a claw | `OneStickTankRobot` |
+| `SpinnyIntakeMA` | an intake | *Example TeleOp (Simple Mecanum)*, through `RobotBuilder` |
 
 `SpinnyIntake` and `Claw` each turn up in two different assemblies.  A
 component is built to be reused, and the assembly is where it gets put to work
@@ -100,6 +101,7 @@ with its comments and a few members left out:
 ```java
 public abstract class MechAssembly
 {
+    ...
     protected interface IAssemblyStrategy { }
     ...
     public abstract <T extends AutonomousMechBehaviors> T getAutonomousBehaviors();
@@ -161,13 +163,13 @@ Every loop, the robot hands the mechanism driver's gamepad to its assembly by
 calling `giveInstructions` (Chapter 10).  The assembly passes that gamepad on
 to each component, so each one can run its own control strategy.
 
-`CascadeArm` shows the bare idea:
+`ExampleIntakeAssembly`, the intake and claw on `OneStickTankRobot`, shows the
+bare idea:
 
 ```java
 @Override
 public void giveInstructions(Gamepad gamepad) {
-    cascade.move(gamepad);
-    drawbridge.move(gamepad);
+    intake.move(gamepad);
     claw.move(gamepad);
 }
 ```
@@ -204,6 +206,10 @@ turret's auto-aim.  A claimed part skips its gamepad turn.  `BillyMA`'s
 `giveInstructions` steps any running rapid-fire sequence, works out which
 parts are claimed, and then runs this lambda.  Chapter 13 explains claims.
 With nothing claimed, every loop visits all four.
+
+`CascadeArm` has the same shape.  Its `Part` enum names the lift, the
+drawbridge, and the claw, and its stow sequence, which lowers the lift and the
+drawbridge together, claims the first two while it runs.
 
 ### Where to read the controls
 
@@ -516,7 +522,7 @@ that watches a ball pass from one mechanism to the next sees both of them, so
 it goes in the assembly that owns both.  Chapter 4 has the full sensor
 ownership rule, and Chapter 10 adds the robot's share.
 
-None of the three assemblies owns a sensor yet, and the same comment names
+None of the four assemblies owns a sensor yet, and the same comment names
 Billy as the place to start:  a beam-break or color sensor between the intake
 and the pusher, answering "is a ball actually seated and ready to fire?"  That
 question spans the intake, the pusher, and the flywheel, so it belongs to none

@@ -115,21 +115,25 @@ of them, so that positive power means "forward" to every wheel.
         LF.setDirection(orientationConfiguration.getLf());
 ```
 
-The directions arrive from outside, in an `OrientationConfiguration` object
-that takes all four as constructor arguments, in the order left back, left
-front, right back, right front.  Here's Billy's:
+The directions arrive from outside, in an `OrientationConfiguration` object.
+A robot doesn't fill that in by hand.  It uses a `MecanumDriveBuilder`, which
+names each wheel.  Here's Billy's:
 
 ```java
-        driveTrain = new MecanumDrive(hardwareMap, new MecanumDrive.OrientationConfiguration(
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.REVERSE,
-                DcMotorSimple.Direction.FORWARD)
-        );
+        driveTrain = new MecanumDriveBuilder(hardwareMap)
+                .leftFront(DcMotorSimple.Direction.FORWARD)
+                .leftBack(DcMotorSimple.Direction.FORWARD)
+                .rightFront(DcMotorSimple.Direction.FORWARD)
+                .rightBack(DcMotorSimple.Direction.REVERSE)
+                .imu(imu)
+                .build();
 ```
 
-`Wildbots2025` builds the same class with `REVERSE`, `FORWARD`, `FORWARD`,
-`REVERSE`.  Two robots, two wiring jobs, one `MecanumDrive`.
+One line per wheel, so each direction can be checked against the robot
+itself.  The `imu` line hands over the robot's heading sensor (3.7), and
+`build()` puts the drive train together.  `Wildbots2025` builds the same class
+with left front `FORWARD`, left back `REVERSE`, right front `REVERSE`, and
+right back `FORWARD`.  Two robots, two wiring jobs, one `MecanumDrive`.
 
 > **Watch out.**  The right directions come from the robot, so the way to find
 > them is a test drive.  Put the robot up on a box with its wheels off the
@@ -403,8 +407,9 @@ makes wherever the robot faces right now count as zero, so on Billy, heading
 > the two mounting directions are wrong.
 
 The drive train uses the IMU too, for `turnToAngle()` in autonomous.  So two
-parts of the robot want one sensor, and one of them has to be in charge of
-setting it up.  That question has an entry of its own, 4.9.
+parts of the robot want one sensor.  The robot sets it up, once, and hands it
+to the drive train with the `imu(imu)` line in 3.2.  Why the robot is the one
+in charge has an entry of its own, 4.9.
 
 *See also:*  4.9, Chapter 14
 

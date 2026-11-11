@@ -1,21 +1,22 @@
 # Field Guide backlog
 
 What's done, who has what, and what's next.  Read `../PROCESS.md` first.
-Code baseline for every quotation:  `305fb81` (master at the audit), plus the
-one `TODO` comment Codex added to `DoublyLimitedMotor.java`, committed in
-`eab2e14` and still waiting on Jason's keep, reword, or drop.
+Code baseline for every quotation:  `5456d1a`, master after the 2026-11-11
+merge (see History).  Before that it was `305fb81`, plus the one `TODO`
+comment Codex added to `DoublyLimitedMotor.java` in `eab2e14`, still waiting
+on the author's keep, reword, or drop.
 
 ## History, briefly
 
 - **2026-10-26, Claude.**  Brief (`PROCESS.md`), build, art, and the code audit
   (`code-facts.md`).  Nine drafters launched;  a shared usage limit stopped
-  all of them.  Chapters 16, 19 and 20 were written before it did.  Jason
+  all of them.  Chapters 16, 19 and 20 were written before it did.  The author
   committed that state as `8f9a46d`.
 - **2026-10-26, Codex**, recovering.  Wrote Chapters 17 and 18, notes and
   openings for 16-20, and corrected the REV facts against REV's own
   documentation (`recovery_2026-10-26.md` has the list:  HD Hex is 15 W, the
   Core Hex is 72:1, the UltraPlanetary's exact fractions, 40 N-m is a failure
-  threshold).  Added Jason's student-work guidance to PROCESS, and
+  threshold).  Added the author's student-work guidance to PROCESS, and
   `check_chapters.ps1` and the page-preview script.
 - **2026-10-26, Claude**, reviewing Codex.  Kept its content, its corrections,
   and its two checking scripts.  Removed its task-runner and run records.
@@ -28,6 +29,22 @@ one `TODO` comment Codex added to `DoublyLimitedMotor.java`, committed in
 - **2026-10-26, Codex**, Chapter 13 continuation.  Completed 13.2-13.10,
   replaced 13.1's source placeholder, added notes and opening, source-checked
   the chapter, and built and visually reviewed the 13-page standalone draft.
+- **2026-11-11, Claude**, after merging `textbook` into master (`5456d1a`).
+  Master had 18 new commits:  `MecanumDriveBuilder`, `RobotBuilder` and
+  `SimpleRobot`, `AssistManager`, the IMU passed into `MecanumDrive`, and a
+  strategy and `CascadeStow` macro for `Wildbots2025`.  Thirteen excerpts in
+  3, 6, 9, 10, 13 and 21 stopped matching.  Updated them, and the prose that
+  went stale with them:  4.9 and 22.4 now tell the IMU story as fixed, with
+  the Wildbots mounting `TODO` as the open part;  10.3 traces `SimpleRobot`
+  in place of `Wildbots2025`, which now writes its own `update`;  9.3's bare
+  example is `ExampleIntakeAssembly`;  13.7 shows `AssistManager.start`;
+  13.10 and 21.9 name `CascadeStow`;  21.10 starts from the `RobotBuilder`
+  that exists.  `check_chapters.ps1` passes.  Not yet rebuilt or
+  page-previewed.  Also replaced the author's name with "the author" across
+  `planning/`, `PROCESS.md` and a build-script comment;  the byline stays.
+  Open:  `ExampleSimpleMecanumTeleOp`'s comment says "Same wheel directions
+  as BillyRobot" and its Javadoc says "no mechanisms", and neither matches
+  its code.  The book describes it without relying on either.
 
 ## Chapters
 
@@ -36,7 +53,7 @@ Claude drafter ids are historical; no Codex sub-agents were launched.
 
 | Ch | State at snapshot | Drafter (agent id, resumable with SendMessage) |
 |---|---|---|
-| 0, 98, 99 | drafted 2026-10-27;  0 and 99 await Jason's own voice | Claude |
+| 0, 98, 99 | drafted 2026-10-27;  0 and 99 await the author's own voice | Claude |
 | 1 | 10 entries, notes, opening | `a4dc877b00902bbee` (Ch 1-2) |
 | 2 | 9 entries, closing sections, notes, opening; checked and rendered (2026-10-27) | Claude draft, Claude completion |
 | 3 | 10 entries, notes, opening | `a1f767dabdb891fb0` (Ch 3-5) |
@@ -72,7 +89,7 @@ examples in 9/10.  Part 3 passes.  Other partial drafts have not received
 this continuation's full source and visual review.  Cross-references outside
 a selection still need the later whole-book check.
 
-## Open for Jason
+## Open for the author
 
 - The `TODO` Codex added to `DoublyLimitedMotor.java` (keep checking limits
   during autonomous moves):  keep, reword, or drop.
@@ -82,7 +99,7 @@ a selection still need the later whole-book check.
   unchanged.
 - `doc/limelight3a/` says it was checked against SDK 11.2.1;  the repo builds
   against 12.0.0.
-- Each chapter's notes file ends with questions for Jason.
+- Each chapter's notes file ends with questions for the author.
 
 ## Next
 
@@ -90,7 +107,7 @@ a selection still need the later whole-book check.
 complete chapter drafts, notes, and openings.  Chapters 6/9 preserved;
 7 received supporting files and two scoped explanations; 10 continued from
 10.7; 8/11 drafted.  Selected source checks and rendered review completed.
-These remain drafts for Jason's editorial review.  No student code changed
+These remain drafts for the author's editorial review.  No student code changed
 in this continuation.  No build or preview process remains pending.
 
 The snapshot above predates the last saved entries.  At this continuation's
@@ -174,9 +191,9 @@ cleanup, and telemetry using current source.  No robot code changed.
 - **Finished and reviewed:**  contact sheet, and page 14 at full size (the
   Argue it and Try it boxes, the wrapped `TODO` comment).  Code, tables and
   boxes fit.  Page 7 holds only 2.4's `See also` line;  that entry predates
-  this session and was left for Jason's edit.  The standalone build has no
+  this session and was left for the author's edit.  The standalone build has no
   book title page, so `opening_02.md` waits on the book pass.
-- Chapter 2 is 33 KB, above PROCESS's 12-25 KB guide.  Jason to decide on
+- Chapter 2 is 33 KB, above PROCESS's 12-25 KB guide.  The author to decide on
   trimming;  2.7 overlaps Chapter 15's 15.1 and 15.5 a little.
 
 ### Chapter 4 continuation - Claude, 2026-10-27, school machine
@@ -190,7 +207,7 @@ cleanup, and telemetry using current source.  No robot code changed.
   Replaced the quote with prose and tightened 4.6;  rebuilt (PID 15976,
   08:04), 14 pages, checks pass.
 - **Finished and reviewed:**  final contact sheet and page 12.  Page 4 holds
-  only 4.2's `See also` line;  4.2 predates this session, left for Jason.
+  only 4.2's `See also` line;  4.2 predates this session, left for the author.
 
 ### Chapter 5 - Claude, 2026-10-27, school machine
 
@@ -212,7 +229,7 @@ cleanup, and telemetry using current source.  No robot code changed.
   15:  16 pages;  22:  11 pages.
 - **Finished and reviewed:**  both contact sheets.  Code, tables and boxes
   fit.  Chapter 15's page 4 holds only 15.1's `See also` line;  15.1 predates
-  this session, left for Jason.
+  this session, left for the author.
 
 ### First full-book build - Claude, 2026-10-27, school machine
 
@@ -245,7 +262,7 @@ cleanup, and telemetry using current source.  No robot code changed.
   newest file for a key.  Old untitled outputs deleted.
 - Wrote `chapter_00_how_to_use.md`, `chapter_98_glossary.md` (246 terms,
   generated from every chapter's Vocabulary), `chapter_99_postscript.md`, and
-  their notes.  0 and 99 are drafts in Jason's voice, for him to rewrite.
+  their notes.  0 and 99 are drafts in the author's voice, for the author to rewrite.
 - `check_chapters.ps1` treats 00/98/99 as front and back matter (no entry
   count, no opening), and skips `0.x` values.  Whole book passes.
 - Style pass, whole book:  every PROCESS grep clean.  Fixed possession-sense
@@ -253,7 +270,7 @@ cleanup, and telemetry using current source.  No robot code changed.
   99.  Read the last line of every section.  Chapter 22's negations describe
   bugs, and stayed.  Not done:  a full read-aloud of every paragraph;  the
   Codex-drafted chapters (8, 11, 13, 17, 18) read stiffer than the rest and
-  would benefit from Jason's ear.
+  would benefit from the author's ear.
 - Full rebuild:  same commands as the first full build, plus `all` first.
   Log `build/fullbook-build-2.txt`.  Started 09:43;  `build_book` exit 0 at
   09:44;  `finish_book` exit 0 at 10:42 (58 minutes, Word PID 33344).  38
@@ -281,9 +298,9 @@ cleanup, and telemetry using current source.  No robot code changed.
 
 ### Next writing checkpoint
 
-Chapters 1-22 are all drafted, as of 2026-10-27.  Next:  Jason's editorial
+Chapters 1-22 are all drafted, as of 2026-10-27.  Next:  the author's editorial
 read, then Chapter 0, the glossary (98) and the postscript (99).  Chapter 0
-and 99 are in Jason's own voice.  Use the process's run record for long
+and 99 are in the author's own voice.  Use the process's run record for long
 scripts.
 
 Orphaned `See also` pages in the standalone renders, all in entries from
@@ -292,7 +309,7 @@ the first session:  2.4, 4.2, 15.1.
 Whole-book `check_chapters.ps1` (no `-Keys`) passes, 2026-10-27, after two
 fixes:  the checker now skips `N.0` numbers (`20.0`, SDK `12.0`), which it
 was reading as entry references, and 14.6's invented `getBotpose` line moved
-to a plain fence.  The style pass and Jason's read are still ahead.
+to a plain fence.  The style pass and the author's read are still ahead.
 
 1. Finish drafting 1-15 and 21-22.
 2. Chapter 0, glossary (98), postscript (99).

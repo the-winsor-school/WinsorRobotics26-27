@@ -139,7 +139,7 @@ configuration exactly (Chapter 3).  Decide them before anyone types one.
 | flywheel motors | `"flywheelMotorF"`, `"flywheelMotorB"` | `BillyMA`, through `DoubleShooter` |
 | turret servo | `"turretServo"` | `BillyMA`, through `Turret` |
 | Limelight | `"limelight"` | `BillyRobot` |
-| IMU | `"imu"` | `BillyRobot`, and `MecanumDrive` (22.4) |
+| IMU | `"imu"` | `BillyRobot`, which hands it to `MecanumDrive` (4.9) |
 
 The same pass settles the rest of the setup:  which way each drive motor
 turns, how the Control Hub is mounted (so the IMU knows which way is up), and
@@ -356,8 +356,9 @@ ID.  It passes each subsystem what that subsystem needs in turn.
 The same idea runs all through the model.
 
 - `MecanumDrive` takes an `OrientationConfiguration`, which says which way
-  each drive motor turns.  Billy and `Wildbots2025` pass different directions
-  to the same drive class.
+  each drive motor turns, and the robot fills it in through a
+  `MecanumDriveBuilder` (3.2).  Billy and `Wildbots2025` pass different
+  directions to the same drive class.
 - `LimelightAutoTarget` is handed the camera, the turret's autonomous verbs,
   and the tag to look for.  It fetches nothing for itself:
 
@@ -373,18 +374,21 @@ wiring to do.  What it buys is reuse:  one class serves both alliances, both
 robots, and the next robot too.  That's the trade-off between complexity and
 reusability.
 
-It also settles who owns a shared device.  The IMU is the place the codebase
-is still working this out.  `MecanumDrive` fetches the IMU for itself, and so
-does `BillyRobot`.  Both run this line:
+It also settles who owns a shared device.  The IMU shows how.  `MecanumDrive`
+used to fetch the IMU for itself, and so did `BillyRobot`, so two classes held
+one device and only one of them set it up.  The fix was injection.  Now the
+drive train takes the IMU as a constructor parameter and keeps it:
 
 ```java
-        imu = hardwareMap.get(IMU.class, "imu");
+    public MecanumDrive(
+            HardwareMap hardwareMap,
+            OrientationConfiguration orientationConfiguration, 
+            IMU imu)
+    ...
+        this.imu = imu;
 ```
 
-The `TODO` in `MecanumDrive`'s constructor names the next step as injection:
-*"Take the IMU as a constructor parameter here rather than fetching it - the
-same way OrientationConfiguration already passes in what varies per robot."*
-The robot would fetch it, set it up once, and pass it down.  22.4 explains why
+The robot fetches it, sets it up once, and passes it down.  22.4 explains why
 that matters.
 
 *See also:*  21.2, 22.4, Chapter 3, Chapter 10
@@ -400,7 +404,7 @@ whether or not anybody said their names.  Each one has its own chapter.
 | Composite | a group answers the same calls as its parts | `BillyMA`, `CascadeArm`, `ExampleIntakeAssembly` | 9 |
 | Facade | one simple surface over many subsystems | every `Robot` | 10 |
 | Template method | the base class fixes the order of a job, and subclasses fill in steps | `Robot.update` and `Robot.updateTelemetry` | 10 |
-| Dependency injection | an object is handed what it depends on | the tag ID, the orientation, the camera | 21.5 |
+| Dependency injection | an object is handed what it depends on | the tag ID, the orientation, the camera, the IMU | 21.5 |
 | State machine | a behavior that moves through steps over time without blocking the loop | `StateMachine` and `IState`, used by `BillyRapidFire` and `LimelightAutoTarget` | 12 |
 
 The template method needs a closer look, because the robots use it two
@@ -414,8 +418,8 @@ ways.  Here is the default in `Robot`:
     }
 ```
 
-`StandardTankRobot`, `OneStickTankRobot` and `Wildbots2025` leave it exactly
-as it is.  Billy replaces it:
+`StandardTankRobot`, `OneStickTankRobot` and `SimpleRobot` leave it exactly
+as it is.  Billy and `Wildbots2025` replace it.  Here's Billy's:
 
 ```java
     @Override
@@ -427,9 +431,11 @@ as it is.  Billy replaces it:
 Billy's strategy still calls `driveTrain.drive(gamepad1)` and gives the
 assembly `gamepad2`.  Before it does, it handles the buttons that start and
 stop rapid fire and automatic aiming, and it tells the assembly which parts an
-assist has claimed (Chapter 13).  A robot whose loop has to referee between
-behaviors writes its own `update()`.  A robot that only drives and works its
-mechanisms keeps the default.
+assist has claimed (Chapter 13).  `Wildbots2025`'s strategy is smaller:  it
+checks the two buttons that start and cancel its stow sequence, then drives
+and passes the gamepad on.  A robot whose loop has buttons to read or
+behaviors to referee writes its own `update()`.  A robot that only drives and
+works its mechanisms keeps the default.
 
 *See also:*  21.4, 21.5, Chapter 8, Chapter 9, Chapter 10, Chapter 12, Chapter 13
 
@@ -569,17 +575,20 @@ claw, so it joins `CascadeArm`.  Now suppose a tilted wrist would hit the frame
 on the way down.  That's a rule about two components, the wrist and the lift,
 so it belongs to the assembly.  "Stow the wrist, then lower the lift" is a
 sequence that takes over both parts for a moment, which makes it a macro that
-claims them (Chapter 13).  `CascadeArm` has no parts list and no
-`MacroManager` yet, so the design adds them by copying `BillyMA`:  a `Part`
-list, a `MacroManager<Part>`, and a default strategy that skips claimed parts.
-`MacroManager<R>` works as it is.  This is the largest piece of work in the
-design, and it's better found here than at the robot.
+claims them (Chapter 13).  `CascadeArm` already has the machinery for it,
+built the same way as `BillyMA`'s:  a `Part` list, a `MacroManager<Part>`, and
+a default strategy that skips claimed parts.  Its one macro so far,
+`CascadeStow`, lowers the lift and the drawbridge.  The design adds `WRIST` to
+the `Part` list, has the wrist's manual call skip itself when claimed, and
+writes the new macro.  The manager runs one macro at a time (13.5), so whether
+"stow the wrist" becomes its own macro or the first step of `CascadeStow` is a
+choice to settle here, before the code.
 
 **5.  The robot.**  `Wildbots2025` builds `new CascadeArm(hardwareMap)`, and the
 wrist arrives inside it.  `AutonomousCascadeArm` gains a `wrist` field.  The
-robot keeps `Robot.update`, because the assembly can read its own macro button
-in `giveInstructions`.  Billy wrote its own `update()` to referee assists
-against macros (21.6), and this robot has no assists to referee.
+robot already writes its own `update()`, which reads the stow buttons (21.6),
+so a button for the new macro goes beside them.  This robot has no assists, so
+it has nothing to referee the way Billy does.
 
 **6.  One autonomous routine.**  Raise the lift, tilt the wrist to score, open
 the claw, stow the wrist, lower the lift.  An OpMode runs this once and waits
@@ -591,14 +600,14 @@ it's a state machine built with `doAndWait` (Chapter 12), like
 
 > **Watch out.**  Two facts about this robot shape the routine.  The lift's
 > limit check runs each time `setPower` is called (Chapter 19), so a timed lift
-> move in autonomous should stop the lift itself.  And `Wildbots2025`'s IMU has
-> no setup yet (22.4), so leave `turnToAngle` out of its routines until the IMU
-> `TODO` in `MecanumDrive` is done.
+> move in autonomous should stop the lift itself.  And `Wildbots2025`'s IMU
+> mounting was copied from Billy and hasn't been checked on its own hub (4.9),
+> so check it before a routine leans on `turnToAngle`.
 
 **7.  The checklist.**  Run 21.7 honestly.  One owner for the wrist servo:
 yes.  Hardware hidden, verbs named for intent:  yes.  Conflicts settled in one
-place:  yes, once the macro and its claims exist, and no until then.  Robot
-class unchanged, OpMode unchanged:  yes.  Testable layer by layer:  servo
+place:  yes, through the arm's claims.  Robot class:  one new button check.
+OpMode unchanged:  yes.  Testable layer by layer:  servo
 direction, strategy, verbs, the macro, then the whole arm.  The open item is
 question 2's reuse decision, and the team should settle it before anyone
 writes the class.
@@ -617,14 +626,16 @@ the time you have.
 | Size | The project | Read first |
 |---|---|---|
 | a few minutes | this season's AprilTag IDs in the three OpModes | 5.9 |
+| an hour | check `Wildbots2025`'s IMU mounting against its hub | 3.7, 4.9 |
+| an afternoon | test `CascadeStow` on the robot | 13.10 |
 | an afternoon | check the travel limits for the whole of an autonomous move, in `DoublyLimitedMotor` | 8.6 |
 | an afternoon | compare the TeleOp drive signs with the autonomous ones, in `MecanumDrive` | 22.3 |
-| a week | one owner for the IMU, then field-relative drive and heading hold | 4.9, 22.4 |
+| a week | field-relative drive and heading hold, in `MecanumDrive` | 4.9 |
 | a week | a turn to a heading that doesn't stop the loop, in `turnToAngle` | 22.2 |
 | a week or more | travel limits for the turret, and a grip sensor for the claw | 4.10, 7.8 |
 | a week or more | the first sensor on an assembly:  a ball-ready sensor on Billy | 4.7 |
 | a season | aiming at a cluster of tags | 15.9 |
-| open-ended | a `RobotBuilder` | this entry |
+| open-ended | grow `RobotBuilder` until it can build Billy | this entry |
 
 The last one is the hardest thing on the list, and it's there for an advanced
 student who wants a real challenge.
@@ -638,28 +649,55 @@ hand.  `BillyRobot` and `Wildbots2025` are each a constructor that fetches
 devices, builds a drive train and an assembly, and wires up strategies.  Most
 of what they do is the same job, with different parts.
 
-The `TODO` at the top of `Robot.java` asks for a way to describe a robot in a
-few lines and have the code put it together.  Here's the sketch it gives for
-Billy:
+For a simple robot, that's already been solved.  `RobotBuilder` puts a robot
+together from a drive train and an optional assembly.  *Example TeleOp
+(Tank)* builds its whole robot in one statement:
 
 ```java
-    //      RobotBuilder.From(new MecanumDrive(...))
-    //          .WithMechAssembly(new BillyMA(hardwareMap))
-    //          .WithRobotStrategy(...)
-    //          ...
-    //          .Build();
+        robot = new RobotBuilder(telemetry)
+        .driveTrain(new StandardTankDrive(hardwareMap))
+        .build();
 ```
 
-That's a sketch in a comment, and no `RobotBuilder` exists yet.  A
-**builder** is an object whose only job is to put another object together, a
-piece at a time, and hand it over at the end with `Build()`.  Each `With...`
-method hands back the builder itself, so the calls chain with dots, the same
-way the stream chain does in 5.7.  An object built to be used in a chain like
-that has a **fluent interface**.
+A **builder** is an object whose only job is to put another object together,
+a piece at a time, and hand it over at the end with `build()`.  Each method
+before that hands back the builder itself, so the calls chain with dots, the
+same way the stream chain does in 5.7.  An object built to be used in a chain
+like that has a **fluent interface**.  `MecanumDriveBuilder` (3.2) is the
+same idea one layer down.
 
-The `TODO` asks for the same thing one layer down, too:  a builder for
-`MechAssembly`, so an assembly can be put together from components, organized
-in particular ways, with strategies at each layer.
+Here's what `build()` does:
+
+```java
+    public Robot build()
+    {
+        if (driveTrain == null)
+            throw new IllegalStateException("RobotBuilder: call driveTrain(...) before build()");
+        return new SimpleRobot(telemetry, driveTrain, mechAssembly);
+    }
+```
+
+It refuses a robot with no drive train, and otherwise hands back a
+`SimpleRobot`, which keeps the default `update` (21.6) and has no autonomous
+object.
+
+The `TODO` at the top of `Robot.java` asks for the hard part:  grow the
+builder until it can put together a robot like Billy, strategies and all.
+Here's the sketch it gives:
+
+```java
+    //      new RobotBuilder(telemetry)
+    //          .driveTrain(new MecanumDrive(...))
+    //          .mechAssembly(new BillyMA(hardwareMap))
+    //          .robotStrategy(...)
+    //          ...
+    //          .build();
+```
+
+There's no `robotStrategy` method yet.  That line is the project.  The `TODO`
+asks for the same thing one layer down, too:  a builder for `MechAssembly`, so
+an assembly can be put together from components, organized in particular
+ways, with strategies at each layer.
 
 ### Why it's very hard
 
@@ -667,16 +705,20 @@ A builder is dependency injection (21.5) taken all the way:  every part of the
 robot is handed in, and nothing is written by hand.  That's where the
 difficulty comes from, because everything the hand-written constructor does
 quietly now has to be said out loud.  The `TODO` lists the questions to answer
-before writing any code.
+before writing any code.  The simple builder answers two of them for simple
+robots, and a Billy reopens both.
 
-- **What does `Build()` hand back?**  `Robot` is abstract, and
+- **What does `build()` hand back?**  `Robot` is abstract, and
   `getAutonomousRobot()` is generic (Chapter 7), so the builder needs a
-  concrete robot class of its own to build.
+  concrete robot class of its own.  Today that's `SimpleRobot`, with no
+  autonomous object.  Billy has one.
 - **Where do the robot-wide sensors get set up?**  The Limelight and the IMU
   belong to the robot (4.6), and something has to fetch and configure them
-  once.
+  once.  *Example TeleOp (Simple Mecanum)* sets the IMU up in the OpMode,
+  before the builder runs.  Is that the right place for a robot like Billy?
 - **How does two-phase setup still happen?**  `initializeSubsystems()` has to
-  run exactly once, after everything is assigned (7.4).
+  run exactly once, after everything is assigned (7.4).  `SimpleRobot`'s
+  constructor assigns both parts and then calls it.
 - **How do assists and claims fit in?**  Billy starts its tracker with
   `startAssist`, and the claims decide who drives the turret (Chapter 13).
 
@@ -746,8 +788,8 @@ then assemblies, then the robot, then OpModes and autonomous strategies.  (21.1)
 following what depends on what.  (21.3)
 
 **builder** -- an object whose only job is to put another object together, a
-piece at a time, and hand it over at the end.  The `RobotBuilder` in
-`Robot.java`'s `TODO` would be one.  (21.10)
+piece at a time, and hand it over at the end.  `RobotBuilder` and
+`MecanumDriveBuilder` are two.  (21.10)
 
 **dependency injection** -- handing an object the things it depends on
 through its constructor, so the code that builds it decides what they are.
