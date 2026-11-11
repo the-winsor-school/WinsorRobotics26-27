@@ -6,7 +6,7 @@ Audited 2026-10-26 against `master` at `305fb81`.  Lessons last edited at `34c22
 errors and a limit-switch timing limitation in `DoublyLimitedMotor`.  The
 original audit is preserved below, with those corrections added at the end.
 
-**Student-work guidance, clarified by Jason on 2026-10-26:**  this codebase
+**Student-work guidance, clarified by the author on 2026-10-26:**  this codebase
 was written by students.  This audit supports accurate descriptions of
 behavior;  its historical labels are not an editorial instruction to call out students'
 mistakes.  Minor bugs may be ignored.  A confirmed bug that prevents a
@@ -3685,7 +3685,7 @@ audit above remains a record of its checks against `305fb81`.
    command will require another check and a stop request.  The guard is not
    continuous enforcement or an independent hardware cutoff.  Chapter 19
    now says this;  carry it into software chapters describing the decorator,
-   autonomous verbs, state machines, and safeguards.  Following Jason's
+   autonomous verbs, state machines, and safeguards.  Following the author's
    student-work guidance, a neutral source TODO now records the next step
    for stopping autonomous movement when a travel limit is reached.
 2. **Core Hex reference errors extend beyond the original audit.**

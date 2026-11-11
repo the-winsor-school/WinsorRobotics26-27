@@ -37,7 +37,7 @@ The imaginary spring-loaded ramp is explicitly invented, as in the lesson.
 Its missing latch/release is treated as a design question rather than filled
 in with invented hardware.  The Java comment is copied from MechComponent.
 
-## Guesses and questions for Jason
+## Guesses and questions for the author
 
 The Class Bot's value and the time available are design choices for the team,
 so the discussion questions remain open.  There is no invented team history.

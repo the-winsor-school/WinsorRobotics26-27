@@ -33,7 +33,7 @@ review completed.  Next:  editorial review and whole-book references.
 - stopAll cancels the macro and assist; manual dispatch follows in the same
   tick.  It is not a latched all-actuator stop.
 
-## Guesses and questions for Jason
+## Guesses and questions for the author
 
 No personal history inferred.  Any design extension will be labelled as a
 proposal, not presented as an implemented feature.

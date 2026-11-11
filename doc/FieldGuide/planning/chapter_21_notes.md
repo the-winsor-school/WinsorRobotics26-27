@@ -10,7 +10,7 @@ leaves them alone, and the prose introduces each as a template or as made up.
 
 Size:  about 31 KB, over the 12 to 25 KB guide.  The component template alone
 is 1.4 KB, and 21.9 (the worked design pass) is about 4.5 KB.  The obvious cuts,
-if Jason wants it shorter:  the configuration-name table in 21.2, the Try it in
+if the author wants it shorter:  the configuration-name table in 21.2, the Try it in
 21.2, or the template-method code pair in 21.6.
 
 ## 1.  Sources
@@ -46,7 +46,7 @@ Code-facts' writer note holds:  all robot-layer arbitration lives in
 `BillyRobot`, and the base `Robot` has none.  21.9 says a new robot copies the
 pattern;  it never claims a reusable robot-level manager exists.
 
-## 3.  Guesses and open questions for Jason
+## 3.  Guesses and open questions for the author
 
 1. **The worked example is a wrist for `Wildbots2025`'s `CascadeArm`.**  It's
    invented:  `"wristServo"`, `WristServo`, `SCORE`, `STOW`, the frame
@@ -98,11 +98,11 @@ is Chapter 10's;  21.6 points there.
 
 ## 2026-10-27, Claude:  21.10
 
-Added 21.10, the open projects and the `RobotBuilder`, at Jason's request.
+Added 21.10, the open projects and the `RobotBuilder`, at the author's request.
 The `TODO` it describes is at the top of the class body in `Robot.java`
 (inside the class, so the Javadoc stays attached to the declaration).  New
 vocabulary:  builder, fluent interface, also added to the glossary.  The
-project sizes in 21.10's table are the drafter's estimates;  Jason may want
+project sizes in 21.10's table are the drafter's estimates;  the author may want
 to adjust them.  Chapter 1's `TODO` count is now fourteen (thirteen before
 this one;  the `DoublyLimitedMotor` `TODO` came after Chapter 1 was written).
 The assistant-responsibility sentence is quoted in prose, because its code

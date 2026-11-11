@@ -35,7 +35,7 @@ research transcripts are on the home machine and weren't used.
 - The lesson quotes the sample as guarding with `result != null &&
   result.isValid()`.  The sample checks only `isValid()`.  5.8 says so.
 
-## 3.  Guesses and open questions for Jason
+## 3.  Guesses and open questions for the author
 
 - `isValid()`:  the team's helpers check `null` and not `isValid()`.  An
   invalid result's fiducial list is presumably empty, so the search hands back

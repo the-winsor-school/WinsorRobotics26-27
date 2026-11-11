@@ -24,7 +24,7 @@ chapter text, so the original drafter's own guesses may be missing.
   since been resolved.  Task 1 still asks for an `isValid()` check, which the
   helpers don't have (Chapter 5 notes).
 
-## 3.  Open questions for Jason
+## 3.  Open questions for the author
 
 - The cluster plan's offsets are copied from the SDK by hand (15.5).  The
   chapter asks the team to record where and when;  nobody has done that yet,

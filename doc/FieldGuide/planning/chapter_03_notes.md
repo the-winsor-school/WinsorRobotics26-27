@@ -59,7 +59,7 @@ quoted line changed.  SDK samples quoted from the same checkout (SDK 12.0.0).
   `servo.getPower()`, and the shared D-pad on `gamepad2` that trims the
   flywheel and runs the intake at once.  Neither stops a feature working.
 
-## 3. Guesses and open questions for Jason
+## 3. Guesses and open questions for the author
 
 - 3.3's **Argue it** (flywheel on `setVelocity`) assumes no encoder is wired
   to a flywheel motor today.  If one is, the cost side shrinks;  the box

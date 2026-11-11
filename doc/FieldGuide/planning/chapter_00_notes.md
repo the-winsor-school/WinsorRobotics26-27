@@ -1,7 +1,7 @@
 # Chapter 0 notes - How to Use This Book
 
-Drafted 2026-10-27 by Claude, at Jason's request.  PROCESS says Chapter 0 is
-"written last, by hand", in Jason's own voice, so treat this as a draft for him
+Drafted 2026-10-27 by Claude, at the author's request.  PROCESS says Chapter 0 is
+"written last, by hand", in the author's own voice, so treat this as a draft for the author
 to rewrite.
 
 ## Sources
@@ -10,7 +10,7 @@ to rewrite.
 the contents of Chapters 1-22 (every entry number in the tables was checked
 against a heading).
 
-## Open questions for Jason
+## Open questions for the author
 
 - Three first-person lines are his to keep or change:  "I wrote it for the
   youngest programmer on the team as much as the oldest", "Tell me, and we'll

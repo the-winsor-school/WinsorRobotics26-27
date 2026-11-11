@@ -83,7 +83,7 @@ end
 -- The double space
 ---------------------------------------------------------------------------
 
--- Markdown collapses two spaces after a sentence into one.  Jason reads by
+-- Markdown collapses two spaces after a sentence into one.  The author reads by
 -- those spaces, so this pass keeps them:  each becomes a no-break space plus a
 -- space, which survives pandoc into Word.  A sentence that ends a wrapped line
 -- gets the no-break space at the end of the line.  Code fences and code spans

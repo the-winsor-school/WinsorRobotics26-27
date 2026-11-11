@@ -27,7 +27,7 @@ closing sections, and `book/opening_04.md` written 2026-10-27.
   illustrative.  4.1 kept the first in prose;  4.3 shows the second in a plain
   fence, introduced as made up.
 
-## 3.  Guesses and open questions for Jason
+## 3.  Guesses and open questions for the author
 
 - 4.4 says a timed-out 2m sensor reading should be treated as suspect.  That's
   inferred from the method's name in the sample.  The exact out-of-range

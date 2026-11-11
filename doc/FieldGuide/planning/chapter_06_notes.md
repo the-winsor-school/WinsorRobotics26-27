@@ -55,7 +55,7 @@ return `null` from `getAutonomousRobot()` (no autonomous program uses them);
 the `strategy` field in `BillyRobot` beside `Robot`'s;  `Robot.visionPortal`
 is never assigned.
 
-## Guesses and open questions for Jason
+## Guesses and open questions for the author
 
 1. The lesson calls the model "four layers" while drawing five names.  The
    chapter keeps "four layers" and explains that `DriveTrain` and

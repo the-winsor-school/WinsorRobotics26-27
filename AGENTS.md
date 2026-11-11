@@ -123,7 +123,7 @@ them:
 `master` holds only code that has been tested and is ready to run on the robot.
 
 - **Every feature or fix goes on its own branch**, named `<firstname>/<short-topic>`, for
-  example `hailey/cascade-stow`. Before changing any file, check the current branch. If
+  example `<firstname>/cascade-stow`. Before changing any file, check the current branch. If
   it's `master`, create a branch first.
 - **The branch stays separate until the work is tested and proven ready.**
   - "Tested" means run on the robot it's for, with what happened written under
@@ -169,7 +169,7 @@ with a `TODO`, for students to practice on. It is **never merged into `master`**
 ## Process logs (required for students)
 
 Every student task that changes code or docs gets a process log, committed to the repo.
-Mentors (for example Jason Cox) may skip this.
+Mentors may skip this.
 
 ### Where it goes
 

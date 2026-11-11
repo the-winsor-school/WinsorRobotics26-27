@@ -30,7 +30,7 @@ Six of the lesson's nine repo examples were fixed in `1a6809a`.  Live:
 - The lesson's made-up `arm.setPosition` snippet is kept in 22.5 as a
   self-test.
 
-## 3.  Guesses and open questions for Jason
+## 3.  Guesses and open questions for the author
 
 - Added a third historical entry to `reference/check_chapters.ps1`:  chapter
   22, `1a6809a^`, `BillyMA.java`.  It's the same revision Chapter 9 uses.

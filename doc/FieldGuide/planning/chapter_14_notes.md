@@ -62,7 +62,7 @@ is introduced as made up.
    `result != null && result.isValid()`.  The sample checks only
    `result.isValid()` (`:103`).  This chapter quotes the sample as it is.
 
-## Guesses and open questions for Jason
+## Guesses and open questions for the author
 
 1. Is MegaTag2 for Billy worth listing as a project, given that BIOBUZZ tags
    move?  The chapter calls it "a project waiting for someone to take it on"

@@ -49,7 +49,7 @@ in 9.5.
 - **`Part` and claims** get one pointing sentence in 9.3 and a table row in
   9.8;  Chapter 13 owns them.
 
-## 3.  Guesses and open questions for Jason
+## 3.  Guesses and open questions for the author
 
 1. **Size.**  27.8 KB against a 25 KB ceiling.  Acceptable for a code-heavy
    chapter, or cut further (suggestions above)?

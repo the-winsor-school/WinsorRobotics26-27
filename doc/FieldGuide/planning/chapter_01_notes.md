@@ -59,7 +59,7 @@ quoted lines themselves are unchanged).  Line numbers below are at `305fb81`.
   most common first-competition bug";  kept "builds fine and fails only when
   the robot runs".
 
-## 3.  Guesses and open questions for Jason
+## 3.  Guesses and open questions for the author
 
 1. **Size.**  The chapter is about 40 KB against PROCESS's 12-25 KB, at the
    10-entry cap.  Chapter 1 owns about thirty terms, each needing a real

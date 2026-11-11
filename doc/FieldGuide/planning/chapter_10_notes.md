@@ -2,7 +2,7 @@
 
 **Progress:**  10.1-10.8, closing sections, and opening saved.  Claude wrote
 10.1-10.6; Codex completed the chapter.  Source checks and rendered review
-completed.  Next:  Jason's editorial review.
+completed.  Next:  the author's editorial review.
 
 Code baseline:  `305fb81`.  Every block copied from the files and dedented.
 
@@ -26,7 +26,7 @@ Code baseline:  `305fb81`.  Every block copied from the files and dedented.
   described neutrally as a proposed single owner, not an implemented change.
 - Removed the claim that lower base classes contain no implemented methods.
 
-## Guesses and questions for Jason
+## Guesses and questions for the author
 
 No history inferred beyond the labelled repository version.  Future hub
 orientation must be checked against the actual mounted hub.

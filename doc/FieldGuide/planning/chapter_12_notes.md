@@ -85,7 +85,7 @@ the tick rapid fire starts (12.5).  The sequencing itself is correct.
 
 None.  Nothing in this chapter's code stops a feature working.
 
-## Guesses and open questions for Jason
+## Guesses and open questions for the author
 
 1. **Size.**  31 KB against a 25 KB target (see above).  Cut, or keep?
 2. **12.5's "all eight names at once" paragraph.**  It explains telemetry a

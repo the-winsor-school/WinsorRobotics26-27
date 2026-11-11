@@ -1,7 +1,7 @@
 # Chapter 99 notes - Postscript
 
-Drafted 2026-10-27 by Claude, at Jason's request.  PROCESS says the Postscript
-is written last, by hand, in Jason's voice.  This draft keeps to facts from
+Drafted 2026-10-27 by Claude, at the author's request.  PROCESS says the Postscript
+is written last, by hand, in the author's voice.  This draft keeps to facts from
 `BACKLOG.md` and `code-facts.md`;  rewrite it freely.
 
 ## What it claims, and where from
@@ -13,7 +13,7 @@ is written last, by hand, in Jason's voice.  This draft keeps to facts from
   direction) were all in one commit:  `1a6809a`, per code-facts.  The
   Postscript says "the team" fixed them and names nobody.
 
-## Open questions for Jason
+## Open questions for the author
 
 - "If you're reading about code you wrote, I hope it reads like somebody took
   your work seriously, because they did."  That's his student-work guidance in

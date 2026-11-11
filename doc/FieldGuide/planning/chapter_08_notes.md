@@ -13,7 +13,7 @@ the working tree.  Student-work guidance in PROCESS applies.
 ## Progress
 
 8.1-8.8, closing sections, and opening saved.  Source checks and rendered
-review completed.  Next:  Jason's editorial review.
+review completed.  Next:  the author's editorial review.
 
 ## Source discrepancies and decisions
 
@@ -25,7 +25,7 @@ review completed.  Next:  Jason's editorial review.
   no claim that it implements the SDK motor's full interface.
 - Servo telemetry describes a command value, not confirmation of ball motion.
 
-## Guesses and questions for Jason
+## Guesses and questions for the author
 
 No new personal history or hardware measurements inferred.  Control choices
 are described as the current Billy configuration, not a prescribed mapping
@@ -51,4 +51,4 @@ Only short pointers to telemetry (7/10), construction (7), and ownership
 
 Selected source checks passed.  Built Word/PDF and reviewed the 10-page
 contact sheet plus larger pages 4 and 7 (constructor call and decorator).
-No clipping seen.  Next:  Jason's editorial review and whole-book references.
+No clipping seen.  Next:  the author's editorial review and whole-book references.

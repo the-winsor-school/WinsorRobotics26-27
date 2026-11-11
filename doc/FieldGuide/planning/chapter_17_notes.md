@@ -35,7 +35,7 @@ The made-up exact 20:1 gearbox in 17.2 is explicitly labeled.  No Java
 code blocks are used.  The 1.5kg practice load remains the lesson's
 hypothetical exercise, not a claim about a team mechanism.
 
-## Guesses and questions for Jason
+## Guesses and questions for the author
 
 Which SRS generation is in the team's inventory?  The local reference mixes
 the older part number and a V2 manual link.  The chapter scopes the 270-degree
@@ -67,4 +67,4 @@ No Java asides were added.
 
 Formulas and tables were checked in rendered pages, including a detailed view
 of the power example.  Check the title-page opening in the full book.  The power
-example's changed conclusion is an editorial decision for Jason to review.
+example's changed conclusion is an editorial decision for the author to review.

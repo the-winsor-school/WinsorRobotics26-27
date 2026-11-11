@@ -7,7 +7,7 @@ the working tree by line range.
 
 Progress:  7.1-7.9, closing sections, and opening saved.  Codex completed
 the handoff notes and scoped the reuse and concrete-return-type explanations.
-Source checks and rendered review completed.  Next:  Jason's editorial review.
+Source checks and rendered review completed.  Next:  the author's editorial review.
 
 ## Sources
 
@@ -30,7 +30,7 @@ Source checks and rendered review completed.  Next:  Jason's editorial review.
 - Concrete return types are explained through the actual overrides rather
   than implying that any caller-selected generic type is safe.
 
-## Guesses and questions for Jason
+## Guesses and questions for the author
 
 The device-wrapper naming convention remains an open design choice, as
 recorded in MechComponent.  No renaming or implementation change made.
@@ -56,4 +56,4 @@ Selected source checks passed.  Built the Word draft and reviewed the
 20-page contact sheet; no clipping seen.  The 31.6 KB draft exceeds the
 chapter-size guideline because of source excerpts and closing reference
 tables.  A later editorial pass can assess duplication with Chapters 8/11.
-Next:  Jason's editorial review and the final whole-book cross-reference pass.
+Next:  the author's editorial review and the final whole-book cross-reference pass.

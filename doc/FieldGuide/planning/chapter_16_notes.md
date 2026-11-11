@@ -26,7 +26,7 @@ automatically prevents a workpiece escaping its clamp;  stated secure work
 holding and supervision.  The rule is a team workshop instruction, not a
 universal claim about every tool capable of cutting aluminum.
 
-## Guesses and questions for Jason
+## Guesses and questions for the author
 
 Please check the stocked part numbers and the described T-nut operation at
 the bench.  This pass compares with the local reference, not an inventory.

@@ -52,7 +52,7 @@ claims.  The lift and drawbridge share `Can Go` telemetry captions;  the
 exercise tells readers to identify the lift readings.  No separate defect
 discussion is needed for that minor detail.
 
-## Guesses and questions for Jason
+## Guesses and questions for the author
 
 Please verify positive motor power physically raises Wildbots2025's lift.
 The constructor names express that intention;  wiring and mounting still

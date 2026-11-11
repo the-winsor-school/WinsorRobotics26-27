@@ -282,7 +282,7 @@ Each drafter writes `planning/chapter_NN_notes.md` for each chapter:
 
 1. **Sources** used, with the file paths.
 2. **Where the lesson and the code disagreed**, and what you wrote.
-3. **Guesses and open questions** for Jason.  Anything you had to infer.
+3. **Guesses and open questions** for the author.  Anything you had to infer.
 4. **Unverified** claims, especially about the world outside the repository.
 5. **Cross-references** you left at chapter level for the pass to sharpen.
 6. **Asides you used** that the table says another chapter owns, if any.
@@ -340,7 +340,7 @@ Without it, read a finished chapter of this book for the register:  Chapter 13.
 
 **The register is OODP's chapters, at a middle schooler's reading level.**
 Second person.  Contractions are welcome.  Instructions are written as
-instructions.  Jason's own "I" belongs to Chapter 0 and the Postscript, so
+instructions.  The author's own "I" belongs to Chapter 0 and the Postscript, so
 chapters 1 to 22 leave it out.
 
 **For a middle schooler:**  short sentences, one idea to a paragraph, every
@@ -350,7 +350,7 @@ Explain them;  never water them down.  Keep the trade-offs and the unsolved
 design questions.  Apply the student-work guidance above when deciding
 whether a bug belongs in a chapter or a source TODO.
 
-**Design choices are trade-offs.**  Jason's word, hyphenated.  Introduce a
+**Design choices are trade-offs.**  The author's word, hyphenated.  Introduce a
 choice with its cost first, then what it buys, and call it a trade-off once.
 The big one is complexity against reusability.  Webcam against Limelight,
 cascading against continuous, averaging against one big solve:  all
@@ -377,7 +377,7 @@ And the rules with no grep:
 - Concede first.  The unflattering part, then the case.
 - The sentence carrying the most weight is the plainest one in its paragraph.
 - "Data is".  `indexes`, `formulas`, singular `they`.  `grey`.
-- No giant asterisks.  Jason places those himself, rarely.  If you think a
+- No giant asterisks.  The author places those personally, rarely.  If you think a
   facade over something fundamental deserves one, say so in your notes.
 - His conventions stay out of the book.  Never explain the double space, the
   dashes, or any of the rest.

@@ -38,7 +38,7 @@ and impossible-to-drive wrong layouts.  Keep the engineering reason and
 describe the conditions it depends on.  Kept REV's 3mm-pitch GT2 terminology;
 GT2 alone is not a sufficient belt specification.
 
-## Guesses and questions for Jason
+## Guesses and questions for the author
 
 Please compare the top-view sketch with a real assembled drivetrain.
 The 6mm chain-flex check comes from the local guide;  it is presented as a

@@ -15,7 +15,7 @@ against the working tree.  No source-code edits planned.
 ## Progress
 
 11.1-11.8, closing sections, and opening saved.  Source checks and rendered
-review completed.  Next:  Jason's editorial review.
+review completed.  Next:  the author's editorial review.
 
 ## Source discrepancies and decisions
 
@@ -29,7 +29,7 @@ review completed.  Next:  Jason's editorial review.
   trade-off instead of labelling the students' setter an error.
 - Invented claw names are explicitly labelled as API-design examples.
 
-## Guesses and questions for Jason
+## Guesses and questions for the author
 
 No personal anecdotes inferred.  Future API choices are exercises, not a
 request to rename current student methods or change their implementations.

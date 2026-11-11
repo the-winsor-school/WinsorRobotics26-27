@@ -26,7 +26,7 @@ baseline is the `TODO` in `DoublyLimitedMotor.java`.
 - The lesson implies `TrySleep` times turret rotations.  Those sleeps were
   removed in `1a6809a`;  2.4 names the current callers.
 
-## 3.  Guesses and open questions for Jason
+## 3.  Guesses and open questions for the author
 
 - 2.7:  `tryGetFiducial` and `tryFindOneOf` check for a `null` result and
   leave `isValid()` unchecked.  code-facts flags it, and also that
