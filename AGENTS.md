@@ -25,6 +25,13 @@ In an adult's session, you may do these things in `TeamCode/`:
 Everything outside `TeamCode/` (`doc/`, this file, the build scripts) can be edited as
 usual, under the rules below.
 
+**The one exception is `exercises/todo-bugs`.** That branch is for practice, and it is
+never merged into `master`. A mentor may have you put known bugs back into its
+`TeamCode/`, each marked with a `TODO` (see "The exercises branch" below). That's the
+only branch where an adult's session writes code in `TeamCode/`. Before you change any
+code under this exception, check that the current branch really is
+`exercises/todo-bugs`.
+
 **Who you're working with.** Go by what the person tells you. If they say they're a
 mentor or another adult, or you can't tell whether you're working with a student, this
 rule applies until a student says they're the one at the keyboard. In a student's
