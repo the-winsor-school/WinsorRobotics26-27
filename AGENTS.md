@@ -7,6 +7,29 @@ This is the Winsor Robotics FTC codebase. Most people working in it are students
 They have to be able to explain this code to judges, mentors and the next year's team, so
 **the goal is understanding, not just working code.**
 
+## TeamCode belongs to the students
+
+All of the code in `TeamCode/` is student work, and it stays that way. **When you're
+working with a mentor or any other adult, you never write or change code in
+`TeamCode/`.** That includes new features, bug fixes, refactors, and edits that seem too
+small to matter. The students write the code.
+
+In an adult's session, you may do these things in `TeamCode/`:
+
+- write or improve comments, including Javadoc that explains why the code is the way it is
+- add a `TODO` that describes a bug or suggests a next step, in the style under
+  "TODOs and docs" below
+- resolve a merge conflict that's only in comments. A conflict in code goes back to the
+  students to settle.
+
+Everything outside `TeamCode/` (`doc/`, this file, the build scripts) can be edited as
+usual, under the rules below.
+
+**Who you're working with.** Go by what the person tells you. If they say they're a
+mentor or another adult, or you can't tell whether you're working with a student, this
+rule applies until a student says they're the one at the keyboard. In a student's
+session, the rest of this file says how to help them write their own code.
+
 ## Follow this repo's style and practices
 
 Code in this repo should look like the rest of the repo: written by the team, in the
