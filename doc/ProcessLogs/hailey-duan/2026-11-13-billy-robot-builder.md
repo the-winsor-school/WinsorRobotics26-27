@@ -48,8 +48,17 @@ One line per change: file, what changed, why.
   `new BillyRobotBuilder(hardwareMap, telemetry).tagID(TARGET_TAG_ID).build()`. RED and
   BLUE drop the unused `BillyRobot` import; the Auton keeps it because its field is a
   `BillyRobot`. Behavior is unchanged.
+- Step 2 (2026-11-13): `BillyRobot.java` takes a 4th constructor argument,
+  `boolean autoAimOnStart`, and calls `startAssist(targeter)` only when it's true.
+  `BillyRobotBuilder.java` adds `.autoAimOnStart(boolean)` and passes it to the
+  constructor. The targeter itself doesn't need it, because it only knows how to aim.
 
 ## Decisions
+- 2026-11-13: `.autoAimOnStart(...)` is optional, and the builder's field defaults to
+  `true`, so Billy behaves like before unless an OpMode asks otherwise. A plain `boolean`
+  with no value would have defaulted to `false` and quietly turned off auto-aim. The default
+  belongs in the builder, not BillyRobot, because the builder decides what happens when a
+  setting isn't given.
 - 2026-11-13: The OpModes use the `telemetry` they inherit from `LinearOpMode`, which is the
   one connected to the Driver Station. Hailey first wrote `Telemetry telemetry = new
   Telemetry();`, which doesn't compile (Telemetry is an interface) and would have hidden
@@ -72,6 +81,9 @@ One line per change: file, what changed, why.
 For each change: run on hardware / compiled only / not tested, and what I saw.
 
 - Step 1a: compiled only (passed 2026-11-13). Nothing calls the builder yet.
+- Step 2: compiled only (passed 2026-11-13). Not yet run on Billy. To test: with no
+  `.autoAimOnStart(...)` call, auto-aim is on at start like before (the turret tracks, and
+  y turns it off). With `.autoAimOnStart(false)`, it's off until y is pressed.
 - Step 1b: compiled only (passed 2026-11-13). Not yet run on Billy. To test: BillyRED or
   BLUE initializes and drives, and auto-aim and rapid fire work as before. The Example
   State Machine Auton shows "auton ready" at init.

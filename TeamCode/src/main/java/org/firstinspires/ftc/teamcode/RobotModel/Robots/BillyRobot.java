@@ -85,7 +85,7 @@ public class BillyRobot extends Robot {
      *       telemetry references, bypassing the object model").</li>
      * </ul>
      */
-    public BillyRobot(HardwareMap hardwareMap, Telemetry telemetry, int tagID) {
+    public BillyRobot(HardwareMap hardwareMap, Telemetry telemetry, int tagID, boolean autoAimOnStart) {
         super(telemetry);
 
         imu = new ImuBuilder(hardwareMap)
@@ -147,8 +147,11 @@ public class BillyRobot extends Robot {
             mech.giveInstructions(gamepad2, assistClaims());
             assist.update(gamepad1, gamepad2);
         };
-        startAssist(targeter);
+        if (autoAimOnStart)
+            startAssist(targeter);
     }
+
+
 
     public void stopAll() {
         ((BillyMA)mechAssembly).cancelMacro("stopped by stop all");
