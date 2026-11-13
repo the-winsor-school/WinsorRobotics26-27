@@ -86,7 +86,7 @@ public class BillyRobot extends Robot {
      * </ul>
      */
     public BillyRobot(HardwareMap hardwareMap, Telemetry telemetry, int tagID) {
-    super(telemetry);
+        super(telemetry);
 
         imu = new ImuBuilder(hardwareMap)
                 .logoFacing(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT)

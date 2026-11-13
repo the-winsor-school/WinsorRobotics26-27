@@ -7,8 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDriveBuilder;
-import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.BillyMA;
-import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.SpinnyIntakeMA;
+import org.firstinspires.ftc.teamcode.RobotModel.Robots.ImuBuilder;
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.Robot;
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.RobotBuilder;
 
@@ -30,22 +29,20 @@ public class ExampleSimpleMecanumTeleOp extends LinearOpMode
 
     {
         // The robot owns the IMU:  set it up once with Billy's hub orientation.
-        IMU imu = hardwareMap.get(IMU.class, "imu");
-        imu.initialize(new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
-                RevHubOrientationOnRobot.UsbFacingDirection.UP)));
-        imu.resetYaw();
+        IMU imu = new ImuBuilder(hardwareMap)
+                .logoFacing(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT)
+                .usbFacing(RevHubOrientationOnRobot.UsbFacingDirection.UP)
+                .build();
 
         // Same wheel directions as BillyRobot.
         robot = new RobotBuilder(telemetry)
                 .driveTrain(new MecanumDriveBuilder(hardwareMap)
-                        .leftFront(DcMotorSimple.Direction.REVERSE)
-                        .leftBack(DcMotorSimple.Direction.REVERSE)
-                        .rightFront(DcMotorSimple.Direction.FORWARD)
-                        .rightBack(DcMotorSimple.Direction.FORWARD)
+                        .leftFront(DcMotorSimple.Direction.FORWARD)
+                        .leftBack(DcMotorSimple.Direction.FORWARD)
+                        .rightFront(DcMotorSimple.Direction.REVERSE)
+                        .rightBack(DcMotorSimple.Direction.REVERSE)
                         .imu(imu)
                         .build())
-                .mechAssembly(new SpinnyIntakeMA(hardwareMap))
                 .build();
 
         telemetry.addLine("initialized");

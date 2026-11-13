@@ -230,8 +230,9 @@ robot = new RobotBuilder(telemetry)
 `BillyRobot` shows the expected structure for a full robot class:
 
 1. Call `super(telemetry)` first, so `Robot` holds the reference before anything else runs.
-2. Fetch and initialize the IMU with this robot's hub orientation.  The drive train
-   needs it, so it has to exist before step 3.
+2. Build the IMU with `ImuBuilder`, giving this robot's hub orientation.  `build()` fetches
+   it, initializes it and resets yaw.  The drive train needs it, so it has to exist before
+   step 3.
 3. Create the drive train, passing in the IMU.
 4. Create the mech assembly.
 5. Create the other robot-wide sensors and helpers (for Billy, the Limelight).
@@ -488,13 +489,12 @@ public class NewRobot extends Robot {
     public NewRobot(HardwareMap hardwareMap, Telemetry telemetry) {
         super(telemetry);                    // Robot stores the reference first
 
-        // The robot owns the IMU:  fetch it, set THIS robot's hub orientation once,
-        // then hand it to the drive train.
-        IMU imu = hardwareMap.get(IMU.class, "imu");
-        imu.initialize(new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,   // check on your robot
-                RevHubOrientationOnRobot.UsbFacingDirection.UP)));
-        imu.resetYaw();
+        // The robot owns the IMU:  build it once with THIS robot's hub orientation,
+        // then hand it to the drive train.  build() refuses to run if a direction is missing.
+        IMU imu = new ImuBuilder(hardwareMap)
+                .logoFacing(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT)   // check on your robot
+                .usbFacing(RevHubOrientationOnRobot.UsbFacingDirection.UP)
+                .build();
 
         // Name each wheel's direction; build() refuses to run if one is missing.
         driveTrain = new MecanumDriveBuilder(hardwareMap)
@@ -621,7 +621,7 @@ Examples:
 - `Telemetry`
 - target tag ID
 - drivetrain orientation configuration
-- the IMU, which each robot initializes and passes into `MecanumDrive`
+- the IMU, which each robot builds with `ImuBuilder` and passes into `MecanumDrive`
 
 ### State Machine Pattern
 
