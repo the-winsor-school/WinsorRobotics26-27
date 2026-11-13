@@ -3,7 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.RobotModel.Robots.BillyRobot;
+import org.firstinspires.ftc.teamcode.RobotModel.Robots.BillyRobotBuilder;
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.Robot;
 
 //@Disabled   // temporarily hidden while testing Example TeleOp (Simple Mecanum)
@@ -16,7 +16,9 @@ public class BillyTeleOpRED extends LinearOpMode {
     Robot robot;
     @Override
     public void runOpMode() throws InterruptedException {
-        robot = new BillyRobot(hardwareMap, telemetry, TARGET_TAG_ID);
+        robot = new BillyRobotBuilder(hardwareMap, telemetry)
+                .tagID(TARGET_TAG_ID)
+                .build();
 
         telemetry.addLine("Billy Initialized");
         telemetry.update();

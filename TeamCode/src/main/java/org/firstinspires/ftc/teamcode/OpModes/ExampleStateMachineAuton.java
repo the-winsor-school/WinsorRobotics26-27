@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.AutonStrategies.IAutonStrategy;
 import org.firstinspires.ftc.teamcode.Extensions.IState;
 import org.firstinspires.ftc.teamcode.Extensions.LimelightExtensions;
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.BillyRobot;
+import org.firstinspires.ftc.teamcode.RobotModel.Robots.BillyRobotBuilder;
 
 @Autonomous(name = "Example State Machine Auton", group = "Example")
 public class ExampleStateMachineAuton
@@ -25,7 +26,9 @@ public class ExampleStateMachineAuton
     @Override
     public void runOpMode() throws InterruptedException
     {
-        robot = new BillyRobot(hardwareMap, telemetry, TARGET_TAG_ID);
+        robot = new BillyRobotBuilder(hardwareMap, telemetry)
+                .tagID(TARGET_TAG_ID)
+                .build();
         telemetry.addLine("auton ready");
         telemetry.update();
         waitForStart();
