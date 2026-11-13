@@ -59,6 +59,16 @@ My requests to Claude, copied word for word, in order. Include follow-ups and co
 
 > ok yeah just keep this
 
+> ok so done with step 6?
+
+> helpo heh
+
+> helpo
+
+> bruh what i don't need to do this
+
+> jajjajaajajaj i'll do it when he comes back
+
 ## Plan
 Numbered steps, written down before any code changed.
 
