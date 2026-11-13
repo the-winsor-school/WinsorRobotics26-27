@@ -35,6 +35,30 @@ My requests to Claude, copied word for word, in order. Include follow-ups and co
 
 > no bro the wheels are fine
 
+> why did you rmeove the intake!??!?!?
+
+> bro what the natke is in SpinnyIntakeMA
+
+> no i mean the inatke isn't removed, it's spinnyintakema
+
+> so your description is wrong
+
+> what is step 6
+
+> wait what but when we run the robot the teleop uses the spinnyinatkema
+
+> wait help lol
+
+> no bro don't change the wheels
+
+> why you ad dthe spinny intake import statement!??!?
+
+> ?!?!? rlly!??!
+
+> wait then if mr.cox didn't add the intake import statement i dont' need it
+
+> ok yeah just keep this
+
 ## Plan
 Numbered steps, written down before any code changed.
 
@@ -112,6 +136,11 @@ My answers:
   the new chassis used the OTHER directions (lf R, lb R, rf F, rb F, from 125f308) with the
   intake, so this version has NOT been tested. It needs its own commit and a run on the new
   chassis.
+  Later the same day: Hailey decided to keep this version, which matches Jason Cox's
+  0e58124: drive only, lf F, lb F, rf R, rb R. `SpinnyIntakeMA` (added in 125f308 on
+  fair day) stays in the repo but is no longer used by this TeleOp. The robot is still
+  running the weekend install, so these directions and the missing intake are untested
+  until the next install on the new chassis.
 - 2026-11-13: Hailey is writing the code now and testing on Billy later. The branch stays
   unmerged until it has been tested.
 - `ExampleSimpleMecanumTeleOp` was written by a mentor and has its own open wheel-direction
@@ -135,3 +164,6 @@ My answers:
 A commit can't contain its own hash, so add each hash the next time you update this log.
 
 - cc70f94: Add ImuBuilder and BillyRobot uses ImuBuilder (steps 1 and 2 together)
+- f134eb1: Simple Mecanum TeleOp and new-robot doc use ImuBuilder (steps 4 and 5). This commit
+  also accidentally reverted the TeleOp's wheel directions and dropped `SpinnyIntakeMA`.
+  Hailey later chose to keep this drive-only version.
