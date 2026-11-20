@@ -46,10 +46,12 @@ public class BillyMA extends MechAssembly {
     private final DoubleShooter flywheel;
     private final Turret turret;
     private BillyRapidFire BRF = null;
+    private final int rapidFireShots;
     private final MacroManager<Part> macros = new MacroManager<>();
     protected BillyAssemblyStrategy strategy;
 
-    public BillyMA(HardwareMap hardwareMap) {
+    public BillyMA(HardwareMap hardwareMap, int rapidFireShots) {
+        this.rapidFireShots = rapidFireShots;
         intake = new SpinnyIntake(hardwareMap, "intakeMotor",
                 (motor, gamepad) -> {
                     if (gamepad.dpad_up) {
@@ -171,7 +173,7 @@ public class BillyMA extends MechAssembly {
                 flywheel.getAutonomousBehaviors(),
                 turret.getAutonomousBehaviors(),
                 telemetry);
-        BRF = new BillyRapidFire(auton, 3);
+        BRF = new BillyRapidFire(auton, rapidFireShots);
     }
 
     @Override

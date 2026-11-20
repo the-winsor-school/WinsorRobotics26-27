@@ -85,7 +85,7 @@ public class BillyRobot extends Robot {
      *       telemetry references, bypassing the object model").</li>
      * </ul>
      */
-    public BillyRobot(HardwareMap hardwareMap, Telemetry telemetry, int tagID, boolean autoAimOnStart) {
+    public BillyRobot(HardwareMap hardwareMap, Telemetry telemetry, int tagID, boolean autoAimOnStart, int rapidFireShots) {
         super(telemetry);
 
         imu = new ImuBuilder(hardwareMap)
@@ -101,7 +101,7 @@ public class BillyRobot extends Robot {
                 .imu(imu)
                 .build();
 
-        mechAssembly = new BillyMA(hardwareMap);
+        mechAssembly = new BillyMA(hardwareMap, rapidFireShots);
 
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
         limelight.setPollRateHz(100);

@@ -20,6 +20,12 @@ My requests to Claude, copied word for word, in order. Include follow-ups and co
 
 > sure,  "grow RobotBuilder" project TODO is fine for billyrapidfire which i helped right last year in a class
 
+### 2026-11-20
+
+> check; because in case you want to change the number of balls it shoots; not shoot any balls
+
+> um why do you need to put it in the log? let's move on to the next step.
+
 ## Plan
 Numbered steps, written down before any code changed.
 
@@ -52,6 +58,13 @@ One line per change: file, what changed, why.
   `boolean autoAimOnStart`, and calls `startAssist(targeter)` only when it's true.
   `BillyRobotBuilder.java` adds `.autoAimOnStart(boolean)` and passes it to the
   constructor. The targeter itself doesn't need it, because it only knows how to aim.
+- Step 3 (2026-11-20): `BillyRobotBuilder.java` adds `.rapidFireShots(int)`, which defaults
+  to 3, the number Billy always shot. `BillyRobot.java` takes it as a 5th constructor
+  argument and passes it to `new BillyMA(hardwareMap, rapidFireShots)`. `BillyMA.java`
+  stores it in a `final` field and uses it in `initializeTelemetry` in place of the
+  hard-coded `3`. Hailey first passed `telemetry` to `BillyRapidFire` too, which was how
+  last year's version worked; it was taken out because strategies report through
+  `reportStatus` (AGENTS.md rule 3).
 
 ## Decisions
 - 2026-11-13: `.autoAimOnStart(...)` is optional, and the builder's field defaults to
@@ -84,6 +97,9 @@ For each change: run on hardware / compiled only / not tested, and what I saw.
 - Step 2: compiled only (passed 2026-11-13). Not yet run on Billy. To test: with no
   `.autoAimOnStart(...)` call, auto-aim is on at start like before (the turret tracks, and
   y turns it off). With `.autoAimOnStart(false)`, it's off until y is pressed.
+- Step 3: compiled only (passed 2026-11-20). Not yet run on Billy. To test: with no
+  `.rapidFireShots(...)` call, gamepad2 a shoots 3 balls like before. With
+  `.rapidFireShots(1)`, it shoots one.
 - Step 1b: compiled only (passed 2026-11-13). Not yet run on Billy. To test: BillyRED or
   BLUE initializes and drives, and auto-aim and rapid fire work as before. The Example
   State Machine Auton shows "auton ready" at init.
@@ -92,6 +108,9 @@ For each change: run on hardware / compiled only / not tested, and what I saw.
 Written by me, not by Claude.
 
 ## Still unknown
+- `.rapidFireShots(0)` (or a negative number) isn't checked. Hailey expected 0 to shoot no
+  balls, but `BillyRapidFire` fires once before it checks `--ballCount > 0`, so 0 still
+  shoots one ball. Whether `build()` should throw for values below 1 is still undecided.
 - The target tag IDs are still `-1` (an existing TODO in BillyTeleOpRED/BLUE). This task
   doesn't fix that TODO.
 - This branch includes hailey/imu-builder's untested commits. Its pull request should wait

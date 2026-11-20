@@ -13,6 +13,7 @@ public class BillyRobotBuilder
     private final Telemetry telemetry;
     private Integer tagID; // Integer, not int, so "never set" is null
     private boolean autoAimOnStart = true; // default on, so Billy auto-aims at start like before
+    private int rapidFireShots = 3; // default 3, same as Billy always shot
 
     public BillyRobotBuilder(HardwareMap hardwareMap, Telemetry telemetry)
     {
@@ -32,11 +33,17 @@ public class BillyRobotBuilder
         return this;
     }
 
+    public BillyRobotBuilder rapidFireShots(int rapidFireShots)
+    {
+        this.rapidFireShots = rapidFireShots;
+        return this;
+    }
+
     public BillyRobot build()
     {
         if (tagID == null)
             throw new IllegalStateException("BillyRobotBuilder: call tagID(...) before build()");
-        return new BillyRobot(hardwareMap, telemetry, tagID, autoAimOnStart);
+        return new BillyRobot(hardwareMap, telemetry, tagID, autoAimOnStart, rapidFireShots);
     }
 }
 
