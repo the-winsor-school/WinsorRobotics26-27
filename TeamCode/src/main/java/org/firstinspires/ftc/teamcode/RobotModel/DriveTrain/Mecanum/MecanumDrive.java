@@ -219,7 +219,7 @@ public class MecanumDrive extends DriveTrain
     {
         double vertical = GamepadExtensions.GetLeftStickY(gamepad);
         double horizontal = GamepadExtensions.GetLeftStickX(gamepad);
-        double turn = GamepadExtensions.GetRightStickX(gamepad);
+        double turn = -GamepadExtensions.GetRightStickX(gamepad);
 
         double angle = Math.atan2(vertical, horizontal);
         double magnitude = Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2));
