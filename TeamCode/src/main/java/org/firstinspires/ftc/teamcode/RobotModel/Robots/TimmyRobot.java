@@ -1,14 +1,22 @@
 package org.firstinspires.ftc.teamcode.RobotModel.Robots;
 
+import com.qualcomm.hardware.limelightvision.LLResult;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.AutonStrategies.IAutonStrategy;
 import org.firstinspires.ftc.teamcode.AutonStrategies.LimelightAutoTarget;
+import org.firstinspires.ftc.teamcode.Extensions.IState;
+import org.firstinspires.ftc.teamcode.Extensions.ThreadExtensions;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDrive;
+import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.OldMecanumDrive;
+import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.BillyMA;
 
-import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDriveBuilder;
+import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.TimmyMA;
+import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 
@@ -16,25 +24,32 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
-import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.TimmyMA;
-
-import java.util.Set;
-import java.util.Collections;
 
 
 public class TimmyRobot extends Robot {
-    public class AutonomousMecanumRobot extends AutonomousRobot
+    public class AutonomousTimmyRobot extends AutonomousRobot
     {
-        public final MecanumDrive.AutonomousMecanumDrive driveTrain;
+        public final OldMecanumDrive.AutonomousOldMecanumDrive driveTrain;
         public final TimmyMA.AutonomousTimmyMA mechAssembly;
 
-        public AutonomousMecanumRobot(MecanumDrive.AutonomousMecanumDrive driveTrain,
-                                      TimmyMA.AutonomousTimmyMA mechAssembly,
-                                      Telemetry telemetry)
+        public AutonomousTimmyRobot(OldMecanumDrive.AutonomousOldMecanumDrive driveTrain,
+                                      TimmyMA.AutonomousTimmyMA mechAssembly, Telemetry telemetry)
         {
             super(driveTrain, mechAssembly, telemetry);
             this.driveTrain = driveTrain;
             this.mechAssembly = mechAssembly;
+        }
+
+
+        public double getHeading() {
+            YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
+            return orientation.getYaw(AngleUnit.DEGREES);
+        }
+        public double angleWrap(double angle)
+        {
+            while (angle > 180) angle -= 360;
+            while (angle < -180) angle += 360;
+            return angle;
         }
     }
 
@@ -43,19 +58,18 @@ public class TimmyRobot extends Robot {
         void execute (TimmyRobot robot, Gamepad g, Gamepad h);
     }
 
-
-    private final AutonomousMecanumRobot auton;
+    private final AprilTagProcessor aprilTag;
+    private final AutonomousTimmyRobot auton;
     public final Limelight3A limelight;
     public final IMU imu;
 
     public final LimelightAutoTarget targeter;
-    private final AssistManager<TimmyMA.Part> assist = new AssistManager<>();
 
     protected TimmyRobotStrategy strategy;
 
 
     @Override
-    public TimmyRobot.AutonomousMecanumRobot getAutonomousRobot() {
+    public TimmyRobot.AutonomousTimmyRobot getAutonomousRobot() {
         return auton;
     }
 
@@ -76,6 +90,20 @@ public class TimmyRobot extends Robot {
     public TimmyRobot(HardwareMap hardwareMap, Telemetry telemetry, int tagID) {
         super(telemetry);
 
+        driveTrain = new OldMecanumDrive(hardwareMap, new OldMecanumDrive.OrientationConfiguration(
+                DcMotorSimple.Direction.FORWARD,
+                DcMotorSimple.Direction.FORWARD,
+                DcMotorSimple.Direction.REVERSE,
+                DcMotorSimple.Direction.FORWARD)
+        );
+
+        mechAssembly = new TimmyMA(hardwareMap);
+
+        limelight = hardwareMap.get(Limelight3A.class, "limelight");
+        limelight.setPollRateHz(100);
+        limelight.start();
+        limelight.pipelineSwitch(0);
+
         imu = hardwareMap.get(IMU.class, "imu");
 
         IMU.Parameters parameters = new IMU.Parameters(
@@ -88,102 +116,39 @@ public class TimmyRobot extends Robot {
         imu.initialize(parameters);
         imu.resetYaw();
 
-        driveTrain = new MecanumDriveBuilder(hardwareMap)
-                .leftFront(DcMotorSimple.Direction.FORWARD)
-                .leftBack(DcMotorSimple.Direction.FORWARD)
-                .rightFront(DcMotorSimple.Direction.FORWARD)
-                .rightBack(DcMotorSimple.Direction.REVERSE)
-                .imu(imu)
-                .build();
-
-        mechAssembly = new TimmyMA(hardwareMap);
-
-        limelight = hardwareMap.get(Limelight3A.class, "limelight");
-        limelight.setPollRateHz(100);
-        limelight.start();
-        limelight.pipelineSwitch(0);
+        aprilTag = AprilTagProcessor.easyCreateWithDefaults();
 
         initializeSubsystems();
 
-        auton = new TimmyRobot.AutonomousMecanumRobot(
+        auton = new TimmyRobot.AutonomousTimmyRobot(
                 driveTrain.getAutonomousDriving(),
                 mechAssembly.getAutonomousBehaviors(),
                 telemetry);
 
         targeter = new LimelightAutoTarget(
                 limelight,
-                ((TimmyMA)mechAssembly).getAutonomousBehaviors().autonTurret,
+                ((TimmyMA)mechAssembly).getAutonomousBehaviors().turret,
                 tagID);
+        /*
+          IRobot strategy is initialized in the constructor that takes the input of robot, gamepad1, and gamepad2
+          It updates the robot state with the parameters gamepad1 and gamepad2
+          If the LimelightAutoTarget has not finished running, then the LimelightAutoTarget's state is updated
+         */
 
         strategy = (robot, gamepad1, gamepad2)  -> {
-            if (gamepad1.yWasPressed()) {
-                if (!assist.isRunning())
-                    startAssist(targeter);
-                else
-                    stopAssist("turned off by y");
-            }
-
-            TimmyMA mech = (TimmyMA)mechAssembly;
-            if (gamepad2.aWasPressed()) {
-                if (overlaps(mech.macroClaims(), assistClaims()))
-                    stopAssist("replaced by " + mech.macroName());
-            }
-
-            if (gamepad2.bWasPressed()) {
-                mech.cancelMacro("cancelled by b");
-            }
-
-            if(gamepad1.bWasPressed()) {
-                stopAll();
-            }
-
-            driveTrain.drive(gamepad1);
-            mech.giveInstructions(gamepad2, assistClaims());
-            assist.update(gamepad1, gamepad2);
+            super.update(gamepad1, gamepad2);
+            if(!targeter.isComplete())
+                targeter.updateState();
         };
-        startAssist(targeter);
     }
 
-    public void stopAll() {
-        ((BillyMA)mechAssembly).cancelMacro("stopped by stop all");
-        stopAssist("stopped by stop all");
-    }
-
-    private boolean overlaps(Set<BillyMA.Part> a, Set<BillyMA.Part> b) {
-        return !Collections.disjoint(a, b);
-    }
-
+    /**
+     * The IRobotStrategy executes by taking the robot, gamepad1, and gamepad2 parameters
+     * @param gamepad1 driver gamepad
+     * @param gamepad2 mech gamepad
+     */
     @Override
     public void update(Gamepad gamepad1, Gamepad gamepad2) {
         strategy.execute(this, gamepad1, gamepad2);
-    }
-
-    @Override
-    public void updateTelemetry() {
-        BillyMA mech = (BillyMA) mechAssembly;
-        if (!assist.isRunning())
-            telemetry.addData("Assist", "None");
-        else
-            telemetry.addData("Assist", assist.activeName() + " " + assist.claimed());
-        telemetry.addData("Macro", mech.macroName() + " " + mech.macroClaims());
-        telemetry.addData("Last macro", mech.lastMacroEnd());
-        telemetry.addData("Last assist", assist.lastEnd());
-        super.updateTelemetry();
-    }
-
-    public void startAssist(IAssistRobotStrategy<BillyMA.Part> newAssist) {
-        BillyMA mech = (BillyMA) mechAssembly;
-        if (overlaps(newAssist.claims(), mech.macroClaims()))
-            mech.cancelMacro("replaced by " + newAssist.name());
-
-        assist.start(newAssist);
-    }
-
-    public Set<BillyMA.Part> assistClaims() {
-        return assist.claimed();
-    }
-
-    public void stopAssist(String reason) {
-        assist.stop(reason);
     }
 }

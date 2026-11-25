@@ -141,21 +141,21 @@ public class TimmyMA extends MechAssembly
     @Override
     public void initializeTelemetry(Telemetry telemetry) {
         this.telemetry = telemetry;
-        cascade.initializeTelemetry(telemetry);
-        drawbridge.initializeTelemetry(telemetry);
-        claw.initializeTelemetry(telemetry);
-        auton = new AutonomousCascadeArm(
-                cascade.getAutonomousBehaviors(),
-                drawbridge.getAutonomousBehaviors(),
-                claw.getAutonomousBehaviors(),
+        intake.initializeTelemetry(telemetry);
+        pusher.initializeTelemetry(telemetry);
+        shooter.initializeTelemetry(telemetry);
+        turret.initializeTelemetry(telemetry);
+        auton = new AutonomousTimmyMA(
+                intake.getAutonomousBehaviors(),
+                pusher.getAutonomousBehaviors(),
+                shooter.getAutonomousBehaviors(),
+                turret.getAutonomousBehaviors(),
                 telemetry);
-        stow = new CascadeStow(auton);
     }
 
     @Override
     public void giveInstructions(Gamepad gamepad) {
-        macros.update(gamepad);
-        strategy.execute(this, gamepad, macros.claimed());
+        strategy.execute(this, gamepad);
     }
 
     /**
@@ -165,8 +165,9 @@ public class TimmyMA extends MechAssembly
     @Override
     public void updateTelemetry() {
         telemetry.addLine("--- Cascade Arm ---");
-        claw.update();
-        cascade.update();
-        drawbridge.update();
+        intake.update();
+        pusher.update();
+        turret.update();
+        shooter.update();
     }
 }
